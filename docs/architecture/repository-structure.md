@@ -8,10 +8,14 @@
     - `Productivity_Strategy.md`: Work efficiency, habits, long-term strategy.
   - `Qiushi_Study_Materials/`: Structured interpretations of Qiushi content and related policy learning materials.
     - `15th_Five_Year_Plan_Outline_Draft_Interpretation.md`: Initial interpretation of the 2026-2030 national five-year plan outline summary.
+    - `Historical_Social_Development_Frameworks/`: Reusable frameworks for interpreting personal and social questions through historical and social development logic.
+      - `Historical_And_Social_Development_Framework.md`: A unified framework for reading justice, struggle, growth, and order through historical development.
     - `Key_Paragraph_Interpretations/`: Deep readings of important standalone paragraphs from key policy materials.
       - `Strategic_Determination_In_Uncertain_Times.md`: Deep interpretation of a key paragraph on strategic determination under uncertainty.
       - `Leadership_And_Political_Alignment_In_Daily_Life.md`: Interprets political alignment language through governance logic and everyday examples.
       - `Open_Cooperation_And_Mutual_Benefit_In_Daily_Life.md`: Interprets openness and mutual benefit through development logic and everyday examples.
+      - `Eliminating_Two_Faced_Officials.md`: Deep interpretation of organizational governance logic behind eliminating "two-faced" officials, analyzing root causes, systemic solutions, and implications for organizations and individuals.
+      - `Tight_Budget_For_Better_Lives.md`: Interprets the dialectical relationship between government austerity and public welfare, analyzing fiscal resource reallocation logic.
     - `Practical_Scenario_Interpretations/`: Standalone scenario notes that map policy logic into daily decision-making.
       - `How_To_Handle_Threatening_People_Without_Self_Damage.md`: Why leaving danger first does not mean letting aggressors go unchallenged.
       - `How_To_Prioritize_When_Energy_Is_Limited.md`: How to do strategic prioritization when personal energy cannot cover every goal.
