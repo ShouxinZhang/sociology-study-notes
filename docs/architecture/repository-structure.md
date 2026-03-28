@@ -28,7 +28,12 @@
     - `Idea_Management.md`: Visualization and value of ideas/questions.
     - `Personal_Growth_Philosophy.md`: Inner growth, dreams, mindset.
     - `Life_Tools_Misc.md`: Daily life observations, specialized tools.
+  - `Social_Interaction_Skills/`: Practical notes for everyday communication, relationship-building, and low-pressure social interaction.
+    - `Topics_For_Less_Familiar_Friends.md`: A China-specific layered guide to choosing safe conversation topics based on relationship, age, occupation, education background, and social setting.
+    - `Real_Chat_Examples_And_Techniques.md`: An anonymized case-based note extracting concrete conversation examples and reusable tactics from real chat records.
   - `Speculative_Deep_Dives/`: Experimental zone for hazy thoughts, discussions, and hypothetical scenarios.
+    - `AI_Era_Learning_Confusion_And_Human_Stratification.md`: Reflections on AI-accelerated learning, the learner-vs-researcher gap, personal confusion, cognitive stratification, and the "new vs old humanity" question.
+    - `Formalized_Tasks_Economic_Distribution_And_Post_Survival_Vision.md`: Deep reflection on the trap of formalized tasks from school to workplace, the fundamental questioning of economic distribution inequality, the "three mountains" of education/healthcare/elderly care, and a vision of post-survival human flourishing.
     - `Intrinsic_Human_Differentiation.md`: Thought experiment on human value after a total status reset.
 - `.github/skills/`: Custom agent skills for the repository.
   - `sociology-note-formatter/`: Skill for formatting and categorizing notes.
@@ -40,3 +45,4 @@
 - `docs/architecture/`: Documentation about the repository itself.
   - `repository-structure.md`: This file.
 - `docs/dev_logs/`: Development logs for each change cycle, organized by date.
+  - `2026-03-23/`: Development records for changes made on 2026-03-23.
