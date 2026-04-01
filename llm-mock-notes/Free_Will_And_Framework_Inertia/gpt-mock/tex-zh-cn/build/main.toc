@@ -1,84 +1,121 @@
-\contentsline {chapter}{\numberline {第一章\hspace {.3em}}为什么要写这本书}{1}{chapter.1}%
+\contentsline {chapter}{\numberline {第一章\hspace {.3em}}为什么需要这本书}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}学习目标}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}全书架构}{1}{section.1.2}%
 \contentsline {section}{\numberline {1.3}范围与边界}{2}{section.1.3}%
 \contentsline {section}{\numberline {1.4}证据政策}{2}{section.1.4}%
 \contentsline {chapter}{\numberline {第二章\hspace {.3em}}行为状态的形式语言}{4}{chapter.2}%
-\contentsline {section}{\numberline {2.1}状态、框架与阻力}{4}{section.2.1}%
-\contentsline {section}{\numberline {2.2}目标状态与障碍}{4}{section.2.2}%
-\contentsline {section}{\numberline {2.3}展开示例：从床上到书桌前}{5}{section.2.3}%
-\contentsline {section}{\numberline {2.4}把记号当作管理工具}{5}{section.2.4}%
-\contentsline {section}{\numberline {2.5}推荐阅读}{5}{section.2.5}%
-\contentsline {chapter}{\numberline {第三章\hspace {.3em}}动力学与决策窗口}{6}{chapter.3}%
-\contentsline {section}{\numberline {3.1}意志能量}{6}{section.3.1}%
-\contentsline {section}{\numberline {3.2}决策窗口}{6}{section.3.2}%
-\contentsline {section}{\numberline {3.3}失败模式}{7}{section.3.3}%
-\contentsline {section}{\numberline {3.4}窗口的比较图谱}{7}{section.3.4}%
-\contentsline {section}{\numberline {3.5}推荐阅读}{7}{section.3.5}%
-\contentsline {chapter}{\numberline {第四章\hspace {.3em}}把计划当作架构控制}{8}{chapter.4}%
-\contentsline {section}{\numberline {4.1}在行动时刻之前完成计划}{8}{section.4.1}%
-\contentsline {section}{\numberline {4.2}计划栈}{8}{section.4.2}%
-\contentsline {section}{\numberline {4.3}章级工作流}{9}{section.4.3}%
-\contentsline {section}{\numberline {4.4}未经规划的意图为何会失败}{9}{section.4.4}%
-\contentsline {section}{\numberline {4.5}推荐阅读}{9}{section.4.5}%
-\contentsline {chapter}{\numberline {第五章\hspace {.3em}}意识生物学与状态转变}{10}{chapter.5}%
-\contentsline {section}{\numberline {5.1}为什么意识研究应当放在这里}{10}{section.5.1}%
-\contentsline {section}{\numberline {5.2}三个实证锚点}{10}{section.5.2}%
-\contentsline {section}{\numberline {5.3}从全局状态到局部行为}{11}{section.5.3}%
-\contentsline {section}{\numberline {5.4}强证据实际带来了什么}{11}{section.5.4}%
-\contentsline {section}{\numberline {5.5}重新理解决策窗口}{11}{section.5.5}%
-\contentsline {section}{\numberline {5.6}证据边界}{12}{section.5.6}%
-\contentsline {section}{\numberline {5.7}这一框架的业务价值}{12}{section.5.7}%
-\contentsline {section}{\numberline {5.8}推荐阅读}{13}{section.5.8}%
-\contentsline {chapter}{\numberline {第六章\hspace {.3em}}涌现与框架形成}{14}{chapter.6}%
-\contentsline {section}{\numberline {6.1}为什么涌现重要}{14}{section.6.1}%
-\contentsline {section}{\numberline {6.2}框架作为历史产物}{14}{section.6.2}%
-\contentsline {section}{\numberline {6.3}从局部互动到整体模式}{15}{section.6.3}%
-\contentsline {section}{\numberline {6.4}亚稳态，而非僵硬或混乱的二选一}{15}{section.6.4}%
-\contentsline {section}{\numberline {6.5}联结条件作用与因果涌现}{15}{section.6.5}%
-\contentsline {section}{\numberline {6.6}干扰、数据与路径依赖}{16}{section.6.6}%
-\contentsline {section}{\numberline {6.7}为什么形成过程对干预很重要}{16}{section.6.7}%
-\contentsline {section}{\numberline {6.8}推荐阅读}{17}{section.6.8}%
-\contentsline {chapter}{\numberline {第七章\hspace {.3em}}用于行为转变的高级动力系统}{18}{chapter.7}%
-\contentsline {section}{\numberline {7.1}为什么数学层必须谨慎扩展}{18}{section.7.1}%
-\contentsline {section}{\numberline {7.2}吸引子与积分器}{18}{section.7.2}%
-\contentsline {section}{\numberline {7.3}自组织吸引子}{19}{section.7.3}%
-\contentsline {section}{\numberline {7.4}分岔与机制变化}{19}{section.7.4}%
-\contentsline {section}{\numberline {7.5}亚稳态与富有成效的脆弱性}{19}{section.7.5}%
-\contentsline {section}{\numberline {7.6}同步与耦合}{20}{section.7.6}%
-\contentsline {section}{\numberline {7.7}基于算子的视角}{20}{section.7.7}%
-\contentsline {section}{\numberline {7.8}证据边界}{20}{section.7.8}%
-\contentsline {section}{\numberline {7.9}推荐阅读}{21}{section.7.9}%
-\contentsline {chapter}{\numberline {第八章\hspace {.3em}}案例库}{22}{chapter.8}%
-\contentsline {section}{\numberline {8.1}为什么本书需要案例}{22}{section.8.1}%
-\contentsline {section}{\numberline {8.2}案例 1：学习启动失败}{22}{section.8.2}%
-\contentsline {section}{\numberline {8.3}案例 2：下班后无法开始锻炼}{23}{section.8.3}%
-\contentsline {section}{\numberline {8.4}案例 3：研究工作中的写作回避}{23}{section.8.4}%
-\contentsline {section}{\numberline {8.5}案例 4：睡眠作息崩坏}{24}{section.8.5}%
-\contentsline {section}{\numberline {8.6}跨案例比较}{25}{section.8.6}%
-\contentsline {section}{\numberline {8.7}推荐阅读}{25}{section.8.7}%
-\contentsline {chapter}{\numberline {第九章\hspace {.3em}}干预设计模式}{26}{chapter.9}%
-\contentsline {section}{\numberline {9.1}从描述走向干预}{26}{section.9.1}%
-\contentsline {section}{\numberline {9.2}干预思维的证据通道}{26}{section.9.2}%
-\contentsline {section}{\numberline {9.3}干预对比表}{28}{section.9.3}%
-\contentsline {section}{\numberline {9.4}设计原则}{29}{section.9.4}%
-\contentsline {section}{\numberline {9.5}实施模板}{29}{section.9.5}%
-\contentsline {section}{\numberline {9.6}实施示例}{30}{section.9.6}%
-\contentsline {section}{\numberline {9.7}失败复盘协议}{30}{section.9.7}%
-\contentsline {section}{\numberline {9.8}推荐阅读}{31}{section.9.8}%
-\contentsline {chapter}{\numberline {第十章\hspace {.3em}}练习与反思提示}{32}{chapter.10}%
-\contentsline {section}{\numberline {10.1}简答题}{32}{section.10.1}%
-\contentsline {section}{\numberline {10.2}应用建模任务}{32}{section.10.2}%
-\contentsline {section}{\numberline {10.3}对比与边界问题}{32}{section.10.3}%
-\contentsline {section}{\numberline {10.4}自我审计工作表}{33}{section.10.4}%
-\contentsline {section}{\numberline {10.5}面向教师的提示使用方式}{33}{section.10.5}%
-\contentsline {section}{\numberline {10.6}推荐阅读}{33}{section.10.6}%
-\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}记号与规划模板}{34}{appendix.A}%
-\contentsline {section}{\numberline {A.1}记号表}{34}{section.A.1}%
-\contentsline {section}{\numberline {A.2}规划模板}{34}{section.A.2}%
-\contentsline {section}{\numberline {A.3}附录用途}{35}{section.A.3}%
-\contentsline {chapter}{\numberline {附录 B\hspace {.3em}}前沿假说与证据边界}{36}{appendix.B}%
-\contentsline {section}{\numberline {B.1}本附录的目的}{36}{section.B.1}%
-\contentsline {section}{\numberline {B.2}为什么隔离很重要}{36}{section.B.2}%
-\contentsline {section}{\numberline {B.3}当前前沿示例}{36}{section.B.3}%
-\contentsline {section}{\numberline {B.4}阅读指引}{37}{section.B.4}%
+\contentsline {section}{\numberline {2.1}为什么本章必须避免伪严谨}{4}{section.2.1}%
+\contentsline {section}{\numberline {2.2}形式承诺的四个层级}{4}{section.2.2}%
+\contentsline {section}{\numberline {2.3}状态、框架与描述性结构}{5}{section.2.3}%
+\contentsline {section}{\numberline {2.4}启发式惯性评分，而不是已证定律}{5}{section.2.4}%
+\contentsline {section}{\numberline {2.5}目标状态与障碍}{6}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}我们可以为之辩护的内容}{6}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}先作序关系解读，再作基数解读}{7}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}我们不在主张什么}{7}{subsection.2.5.3}%
+\contentsline {section}{\numberline {2.6}展开示例：从床上到书桌前}{7}{section.2.6}%
+\contentsline {section}{\numberline {2.7}为什么本章依然重要}{8}{section.2.7}%
+\contentsline {section}{\numberline {2.8}证据边界}{8}{section.2.8}%
+\contentsline {section}{\numberline {2.9}推荐阅读}{9}{section.2.9}%
+\contentsline {chapter}{\numberline {第三章\hspace {.3em}}动力学与决策窗口}{10}{chapter.3}%
+\contentsline {section}{\numberline {3.1}意志能量}{10}{section.3.1}%
+\contentsline {section}{\numberline {3.2}决策窗口}{10}{section.3.2}%
+\contentsline {section}{\numberline {3.3}失败模式}{11}{section.3.3}%
+\contentsline {section}{\numberline {3.4}窗口的比较图谱}{11}{section.3.4}%
+\contentsline {section}{\numberline {3.5}推荐阅读}{11}{section.3.5}%
+\contentsline {chapter}{\numberline {第四章\hspace {.3em}}把计划当作架构控制}{12}{chapter.4}%
+\contentsline {section}{\numberline {4.1}为什么本章必须更诚实}{12}{section.4.1}%
+\contentsline {section}{\numberline {4.2}定义与假设}{12}{section.4.2}%
+\contentsline {section}{\numberline {4.3}在行动时刻之前完成计划}{13}{section.4.3}%
+\contentsline {section}{\numberline {4.4}计划栈}{13}{section.4.4}%
+\contentsline {section}{\numberline {4.5}章级最小工作流}{14}{section.4.5}%
+\contentsline {section}{\numberline {4.6}未经规划的意图为何经常失败}{15}{section.4.6}%
+\contentsline {section}{\numberline {4.7}证据与阅读纪律}{15}{section.4.7}%
+\contentsline {section}{\numberline {4.8}推荐阅读}{16}{section.4.8}%
+\contentsline {chapter}{\numberline {第五章\hspace {.3em}}意识生物学与状态转变}{17}{chapter.5}%
+\contentsline {section}{\numberline {5.1}为什么意识研究应当置于此处}{17}{section.5.1}%
+\contentsline {section}{\numberline {5.2}三个实证锚点}{17}{section.5.2}%
+\contentsline {section}{\numberline {5.3}从全局状态到局部行为}{18}{section.5.3}%
+\contentsline {section}{\numberline {5.4}强证据实际带来了什么}{18}{section.5.4}%
+\contentsline {section}{\numberline {5.5}重新理解决策窗口}{18}{section.5.5}%
+\contentsline {section}{\numberline {5.6}证据边界}{19}{section.5.6}%
+\contentsline {section}{\numberline {5.7}这一框架的业务价值}{19}{section.5.7}%
+\contentsline {section}{\numberline {5.8}推荐阅读}{20}{section.5.8}%
+\contentsline {chapter}{\numberline {第六章\hspace {.3em}}涌现与框架形成}{21}{chapter.6}%
+\contentsline {section}{\numberline {6.1}为什么本章必须更严格}{21}{section.6.1}%
+\contentsline {section}{\numberline {6.2}什么是涌现，以及它不是什么}{21}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}涌现不意味着什么}{22}{subsection.6.2.1}%
+\contentsline {section}{\numberline {6.3}第一层：生物学奠基}{22}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}为什么“形成”章节需要生物学}{22}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}条件作用与整合性组织}{23}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}亚稳态，而不是简单刚性}{23}{subsection.6.3.3}%
+\contentsline {section}{\numberline {6.4}第二层：物理与系统类比}{23}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}为什么需要类比，但类比必须受约束}{23}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}自组织与序参量}{24}{subsection.6.4.2}%
+\contentsline {subsection}{\numberline {6.4.3}路径依赖与干扰}{24}{subsection.6.4.3}%
+\contentsline {subsection}{\numberline {6.4.4}多尺度组织}{24}{subsection.6.4.4}%
+\contentsline {section}{\numberline {6.5}第三层：数学与解释结构}{25}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}从局部更新到整体机制}{25}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}机制、盆地与重新进入成本}{25}{subsection.6.5.2}%
+\contentsline {subsection}{\numberline {6.5.3}为什么涌现不只是聚合}{25}{subsection.6.5.3}%
+\contentsline {subsection}{\numberline {6.5.4}数学升级路径}{26}{subsection.6.5.4}%
+\contentsline {section}{\numberline {6.6}示例库：框架究竟如何形成}{26}{section.6.6}%
+\contentsline {subsection}{\numberline {6.6.1}示例 1：学习进入仪式}{26}{subsection.6.6.1}%
+\contentsline {subsection}{\numberline {6.6.2}示例 2：刷手机作为一种干扰架构}{26}{subsection.6.6.2}%
+\contentsline {subsection}{\numberline {6.6.3}示例 3：通过多尺度组织形成运动身份}{27}{subsection.6.6.3}%
+\contentsline {subsection}{\numberline {6.6.4}示例 4：研究写作与负向路径依赖}{27}{subsection.6.6.4}%
+\contentsline {subsection}{\numberline {6.6.5}示例 5：群体规范形成}{27}{subsection.6.6.5}%
+\contentsline {section}{\numberline {6.7}证据边界}{28}{section.6.7}%
+\contentsline {section}{\numberline {6.8}为什么“形成过程”对干预重要}{28}{section.6.8}%
+\contentsline {section}{\numberline {6.9}推荐阅读}{29}{section.6.9}%
+\contentsline {chapter}{\numberline {第七章\hspace {.3em}}用于行为转变的高级动力系统}{30}{chapter.7}%
+\contentsline {section}{\numberline {7.1}为什么数学层必须扩展，但不能漂移}{30}{section.7.1}%
+\contentsline {section}{\numberline {7.2}状态空间、确定性与噪声}{30}{section.7.2}%
+\contentsline {section}{\numberline {7.3}局部稳定性、吸引盆与分离界}{31}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}某一状态附近的线性稳定性}{31}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}李雅普诺夫式推理}{32}{subsection.7.3.2}%
+\contentsline {subsection}{\numberline {7.3.3}随机逃逸与对噪声敏感的切换}{32}{subsection.7.3.3}%
+\contentsline {subsection}{\numberline {7.3.4}控制、反馈与算子视角}{32}{subsection.7.3.4}%
+\contentsline {section}{\numberline {7.4}物理层 I：景观、势垒与类能量直觉}{32}{section.7.4}%
+\contentsline {section}{\numberline {7.5}物理层 II：分岔、阈值与临界行为}{33}{section.7.5}%
+\contentsline {section}{\numberline {7.6}物理层 III：振荡、相位与同步}{33}{section.7.6}%
+\contentsline {section}{\numberline {7.7}生物学示例族 I：睡眠--清醒切换}{34}{section.7.7}%
+\contentsline {section}{\numberline {7.8}生物学示例族 II：工作记忆与吸引子维持}{34}{section.7.8}%
+\contentsline {section}{\numberline {7.9}生物学示例族 III：节律控制与极限环}{35}{section.7.9}%
+\contentsline {section}{\numberline {7.10}生物学示例族 IV：双稳态与序列机制}{35}{section.7.10}%
+\contentsline {section}{\numberline {7.11}示例族}{36}{section.7.11}%
+\contentsline {section}{\numberline {7.12}证据边界}{36}{section.7.12}%
+\contentsline {section}{\numberline {7.13}推荐阅读}{37}{section.7.13}%
+\contentsline {chapter}{\numberline {第八章\hspace {.3em}}案例库}{39}{chapter.8}%
+\contentsline {section}{\numberline {8.1}为什么本书需要一个遵守研究纪律的案例库}{39}{section.8.1}%
+\contentsline {section}{\numberline {8.2}案例 1：学习启动失败}{39}{section.8.2}%
+\contentsline {section}{\numberline {8.3}案例 2：下班后无法开始锻炼}{40}{section.8.3}%
+\contentsline {section}{\numberline {8.4}案例 3：研究工作中的写作回避}{41}{section.8.4}%
+\contentsline {section}{\numberline {8.5}案例 4：睡眠作息崩坏}{43}{section.8.5}%
+\contentsline {section}{\numberline {8.6}跨案例分析矩阵}{44}{section.8.6}%
+\contentsline {section}{\numberline {8.7}案例类型学}{44}{section.8.7}%
+\contentsline {section}{\numberline {8.8}推荐阅读}{45}{section.8.8}%
+\contentsline {chapter}{\numberline {第九章\hspace {.3em}}干预设计模式}{46}{chapter.9}%
+\contentsline {section}{\numberline {9.1}从描述走向干预}{46}{section.9.1}%
+\contentsline {section}{\numberline {9.2}干预思维的证据车道}{46}{section.9.2}%
+\contentsline {section}{\numberline {9.3}干预对比图谱}{47}{section.9.3}%
+\contentsline {section}{\numberline {9.4}设计原则}{47}{section.9.4}%
+\contentsline {section}{\numberline {9.5}实施模板}{48}{section.9.5}%
+\contentsline {section}{\numberline {9.6}实施示例}{48}{section.9.6}%
+\contentsline {section}{\numberline {9.7}失败复盘协议}{49}{section.9.7}%
+\contentsline {section}{\numberline {9.8}推荐阅读}{50}{section.9.8}%
+\contentsline {chapter}{\numberline {第十章\hspace {.3em}}练习与反思提示}{51}{chapter.10}%
+\contentsline {section}{\numberline {10.1}简答题}{51}{section.10.1}%
+\contentsline {section}{\numberline {10.2}应用建模任务}{51}{section.10.2}%
+\contentsline {section}{\numberline {10.3}对比与边界问题}{51}{section.10.3}%
+\contentsline {section}{\numberline {10.4}自我审计工作表}{52}{section.10.4}%
+\contentsline {section}{\numberline {10.5}面向教师的提示使用方式}{52}{section.10.5}%
+\contentsline {section}{\numberline {10.6}推荐阅读}{52}{section.10.6}%
+\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}记号与规划模板}{53}{appendix.A}%
+\contentsline {section}{\numberline {A.1}记号表}{53}{section.A.1}%
+\contentsline {section}{\numberline {A.2}规划模板}{53}{section.A.2}%
+\contentsline {section}{\numberline {A.3}附录用途}{54}{section.A.3}%
+\contentsline {chapter}{\numberline {附录 B\hspace {.3em}}前沿假说与证据边界}{55}{appendix.B}%
+\contentsline {section}{\numberline {B.1}本附录的目的}{55}{section.B.1}%
+\contentsline {section}{\numberline {B.2}为什么隔离很重要}{55}{section.B.2}%
+\contentsline {section}{\numberline {B.3}当前前沿示例}{55}{section.B.3}%
+\contentsline {section}{\numberline {B.4}阅读指引}{56}{section.B.4}%

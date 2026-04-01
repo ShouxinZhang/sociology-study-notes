@@ -13,7 +13,9 @@
 | `draft-notes/` | 用户原始草稿（待处理） |
 | `ref/` | 参考资料 |
 | `docs/` | 项目架构、计划与开发日志 |
+| `.agents/` | Agent 运行缓存与归档区 |
 | `.github/skills/` | 自定义 Agent Skills |
+| `.gitignore` | Git 忽略规则 |
 | `AGENTS.md` | Agent 指令文件 |
 | `LICENSE` | 许可证 |
 
@@ -99,23 +101,16 @@ LLM 生成的实验性模拟笔记，附多语言 LaTeX 教科书版本。
 | `Free_Will_And_Framework_Inertia/` | LaTeX 教科书版本（多语言） |
 | ↳ `en-us/` | 英文版目录 |
 | ↳ `en-us/tex/` | 英文版 LaTeX 源码与编译输出 |
-| ↳ `gpt-mock/` | 面向教材化重构的规划与测试工作区 |
-| ↳ `gpt-mock/backup/` | 删除前重复章节稿与多余产物的备份区 |
-| ↳ `gpt-mock/backup/tex-tree-refactor-2026-04-02/` | 章节树重构前的 TeX 主稿、导言与平铺 `chapters/` 备份 |
+| ↳ `gpt-mock/` | 面向教材化重构的活跃工作区，现保留上下文、来源、TeX 主稿、中文主稿与审阅层 |
 | ↳ `gpt-mock/context/` | 任务背景与上下文冻结文档 |
-| ↳ `gpt-mock/plan/` | 可执行分解、研究工作流与文献地图 |
-| ↳ `gpt-mock/plan/literature-map.md` | 意识/涌现/动力系统扩展所需的分级文献地图，现含 textbook foundation layer、Chapter 5/6 深化阅读映射，以及第二章/第四章的 formal-model 与 planning-support 读物层 |
-| ↳ `gpt-mock/plan/research-workstreams.md` | 新研究计划的并串行工作流与测试门禁，现含 Chapter 5/6 深化工作流，以及第二章 formal model validation 与第四章 proof-rigor pass |
 | ↳ `gpt-mock/sources/` | 研究扩展所需的本地 PDF、元数据索引与期刊跟进记录 |
 | ↳ `gpt-mock/sources/pdfs/` | 已成功下载的 arXiv 论文 PDF |
 | ↳ `gpt-mock/sources/metadata/` | Science 跟进记录与其他元数据文档 |
 | ↳ `gpt-mock/tex/` | 英文教材原型的独立 TeX 工作区与编译输出 |
 | ↳ `gpt-mock/tex/chapters/` | 分章节正文，现已由平铺编号文件重构为 chapter-folder tree；每章以 `chapter.tex` 为入口并拆分为多个可并行写作的子文件，研究层章节、案例库、练习与 frontier appendix 都已纳入新结构 |
-| ↳ `gpt-mock/tex-zh-cn/` | `gpt-mock` 教材原型的正式中文 TeX 工作区与编译输出 |
-| ↳ `gpt-mock/tex-zh-cn/chapters/` | 中文版分章节正文，与英文研究版结构保持同步 |
+| ↳ `gpt-mock/tex-zh-cn/` | `gpt-mock` 教材原型的正式中文 TeX 工作区与编译输出，现已切换主入口到 chapter-folder tree |
+| ↳ `gpt-mock/tex-zh-cn/chapters/` | 中文版分章节正文，现与英文研究版同步采用 chapter-folder tree，并以 `chapter.tex` 作为各章入口 |
 | ↳ `gpt-mock/tex/Free_Will_And_Framework_Inertia_Gpt_Mock.pdf` | gpt-mock 教材原型 PDF 副本 |
-| ↳ `gpt-mock/tests/` | 模块化测试与集成测试方案 |
-| ↳ `gpt-mock/tests/research-source-validation.md` | 研究层、形式模型层、应用层的 source pass、证据车道纪律及中文审阅一致性的发布门禁说明，现覆盖 Chapter 5/6 深化后的 biology / physics / mathematics 检查，以及第二章形式模型诚实性与第四章证明充分性检查 |
 | ↳ `gpt-mock/zh-cn-review/` | 面向审阅的中文陪审文档，不直接替代正式中文 LaTeX 稿 |
 | ↳ `gpt-mock/zh-cn-review/research_expansion_review.md` | 当前 research-backed 教材原型的中文审阅说明，现已覆盖应用层升级、第二章模型诚实化、第四章证明链加固，以及 Chapter 5/6 深化后的研究层升级 |
 | ↳ `zh-cn/` | 中文版目录，包含中文 Markdown 原稿与 LaTeX 版本 |
@@ -153,6 +148,16 @@ LLM 生成的实验性模拟笔记，附多语言 LaTeX 教科书版本。
 | 路径 | 说明 |
 |------|------|
 | `sociology-note-formatter/` | 笔记格式化与分类 Skill |
+| `plan-subagent-orchestrator/` | 通用计划驱动型协调 Skill，现以中文正文维护，用于上下文冻结、计划拆解、subagent 分发、验证门禁与收尾同步 |
+
+### .agents/
+
+Agent 运行缓存与归档区。
+
+| 路径 | 说明 |
+|------|------|
+| `cache/` | 不再进入版本控制的陈旧计划、测试、备份与草稿缓存 |
+| `cache/gpt-mock/` | 从 `llm-mock-notes/.../gpt-mock/` 迁出的历史 `backup/`、`plan/`、`tests/` 与 `subagent-drafts/` |
 
 ## Docs
 

@@ -1,0 +1,30 @@
+\section{状态、框架与描述性结构}
+
+\begin{definition}[行为状态]
+\textbf{行为状态} $s \in \mathcal{S}$ 是一种持续存在的行动模式，同时包含与之相伴的姿态、注意力分布、局部环境，以及回报预期。
+\end{definition}
+
+\begin{remark}
+这是一个建模定义，而不是一个实证性主张，声称每个行为状态都是某种边界清晰、可彼此分离的生物学对象。它的目的，是让本书能够讨论持久性与转变，而不把一切都压扁成“动机”这一个词。
+\end{remark}
+
+\begin{definition}[状态画像]
+出于描述目的，可以给一个行为状态赋予一个\textbf{状态画像}
+\[
+  \Pi(s) = \bigl(\Reward(s), \Switch(s), \Env(s)\bigr),
+\]
+其中：
+\begin{itemize}[nosep]
+  \item $\Reward(s)$ 表示留在 $s$ 中的即时回报拉力，
+  \item $\Switch(s)$ 表示装载一个竞争性任务框架的认知成本，
+  \item $\Env(s)$ 表示当前状态的环境强化。
+\end{itemize}
+\end{definition}
+
+\begin{discussion}
+元组 $\Pi(s)$ 比过早强行压成一个普适标量更容易自圆其说。它只是在说，这三个分量在分析上是有用的，应当分别命名。这种拆分本身就已经对后续案例分析与干预设计有价值，因为它识别出了不同的控制杠杆：回报结构、情境装载以及环境耦合。
+\end{discussion}
+
+\begin{remark}
+在这一阶段，$\Pi(s)$ 应当被理解为一个\textbf{有序的描述性画像}，而不是一个拥有固定单位的测量坐标系。本章主张的是这些维度值得分开，而不是它们已经跨人群、任务或实验室实现了标准化。
+\end{remark}

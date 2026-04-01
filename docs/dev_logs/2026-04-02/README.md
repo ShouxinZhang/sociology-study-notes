@@ -19,5 +19,8 @@
 | 15 | [delegate_formal_model_validation_and_proof_rigor](delegate_formal_model_validation_and_proof_rigor.md) | 06:34:39 | 委派 subagents 硬化第二章模型诚实性与第四章证明链，并同步中文审阅与验证门禁 |
 | 16 | [deepen_emergence_and_advanced_dynamics_with_subagents](deepen_emergence_and_advanced_dynamics_with_subagents.md) | 06:34:44 | 委派 subagents 大幅加厚 Chapter 5/6，并同步文献地图、中文审阅、验证门禁与编译解阻 |
 | 17 | [refactor_gpt_mock_tex_into_chapter_trees](refactor_gpt_mock_tex_into_chapter_trees.md) | 07:21:00 | 将英文主稿从平铺编号章节文件重构为 chapter-folder tree，支持更细粒度的 subagent 并行写作 |
+| 18 | [archive_gpt_mock_stale_assets_and_create_orchestrator_skill](archive_gpt_mock_stale_assets_and_create_orchestrator_skill.md) | 07:35:00 | 将 gpt-mock 的陈旧计划/测试/备份迁移到 `.agents/cache/`，并创建通用协调 skill |
+| 19 | [sync_gpt_mock_tex_zh_cn_to_chapter_tree](sync_gpt_mock_tex_zh_cn_to_chapter_tree.md) | 07:11:04 | 用并行 subagents 把正式中文 TeX 主稿同步到 chapter-tree，并切换中文主入口完成新版编译验收 |
+| 20 | [translate_plan_subagent_orchestrator_skill_to_chinese](translate_plan_subagent_orchestrator_skill_to_chinese.md) | 07:43:00 | 将通用协调 skill 的正文、参考文档和 UI 元数据改为中文，方便直接审阅 |
 
-**共 17 条变更** · 主要工作：AI 反思笔记、LLM 模拟笔记、LaTeX 教科书、多语言维护、gpt-mock 规划协调、教材原型 TeX、研究扩展计划、研究版 TeX 重排、research source intake、subagent 驱动的 research/application source pass、formal model / proof hardening、正式中文 TeX 翻译、Chapter 5/6 深化、chapter-tree 结构重构、编译解阻与仓库文档同步
+**共 20 条变更** · 主要工作：AI 反思笔记、LLM 模拟笔记、LaTeX 教科书、多语言维护、gpt-mock 规划协调、教材原型 TeX、研究扩展计划、研究版 TeX 重排、research source intake、subagent 驱动的 research/application source pass、formal model / proof hardening、正式中文 TeX 翻译、Chapter 5/6 深化、chapter-tree 结构重构、中文主稿 chapter-tree 同步、陈旧资产归档、通用协调 skill 建设、协调 skill 中文化、编译解阻与仓库文档同步

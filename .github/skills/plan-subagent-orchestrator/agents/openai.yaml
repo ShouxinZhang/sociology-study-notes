@@ -1,0 +1,4 @@
+interface:
+  display_name: "计划驱动型 Subagent 协调器"
+  short_description: "面向大任务的计划优先多代理协调与验收工作流模板技能"
+  default_prompt: "使用 $plan-subagent-orchestrator 为这个任务组织一套计划优先的多代理协调工作流。"

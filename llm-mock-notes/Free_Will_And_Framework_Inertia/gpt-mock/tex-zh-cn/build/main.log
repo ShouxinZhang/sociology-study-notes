@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Debian) (preloaded format=xelatex 2025.6.21)  2 APR 2026 05:59
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Debian) (preloaded format=xelatex 2025.6.21)  2 APR 2026 07:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1148,85 +1148,264 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  [3]
 Package hyperref Info: Option `pageanchor' set `true' on input line 18.
- (./chapters/00_overview.tex
+ (./chapters/overview/chapter.tex
 第一章
-[1
+(./chapters/overview/foundation/teaching_ambition.tex)
+(./chapters/overview/foundation/learning_objectives.tex)
+(./chapters/overview/structure/book_architecture.tex [1
 
 
-]) (./chapters/01_formal_language.tex [2] [3]
+])
+(./chapters/overview/structure/scope_and_limits.tex)
+(./chapters/overview/evidence/evidence_policy.tex)
+(./chapters/overview/wrap_up/chapter_summary.tex))
+(./chapters/formal_language_of_behavioural_states/chapter.tex [2] [3]
 第二章
-[4
 
-]) (./chapters/02_dynamics_and_decision_windows.tex [5]
+(./chapters/formal_language_of_behavioural_states/foundations/why_fake_rigor.te
+x)
+(./chapters/formal_language_of_behavioural_states/foundations/levels_of_formal_
+commitment.tex [4
+
+])
+(./chapters/formal_language_of_behavioural_states/constructs/state_frame_and_st
+ructure.tex)
+(./chapters/formal_language_of_behavioural_states/constructs/heuristic_inertia_
+score.tex [5])
+(./chapters/formal_language_of_behavioural_states/transitions/target_states_and
+_barriers.tex
+(./chapters/formal_language_of_behavioural_states/transitions/target_state_defi
+nitions.tex)
+(./chapters/formal_language_of_behavioural_states/transitions/defensible_claims
+.tex [6])
+(./chapters/formal_language_of_behavioural_states/transitions/ordinal_reading.t
+ex)
+(./chapters/formal_language_of_behavioural_states/transitions/non_claims.tex))
+(./chapters/formal_language_of_behavioural_states/transitions/worked_example_be
+d_to_desk.tex [7])
+(./chapters/formal_language_of_behavioural_states/positioning/why_this_still_ma
+tters.tex)
+(./chapters/formal_language_of_behavioural_states/positioning/evidence_boundari
+es.tex)
+(./chapters/formal_language_of_behavioural_states/positioning/recommended_readi
+ng.tex)
+(./chapters/formal_language_of_behavioural_states/positioning/chapter_summary.t
+ex [8])) (./chapters/dynamics_and_decision_windows/chapter.tex [9]
 第三章
-[6
+(./chapters/dynamics_and_decision_windows/model/volitional_energy.tex)
+(./chapters/dynamics_and_decision_windows/windows/decision_windows.tex)
+(./chapters/dynamics_and_decision_windows/windows/failure_modes.tex [10
 
-]) (./chapters/03_planning_architecture.tex [7]
+])
+(./chapters/dynamics_and_decision_windows/windows/comparative_map.tex)
+(./chapters/dynamics_and_decision_windows/positioning/recommended_reading.tex)
+(./chapters/dynamics_and_decision_windows/positioning/chapter_summary.tex))
+(./chapters/planning_architecture/chapter.tex [11]
 第四章
-[8
+(./chapters/planning_architecture/foundations/honesty_scope.tex)
+(./chapters/planning_architecture/formal_model/definitions_and_assumptions.tex)
+(./chapters/planning_architecture/formal_model/planning_before_action.tex
+[12
 
-]) (./chapters/04_consciousness_biology_and_state_transitions.tex [9]
+]) (./chapters/planning_architecture/formal_model/planning_stack.tex
+[13]) (./chapters/planning_architecture/practice/minimal_workflow.tex)
+(./chapters/planning_architecture/practice/unplanned_intentions.tex [14])
+(./chapters/planning_architecture/boundaries/evidence_and_reading.tex [15]))
+(./chapters/consciousness_biology_and_state_transitions/chapter.tex [16]
 第五章
-[10
 
-] [11] [12]) (./chapters/05_emergence_and_framework_formation.tex [13]
+(./chapters/consciousness_biology_and_state_transitions/foundations/why_conscio
+usness_research_belongs_here.tex)
+(./chapters/consciousness_biology_and_state_transitions/evidence/empirical_anch
+ors.tex)
+(./chapters/consciousness_biology_and_state_transitions/interpretation/global_s
+tate_to_local_behaviour.tex [17
+
+])
+(./chapters/consciousness_biology_and_state_transitions/evidence/strong_evidenc
+e_value.tex)
+(./chapters/consciousness_biology_and_state_transitions/interpretation/decision
+_windows_revisited.tex [18])
+(./chapters/consciousness_biology_and_state_transitions/boundaries/evidence_bou
+ndaries.tex)
+(./chapters/consciousness_biology_and_state_transitions/positioning/business_va
+lue.tex)
+(./chapters/consciousness_biology_and_state_transitions/reading/recommended_rea
+ding.tex)
+(./chapters/consciousness_biology_and_state_transitions/closing/summary.tex
+[19])) (./chapters/emergence_and_framework_formation/chapter.tex [20]
 第六章
-[14
 
-] [15] [16]) (./chapters/06_advanced_dynamical_systems.tex [17]
+(./chapters/emergence_and_framework_formation/foundations/why_this_chapter_must
+_become_stricter.tex)
+(./chapters/emergence_and_framework_formation/foundations/what_emergence_means.
+tex [21
+
+])
+(./chapters/emergence_and_framework_formation/layers/biological_grounding.tex
+[22])
+(./chapters/emergence_and_framework_formation/layers/physical_and_systems_analo
+gies.tex [23])
+(./chapters/emergence_and_framework_formation/layers/mathematical_and_explanato
+ry_structure.tex [24] [25])
+(./chapters/emergence_and_framework_formation/applications/example_bank.tex
+[26])
+(./chapters/emergence_and_framework_formation/boundaries/evidence_boundaries.te
+x [27])
+(./chapters/emergence_and_framework_formation/applications/why_formation_matter
+s_for_intervention.tex)
+(./chapters/emergence_and_framework_formation/references/recommended_reading.te
+x) (./chapters/emergence_and_framework_formation/closing/summary.tex [28]))
+(./chapters/advanced_dynamical_systems/chapter.tex [29]
 第七章
-[18
+(./chapters/advanced_dynamical_systems/conceptual_foundations/chapter.tex
+(./chapters/advanced_dynamical_systems/conceptual_foundations/mathematical_scop
+e.tex)
+(./chapters/advanced_dynamical_systems/conceptual_foundations/state_space.tex
+[30
 
-] [19] [20]) (./chapters/04_case_library.tex [21]
+])) (./chapters/advanced_dynamical_systems/stability_and_control/chapter.tex
+(./chapters/advanced_dynamical_systems/stability_and_control/stability_geometry
+.tex)
+(./chapters/advanced_dynamical_systems/stability_and_control/linear_stability_n
+ear_a_state.tex)
+(./chapters/advanced_dynamical_systems/stability_and_control/lyapunov_style_rea
+soning.tex [31])
+(./chapters/advanced_dynamical_systems/stability_and_control/stochastic_escape_
+and_noise_sensitive_switching.tex)
+(./chapters/advanced_dynamical_systems/stability_and_control/control_feedback_a
+nd_operator_viewpoints.tex))
+(./chapters/advanced_dynamical_systems/physics_intuitions/chapter.tex
+(./chapters/advanced_dynamical_systems/physics_intuitions/landscapes_barriers_a
+nd_energy_style_intuition.tex [32])
+(./chapters/advanced_dynamical_systems/physics_intuitions/bifurcations_threshol
+ds_and_critical_behaviour.tex)
+(./chapters/advanced_dynamical_systems/physics_intuitions/oscillation_phase_and
+_synchronization.tex))
+(./chapters/advanced_dynamical_systems/biological_case_families/chapter.tex
+(./chapters/advanced_dynamical_systems/biological_case_families/sleep_wake_swit
+ching.tex [33])
+(./chapters/advanced_dynamical_systems/biological_case_families/working_memory_
+and_attractor_maintenance.tex)
+(./chapters/advanced_dynamical_systems/biological_case_families/rhythmic_contro
+l_and_limit_cycles.tex [34])
+(./chapters/advanced_dynamical_systems/biological_case_families/bistable_and_se
+quential_regimes.tex))
+(./chapters/advanced_dynamical_systems/worked_examples/chapter.tex
+(./chapters/advanced_dynamical_systems/worked_examples/worked_example_family.te
+x) (./chapters/advanced_dynamical_systems/worked_examples/sleep_initiation.tex)
+
+(./chapters/advanced_dynamical_systems/worked_examples/working_memory_maintenan
+ce.tex [35])
+(./chapters/advanced_dynamical_systems/worked_examples/rhythmic_locomotor_or_ex
+ercise_regimes.tex)
+(./chapters/advanced_dynamical_systems/worked_examples/bistable_evening_routine
+s.tex)
+(./chapters/advanced_dynamical_systems/worked_examples/sequential_study_scripts
+.tex)) (./chapters/advanced_dynamical_systems/closure/chapter.tex
+(./chapters/advanced_dynamical_systems/closure/evidence_boundaries.tex [36])
+(./chapters/advanced_dynamical_systems/closure/recommended_reading.tex)
+(./chapters/advanced_dynamical_systems/closure/chapter_summary.tex)))
+(./chapters/case_library/chapter.tex [37] [38]
 第八章
-[22
+(./chapters/case_library/foundations/research_disciplined_case_library.tex)
+(./chapters/case_library/cases/study_start_failure.tex [39
 
-] [23] [24]) (./chapters/05_interventions.tex [25]
+])
+(./chapters/case_library/cases/exercise_non_start_after_work.tex [40])
+(./chapters/case_library/cases/writing_avoidance_in_research_work.tex [41])
+(./chapters/case_library/cases/sleep_schedule_breakdown.tex [42])
+(./chapters/case_library/synthesis/cross_case_analytical_matrix.tex [43]
+Underfull \hbox (badness 1019) in paragraph at lines 30--30
+[]|\TU/FandolSong-Regular(0)/m/n/10.95 午 饭 后 的 线 索 反 复
+ []
+
+
+Underfull \hbox (badness 1019) in paragraph at lines 30--30
+[]|\TU/FandolSong-Regular(0)/m/n/10.95 通 勤 过 程 反 复 选 中
+ []
+
+
+Underfull \hbox (badness 1019) in paragraph at lines 30--30
+[]|\TU/FandolSong-Regular(0)/m/n/10.95 相 邻 的 低 暴 露 工 作
+ []
+
+
+Underfull \hbox (badness 1019) in paragraph at lines 30--30
+\TU/FandolSong-Regular(0)/m/n/10.95 因 历 史 积 累 而 变 得
+ []
+
+
+Underfull \hbox (badness 1019) in paragraph at lines 30--30
+[]|\TU/FandolSong-Regular(0)/m/n/10.95 反 复 的 深 夜 刺 激 稳
+ []
+
+) (./chapters/case_library/synthesis/case_typology.tex)
+(./chapters/case_library/references/recommended_reading.tex [44]))
+(./chapters/interventions/chapter.tex [45]
 第九章
-[26
+(./chapters/interventions/foundations/from_description_to_intervention.tex)
+(./chapters/interventions/foundations/evidence_lanes_for_intervention_thinking.
+tex [46
+
+]) (./chapters/interventions/patterns/comparative_intervention_map.tex)
+(./chapters/interventions/patterns/design_principles.tex)
+(./chapters/interventions/templates/implementation_template.tex [47])
+(./chapters/interventions/templates/worked_implementation.tex [48])
+(./chapters/interventions/review/failure_review_protocol.tex)
+(./chapters/interventions/references/recommended_reading.tex [49]))
+(./chapters/exercises_and_prompts/chapter.tex [50]
+第十章
+(./chapters/exercises_and_prompts/question_sets/short_answer_questions.tex)
+(./chapters/exercises_and_prompts/question_sets/applied_modelling_tasks.tex)
+(./chapters/exercises_and_prompts/question_sets/contrast_and_boundary_questions
+.tex) (./chapters/exercises_and_prompts/worksheets/self_audit_worksheet.tex)
+(./chapters/exercises_and_prompts/teaching/instructor_oriented_prompting_uses.t
+ex [51
+
+]) (./chapters/exercises_and_prompts/references/recommended_reading.tex)) (./ch
+apters/appendix_notation_and_templates/chapter.tex [52]
+附录 A
+(./chapters/appendix_notation_and_templates/notation/section.tex)
+(./chapters/appendix_notation_and_templates/templates/section.tex
+(./chapters/appendix_notation_and_templates/templates/session_design_card.tex)
+(./chapters/appendix_notation_and_templates/templates/failure_review_card.tex))
+(./chapters/appendix_notation_and_templates/reuse/section.tex [53
+
+]))
+(./chapters/appendix_frontier_hypotheses/chapter.tex [54]
+附录 B
+(./chapters/appendix_frontier_hypotheses/purpose/section.tex)
+(./chapters/appendix_frontier_hypotheses/isolation/section.tex)
+(./chapters/appendix_frontier_hypotheses/frontier_examples/section.tex
+(./chapters/appendix_frontier_hypotheses/frontier_examples/resonance_complexity
+_example.tex)
+(./chapters/appendix_frontier_hypotheses/frontier_examples/exploratory_roles.te
+x)) (./chapters/appendix_frontier_hypotheses/reading_guidance/section.tex
+(./chapters/appendix_frontier_hypotheses/reading_guidance/foundation_sources.te
+x)
+(./chapters/appendix_frontier_hypotheses/reading_guidance/modern_research_lane.
+tex)
+(./chapters/appendix_frontier_hypotheses/reading_guidance/frontier_sources.tex)
+[55
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 62--62
-\TU/FandolSong-Regular(0)/m/n/10.95 或 下 一 件 工 具，|
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 62--62
-\TU/FandolSong-Regular(0)/m/n/10.95 搭 建 的 目 标 状
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 62--62
-\TU/FandolSong-Regular(0)/m/n/10.95 入 目 标 机 制 的、|
- []
-
-[27] [28] [29] [30]) (./chapters/06_exercises_and_prompts.tex [31]
-第十章
-[32
-
-]) (./chapters/appendix_a_notation_and_templates.tex [33]
-附录 A
-[34
-
-]) (./chapters/appendix_b_frontier_hypotheses.tex [35]
-附录 B
-[36
-
-]) [37] (build/main.aux)
+(./chapters/appendix_frontier_hypotheses/reading_guidance/governance_summary.te
+x))) [56] (build/main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2022/08/05>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E07314292A82CFFEF457C11943DFEFD2;9305.
+(rerunfilecheck)             Checksum: EA5B841337C0FC73990B7219A9D61082;11630.
  ) 
 Here is how much of TeX's memory you used:
- 34424 strings out of 474878
- 785605 string characters out of 5762516
- 1944627 words of memory out of 5000000
- 55875 multiletter control sequences out of 15000+600000
+ 35532 strings out of 474878
+ 866445 string characters out of 5762516
+ 1948627 words of memory out of 5000000
+ 56603 multiletter control sequences out of 15000+600000
  566528 words of font info for 96 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 106i,13n,110p,1190b,573s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 106i,13n,110p,1190b,601s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on build/main.xdv (42 pages, 612124 bytes).
+Output written on build/main.xdv (61 pages, 987124 bytes).
