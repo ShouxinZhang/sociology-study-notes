@@ -12,6 +12,7 @@
 | `llm-mock-notes/` | LLM 生成的实验性模拟笔记 |
 | `draft-notes/` | 用户原始草稿（待处理） |
 | `ref/` | 参考资料 |
+| `docs/` | 项目架构、计划与开发日志 |
 | `.github/skills/` | 自定义 Agent Skills |
 | `AGENTS.md` | Agent 指令文件 |
 | `LICENSE` | 许可证 |
@@ -98,6 +99,24 @@ LLM 生成的实验性模拟笔记，附多语言 LaTeX 教科书版本。
 | `Free_Will_And_Framework_Inertia/` | LaTeX 教科书版本（多语言） |
 | ↳ `en-us/` | 英文版目录 |
 | ↳ `en-us/tex/` | 英文版 LaTeX 源码与编译输出 |
+| ↳ `gpt-mock/` | 面向教材化重构的规划与测试工作区 |
+| ↳ `gpt-mock/backup/` | 删除前重复章节稿与多余产物的备份区 |
+| ↳ `gpt-mock/context/` | 任务背景与上下文冻结文档 |
+| ↳ `gpt-mock/plan/` | 可执行分解、研究工作流与文献地图 |
+| ↳ `gpt-mock/plan/literature-map.md` | 意识/涌现/动力系统扩展所需的分级文献地图 |
+| ↳ `gpt-mock/plan/research-workstreams.md` | 新研究计划的并串行工作流与测试门禁 |
+| ↳ `gpt-mock/sources/` | 研究扩展所需的本地 PDF、元数据索引与期刊跟进记录 |
+| ↳ `gpt-mock/sources/pdfs/` | 已成功下载的 arXiv 论文 PDF |
+| ↳ `gpt-mock/sources/metadata/` | Science 跟进记录与其他元数据文档 |
+| ↳ `gpt-mock/tex/` | 英文教材原型的独立 TeX 工作区与编译输出 |
+| ↳ `gpt-mock/tex/chapters/` | 分章节正文，现含研究层章节、案例库、练习与 frontier appendix |
+| ↳ `gpt-mock/tex-zh-cn/` | `gpt-mock` 教材原型的正式中文 TeX 工作区与编译输出 |
+| ↳ `gpt-mock/tex-zh-cn/chapters/` | 中文版分章节正文，与英文研究版结构保持同步 |
+| ↳ `gpt-mock/tex/Free_Will_And_Framework_Inertia_Gpt_Mock.pdf` | gpt-mock 教材原型 PDF 副本 |
+| ↳ `gpt-mock/tests/` | 模块化测试与集成测试方案 |
+| ↳ `gpt-mock/tests/research-source-validation.md` | 研究层与应用层 source pass、证据车道纪律及中文审阅一致性的发布门禁说明 |
+| ↳ `gpt-mock/zh-cn-review/` | 面向审阅的中文陪审文档，不直接替代正式中文 LaTeX 稿 |
+| ↳ `gpt-mock/zh-cn-review/research_expansion_review.md` | 当前 research-backed 教材原型的中文审阅说明，现已覆盖案例库与干预章的应用层升级 |
 | ↳ `zh-cn/` | 中文版目录，包含中文 Markdown 原稿与 LaTeX 版本 |
 | ↳ `zh-cn/Free_Will_And_Framework_Inertia.md` | 中文科学方法论笔记原稿 |
 | ↳ `zh-cn/tex/` | 中文版 LaTeX 源码与编译输出 |
@@ -143,6 +162,16 @@ LLM 生成的实验性模拟笔记，附多语言 LaTeX 教科书版本。
 | 文件 | 说明 |
 |------|------|
 | `repository-structure.md` | 本文件 |
+
+### docs/plan/
+
+面向跨轮次任务协调的计划文档。
+
+| 文件 | 说明 |
+|------|------|
+| `old/` | 已归档的历史计划 |
+| `old/Free_Will_And_Framework_Inertia_Gpt_Mock_Coordination_Plan_2026-04-02.md` | 第一轮 gpt-mock 协调计划归档 |
+| `Free_Will_And_Framework_Inertia_Research_Expansion_Plan.md` | 面向意识前沿研究、涌现、动力系统与推荐阅读层的新主计划 |
 
 ### docs/dev_logs/
 

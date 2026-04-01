@@ -1,0 +1,266 @@
+\chapter{Intervention Design Patterns}
+\label{ch:interventions}
+
+\section{From Description to Intervention}
+
+The previous chapters argued that behavioural failure is often a state-transition
+problem rather than a simple shortage of desire. That claim matters only if it
+changes design practice. An intervention chapter therefore has a stricter job
+than a motivational chapter: it must specify which control variable is being
+changed, why that variable is cheaper or more reliable than direct exhortation,
+and which parts of the design are supported by stronger evidence rather than
+mere intuition.
+
+In this book, intervention design is governed by five ideas:
+\begin{enumerate}[nosep]
+  \item interventions act on transitions, not on abstract identity claims;
+  \item decision windows matter because leverage is timing-sensitive;
+  \item repeated exposure and history dependence matter because frameworks are
+        not rebuilt from zero at every attempt;
+  \item attractor and metastability language helps explain why some local
+        redesigns have outsized downstream effects;
+  \item source discipline matters because empirical findings, theoretical
+        mechanism-building, and speculative frontier claims should not be mixed
+        as if they had equal status.
+\end{enumerate}
+
+\section{Evidence Lanes For Intervention Thinking}
+
+This chapter uses the book's evidence policy explicitly.
+
+\begin{itemize}[nosep]
+  \item \textbf{Strong lane.} State-transition evidence from consciousness and
+        neural-dynamics work supports the general claim that systems can occupy
+        distinct global regimes and move between them through structured
+        transitions. This supports treating intervention as regime-shaping
+        rather than mere self-talk.
+  \item \textbf{Medium lane.} Metastability, attractor, integrator, causal
+        emergence, and nonlinear-control perspectives support the design idea
+        that repeated local inputs can stabilize or redirect future behaviour.
+  \item \textbf{Speculative lane.} Frontier consciousness-physics proposals may
+        inspire hypotheses about large-scale organization, but they do not
+        justify practical intervention rules in this chapter.
+  \item \textbf{Design inference.} The concrete protocols below are applied
+        synthesis. They are informed by the strong and medium lanes, but they
+        remain design constructions rather than direct experimental theorems.
+\end{itemize}
+
+\begin{proposition}[Interventions should target the transition geometry]
+When a failure is recurrent, the first design question should usually be:
+which alteration most cheaply changes the probability of entering the target
+state during a real decision window?
+\end{proposition}
+
+\begin{discussion}
+This proposition is stronger than ``make the task easier.'' It says the
+intervention should be evaluated in transition terms. If the current state is a
+locally stable basin, then a useful intervention either lowers the barrier,
+changes the timing of attempted movement, or alters the local environment so
+that the old state becomes less self-restoring. That logic is consistent with
+the book's state-transition framing and with the broader dynamical-systems
+language of attractors, metastability, and bifurcation-like regime shifts.
+\end{discussion}
+
+\section{Comparative Intervention Map}
+
+\begin{itemize}[nosep]
+  \item \textbf{Window capture.} Target: timing and entry leverage.
+        Evidence lane: strong + design inference.
+        Use: move the attempt to a boundary such as wake-up, post-break
+        re-entry, or commute transition.
+  \item \textbf{State preloading.} Target: switching cost and path clarity.
+        Evidence lane: medium + design inference.
+        Use: prepare the exact next page, sentence, route, or tool before the
+        window opens.
+  \item \textbf{Environmental re-weighting.} Target: cue landscape and local
+        reinforcement.
+        Evidence lane: strong/medium + design inference.
+        Use: remove cues that rebuild the old state and add cues that make the
+        target state easier to enter.
+  \item \textbf{History shaping.} Target: emergence and path dependence.
+        Evidence lane: medium + design inference.
+        Use: repeat the same entry move in the same context so local history
+        accumulates.
+  \item \textbf{Minimum viable entry.} Target: barrier crossing under limited
+        will.
+        Evidence lane: medium + design inference.
+        Use: define the smallest real action that still counts as entering the
+        target regime.
+  \item \textbf{External scaffolding.} Target: effective control input.
+        Evidence lane: medium + design inference.
+        Use: use schedules, partners, or deadlines when private control is too
+        noisy to trigger reliable entry.
+\end{itemize}
+
+\section{Design Principles}
+
+\begin{proposition}[Cheapest controllable variable principle]
+When several barrier terms are elevated, the first intervention should target
+the cheapest controllable variable that materially changes transition odds,
+rather than the most morally impressive variable.
+\end{proposition}
+
+\begin{discussion}
+This principle follows the logic of control design. In a recurrent failure,
+raising internal resolve may be possible, but it is usually expensive, noisy,
+and hard to verify. By contrast, moving the phone away, pre-marking the next
+problem, or attaching the task to an already recurring boundary changes the
+state-transition conditions directly and cheaply. In dynamical-systems terms,
+small local manipulations can matter if they change the system near a sensitive
+entry point.
+\end{discussion}
+
+\begin{proposition}[History-dependent reinforcement principle]
+An intervention should be judged not only by whether it succeeds once, but by
+whether it makes the next attempt easier through accumulated local history.
+\end{proposition}
+
+\begin{discussion}
+This principle is where emergence enters practice. If a reader repeatedly uses
+the same location, same startup cue, and same minimum viable entry action, then
+future transitions inherit a partially trained pathway. That is not yet a proof
+of full attractor formation in the strict mathematical sense, but it is a
+reasonable design inference from medium-lane ideas about metastability, causal
+emergence, and path dependence: repeated local structure can produce more
+stable higher-level patterns.
+\end{discussion}
+
+\section{Implementation Template}
+
+\begin{templatebox}
+\textbf{Research-backed intervention sheet}
+\begin{enumerate}[nosep]
+  \item Current state:
+  \item Target state:
+  \item Dominant barrier term ($\Reward$ / $\Switch$ / $\Env$ / timing / ambiguity):
+  \item Decision window to exploit:
+  \item Which evidence lane most directly supports this intervention choice?
+        (`strong` / `medium` / `design inference`)
+  \item One environmental re-weighting move:
+  \item One state-preloading move:
+  \item One minimum viable entry action:
+  \item One history-shaping rule to repeat across sessions:
+  \item Verification rule after the session:
+\end{enumerate}
+\end{templatebox}
+
+\section{Worked Implementation}
+
+\begin{example}[Rebuilding post-dinner study entry as a transition design]
+Consider a reader who repeatedly intends to do technical reading after dinner
+but instead enters a phone-browsing state that lasts the rest of the evening.
+
+\textbf{Step 1: Diagnose the failure.}
+\begin{itemize}[nosep]
+  \item Current state: post-dinner browsing with rapid novelty and low effort.
+  \item Target state: twenty minutes of annotated reading with one written
+        question.
+  \item Dominant barrier terms: high current reward, high ambiguity about the
+        first step, and a narrow post-cleanup window.
+\end{itemize}
+
+\textbf{Step 2: Identify the evidence lane.}
+\begin{itemize}[nosep]
+  \item Strong lane support: state-transition research justifies treating the
+        dinner-to-evening boundary as a meaningful regime-change opportunity.
+  \item Medium lane support: metastability and attractor-style reasoning
+        support the expectation that repeated use of the same cue and same desk
+        setup can make future entry more reliable.
+  \item Design inference: the exact configuration below is an applied design,
+        not a direct citation result.
+\end{itemize}
+
+\textbf{Step 3: Redesign the transition.}
+\begin{enumerate}[nosep]
+  \item \textbf{Window capture:} define the intervention point as the two
+        minutes immediately after dish cleanup.
+  \item \textbf{Environmental re-weighting:} phone leaves the room before the
+        meal starts, so the old evening attractor is harder to reconstruct.
+  \item \textbf{State preloading:} the book is opened in advance with a sticky
+        note stating one question to answer.
+  \item \textbf{Minimum viable entry:} read one page and write one margin note.
+  \item \textbf{History shaping:} use the same chair, same lamp, and same first
+        notebook action for seven consecutive sessions.
+  \item \textbf{Verification:} record whether the first margin note appears
+        before 8:15 PM.
+\end{enumerate}
+
+\textbf{Why this is better than generic advice.}
+The design does not ask the reader to feel more serious. It changes the local
+geometry of the transition. The dinner boundary becomes a designed decision
+window; the target state is partially built before entry; the old state is made
+less recoverable; and repeated history is used to increase the odds that the
+next evening begins from a more favourable local configuration.
+\end{example}
+
+\section{Failure Review Protocol}
+
+When an intervention fails, the review should remain diagnostic and source-aware:
+\begin{enumerate}[nosep]
+  \item Was the chosen decision window real, or was it only imagined after the
+        fact?
+  \item Did the intervention change a controllable variable, or did it merely
+        restate the goal?
+  \item Was the target state sufficiently preloaded to reduce switching cost?
+  \item Did the environment still recreate the old local attractor too quickly?
+  \item Was the minimum viable entry still too large for the available
+        volitional budget?
+  \item Did the design include any history-shaping repetition, or was each
+        attempt effectively a fresh start?
+  \item Is the intervention justified by a strong or medium lane, or is it only
+        a speculative guess that should be downgraded?
+\end{enumerate}
+
+\section{Recommended Reading}
+
+\begin{readingbox}
+\textbf{Foundation}
+\begin{itemize}[nosep]
+  \item Eugene Izhikevich, \emph{Dynamical Systems in Neuroscience}, for a
+        rigorous but usable route from nonlinear state dynamics to intervention
+        thinking.
+  \item Steven Strogatz, \emph{Nonlinear Dynamics and Chaos}, for intuition
+        about regime change, local stability, and why small changes near a
+        boundary can matter.
+  \item John Holland, \emph{Emergence}, for the idea that repeated local rules
+        can accumulate into durable higher-level structure.
+\end{itemize}
+\textbf{Modern Research}
+\begin{itemize}[nosep]
+  \item \emph{Dynamical structure-function correlations provide robust and
+        generalizable signatures of consciousness in humans} (Communications
+        Biology, 2024), as support for treating conscious states as structured
+        dynamical regimes rather than undifferentiated ``motivation.''
+  \item \emph{Cortical connectivity, local dynamics and stability correlates of
+        global conscious states} (Communications Biology, 2025), for the link
+        between stability structure and global state organization.
+  \item \emph{Falling asleep follows a predictable bifurcation dynamic}
+        (Nature Neuroscience, 2025), for a concrete example of state transition
+        analysis that strengthens window-sensitive intervention thinking.
+  \item \emph{Metastability demystified: the foundational past, the pragmatic
+        present and the promising future} (Nature Reviews Neuroscience, 2024),
+        for the medium-lane vocabulary behind temporary stabilization and
+        flexible switching.
+  \item \emph{Associative conditioning in gene regulatory network models
+        increases integrative causal emergence} (Communications Biology, 2025),
+        as a bridge source for history dependence and emergence-informed
+        intervention design.
+\end{itemize}
+\textbf{Frontier}
+\begin{itemize}[nosep]
+  \item Frontier consciousness-physics proposals should be read only as
+        hypothesis-generating extensions. They may inspire alternative system
+        pictures, but they do not currently justify operational intervention
+        rules in this chapter.
+\end{itemize}
+\end{readingbox}
+
+\begin{summarybox}
+This chapter turns the book's research spine into operational design. The main
+practical lesson is not ``try harder.'' It is: diagnose the transition, choose
+the cheapest controllable variable, exploit a real decision window, and prefer
+designs that create better future history rather than one-off acts of effort.
+The strong lane justifies transition-sensitive thinking; the medium lane helps
+explain why repetition and local structure matter; the final protocol remains a
+design inference whose value must be checked in use.
+\end{summarybox}

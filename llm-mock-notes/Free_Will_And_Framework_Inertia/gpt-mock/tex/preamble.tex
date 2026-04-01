@@ -1,0 +1,91 @@
+\documentclass[11pt, a4paper]{report}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+\usepackage[margin=1in, headheight=14pt]{geometry}
+\usepackage{parskip}
+
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+
+\usepackage[colorlinks=true, linkcolor=RoyalBlue, urlcolor=RoyalBlue]{hyperref}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textit{\nouppercase{\leftmark}}}
+\rhead{\textit{Framework Inertia Draft}}
+\cfoot{\thepage}
+
+\setcounter{tocdepth}{1}
+\numberwithin{equation}{chapter}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{axiom}[definition]{Axiom}
+\newtheorem{example}[definition]{Example}
+\newtheorem{exercise}[definition]{Exercise}
+
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{lemma}[definition]{Lemma}
+
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+
+\newtcolorbox{discussion}[1][]{
+  colback   = blue!3!white,
+  colframe  = RoyalBlue!70!black,
+  fonttitle = \bfseries,
+  title     = {Discussion},
+  #1
+}
+
+\newtcolorbox{summarybox}[1][]{
+  colback   = orange!5!white,
+  colframe  = orange!80!black,
+  fonttitle = \bfseries,
+  title     = {Chapter Summary},
+  #1
+}
+
+\newtcolorbox{exercisebox}[1][]{
+  colback   = green!4!white,
+  colframe  = green!50!black,
+  fonttitle = \bfseries,
+  title     = {Exercise Set},
+  #1
+}
+
+\newtcolorbox{templatebox}[1][]{
+  colback   = violet!5!white,
+  colframe  = violet!70!black,
+  fonttitle = \bfseries,
+  title     = {Template},
+  #1
+}
+
+\newtcolorbox{readingbox}[1][]{
+  colback   = teal!4!white,
+  colframe  = teal!60!black,
+  fonttitle = \bfseries,
+  title     = {Recommended Reading},
+  #1
+}
+
+\newcommand{\FI}{\mathrm{FI}}
+\newcommand{\DV}{\Delta V}
+\newcommand{\Reward}{\mathrm{R}}
+\newcommand{\Switch}{\mathrm{C}}
+\newcommand{\Env}{\mathrm{E}}
+\newcommand{\Will}{\mathrm{W}}
+\newcommand{\Leverage}{\mathrm{L}}

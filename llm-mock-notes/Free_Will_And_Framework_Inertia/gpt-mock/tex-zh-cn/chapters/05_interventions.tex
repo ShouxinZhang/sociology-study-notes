@@ -1,0 +1,202 @@
+\chapter{干预设计模式}
+\label{ch:interventions}
+
+\section{从描述走向干预}
+
+前几章已经论证，行为失败往往是一个状态转变问题，而不只是欲望不足。
+只有当这一主张能够改变设计实践时，它才真正有意义。
+因此，干预章节承担的任务要比动机章节更严格：
+它必须明确说明改变的是哪一个控制变量，为什么这一变量比直接劝勉更便宜或更可靠，
+以及设计中的哪些部分得到了较强证据而不只是直觉的支持。
+
+在本书中，干预设计由五个观念支配：
+\begin{enumerate}[nosep]
+  \item 干预作用于转变，而不是作用于抽象的身份宣称；
+  \item 决策窗口之所以重要，是因为杠杆对时机高度敏感；
+  \item 重复暴露与历史依赖之所以重要，是因为框架不会在每次尝试时都从零重建；
+  \item 吸引子与亚稳态语言有助于解释，为什么一些局部重设计会产生不成比例的下游影响；
+  \item 来源纪律之所以重要，是因为经验发现、理论机制构建与推测性的前沿主张，不应被混同为具有同等地位。
+\end{enumerate}
+
+\section{干预思维的证据通道}
+
+本章明确使用本书的证据政策。
+
+\begin{itemize}[nosep]
+  \item \textbf{强证据通道。} 来自意识与神经动力学研究的状态转变证据，支持这样一个一般性主张：系统能够占据不同的全局机制，并通过有结构的转变在其间移动。
+        这使我们有理由把干预视为一种机制塑形，而不只是自我对话。
+  \item \textbf{中等证据通道。} 亚稳态、吸引子、积分器、因果涌现与非线性控制等视角，支持这样一种设计理念：重复的局部输入能够稳定或重定向未来行为。
+  \item \textbf{推测性通道。} 前沿的意识物理学方案也许能激发关于大尺度组织的假设，
+        但它们并不足以为本章中的实际干预规则提供正当性。
+  \item \textbf{设计推断。} 下文给出的具体协议属于应用综合。
+        它们受强证据通道和中等证据通道启发，但仍然是设计构造，而不是直接的实验定理。
+\end{itemize}
+
+\begin{proposition}[干预应瞄准转变几何结构]
+当一种失败反复出现时，首要的设计问题通常应当是：
+哪一种改变能够以最低成本，在真实的决策窗口中提高进入目标状态的概率？
+\end{proposition}
+
+\begin{discussion}
+这一命题比“让任务更容易”更强。
+它要求我们用转变的语言来评估干预。
+如果当前状态是一个局部稳定的盆地，那么有效干预要么降低障碍，
+要么改变尝试移动的时机，要么改变局部环境，使旧状态变得不再那么容易自我恢复。
+这一逻辑既与本书的状态转变框架一致，也与吸引子、亚稳态以及类似分岔的机制切换所对应的更广泛动力系统语言一致。
+\end{discussion}
+
+\section{干预对比表}
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}l l l X@{}}
+\toprule
+\textbf{干预家族} & \textbf{主要系统目标} & \textbf{证据通道} & \textbf{操作用途} \\
+\midrule
+窗口捕获 & 时机与进入杠杆 & 强证据 + 设计推断 & 把尝试移动到一个天然不稳定的边界上，例如起床、休息后重新进入，或通勤转换时刻。 \\
+状态预载 & 切换成本与路径清晰度 & 中等证据 + 设计推断 & 预先准备好准确的下一页、下一句、下一条路径或下一件工具，让未来的自己继承一个已被部分搭建的目标状态。 \\
+环境再加权 & 线索景观与局部环境强化 & 强证据/中等证据 + 设计推断 & 移除或延迟那些会重建旧状态的刺激；加入可见线索，使目标状态获得偏置。 \\
+历史塑形 & 涌现与路径依赖 & 中等证据 + 设计推断 & 在同样情境中重复同一个进入动作，让局部历史积累为一个更稳定的行为通道。 \\
+最小可行进入 & 在有限意志能量下跨越障碍 & 中等证据 + 设计推断 & 定义仍然算作进入目标机制的、最小但真实的进入动作。 \\
+外部脚手架 & 有效控制输入 & 中等证据 + 设计推断 & 当私人控制过于嘈杂、无法可靠触发进入时，使用时间表、伙伴或截止期。 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\section{设计原则}
+
+\begin{proposition}[最便宜可控变量原则]
+当多个障碍项同时升高时，第一项干预应当瞄准那个能够实质改变转变概率、且成本最低的可控变量，
+而不是瞄准那个在道德上看起来最令人敬佩的变量。
+\end{proposition}
+
+\begin{discussion}
+这一原则遵循控制设计的逻辑。
+在反复出现的失败中，提高内在决心或许是可能的，
+但这种做法通常代价高、噪声大，而且很难验证。
+相比之下，把手机移远、预先标出下一道题、或者把任务绑定到一个已经反复出现的边界，
+都会直接而低成本地改变状态转变条件。
+用动力系统的语言来说，如果局部操作改变了系统在敏感进入点附近的条件，那么小操作也可能很关键。
+\end{discussion}
+
+\begin{proposition}[历史依赖强化原则]
+评价一个干预时，不仅要看它是否成功了一次，
+还要看它是否通过累积的局部历史，让下一次尝试变得更容易。
+\end{proposition}
+
+\begin{discussion}
+这正是涌现进入实践的地方。
+如果读者反复使用同一地点、同一启动线索与同一个最小可行进入动作，
+那么未来的转变就会继承一条被部分训练过的路径。
+这还不是严格数学意义上已经形成完整吸引子的证明，
+但它是一个合理的设计推断，来自关于亚稳态、因果涌现与路径依赖的中等证据通道观念：
+重复的局部结构可以生成更稳定的高层模式。
+\end{discussion}
+
+\section{实施模板}
+
+\begin{templatebox}
+\textbf{基于研究的干预单}
+\begin{enumerate}[nosep]
+  \item 当前状态：
+  \item 目标状态：
+  \item 主导障碍项（$\Reward$ / $\Switch$ / $\Env$ / timing / ambiguity）：
+  \item 可利用的决策窗口：
+  \item 哪一条证据通道最直接支持这项干预选择？
+        （`strong` / `medium` / `design inference`）
+  \item 一个环境再加权动作：
+  \item 一个状态预载动作：
+  \item 一个最小可行进入动作：
+  \item 一条需要跨会话重复的历史塑形规则：
+  \item 会话结束后的验证规则：
+\end{enumerate}
+\end{templatebox}
+
+\section{实施示例}
+
+\begin{example}[把晚饭后的学习重建为一种转变设计]
+设想一位读者反复打算在晚饭后做技术阅读，
+但却总是进入刷手机的状态，并持续整个晚上。
+
+\textbf{步骤 1：诊断失败。}
+\begin{itemize}[nosep]
+  \item 当前状态：饭后浏览手机，具有快速新奇性和低努力特征。
+  \item 目标状态：二十分钟带批注的阅读，并写下一个问题。
+  \item 主导障碍项：当前奖赏过高、第一步存在较高歧义，以及饭后清理结束后的窗口很窄。
+\end{itemize}
+
+\textbf{步骤 2：识别证据通道。}
+\begin{itemize}[nosep]
+  \item 强证据通道支持：状态转变研究使我们有理由把“晚饭到夜间”这一边界视为有意义的机制变化机会。
+  \item 中等证据通道支持：亚稳态与吸引子式推理支持这样一种预期，即反复使用同样的线索与同样的书桌配置，会让未来的进入更加可靠。
+  \item 设计推断：下面的具体配置属于应用设计，而不是直接引用结论。
+\end{itemize}
+
+\textbf{步骤 3：重设计这次转变。}
+\begin{enumerate}[nosep]
+  \item \textbf{窗口捕获：} 把干预点定义为洗完碗后紧接着的两分钟。
+  \item \textbf{环境再加权：} 在开饭前就把手机移出房间，这样旧的夜间吸引子会更难重建。
+  \item \textbf{状态预载：} 预先把书翻开，并贴上一张便签，写明要回答的一个问题。
+  \item \textbf{最小可行进入：} 读一页，并写下一条页边批注。
+  \item \textbf{历史塑形：} 连续七次使用同一把椅子、同一盏灯，以及同一个笔记本起始动作。
+  \item \textbf{验证：} 记录第一条页边批注是否在晚上 8:15 前出现。
+\end{enumerate}
+
+\textbf{为什么这比泛泛建议更好。}
+这一设计并不要求读者“感觉自己更认真”。
+它改变的是转变的局部几何结构。
+晚饭后的边界被设计成一个决策窗口；
+目标状态在进入之前已经被部分搭建；
+旧状态变得更难恢复；
+而重复的历史则被用来提高下一天晚上从更有利局部配置开始的概率。
+\end{example}
+
+\section{失败复盘协议}
+
+当一个干预失败时，复盘应当保持诊断性，并且保持来源意识：
+\begin{enumerate}[nosep]
+  \item 被选择的决策窗口是真实存在的，还是只是事后想象出来的？
+  \item 干预改变的是一个可控变量，还是仅仅重述了目标？
+  \item 目标状态是否被充分预载，以降低切换成本？
+  \item 环境是否仍然过快地重建了旧的局部吸引子？
+  \item 最小可行进入对于现有意志能量而言，是否仍然过大？
+  \item 这一设计是否包含任何历史塑形式的重复，还是说每次尝试实际上都等于重新开始？
+  \item 这项干预是否由强证据通道或中等证据通道支撑，还是仅仅是一个应该被降级的推测性猜测？
+\end{enumerate}
+
+\section{推荐阅读}
+
+\begin{readingbox}
+\textbf{基础}
+\begin{itemize}[nosep]
+  \item Eugene Izhikevich, \emph{Dynamical Systems in Neuroscience}，用于从非线性状态动力学走向干预思维的一条严谨而可用的路径。
+  \item Steven Strogatz, \emph{Nonlinear Dynamics and Chaos}，用于建立对机制变化、局部稳定性以及为什么边界附近的小变化会重要的直觉。
+  \item John Holland, \emph{Emergence}，用于理解重复的局部规则如何积累为持久的高层结构。
+\end{itemize}
+\textbf{现代研究}
+\begin{itemize}[nosep]
+  \item \emph{Dynamical structure-function correlations provide robust and
+        generalizable signatures of consciousness in humans} （Communications
+        Biology, 2024），支持把意识状态视为有结构的动力学机制，而不是未分化的“动机”。
+  \item \emph{Cortical connectivity, local dynamics and stability correlates of
+        global conscious states} （Communications Biology, 2025），用于理解稳定性结构与全局状态组织之间的联系。
+  \item \emph{Falling asleep follows a predictable bifurcation dynamic}
+        （Nature Neuroscience, 2025），提供一个具体的状态转变分析例子，从而强化对决策窗口敏感的干预思维。
+  \item \emph{Metastability demystified: the foundational past, the pragmatic
+        present and the promising future} （Nature Reviews Neuroscience, 2024），
+        提供临时稳定化与灵活切换背后的中等证据通道词汇。
+  \item \emph{Associative conditioning in gene regulatory network models
+        increases integrative causal emergence} （Communications Biology, 2025），
+        作为连接历史依赖与涌现导向干预设计的桥梁来源。
+\end{itemize}
+\textbf{前沿}
+\begin{itemize}[nosep]
+  \item 前沿的意识物理学方案只能作为生成假设的延伸来阅读。
+        它们也许能启发替代性的系统图景，但目前并不能为本章中的操作性干预规则提供正当性。
+\end{itemize}
+\end{readingbox}
+
+\begin{summarybox}
+本章把全书的研究主干转化为操作设计。
+核心的实践教训不是“更努力”，而是：诊断这次转变，选择最便宜的可控变量，利用真实的决策窗口，并优先采用那些能创造更好未来历史、而非一次性努力行为的设计。
+强证据通道为对转变敏感的思维方式提供正当性；中等证据通道帮助解释为什么重复与局部结构会重要；最终协议仍属于设计推断，其价值必须在使用中被检验。
+\end{summarybox}

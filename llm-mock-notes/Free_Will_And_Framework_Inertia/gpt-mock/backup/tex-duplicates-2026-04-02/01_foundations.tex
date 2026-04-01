@@ -1,0 +1,107 @@
+\section{Foundations of Framework Inertia}
+\label{sec:foundations}
+
+\subsection{State Space and Inertia}
+
+\begin{definition}[Behavioural state]
+A behavioural state $s \in \state$ is a sustained pattern of activity together
+with its environmental cues, cognitive load, and reward profile.
+\end{definition}
+
+\begin{definition}[Framework inertia]
+The framework inertia of a state $s$ is
+\[
+I(s) = \alpha R(s) + \beta C(s) + \gamma E(s),
+\]
+where $R(s)$ is instantaneous reward, $C(s)$ is context-switching cost,
+$E(s)$ is environmental reinforcement, and $\alpha, \beta, \gamma > 0$ weight
+their importance for a given agent.
+\end{definition}
+
+\begin{remark}
+The formula is intentionally simple. Its purpose is not to estimate a clinical
+truth but to make decomposition possible. Once inertia is separated into
+reward, switching cost, and environmental reinforcement, interventions can be
+targeted instead of remaining vague.
+\end{remark}
+
+\subsection{Activation Barrier}
+
+\begin{definition}[Activation barrier]
+For a transition $s_0 \to s_1$, the activation barrier is the minimum effort
+required to leave the current state and establish the new one. We write this as
+$\barrier(s_0 \to s_1)$.
+\end{definition}
+
+\begin{proposition}[Barrier composition]
+For ordinary initiative-intensive tasks, the barrier can be decomposed into
+startup, uncertainty, and persistence costs:
+\[
+\barrier(s_0 \to s_1) \approx B_{\mathrm{start}} + B_{\mathrm{uncertain}} +
+B_{\mathrm{persist}}.
+\]
+\end{proposition}
+
+\begin{discussion}
+This decomposition matters because different plans reduce different pieces of
+the barrier. A packed gym bag lowers startup cost. A written first task lowers
+uncertainty cost. A precommitted study block lowers persistence cost. The model
+is therefore useful only if it can guide intervention design.
+\end{discussion}
+
+\subsection{State Entrenchment}
+
+\begin{definition}[Entrenchment]
+The entrenchment of a state $s$ is the degree to which remaining in $s$
+automatically reproduces the conditions that keep $I(s)$ high.
+\end{definition}
+
+\begin{lemma}[Self-reinforcement of low-friction states]
+If a state offers immediate reward, low cognitive demand, and environmental
+stability, then entrenchment increases with duration spent in that state.
+\end{lemma}
+
+\begin{discussion}
+This lemma explains why ``just a few more minutes'' is usually not neutral.
+Many states are self-thickening: staying in them increases informational
+avoidance, emotional dullness, and re-entry cost into serious work.
+\end{discussion}
+
+\subsection{Worked Mini-Example}
+
+\begin{examplebox}
+\textbf{Desk preparation vs.\ bed scrolling.}
+
+Suppose the agent wakes with two feasible transitions:
+\begin{enumerate}[nosep]
+  \item remain in bed with a phone nearby,
+  \item move to a prepared desk containing the exact next reading task.
+\end{enumerate}
+The first state has high $R(s)$ and high $E(s)$; the second lowers both
+$C(s)$ and $\barrier(s_0 \to s_1)$ because the initial step is already chosen.
+This is the simplest example of why environment design and micro-planning
+should be treated as first-class variables rather than motivational ornaments.
+\end{examplebox}
+
+\subsection{A Classification Table}
+
+\begin{center}
+\begin{tabular}{@{}p{0.25\textwidth} p{0.22\textwidth} p{0.22\textwidth} p{0.18\textwidth}@{}}
+\toprule
+\textbf{State Type} & \textbf{Reward Profile} & \textbf{Switching Cost} & \textbf{Typical Risk} \\
+\midrule
+Passive leisure state & Immediate and steady & Low at entry, high at exit & time drift \\
+Preparation state & Moderate & Moderate & false sense of progress \\
+Deep work state & Delayed but compounding & High at entry, low when established & non-initiation \\
+Recovery state & Necessary and restorative & Low & overextension or avoidance confusion \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{summarybox}
+Chapter 1 gives the book a reusable language: a state has inertia, transitions
+have barriers, and some states become entrenched by their own continuation.
+That vocabulary is what allows the rest of the manuscript to become cumulative
+instead of repetitive.
+\end{summarybox}
+

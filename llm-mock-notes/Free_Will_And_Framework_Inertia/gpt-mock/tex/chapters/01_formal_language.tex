@@ -1,0 +1,108 @@
+\chapter{Formal Language of Behavioural States}
+\label{ch:formal-language}
+
+\section{State, Frame, and Resistance}
+
+\begin{definition}[Behavioural state]
+A behavioural state $s \in \mathcal{S}$ is a sustained mode of action together
+with its associated posture, attention pattern, local environment, and reward
+expectation.
+\end{definition}
+
+\begin{definition}[Framework inertia]
+The framework inertia of a state $s$ is
+\[
+  \FI(s) = \alpha \Reward(s) + \beta \Switch(s) + \gamma \Env(s),
+\]
+where $\Reward(s)$ is the immediate reward rate, $\Switch(s)$ is the cognitive
+cost of loading a new task frame, $\Env(s)$ is environmental reinforcement,
+and $\alpha, \beta, \gamma > 0$ weight the agent's sensitivity to each
+component.
+\end{definition}
+
+\begin{remark}
+This definition is useful because it separates three business-relevant levers.
+If a person repeatedly fails to act, the intervention might target the reward
+gradient, the cognitive startup cost, or the environment. Treating all failure
+as ``motivation'' hides that design choice.
+\end{remark}
+
+\section{Target States and Barriers}
+
+\begin{definition}[Target state]
+Given a current state $s_0$, a target state $s_1$ is a behavioural state whose
+expected long-run value exceeds that of $s_0$ under the agent's stated goals.
+\end{definition}
+
+\begin{definition}[Activation barrier]
+The activation barrier for transition $s_0 \to s_1$ is denoted by
+$\DV(s_0 \to s_1)$ and represents the minimal effort needed to interrupt the
+current frame and stabilize the new one.
+\end{definition}
+
+\begin{proposition}[Barrier decomposition]
+For practical planning, the barrier can be decomposed as
+\[
+  \DV(s_0 \to s_1) \approx b_0 + \eta_1 \FI(s_0) + \eta_2 U(s_1) - \eta_3 P,
+\]
+where $U(s_1)$ is startup ambiguity in the target state and $P$ is prior
+preparation.
+\end{proposition}
+
+\begin{discussion}
+The proposition is intentionally operational. It says that high inertia in the
+present, vagueness in the future, and lack of preparation all push in the same
+direction: they raise the threshold for action. The only term with the
+opposite sign is preparation. That is why planning matters even before one
+speaks about willpower.
+\end{discussion}
+
+\section{Worked Example: Bed to Desk}
+
+\begin{example}[A minimal state transition]
+Consider the transition from scrolling in bed to seated reading at a desk.
+\begin{enumerate}[nosep]
+  \item $\Reward(s_0)$ is high because scrolling offers rapid novelty.
+  \item $\Switch(s_0)$ is high because the reader must remember where the
+        chapter, notebook, and task entry point are.
+  \item $\Env(s_0)$ is high because posture and location both stabilize rest.
+  \item $U(s_1)$ is high if the study task is not pre-specified.
+\end{enumerate}
+Packing the desk, opening the book in advance, and writing a first micro-task
+all raise $P$ and shrink $\DV$ before the transition even begins.
+\end{example}
+
+\section{Notation as a Management Tool}
+
+Notation is not cosmetic. It serves two management functions:
+\begin{enumerate}[nosep]
+  \item it turns vague complaints into diagnosable variables;
+  \item it lets multiple writers and reviewers talk about the same failure
+        pattern without renaming the problem each time.
+\end{enumerate}
+
+\section{Recommended Reading}
+
+\begin{readingbox}
+\textbf{Foundation}
+\begin{itemize}[nosep]
+  \item Eugene Izhikevich, \emph{Dynamical Systems in Neuroscience}.
+\end{itemize}
+\textbf{Modern Research}
+\begin{itemize}[nosep]
+  \item The attractor and integrator review literature in computational
+        neuroscience provides the clearest bridge from notation to mechanism.
+\end{itemize}
+\textbf{Frontier}
+\begin{itemize}[nosep]
+  \item Operator-based or free-energy inspired formalisms should be treated as
+        extensions, not prerequisites, for this chapter.
+\end{itemize}
+\end{readingbox}
+
+\begin{summarybox}
+The first chapter turns the manuscript from rhetoric into a controllable
+language. Once state, inertia, and barrier are named, later chapters can ask
+sharper questions: where is the barrier high, when does it drop, and which
+inputs change it most cheaply?
+\end{summarybox}

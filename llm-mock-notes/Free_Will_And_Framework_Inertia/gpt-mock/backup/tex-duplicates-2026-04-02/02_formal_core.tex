@@ -1,0 +1,108 @@
+\section{The Formal Core}
+\label{sec:formal-core}
+
+\subsection{Inertia As A Composite Quantity}
+
+\begin{definition}[Framework Inertia]
+The \textbf{framework inertia} of a state $s$ is
+\[
+  \Inertia(s) = \alpha R(s) + \beta C(s) + \gamma E(s),
+\]
+where $R(s)$ is immediate reward intensity, $C(s)$ is cognitive switching cost,
+$E(s)$ is environmental reinforcement, and $\alpha,\beta,\gamma > 0$ are
+weighting constants.
+\end{definition}
+
+\begin{remark}
+This is not claimed as a laboratory-complete model. It is a managerial model:
+the formula is valuable if it helps locate the main source of transition
+failure and guides the choice of intervention.
+\end{remark}
+
+\subsection{Activation Barriers}
+
+\begin{definition}[Activation Barrier]
+For a transition $s_0 \to s_1$, the \textbf{activation barrier} is
+\[
+  \Transition(s_0 \to s_1) = V_{\max}(s_0,s_1) - V(s_0),
+\]
+where $V$ is a potential-like representation of state stability.
+\end{definition}
+
+\begin{lemma}[Barrier Amplification]
+If the target state requires multiple unresolved micro-decisions, then
+$C(s_0)$ rises and therefore $\Transition(s_0 \to s_1)$ rises.
+\end{lemma}
+
+\begin{proof}
+Unresolved micro-decisions force the agent to perform planning and execution at
+the same moment. That enlarges the context-loading burden, which is exactly
+what $C(s_0)$ records. Since the barrier depends on the cost of leaving the
+current state, the barrier increases.
+\end{proof}
+
+\subsection{Volitional Energy}
+
+\begin{definition}[Volitional Energy]
+\textbf{Volitional energy} $\Volition(t)$ is the available override capacity
+for overcoming the activation barrier at time $t$.
+\end{definition}
+
+\begin{axiom}[Finite Override]
+There exists a session-dependent upper bound $\Volition_{\max}$ such that
+$0 \leq \Volition(t) \leq \Volition_{\max}$.
+\end{axiom}
+
+\begin{definition}[Effective Leverage]
+The \textbf{effective leverage} of free will at time $t$ is
+\[
+  L(t) = \frac{\Volition(t)}{\Transition(t)}.
+\]
+\end{definition}
+
+\begin{theorem}[Decision-Window Advantage]
+Free will has maximal operational value at times when the activation barrier is
+locally small, not at times when the agent is already deep inside a reinforced
+state.
+\end{theorem}
+
+\begin{proof}
+By definition, leverage increases when the denominator decreases and the
+numerator remains fixed. Therefore, if the same quantity of volitional energy is
+deployed during a lower-barrier interval, it produces more transition effect.
+The strategy implication is immediate: use free will to enter the next state,
+not to remain forever in combat against the current one.
+\end{proof}
+
+\subsection{A Comparative Table Of Control Variables}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{@{}p{0.25\textwidth} p{0.22\textwidth} p{0.4\textwidth}@{}}
+\toprule
+\textbf{Control Variable} & \textbf{Speed} & \textbf{Interpretation} \\
+\midrule
+Reduce $R(s)$ & Medium & Remove short-term temptations or delay access \\
+Reduce $C(s)$ & Fast & Specify the first step and prepare materials \\
+Reduce $E(s)$ & Fast to medium & Change location, posture, tool visibility \\
+Increase $\Volition(t)$ & Unreliable & Useful but costly as a primary lever \\
+Shift timing & Fast & Use start-of-day or boundary moments \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{insightbox}
+The model shifts strategy from ``be stronger'' to ``lower the barrier before
+action is needed.'' This is the core managerial advantage of the framework.
+\end{insightbox}
+
+\begin{summarybox}
+\begin{itemize}
+  \item Inertia is composite, not mystical.
+  \item Activation barriers grow when action and planning are forced into the
+        same instant.
+  \item Decision windows matter because leverage is ratio-based, not purely
+        effort-based.
+\end{itemize}
+\end{summarybox}
+

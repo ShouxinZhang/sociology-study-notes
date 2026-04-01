@@ -1,0 +1,84 @@
+\chapter{行为状态的形式语言}
+\label{ch:formal-language}
+
+\section{状态、框架与阻力}
+
+\begin{definition}[行为状态]
+行为状态 $s \in \mathcal{S}$ 是一种持续存在的行动模式，同时包含与之相伴的姿态、注意力分布、局部环境，以及回报预期。
+\end{definition}
+
+\begin{definition}[框架惯性]
+状态 $s$ 的框架惯性定义为
+\[
+  \FI(s) = \alpha \Reward(s) + \beta \Switch(s) + \gamma \Env(s),
+\]
+其中，$\Reward(s)$ 是即时回报率，$\Switch(s)$ 是加载新任务框架所需的认知切换成本，$\Env(s)$ 是环境强化，而 $\alpha, \beta, \gamma > 0$ 则表示行动者对这三个分量的敏感度权重。
+\end{definition}
+
+\begin{remark}
+这个定义之所以有用，是因为它把三个对实际干预极其关键的杠杆拆开了。一个人反复行动失败时，干预可能针对的是回报梯度、认知启动成本，或环境本身。把所有失败都统称为“动力不足”，会把这种设计差异彻底遮蔽掉。
+\end{remark}
+
+\section{目标状态与障碍}
+
+\begin{definition}[目标状态]
+给定当前状态 $s_0$，若某个行为状态 $s_1$ 在行动者公开陈述的目标之下具有高于 $s_0$ 的预期长期价值，则称 $s_1$ 为目标状态。
+\end{definition}
+
+\begin{definition}[激活障碍]
+转变 $s_0 \to s_1$ 的激活障碍记为 $\DV(s_0 \to s_1)$，表示打断当前框架并让新框架稳定下来所需的最小努力。
+\end{definition}
+
+\begin{proposition}[障碍分解]
+出于实际规划的需要，障碍可以近似分解为
+\[
+  \DV(s_0 \to s_1) \approx b_0 + \eta_1 \FI(s_0) + \eta_2 U(s_1) - \eta_3 P,
+\]
+其中 $U(s_1)$ 表示目标状态的启动歧义，$P$ 表示事前准备。
+\end{proposition}
+
+\begin{discussion}
+这个命题刻意写得偏操作化。它表达的是：当下的高惯性、未来任务的含糊不清，以及缺乏准备，这三件事会朝同一个方向推高行动门槛。唯一符号相反的项是准备。因此，即便还没有谈到意志力，计划的重要性也已经在这里显现出来了。
+\end{discussion}
+
+\section{展开示例：从床上到书桌前}
+
+\begin{example}[一个最小状态转变]
+考虑从躺在床上刷手机，转变为坐到书桌前阅读。
+\begin{enumerate}[nosep]
+  \item $\Reward(s_0)$ 很高，因为刷手机能持续提供快速的新奇刺激。
+  \item $\Switch(s_0)$ 很高，因为读者必须重新想起章节读到哪里、笔记本放在哪里，以及从哪个任务入口开始。
+  \item $\Env(s_0)$ 很高，因为姿势和地点都会一起稳定“继续休息”这个状态。
+  \item 如果学习任务没有预先指定，$U(s_1)$ 就会很高。
+\end{enumerate}
+提前把书桌整理好、把书翻到指定位置、写下第一个微任务，都会提高 $P$，并在转变真正发生之前就先缩小 $\DV$。
+\end{example}
+
+\section{把记号当作管理工具}
+
+记号并不是装饰。它至少承担两种管理功能：
+\begin{enumerate}[nosep]
+  \item 它把含混的抱怨转成可以诊断的变量；
+  \item 它让多个写作者和审阅者能够围绕同一种失败模式交流，而不必每次都重新给问题换名字。
+\end{enumerate}
+
+\section{推荐阅读}
+
+\begin{readingbox}
+\textbf{基础}
+\begin{itemize}[nosep]
+  \item Eugene Izhikevich, \emph{Dynamical Systems in Neuroscience}.
+\end{itemize}
+\textbf{现代研究}
+\begin{itemize}[nosep]
+  \item 计算神经科学中关于 attractor 与 integrator 的综述文献，提供了从记号体系通向作用机制的最清晰桥梁。
+\end{itemize}
+\textbf{前沿}
+\begin{itemize}[nosep]
+  \item 带有算子风格或自由能启发的形式主义，应被视为本章的延伸，而不是前置条件。
+\end{itemize}
+\end{readingbox}
+
+\begin{summarybox}
+第一章把整份手稿从修辞推进成一套可控语言。一旦状态、惯性和障碍被明确命名，后续章节就能提出更尖锐的问题：障碍究竟在哪里高，什么时候会下降，以及哪些输入能以最低成本改变它？
+\end{summarybox}
