@@ -1,0 +1,7 @@
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
+\contentsline {section}{\numberline {2}Framework Inertia}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}The Inertia Vortex Model}{2}{subsection.2.1}%
+\contentsline {section}{\numberline {3}Free Will and Decision Windows}{3}{section.3}%
+\contentsline {section}{\numberline {4}The Necessity of Planning}{4}{section.4}%
+\contentsline {section}{\numberline {5}Practical Methodology}{5}{section.5}%
+\contentsline {section}{\numberline {6}Summary}{6}{section.6}%

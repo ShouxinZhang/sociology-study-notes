@@ -1,0 +1,165 @@
+% ==============================================================================
+% content.tex — 自由意志与框架惯性 (中文教科书风格正文)
+% ==============================================================================
+
+\section{引言}\label{sec:intro}
+
+在日常生活中，我们经常遇到这样的悖论：我们\emph{明确知道}自己应该去学习、去锻炼或追求某项长期有益的活动，但却发现自己无法启动这一转变。
+这似乎是一个无形的漩涡将我们困在当前的状态中——刷手机、虚度光阴、发呆——而理性在呐喊“快动起来！”，身体和情绪却依然沉重如铅。
+
+这不仅仅是简单的“懒惰”。这是一个可以进行结构化分析的现象。在本文中，我们将建立一个简易的形式化框架——\emph{框架惯性理论 (Framework Inertia Theory)}——来描述这一问题，定位自由意志发挥最大效用的时机，并推导出为什么计划不仅仅是可选的，而是\emph{必需}的。
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{框架惯性}\label{sec:inertia}
+
+\begin{definition}[行为状态]\label{def:state}
+\textbf{行为状态} $s \in \mathcal{S}$ 是指一种持续的活动模式，连同其相关的物理环境、认知背景和神经化学奖励分布。
+\end{definition}
+
+\begin{examplebox}
+躺在床上看短视频构成了一个行为状态 $s_0$，其特征为：(i) 仰卧的物理姿势；(ii) 极低努力的认知背景；(iii) 稳定的多巴胺微奖励流。
+而坐在书桌前学习构成了另一种状态 $s_1$，具有高认知负荷和延迟奖励。
+\end{examplebox}
+
+\begin{definition}[框架惯性]\label{def:inertia}
+一个行为状态 $s$ 的\textbf{框架惯性} $I(s)$ 是指在试图脱离状态 $s$ 转变到其他状态时所遇到的阻力。形式化地，
+\[
+  I(s) \;=\; \alpha \, R(s) \;+\; \beta \, C(s) \;+\; \gamma \, E(s),
+\]
+其中
+\begin{itemize}[nosep]
+  \item $R(s) \geq 0$ 是当前活动的\emph{瞬时奖励率}（神经层面）；
+  \item $C(s) \geq 0$ 是\emph{认知切换成本}——加载新背景的心智开销（认知层面）；
+  \item $E(s) \geq 0$ 是\emph{环境强化}——物理环境维持状态~$s$ 的程度（环境层面）；
+\end{itemize}
+且 $\alpha, \beta, \gamma > 0$ 是个人权重常数。
+\end{definition}
+
+\begin{remark}
+惯性的三个组成部分对应于可观察的机制：
+\begin{enumerate}[nosep]
+  \item \textbf{神经层面：} 当前活动持续释放多巴胺；切换到延迟奖励活动会导致奖励信号剧烈下降，产生厌恶感。
+  \item \textbf{认知层面：} 切换需要重新加载上下文（“我刚才学到哪了？”“我该从哪开始？”），大脑在疲劳时会放大这一成本。
+  \item \textbf{环境层面：} 姿势、位置和周围物体都在强化当前状态。躺在床上的人处于一个告诉大脑“你正在休息”的物理框架中。
+\end{enumerate}
+\end{remark}
+
+\subsection{惯性漩涡模型}
+
+\begin{definition}[势阱模型]\label{def:potential-well}
+将状态空间 $\mathcal{S}$ 建模为一个具有势函数 $V : \mathcal{S} \to \mathbb{R}$ 的景观。每个行为状态 $s$ 对应一个局部极小值（即\textbf{势阱}），井深与 $I(s)$ 成正比。从状态 $s_0$ 转变到 $s_1$ 需要克服\textbf{激活能垒}
+\[
+  \Delta V(s_0 \to s_1) \;=\; V_{\max}(s_0, s_1) - V(s_0),
+\]
+其中 $V_{\max}(s_0, s_1)$ 是两个势阱之间鞍点的势能。
+\end{definition}
+
+\begin{proposition}[脱离难度]\label{prop:escape}
+脱离行为状态 $s_0$ 的难度随以下因素增加：
+\begin{enumerate}[nosep]
+  \item 当前势阱的深度（高瞬时奖励 $R(s_0)$）；
+  \item 激活能垒的高度（巨大的切换成本 $C$ 和目标活动的启动摩擦）；
+  \item 环境强化盆地的宽度 $E(s_0)$。
+\end{enumerate}
+\end{proposition}
+
+\begin{discussion}
+命题 \ref{prop:escape} 直接源于定义 \ref{def:potential-well}：更深的井意味着需要克服更大的 $\Delta V$。这也是为什么“单纯靠意志力硬抗”经常失败的原因——激活能超过了决策者在单次爆发中所能提供的能量。
+\end{discussion}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{自由意志与决策窗口}\label{sec:free-will}
+
+\begin{definition}[意志能量]\label{def:volition}
+\textbf{意志能量} $W(t) \geq 0$ 是主体用于克服框架惯性的时变资源。它满足：
+\begin{enumerate}[nosep]
+  \item \textbf{有限容量：} 对所有 $t$，有 $W(t) \leq W_{\max}$；
+  \item \textbf{消耗：} 对抗惯性的主动努力以速率 $\dot{W} = -\lambda\,\Delta V$ 消耗 $W$，其中 $\lambda > 0$；
+  \item \textbf{恢复：} $W$ 在休息和睡眠期间再生。
+\end{enumerate}
+\end{definition}
+
+\begin{remark}
+$W$ 类似于电池：在低需求期间充电，在持续努力下放电。
+\end{remark}
+
+\begin{definition}[决策窗口]\label{def:window}
+\textbf{决策窗口}是指框架惯性处于局部极小值的时间区间，即当 $I(s(t))$ 接近局部极小值时。在此窗口内意志能量的\emph{有效杠杆}为
+\[
+  L(t) \;=\; \frac{W(t)}{\Delta V(t)},
+\]
+当 $\Delta V$ 较小且 $W$ 较大时，$L(t)$ 达到最大。
+\end{definition}
+
+\begin{theorem}[自由意志的最大杠杆]\label{thm:leverage}
+自由意志在\textbf{决策窗口}（即框架惯性处于局部极小值的时刻）发挥最大的影响力，而不是在对抗高惯性的持续抗争中。
+\end{theorem}
+
+\begin{discussion}
+既然 $L(t) = W(t)/\Delta V(t)$，那么杠杆作用在 $\Delta V$ 较小时最强。决策窗口正是激活能垒下降的时刻：
+\begin{itemize}[nosep]
+  \item \textbf{一天的开始：} 刚醒来时，旧行为框架尚未完全加载，可以以低成本注入新框架。
+  \item \textbf{活动边界：} 任务结束的瞬间，惯性会暂时归零——这是切入新轨道的理想插入点。
+  \item \textbf{环境切换：} 进入图书馆或到达健身房门口物理上破坏了旧框架，降低了 $E(s)$。
+  \item \textbf{情绪波动：} 受到的刺激（读到一段话、亲历一件事）会暂时粉碎惯性框架。
+\end{itemize}
+因此，最优策略不是\emph{持续对抗惯性}，而是\emph{在决策窗口部署意志能量，然后让新的惯性维持目标状态}。一旦你坐在书桌前开始写第一行笔记，新的框架惯性就开始建立——此时惯性反而在为你服务。
+\end{discussion}
+
+\begin{insightbox}
+自由意志的最佳策略不是“时刻抵抗惯性”，而是“\emph{在惯性最弱的瞬间果断行动，然后让新的惯性接管}”。
+\end{insightbox}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{计划的必要性}\label{sec:planning}
+
+\begin{theorem}[计划作为预设轨道]\label{thm:planning}
+在意志能量充沛的时段（$W(t_{\text{plan}}) \approx W_{\max}$）制定的计划，能有效降低未来决策窗口的激活能垒 $\Delta V$，从而在未来 $W$ 可能枯竭时提高杠杆 $L(t)$。
+\end{theorem}
+
+\begin{discussion}
+从框架惯性理论的角度看，计划不仅仅是一份待办清单，它是通过四个渠道运作的机制：
+\begin{enumerate}
+  \item \textbf{降低认知切换成本 $C$：} 有了计划，主体不需要在意志力最低的时刻反复权衡“接下来做什么”——这个问题已在巅峰状态下解决。
+  \item \textbf{压缩窗口内的决策负担：} 在宝贵的决策窗口中，主体面临的是简单的二元选择——“执行计划”，而非需要消耗大量 $W$ 的多步链条。
+  \item \textbf{创造外部约束：} 文字计划、定时提醒和社交承诺充当了外部力 $F$，帮助克服 $\Delta V$。
+  \item \textbf{建立预期框架：} 当大脑提前知道“下一步是什么”时，环境和认知的能垒会被预先削减。
+\end{enumerate}
+\end{discussion}
+
+\begin{corollary}[无计划者非自由]\label{cor:unfree}
+一个没有计划的主体并非在行使自由；相反，该主体被\textbf{框架惯性完全统治}。每一次“再刷五分钟”都是由惯性做出的决定，而非个体的自由意志。
+\end{corollary}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{实践方法论}\label{sec:practice}
+
+\begin{methodbox}[title={方法 1：利用决策窗口}]
+\begin{itemize}[nosep]
+  \item \textbf{晨间覆盖：} 起床第一件事是看计划，不要先拿手机；
+  \item \textbf{边界插入：} 任务结束后立刻看下一项，利用零惯性间隙；
+  \item \textbf{空间锚定：} 在固定地点做固定活动，让空间本身成为框架触发器。
+\end{itemize}
+\end{methodbox}
+
+\begin{methodbox}[title={方法 2：降低激活能垒}]
+\begin{itemize}[nosep]
+  \item \textbf{极简化启动：} 提前翻开要读的书，提前准备好运动服；
+  \item \textbf{两分钟法则：} 目标仅仅是跨越能垒，一旦启动，惯性自动接管。
+\end{itemize}
+\end{methodbox}
+
+\begin{methodbox}[title={方法 3：保护意志电池}]
+\begin{itemize}[nosep]
+  \item \textbf{消除琐碎决策：} 固定日常活动中的选择（食、衣），为高门槛转变保存 $W$；
+  \item \textbf{前置高难度任务：} 在 $W$ 巅峰时段处理最需要主动性的工作；
+  \item \textbf{物理切断而非心理抵抗：} 把手机放到另一个房间比“忍住不看”效率高出无数倍。
+\end{itemize}
+\end{methodbox}
+
+% ─────────────────────────────────────────────────────────────────────────────
+\section{总结}\label{sec:summary}
+
+\begin{insightbox}
+一句话总结：不要试图用自由意志正面硬抗惯性——而是用自由意志在正确的时机重定向惯性，然后让惯性替你做剩下的功。
+\end{insightbox}

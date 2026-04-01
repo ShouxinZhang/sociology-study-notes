@@ -1,0 +1,87 @@
+% ==============================================================================
+% preamble.tex — 个人宏包与环境配置 (中文版)
+% ==============================================================================
+
+\documentclass[11pt, a4paper]{article}
+
+% ── 字符编码与中文字体 ──────────────────────────────────────────────────────────
+\usepackage[UTF8, scheme=plain]{ctex}
+\usepackage[T1]{fontenc}
+
+% ── 页面布局 ──────────────────────────────────────────────────────────────
+\usepackage[margin=1in, headheight=14pt]{geometry}
+\usepackage{parskip}
+
+% ── 数学符号 ──────────────────────────────────────────────────────────────
+\usepackage{amsmath, amssymb, amsthm}
+
+% ── 颜色与框 ──────────────────────────────────────────────────────────────
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+
+% ── 超链接 ───────────────────────────────────────────────────────────────
+\usepackage[colorlinks=true, linkcolor=RoyalBlue, urlcolor=RoyalBlue]{hyperref}
+
+% ── 列表处理 ──────────────────────────────────────────────────────────────
+\usepackage{enumitem}
+
+% ── 页眉页脚 ──────────────────────────────────────────────────────────────
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\textit{自由意志与框架惯性}}
+\lhead{\textit{\nouppercase{\leftmark}}}
+\cfoot{\thepage}
+
+% ==============================================================================
+% 定理环境
+% ==============================================================================
+
+\theoremstyle{definition}
+\newtheorem{definition}{定义}[section]
+\newtheorem{axiom}[definition]{公理}
+
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{定理}
+\newtheorem{proposition}[definition]{命题}
+\newtheorem{corollary}[definition]{推论}
+\newtheorem{lemma}[definition]{引理}
+
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{注}
+
+% ==============================================================================
+% 自定义 tcolorbox 环境
+% ==============================================================================
+
+\newtcolorbox{examplebox}[1][]{
+  colback   = green!5!white,
+  colframe  = green!60!black,
+  fonttitle = \bfseries,
+  title     = {示例},
+  #1
+}
+
+\newtcolorbox{discussion}[1][]{
+  colback   = blue!3!white,
+  colframe  = RoyalBlue!70!black,
+  fonttitle = \bfseries,
+  title     = {论述},
+  #1
+}
+
+\newtcolorbox{insightbox}[1][]{
+  colback   = orange!5!white,
+  colframe  = orange!80!black,
+  fonttitle = \bfseries,
+  title     = {关键洞察},
+  #1
+}
+
+\newtcolorbox{methodbox}[1][]{
+  colback   = violet!5!white,
+  colframe  = violet!70!black,
+  fonttitle = \bfseries,
+  title     = {方法论},
+  #1
+}

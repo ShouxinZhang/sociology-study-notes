@@ -1,0 +1,103 @@
+% ==============================================================================
+% preamble.tex — Document class, packages, and custom environments
+% ==============================================================================
+
+\documentclass[11pt, a4paper]{article}
+
+% ── Encoding & Fonts ─────────────────────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+% ── Page Layout ──────────────────────────────────────────────────────────────
+\usepackage[margin=1in, headheight=14pt]{geometry}
+\usepackage{parskip}
+
+% ── Mathematics ──────────────────────────────────────────────────────────────
+\usepackage{amsmath, amssymb, amsthm}
+
+% ── Colours & Boxes ──────────────────────────────────────────────────────────
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+
+% ── Hyperlinks ───────────────────────────────────────────────────────────────
+\usepackage[colorlinks=true, linkcolor=RoyalBlue, urlcolor=RoyalBlue]{hyperref}
+
+% ── Enumeration ──────────────────────────────────────────────────────────────
+\usepackage{enumitem}
+
+% ── Header / Footer ──────────────────────────────────────────────────────────
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\textit{Free Will \& Framework Inertia}}
+\lhead{\textit{\nouppercase{\leftmark}}}
+\cfoot{\thepage}
+
+% ==============================================================================
+% Theorem-like environments (textbook style)
+% ==============================================================================
+
+% — Definitions (numbered) —
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+% — Axioms —
+\newtheorem{axiom}[definition]{Axiom}
+
+% — Theorems —
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Theorem}
+
+% — Propositions —
+\newtheorem{proposition}[definition]{Proposition}
+
+% — Corollaries —
+\newtheorem{corollary}[definition]{Corollary}
+
+% — Lemmas —
+\newtheorem{lemma}[definition]{Lemma}
+
+% — Remarks —
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+
+% ==============================================================================
+% Custom tcolorbox environments
+% ==============================================================================
+
+% — Example box —
+\newtcolorbox{examplebox}[1][]{
+  colback   = green!5!white,
+  colframe  = green!60!black,
+  fonttitle = \bfseries,
+  title     = {Example},
+  #1
+}
+
+% — Discussion / Solution box —
+\newtcolorbox{discussion}[1][]{
+  colback   = blue!3!white,
+  colframe  = RoyalBlue!70!black,
+  fonttitle = \bfseries,
+  title     = {Discussion},
+  #1
+}
+
+% — Key Insight box —
+\newtcolorbox{insightbox}[1][]{
+  colback   = orange!5!white,
+  colframe  = orange!80!black,
+  fonttitle = \bfseries,
+  title     = {Key Insight},
+  #1
+}
+
+% — Methodology box —
+\newtcolorbox{methodbox}[1][]{
+  colback   = violet!5!white,
+  colframe  = violet!70!black,
+  fonttitle = \bfseries,
+  title     = {Methodology},
+  #1
+}
