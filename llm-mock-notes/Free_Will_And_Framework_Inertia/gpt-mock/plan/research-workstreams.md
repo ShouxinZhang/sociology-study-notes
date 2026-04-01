@@ -23,6 +23,12 @@ research-grounded textbook program that integrates:
 | W5 | Chapter Reading Appendix System | Parallel after W2/W3/W4 baseline | Design per-chapter recommended reading appendices | reading appendix matrix |
 | W6 | Manuscript Integration | Serial after W2-W5 | Rebuild the chapter stack and interface contracts | revised chapter architecture |
 | W7 | Validation and Release Gate | Serial across all streams | Ensure evidence quality, chapter compatibility, and test readiness | review record |
+| W8 | Emergence Deepening Pass | Parallel after W7 baseline | Expand Chapter 5 with stricter biology / physics / mathematics structure and richer examples | revised Chapter 5 draft |
+| W9 | Advanced Dynamics Deepening Pass | Parallel after W7 baseline | Expand Chapter 6 with more biological, physical, and mathematical content plus a larger example bank | revised Chapter 6 draft |
+| W10 | Post-Deepening Review Sync | Serial after W8/W9 | Refresh Chinese review and validation gate after the deepening pass | updated review and validation notes |
+| W11 | Formal Model Validation | Parallel after W7 baseline | Audit and harden Chapter 2 so the mathematical model is properly sourced or explicitly heuristic | revised Chapter 2 draft |
+| W12 | Proof-Rigor Pass | Parallel after W7 baseline | Audit and harden Chapter 4 so formal statements have assumptions and proofs or are downgraded | revised Chapter 4 draft |
+| W13 | Post-Formalization Review Sync | Serial after W11/W12 | Refresh Chinese review and validation gate after model/proof hardening | updated review and validation notes |
 
 ## Execution Rules
 
@@ -55,6 +61,14 @@ prose of those chapters.
 
 Reason: the revised book architecture and quality gates depend on all upstream
 layers being stable.
+
+### Second Expansion Window
+
+`W8 || W9 -> W10`
+
+Reason: once the baseline research-backed manuscript is stable, the two theory
+heavy chapters can be deepened in parallel. Review and validation should only
+refresh after both chapter upgrades land.
 
 ## Detailed Tasks
 
@@ -194,6 +208,123 @@ layers being stable.
   - literature grading is complete,
   - chapter reading appendices are specified,
   - the next execution cycle can start without implicit assumptions.
+
+### T9. Deepen The Emergence Chapter
+
+- Goal: upgrade Chapter 5 from a mechanism sketch to a more rigorous
+  biology / physics / mathematics treatment of emergence and framework
+  formation.
+- Inputs:
+  - current Chapter 5 draft,
+  - graded literature and textbooks,
+  - existing framework vocabulary and evidence-lane policy.
+- Outputs:
+  - revised Chapter 5 prose,
+  - richer example bank,
+  - clearer separation between biological grounding, physical analogies, and
+    mathematical structure.
+- Dependencies: T8.
+- Execution mode: parallel with T10.
+- Test gate:
+  - the chapter must gain explicit biological, physical, and mathematical
+    explanatory layers,
+  - examples must clarify formation mechanisms rather than merely decorate the
+    chapter,
+  - speculative claims must remain fenced off.
+
+### T10. Deepen The Advanced Dynamics Chapter
+
+- Goal: expand Chapter 6 into a much fuller biological / physical / mathematical
+  explanation of behavioural transitions.
+- Inputs:
+  - current Chapter 6 draft,
+  - graded literature and textbooks,
+  - baseline evidence-lane policy.
+- Outputs:
+  - revised Chapter 6 prose,
+  - larger example library,
+  - stronger math-tool explanations with clearer pedagogical purpose.
+- Dependencies: T8.
+- Execution mode: parallel with T9.
+- Test gate:
+  - the chapter must add more biology, more physics, more mathematics, and
+    more examples in visible form,
+  - each added tool must still serve the behavioural framework rather than
+    become prestige formalism,
+  - the text must remain readable as a textbook chapter.
+
+### T11. Refresh Review And Validation After Deepening
+
+- Goal: keep the Chinese review and release gate synchronized with the new
+  depth of Chapters 5 and 6.
+- Inputs:
+  - revised Chapter 5 and Chapter 6,
+  - current Chinese review and validation note.
+- Outputs:
+  - updated Chinese review summary,
+  - updated validation checklist.
+- Dependencies: T9, T10.
+- Execution mode: serial.
+- Test gate:
+  - review text must reflect the new biology / physics / mathematics depth,
+  - validation must explicitly cover the new example richness and evidence-lane
+    discipline.
+
+### T12. Validate The Formal Language Chapter
+
+- Goal: determine whether the current behavioural-state notation is a defensible
+  formal model or only a useful heuristic.
+- Inputs:
+  - current Chapter 2 draft,
+  - textbook and paper sources relevant to dynamical systems, control, and
+    behavioural-state modeling.
+- Outputs:
+  - revised Chapter 2,
+  - explicit evidence boundary around each formula,
+  - stronger recommended reading support for the formal language.
+- Dependencies: T8.
+- Execution mode: parallel with T13.
+- Test gate:
+  - unsupported formulas must be marked heuristic or replaced,
+  - the chapter must show actual textbook / paper support,
+  - notation must still serve the book rather than become fake rigor.
+
+### T13. Harden The Planning Chapter's Formal Style
+
+- Goal: align the planning chapter with actual textbook-style formal discipline.
+- Inputs:
+  - current Chapter 4 draft,
+  - existing framework vocabulary,
+  - any supporting textbook / paper sources relevant to planning as control or
+    structured intervention.
+- Outputs:
+  - revised Chapter 4,
+  - theorem / proposition / corollary statements either proved under explicit
+    assumptions or downgraded,
+  - clearer `definition -> statement -> proof` chain.
+- Dependencies: T8.
+- Execution mode: parallel with T12.
+- Test gate:
+  - every remaining formal statement must have assumptions and proof material,
+  - unsupported theorem-style claims must be downgraded,
+  - the chapter must read as more rigorous, not merely more decorated.
+
+### T14. Refresh Review And Validation After Formal Hardening
+
+- Goal: keep Chinese review and release gate synchronized with the model and
+  proof hardening pass.
+- Inputs:
+  - revised Chapter 2 and Chapter 4,
+  - current Chinese review and validation note.
+- Outputs:
+  - updated Chinese review summary,
+  - updated validation checklist.
+- Dependencies: T12, T13.
+- Execution mode: serial.
+- Test gate:
+  - review text must reflect model-risk and proof-rigor changes,
+  - validation must explicitly cover source-backed formalism and proof
+    sufficiency.
 
 ## Interface Contracts
 

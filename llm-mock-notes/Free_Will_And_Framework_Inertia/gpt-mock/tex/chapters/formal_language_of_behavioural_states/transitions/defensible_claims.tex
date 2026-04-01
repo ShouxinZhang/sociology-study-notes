@@ -1,0 +1,43 @@
+\subsection{What We Can Defend}
+
+The most defensible claim at this stage is qualitative rather than exact:
+\begin{enumerate}[nosep]
+  \item barriers tend to rise when current-state reinforcement is stronger;
+  \item barriers tend to rise when the target state is ambiguous;
+  \item barriers tend to fall when relevant preparation has already been done;
+  \item barriers depend on current conditions \emph{and} transition history.
+\end{enumerate}
+
+\begin{definition}[Preparation and ambiguity]
+Let $U(s_1)$ denote \textbf{target ambiguity}, meaning the unresolved
+specification burden of entering $s_1$. Let $P$ denote \textbf{preparation},
+meaning the extent to which entry-relevant work has already been performed
+before the transition begins.
+\end{definition}
+
+\begin{remark}
+\textbf{Monotone barrier scaffold.}
+For modelling purposes, the transition difficulty may be treated as depending
+on a function
+\[
+  \DV(s_0 \to s_1) \approx g\!\bigl(\widehat{\FI}(s_0), U(s_1), P, H\bigr),
+\]
+where $H$ summarizes transition-relevant history, and where $g$ is assumed to
+be increasing in current-state resistance and ambiguity, and decreasing in
+preparation.
+\end{remark}
+
+\begin{discussion}
+This assumption is deliberately weaker and more defensible than the chapter's
+earlier barrier-decomposition formula. It keeps the business logic that later
+chapters need: if the present state is strongly reinforced, if the target state
+is vague, and if preparation is weak, the transition becomes harder. But it no
+longer pretends that the manuscript has identified a specific additive law with
+known coefficients.
+\end{discussion}
+
+\begin{remark}
+The symbol ``$\approx$'' should be read conservatively here. It does not mean
+statistical fit or asymptotic approximation. It means only that the barrier
+construct is being represented by a modelling dependence on those named inputs.
+\end{remark}

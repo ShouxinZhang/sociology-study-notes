@@ -1,0 +1,26 @@
+\section{State Space, Determinism, and Noise}
+
+\begin{definition}[State-space description]
+A \textbf{state-space description} represents the system by a state vector
+$x(t)$ together with an update rule. In continuous time this is written
+\[
+  \dot{x} = f(x,u,\eta),
+\]
+where $x$ denotes the current state, $u$ denotes control or intervention
+inputs, and $\eta$ denotes stochastic or unmodeled influences.
+\end{definition}
+
+\begin{remark}
+This equation is not offered as a fitted human model. It is a disciplined
+template. It tells the reader what kinds of variables matter: current state,
+external input, and noise. That is already a major improvement over vague talk
+of ``feeling stuck.''
+\end{remark}
+
+The notation also helps integrate the earlier chapters. Chapter~\ref{ch:consciousness-biology}
+supplied strong reasons to talk about organized state transitions in biology.
+Chapter~\ref{ch:emergence} showed that repeated local interactions can form a
+history-sensitive regime. The present chapter adds the mathematical language
+needed to say what sort of regime that might be: a fixed point, a metastable
+state, a limit cycle, a noisy transition path, or a control-sensitive branch of
+system behaviour.

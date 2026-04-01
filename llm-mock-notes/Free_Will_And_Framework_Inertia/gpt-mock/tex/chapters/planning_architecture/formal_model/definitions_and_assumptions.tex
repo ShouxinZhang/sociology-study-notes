@@ -1,0 +1,47 @@
+\section{Definitions and Assumptions}
+
+\begin{definition}[Plan]
+A \textbf{plan} for transition $s_0 \to s_1$ is a pre-action specification of
+at least one future decision window, one entry action, and one relevant
+environmental arrangement for the target state.
+\end{definition}
+
+\begin{definition}[Resolved entry specification]
+Let $U(s_1)$ denote the target ambiguity from
+Chapter~\ref{ch:formal-language}. A plan is said to provide a
+\textbf{resolved entry specification} if it fixes a visible first action for
+entering $s_1$ and thereby lowers the unresolved specification burden.
+\end{definition}
+
+\begin{definition}[Execution choice complexity]
+For a given future decision window, let $D$ denote the number of
+action-relevant micro-decisions still left to be made at the moment of action.
+Examples include choosing the location, selecting the first task, locating the
+materials, or deciding when to stop.
+\end{definition}
+
+\begin{remark}
+The variable $D$ is introduced as a qualitative bookkeeping device, not a
+measured cognitive constant. The only property needed below is monotonicity:
+if more in-the-moment decisions remain unresolved, then the execution burden is
+harder rather than easier.
+\end{remark}
+
+\begin{axiom}[Monotone planning assumption]
+Holding the current state fixed, the activation barrier
+$\DV(s_0 \to s_1)$ is weakly increasing in target ambiguity and weakly
+decreasing in relevant preparation.
+\end{axiom}
+
+\begin{axiom}[Decision-load assumption]
+Holding other terms fixed, the in-the-moment execution burden is weakly
+increasing in $D$.
+\end{axiom}
+
+\begin{discussion}
+These assumptions do not prove that a specific numerical planner outperforms a
+specific spontaneous agent in every situation. They only formalize the business
+logic already used by the book: leaving fewer questions unanswered makes future
+entry easier, and resolving relevant setup in advance lowers the burden at the
+moment of action.
+\end{discussion}

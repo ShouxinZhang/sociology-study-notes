@@ -1,0 +1,35 @@
+\section{A Heuristic Inertia Score, Not A Proven Law}
+
+\begin{definition}[Heuristic inertia score]
+If an analyst chooses a common normalization for the components of
+$\Pi(s)$, a \textbf{heuristic inertia score} may be introduced:
+\[
+  \widehat{\FI}(s) = \alpha \Reward(s) + \beta \Switch(s) + \gamma \Env(s),
+\]
+with $\alpha,\beta,\gamma > 0$ chosen as modelling weights.
+\end{definition}
+
+\begin{remark}
+The hat on $\widehat{\FI}$ matters. This expression is a bookkeeping device,
+not an established law of behavioural dynamics. It is useful when one wants a
+single comparison score, but the manuscript should not pretend that the weights
+have been empirically identified or that the linear form is uniquely correct.
+\end{remark}
+
+\begin{discussion}
+What is defensible here is the \textbf{structure of the scaffold}, not the
+claim that the linear combination has already been validated as a universal
+formula. Textbook and review sources justify using low-dimensional state
+descriptions and stability language. They do not justify claiming that the
+human cost of action obeys a known three-term linear law. The score is kept
+because it is operationally helpful, but it is explicitly downgraded from
+``formal law'' to ``heuristic model.''
+\end{discussion}
+
+\begin{remark}
+The chapter could have avoided a scalar score entirely and remained purely
+ordinal. The reason for retaining $\widehat{\FI}$ is pedagogical economy: later
+chapters need a compact way to say that one state is more resistant than
+another. The chapter therefore licenses the score as a \emph{comparison aid},
+not as a deep empirical result.
+\end{remark}

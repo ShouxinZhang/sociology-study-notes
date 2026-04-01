@@ -11,6 +11,26 @@ This document classifies the sources needed for the next planning cycle of
 4. chapter-level recommended reading appendices built from classic textbooks
    and major reviews.
 
+The current manuscript direction now treats Chapter 5 and Chapter 6 with
+greater depth than before:
+
+- Chapter 5 is no longer a light mechanism sketch. It now requires a visible
+  biology / systems / mathematics reading ladder, together with richer example
+  expectations around path dependence, conditioning, interference, and
+  multiscale organization.
+- Chapter 6 is no longer just a mathematical prestige layer. It now serves as
+  the formal explanatory toolkit for attractors, metastability, bifurcation,
+  synchronization, and feedback-aware operator viewpoints.
+
+The current manuscript direction also now requires clearer source destinations
+for earlier foundation chapters:
+
+- Chapter 1 must be supported as an honest modelling-language chapter rather
+  than a fake-formal empirical law chapter.
+- Chapter 3 must be supported as a planning / architectural-control chapter
+  whose structure is informed by systems thinking and state-transition logic,
+  not treated as direct empirical proof.
+
 Evidence tags:
 
 - `strong`: suitable for the empirical core of the manuscript
@@ -50,6 +70,7 @@ Evidence tags:
 | `BOOK-holland-emergence` | 1998 | Oxford University Press | classic emergence text | Canonical for rule-based emergence and adaptive systems thinking | Recommended reading for emergence chapter |
 | `BOOK-oup-introduction-to-theory-of-complex-systems` | 2018 | Oxford University Press | modern systems textbook | Strong structured foundation for complex-systems concepts and mathematical framing | Recommended reading for emergence and systems appendix |
 | `BOOK-cambridge-complexity-science` | 2014 | Cambridge University Press | reference collection | Good bridge source for self-organization, emergence, and dynamical-systems themes | Recommended reading for emergence appendix |
+| `BOOK-strogatz-nonlinear-dynamics-and-chaos` | 2015 | Westview Press | mathematical bridge | Practical nonlinear-dynamics text for bifurcation, stability, and regime change language; fits the textbook style of intervention and transition design | Recommended reading for advanced dynamics and intervention chapters |
 
 ## Source Notes
 
@@ -73,6 +94,44 @@ and reorganize:
 4. `ARXIV-2025-self-orthogonalizing-attractors`
 5. `ARXIV-2025-koopman-nemytskii`
 
+### Textbook Foundation Layer
+
+These are not empirical proof sources. Their role is to stabilize chapter
+teaching architecture, notation, and conceptual discipline:
+
+1. `BOOK-holland-emergence`
+2. `BOOK-oup-introduction-to-theory-of-complex-systems`
+3. `BOOK-cambridge-complexity-science`
+4. `BOOK-izhikevich-dynamical-systems-in-neuroscience`
+5. `BOOK-brin-stuck-introduction-to-dynamical-systems`
+6. `BOOK-pikovsky-synchronization`
+7. `BOOK-strogatz-nonlinear-dynamics-and-chaos`
+
+### Modelling-Language Support Layer
+
+These items support formal vocabulary, state-space framing, stability
+language, and monotone modelling discipline. They do \emph{not} empirically
+validate a specific scalar formula for everyday behaviour:
+
+1. `BOOK-izhikevich-dynamical-systems-in-neuroscience`
+2. `BOOK-brin-stuck-introduction-to-dynamical-systems`
+3. `BOOK-strogatz-nonlinear-dynamics-and-chaos`
+4. `NRN-2022-attractor-integrator`
+5. `NRN-2024-metastability`
+
+### Planning / Architectural-Control Support Layer
+
+These items support treating planning as structured state preparation,
+transition engineering, and environment / timing redesign. They are mainly
+conceptual and mechanism-building supports, not direct empirical validation of
+every planning template:
+
+1. `BOOK-strogatz-nonlinear-dynamics-and-chaos`
+2. `BOOK-izhikevich-dynamical-systems-in-neuroscience`
+3. `BOOK-dehaene-consciousness-and-the-brain`
+4. `CBIO-2025-connectivity-stability`
+5. `NN-2025-sleep-bifurcation`
+
 ### Frontier Hypothesis Layer
 
 These items may be useful, but only if they are clearly marked as exploratory:
@@ -89,6 +148,39 @@ These items may be useful, but only if they are clearly marked as exploratory:
 Purpose: give readers a readable path from the modern science of consciousness
 to the present manuscript's motivation.
 
+### Formal Language Of Behavioural States Chapter
+
+- `BOOK-izhikevich-dynamical-systems-in-neuroscience`
+- `BOOK-brin-stuck-introduction-to-dynamical-systems`
+- `BOOK-strogatz-nonlinear-dynamics-and-chaos`
+- `NRN-2022-attractor-integrator`
+- `NRN-2024-metastability`
+- `CBIO-2025-connectivity-stability`
+
+Purpose: support Chapter 1 as a modelling-language chapter:
+
+1. textbook support for state-space, stability, and transition language,
+2. review support for attractor / integrator and metastable framing,
+3. biological legitimacy for treating state and stability as serious topics,
+   without pretending that the chapter's heuristic score is empirically
+   calibrated.
+
+### Planning As An Architectural Control Chapter
+
+- `BOOK-strogatz-nonlinear-dynamics-and-chaos`
+- `BOOK-izhikevich-dynamical-systems-in-neuroscience`
+- `BOOK-dehaene-consciousness-and-the-brain`
+- `CBIO-2025-connectivity-stability`
+- `NN-2025-sleep-bifurcation`
+
+Purpose: support Chapter 3 as a structured control / design chapter:
+
+1. planning as state preparation rather than motivational slogan,
+2. barrier reduction and regime change as architectural rather than moral
+   concepts,
+3. timing, stability, and transition language as mechanism support rather than
+   direct proof that every planning protocol is experimentally validated.
+
 ### Empirical Consciousness Biology Chapter
 
 - `BOOK-dehaene-consciousness-and-the-brain`
@@ -101,26 +193,54 @@ evidence.
 
 ### Emergence And Framework Formation Chapter
 
+- `CBIO-2025-connectivity-stability`
 - `BOOK-holland-emergence`
 - `BOOK-oup-introduction-to-theory-of-complex-systems`
 - `BOOK-cambridge-complexity-science`
+- `BOOK-izhikevich-dynamical-systems-in-neuroscience`
 - `NRN-2024-metastability`
 - `CBIO-2025-causal-emergence`
 
-Purpose: connect repeated interaction, history, and interference to the
-formation of durable behavioural or cognitive frameworks.
+Purpose: support the deepened three-layer structure of Chapter 5:
+
+1. biological grounding for stability and organized state formation,
+2. systems language for emergence, interference, and multiscale organization,
+3. mathematical framing for regimes, re-entry economy, and path-dependent cost
+   reshaping.
 
 ### Advanced Dynamical Systems Chapter
 
 - `BOOK-izhikevich-dynamical-systems-in-neuroscience`
 - `BOOK-brin-stuck-introduction-to-dynamical-systems`
 - `BOOK-pikovsky-synchronization`
+- `BOOK-strogatz-nonlinear-dynamics-and-chaos`
 - `NRN-2022-attractor-integrator`
+- `NRN-2024-metastability`
 - `ARXIV-2025-self-orthogonalizing-attractors`
 - `ARXIV-2025-koopman-nemytskii`
+- `NN-2025-sleep-bifurcation`
 
-Purpose: provide the mathematical layer needed to move beyond a lightweight
-barrier metaphor.
+Purpose: support the deepened Chapter 6 as a formal toolkit:
+
+1. attractors and integrators for persistence and memory,
+2. bifurcation and stability language for regime change,
+3. synchronization for coupling and external timing,
+4. operator viewpoints for feedback-aware nonlinear control.
+
+### Case Library And Intervention Chapters
+
+- `BOOK-holland-emergence`
+- `BOOK-dehaene-consciousness-and-the-brain`
+- `BOOK-izhikevich-dynamical-systems-in-neuroscience`
+- `BOOK-strogatz-nonlinear-dynamics-and-chaos`
+- `NRN-2024-metastability`
+- `CBIO-2025-causal-emergence`
+- `CBIO-2025-connectivity-stability`
+- `NN-2025-sleep-bifurcation`
+
+Purpose: keep the application layer disciplined. These chapters should inherit
+state-transition, emergence, and dynamics language without pretending that the
+practical cases are directly proven one-to-one by the empirical sources.
 
 ### Frontier Hypotheses Appendix
 
@@ -145,4 +265,6 @@ This map prevents the next version of the manuscript from becoming an
 undisciplined literature dump. It gives each source a role, an evidence grade,
 and a chapter destination, while also ensuring that classic textbooks become a
 deliberate educational layer through chapter-level recommended reading
-appendices.
+appendices. It now also reflects that the emergence and advanced dynamics
+chapters are being built as genuinely deeper explanatory layers rather than
+light thematic extensions.

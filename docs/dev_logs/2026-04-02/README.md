@@ -16,5 +16,8 @@
 | 12 | [delegate_source_backed_research_chapters_and_chinese_review](delegate_source_backed_research_chapters_and_chinese_review.md) | 05:44:19 | 委派 subagents 完成 research chapters source pass，并补中文审阅稿与验证门禁 |
 | 13 | [delegate_source_backed_application_layers](delegate_source_backed_application_layers.md) | 05:57:12 | 委派 subagents 将案例库与干预章升级为 research-backed 应用层，并同步中文审阅与验证门禁 |
 | 14 | [translate_gpt_mock_tex_to_zh_cn](translate_gpt_mock_tex_to_zh_cn.md) | 05:59:55 | 将 gpt-mock 英文 TeX 教材原型整套翻译为正式中文 TeX 工作区，并完成独立编译验收 |
+| 15 | [delegate_formal_model_validation_and_proof_rigor](delegate_formal_model_validation_and_proof_rigor.md) | 06:34:39 | 委派 subagents 硬化第二章模型诚实性与第四章证明链，并同步中文审阅与验证门禁 |
+| 16 | [deepen_emergence_and_advanced_dynamics_with_subagents](deepen_emergence_and_advanced_dynamics_with_subagents.md) | 06:34:44 | 委派 subagents 大幅加厚 Chapter 5/6，并同步文献地图、中文审阅、验证门禁与编译解阻 |
+| 17 | [refactor_gpt_mock_tex_into_chapter_trees](refactor_gpt_mock_tex_into_chapter_trees.md) | 07:21:00 | 将英文主稿从平铺编号章节文件重构为 chapter-folder tree，支持更细粒度的 subagent 并行写作 |
 
-**共 14 条变更** · 主要工作：AI 反思笔记、LLM 模拟笔记、LaTeX 教科书、多语言维护、gpt-mock 规划协调、教材原型 TeX、研究扩展计划、研究版 TeX 重排、research source intake、subagent 驱动的 research/application source pass、中文审阅稿、正式中文 TeX 翻译、编译验收与仓库文档同步
+**共 17 条变更** · 主要工作：AI 反思笔记、LLM 模拟笔记、LaTeX 教科书、多语言维护、gpt-mock 规划协调、教材原型 TeX、研究扩展计划、研究版 TeX 重排、research source intake、subagent 驱动的 research/application source pass、formal model / proof hardening、正式中文 TeX 翻译、Chapter 5/6 深化、chapter-tree 结构重构、编译解阻与仓库文档同步

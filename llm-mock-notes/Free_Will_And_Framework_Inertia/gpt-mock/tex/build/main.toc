@@ -4,82 +4,118 @@
 \contentsline {section}{\numberline {1.3}Scope and Limits}{2}{section.1.3}%
 \contentsline {section}{\numberline {1.4}Evidence Policy}{2}{section.1.4}%
 \contentsline {chapter}{\numberline {2}Formal Language of Behavioural States}{3}{chapter.2}%
-\contentsline {section}{\numberline {2.1}State, Frame, and Resistance}{3}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Target States and Barriers}{3}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Worked Example: Bed to Desk}{4}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Notation as a Management Tool}{4}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Recommended Reading}{4}{section.2.5}%
-\contentsline {chapter}{\numberline {3}Dynamics and Decision Windows}{5}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Volitional Energy}{5}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Decision Windows}{5}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Failure Modes}{5}{section.3.3}%
-\contentsline {section}{\numberline {3.4}A Comparative Map of Windows}{6}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Recommended Reading}{6}{section.3.5}%
-\contentsline {chapter}{\numberline {4}Planning as an Architectural Control}{7}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Planning Before the Moment of Action}{7}{section.4.1}%
-\contentsline {section}{\numberline {4.2}A Planning Stack}{7}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Chapter-Level Workflow}{8}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Why Unplanned Intentions Fail}{8}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Recommended Reading}{8}{section.4.5}%
-\contentsline {chapter}{\numberline {5}Consciousness Biology and State Transitions}{9}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Why Consciousness Research Belongs Here}{9}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Three Empirical Anchors}{9}{section.5.2}%
-\contentsline {section}{\numberline {5.3}From Global State To Local Behaviour}{10}{section.5.3}%
-\contentsline {section}{\numberline {5.4}What The Strong Evidence Actually Buys}{10}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Decision Windows Revisited}{10}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Evidence Boundaries}{11}{section.5.6}%
-\contentsline {section}{\numberline {5.7}Business Value For The Framework}{11}{section.5.7}%
-\contentsline {section}{\numberline {5.8}Recommended Reading}{11}{section.5.8}%
-\contentsline {chapter}{\numberline {6}Emergence and Framework Formation}{13}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Why Emergence Matters}{13}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Frameworks As Historical Products}{13}{section.6.2}%
-\contentsline {section}{\numberline {6.3}From Local Interaction To Global Pattern}{14}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Metastability Rather Than Either Rigidity Or Chaos}{14}{section.6.4}%
-\contentsline {section}{\numberline {6.5}Associative Conditioning And Causal Emergence}{14}{section.6.5}%
-\contentsline {section}{\numberline {6.6}Interference, Data, and Path Dependence}{15}{section.6.6}%
-\contentsline {section}{\numberline {6.7}Why Formation Matters For Intervention}{15}{section.6.7}%
-\contentsline {section}{\numberline {6.8}Recommended Reading}{15}{section.6.8}%
-\contentsline {chapter}{\numberline {7}Advanced Dynamical Systems for Behavioural Transitions}{17}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Why The Math Layer Must Grow Carefully}{17}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Attractors and Integrators}{17}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Self-Organizing Attractors}{18}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Bifurcation and Regime Change}{18}{section.7.4}%
-\contentsline {section}{\numberline {7.5}Metastability and Productive Fragility}{18}{section.7.5}%
-\contentsline {section}{\numberline {7.6}Synchronization and Coupling}{19}{section.7.6}%
-\contentsline {section}{\numberline {7.7}Operator-Based Viewpoints}{19}{section.7.7}%
-\contentsline {section}{\numberline {7.8}Evidence Boundaries}{19}{section.7.8}%
-\contentsline {section}{\numberline {7.9}Recommended Reading}{20}{section.7.9}%
-\contentsline {chapter}{\numberline {8}Case Library}{21}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Why the Book Needs a Research-Disciplined Case Library}{21}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Case 1: Study Start Failure}{21}{section.8.2}%
-\contentsline {section}{\numberline {8.3}Case 2: Exercise Non-Start After Work}{22}{section.8.3}%
-\contentsline {section}{\numberline {8.4}Case 3: Writing Avoidance in Research Work}{23}{section.8.4}%
-\contentsline {section}{\numberline {8.5}Case 4: Sleep Schedule Breakdown}{24}{section.8.5}%
-\contentsline {section}{\numberline {8.6}Cross-Case Analytical Matrix}{25}{section.8.6}%
-\contentsline {section}{\numberline {8.7}Case Typology}{27}{section.8.7}%
-\contentsline {section}{\numberline {8.8}Recommended Reading}{28}{section.8.8}%
-\contentsline {chapter}{\numberline {9}Intervention Design Patterns}{29}{chapter.9}%
-\contentsline {section}{\numberline {9.1}From Description to Intervention}{29}{section.9.1}%
-\contentsline {section}{\numberline {9.2}Evidence Lanes For Intervention Thinking}{29}{section.9.2}%
-\contentsline {section}{\numberline {9.3}Comparative Intervention Map}{30}{section.9.3}%
-\contentsline {section}{\numberline {9.4}Design Principles}{30}{section.9.4}%
-\contentsline {section}{\numberline {9.5}Implementation Template}{31}{section.9.5}%
-\contentsline {section}{\numberline {9.6}Worked Implementation}{31}{section.9.6}%
-\contentsline {section}{\numberline {9.7}Failure Review Protocol}{32}{section.9.7}%
-\contentsline {section}{\numberline {9.8}Recommended Reading}{33}{section.9.8}%
-\contentsline {chapter}{\numberline {10}Exercises and Reflection Prompts}{34}{chapter.10}%
-\contentsline {section}{\numberline {10.1}Short Answer Questions}{34}{section.10.1}%
-\contentsline {section}{\numberline {10.2}Applied Modelling Tasks}{34}{section.10.2}%
-\contentsline {section}{\numberline {10.3}Contrast and Boundary Questions}{34}{section.10.3}%
-\contentsline {section}{\numberline {10.4}Self-Audit Worksheet}{35}{section.10.4}%
-\contentsline {section}{\numberline {10.5}Instructor-Oriented Prompting Uses}{35}{section.10.5}%
-\contentsline {section}{\numberline {10.6}Recommended Reading}{35}{section.10.6}%
-\contentsline {chapter}{\numberline {A}Notation and Planning Templates}{36}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Notation Table}{36}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Planning Templates}{36}{section.A.2}%
-\contentsline {section}{\numberline {A.3}Appendix Use}{37}{section.A.3}%
-\contentsline {chapter}{\numberline {B}Frontier Hypotheses and Evidence Boundaries}{38}{appendix.B}%
-\contentsline {section}{\numberline {B.1}Purpose of This Appendix}{38}{section.B.1}%
-\contentsline {section}{\numberline {B.2}Why Isolation Matters}{38}{section.B.2}%
-\contentsline {section}{\numberline {B.3}Current Frontier Example}{38}{section.B.3}%
-\contentsline {section}{\numberline {B.4}Reading Guidance}{39}{section.B.4}%
+\contentsline {section}{\numberline {2.1}Why This Chapter Must Avoid Fake Rigor}{3}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Four Levels of Formal Commitment}{3}{section.2.2}%
+\contentsline {section}{\numberline {2.3}State, Frame, and Descriptive Structure}{4}{section.2.3}%
+\contentsline {section}{\numberline {2.4}A Heuristic Inertia Score, Not A Proven Law}{4}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Target States and Barriers}{5}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}What We Can Defend}{5}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Ordinal Reading Before Cardinal Reading}{6}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}What We Are Not Claiming}{6}{subsection.2.5.3}%
+\contentsline {section}{\numberline {2.6}Worked Example: Bed to Desk}{6}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Why This Chapter Still Matters}{7}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Evidence Boundaries}{7}{section.2.8}%
+\contentsline {section}{\numberline {2.9}Recommended Reading}{8}{section.2.9}%
+\contentsline {chapter}{\numberline {3}Dynamics and Decision Windows}{9}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Volitional Energy}{9}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Decision Windows}{9}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Failure Modes}{9}{section.3.3}%
+\contentsline {section}{\numberline {3.4}A Comparative Map of Windows}{10}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Recommended Reading}{10}{section.3.5}%
+\contentsline {chapter}{\numberline {4}Planning as an Architectural Control}{11}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Why This Chapter Must Be More Honest}{11}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Definitions and Assumptions}{11}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Planning Before the Moment of Action}{12}{section.4.3}%
+\contentsline {section}{\numberline {4.4}A Planning Stack}{12}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Minimal Planning Workflow}{13}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Why Unplanned Intentions Often Fail}{13}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Evidence and Reading Discipline}{14}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Recommended Reading}{14}{section.4.8}%
+\contentsline {chapter}{\numberline {5}Consciousness Biology and State Transitions}{16}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Why Consciousness Research Belongs Here}{16}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Three Empirical Anchors}{16}{section.5.2}%
+\contentsline {section}{\numberline {5.3}From Global State To Local Behaviour}{17}{section.5.3}%
+\contentsline {section}{\numberline {5.4}What The Strong Evidence Actually Buys}{17}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Decision Windows Revisited}{17}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Evidence Boundaries}{18}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Business Value For The Framework}{18}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Recommended Reading}{18}{section.5.8}%
+\contentsline {chapter}{\numberline {6}Emergence and Framework Formation}{20}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Why This Chapter Must Become Stricter}{20}{section.6.1}%
+\contentsline {section}{\numberline {6.2}What Emergence Means, and What It Does Not Mean}{20}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}What Emergence Does Not Mean}{21}{subsection.6.2.1}%
+\contentsline {section}{\numberline {6.3}Layer I: Biological Grounding}{21}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Why Biology Belongs In A Chapter On Formation}{21}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Conditioning and Integrative Organization}{22}{subsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.3.3}Metastability Rather Than Simple Rigidity}{22}{subsection.6.3.3}%
+\contentsline {section}{\numberline {6.4}Layer II: Physical and Systems Analogies}{22}{section.6.4}%
+\contentsline {subsection}{\numberline {6.4.1}Why Analogy Is Needed, But Must Stay Disciplined}{22}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {6.4.2}Self-Organization and Order Parameters}{22}{subsection.6.4.2}%
+\contentsline {subsection}{\numberline {6.4.3}Path Dependence and Interference}{23}{subsection.6.4.3}%
+\contentsline {subsection}{\numberline {6.4.4}Multiscale Organization}{23}{subsection.6.4.4}%
+\contentsline {section}{\numberline {6.5}Layer III: Mathematical and Explanatory Structure}{23}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}From Local Updates To Global Regimes}{23}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}Regimes, Basins, and Re-entry Cost}{24}{subsection.6.5.2}%
+\contentsline {subsection}{\numberline {6.5.3}Why Emergence Is Not Just Aggregation}{24}{subsection.6.5.3}%
+\contentsline {subsection}{\numberline {6.5.4}Mathematical Upgrade Path}{24}{subsection.6.5.4}%
+\contentsline {section}{\numberline {6.6}Example Bank: How Frameworks Actually Form}{25}{section.6.6}%
+\contentsline {subsection}{\numberline {6.6.1}Example 1: Study Entry Ritual}{25}{subsection.6.6.1}%
+\contentsline {subsection}{\numberline {6.6.2}Example 2: Phone Checking As Interference Architecture}{25}{subsection.6.6.2}%
+\contentsline {subsection}{\numberline {6.6.3}Example 3: Exercise Identity Through Multiscale Organization}{25}{subsection.6.6.3}%
+\contentsline {subsection}{\numberline {6.6.4}Example 4: Research Writing And Negative Path Dependence}{25}{subsection.6.6.4}%
+\contentsline {subsection}{\numberline {6.6.5}Example 5: Group Norm Formation}{26}{subsection.6.6.5}%
+\contentsline {section}{\numberline {6.7}Evidence Boundaries}{26}{section.6.7}%
+\contentsline {section}{\numberline {6.8}Why Formation Matters For Intervention}{26}{section.6.8}%
+\contentsline {section}{\numberline {6.9}Recommended Reading}{27}{section.6.9}%
+\contentsline {chapter}{\numberline {7}Advanced Dynamical Systems for Behavioural Transitions}{28}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Why The Mathematical Layer Must Grow, But Not Drift}{28}{section.7.1}%
+\contentsline {section}{\numberline {7.2}State Space, Determinism, and Noise}{28}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Local Stability, Basins, and Separatrices}{29}{section.7.3}%
+\contentsline {subsection}{\numberline {7.3.1}Linear Stability Near A State}{29}{subsection.7.3.1}%
+\contentsline {subsection}{\numberline {7.3.2}Lyapunov-Style Reasoning}{29}{subsection.7.3.2}%
+\contentsline {subsection}{\numberline {7.3.3}Stochastic Escape and Noise-Sensitive Switching}{30}{subsection.7.3.3}%
+\contentsline {subsection}{\numberline {7.3.4}Control, Feedback, and Operator Viewpoints}{30}{subsection.7.3.4}%
+\contentsline {section}{\numberline {7.4}Physics Layer I: Landscapes, Barriers, and Energy-Style Intuition}{30}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Physics Layer II: Bifurcations, Thresholds, and Critical Behaviour}{31}{section.7.5}%
+\contentsline {section}{\numberline {7.6}Physics Layer III: Oscillation, Phase, and Synchronization}{31}{section.7.6}%
+\contentsline {section}{\numberline {7.7}Biological Example Family I: Sleep-Wake Switching}{31}{section.7.7}%
+\contentsline {section}{\numberline {7.8}Biological Example Family II: Working Memory and Attractor Maintenance}{32}{section.7.8}%
+\contentsline {section}{\numberline {7.9}Biological Example Family III: Rhythmic Control and Limit Cycles}{32}{section.7.9}%
+\contentsline {section}{\numberline {7.10}Biological Example Family IV: Bistable and Sequential Regimes}{33}{section.7.10}%
+\contentsline {section}{\numberline {7.11}Worked Example Family}{33}{section.7.11}%
+\contentsline {section}{\numberline {7.12}Evidence Boundaries}{34}{section.7.12}%
+\contentsline {section}{\numberline {7.13}Recommended Reading}{35}{section.7.13}%
+\contentsline {chapter}{\numberline {8}Case Library}{36}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Why the Book Needs a Research-Disciplined Case Library}{36}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Case 1: Study Start Failure}{36}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Case 2: Exercise Non-Start After Work}{37}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Case 3: Writing Avoidance in Research Work}{38}{section.8.4}%
+\contentsline {section}{\numberline {8.5}Case 4: Sleep Schedule Breakdown}{39}{section.8.5}%
+\contentsline {section}{\numberline {8.6}Cross-Case Analytical Matrix}{40}{section.8.6}%
+\contentsline {section}{\numberline {8.7}Case Typology}{42}{section.8.7}%
+\contentsline {section}{\numberline {8.8}Recommended Reading}{43}{section.8.8}%
+\contentsline {chapter}{\numberline {9}Intervention Design Patterns}{44}{chapter.9}%
+\contentsline {section}{\numberline {9.1}From Description to Intervention}{44}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Evidence Lanes For Intervention Thinking}{44}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Comparative Intervention Map}{45}{section.9.3}%
+\contentsline {section}{\numberline {9.4}Design Principles}{45}{section.9.4}%
+\contentsline {section}{\numberline {9.5}Implementation Template}{46}{section.9.5}%
+\contentsline {section}{\numberline {9.6}Worked Implementation}{46}{section.9.6}%
+\contentsline {section}{\numberline {9.7}Failure Review Protocol}{47}{section.9.7}%
+\contentsline {section}{\numberline {9.8}Recommended Reading}{48}{section.9.8}%
+\contentsline {chapter}{\numberline {10}Exercises and Reflection Prompts}{49}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Short Answer Questions}{49}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Applied Modelling Tasks}{49}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Contrast and Boundary Questions}{49}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Self-Audit Worksheet}{50}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Instructor-Oriented Prompting Uses}{50}{section.10.5}%
+\contentsline {section}{\numberline {10.6}Recommended Reading}{50}{section.10.6}%
+\contentsline {chapter}{\numberline {A}Notation and Planning Templates}{51}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Notation Table}{51}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Planning Templates}{51}{section.A.2}%
+\contentsline {section}{\numberline {A.3}Appendix Use}{52}{section.A.3}%
+\contentsline {chapter}{\numberline {B}Frontier Hypotheses and Evidence Boundaries}{53}{appendix.B}%
+\contentsline {section}{\numberline {B.1}Purpose of This Appendix}{53}{section.B.1}%
+\contentsline {section}{\numberline {B.2}Why Isolation Matters}{53}{section.B.2}%
+\contentsline {section}{\numberline {B.3}Current Frontier Example}{53}{section.B.3}%
+\contentsline {section}{\numberline {B.4}Reading Guidance}{54}{section.B.4}%

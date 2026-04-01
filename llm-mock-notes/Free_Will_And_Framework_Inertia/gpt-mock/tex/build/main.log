@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.6.21)  2 APR 2026 05:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.6.21)  2 APR 2026 06:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -979,370 +979,540 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
  [3]
 Package hyperref Info: Option `pageanchor' set `true' on input line 25.
- (./chapters/00_overview.tex
+ (./chapters/overview/chapter.tex
 Chapter 1.
-[1
+(./chapters/overview/teaching_ambition.tex)
+(./chapters/overview/learning_objectives.tex)
+(./chapters/overview/book_architecture.tex [1
 
 
-]
+])
+(./chapters/overview/scope_and_limits.tex
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 6
-5.
- (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
+.
+
+(/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (3.31293pt too wide) in paragraph at lines 68--70
+Overfull \hbox (3.31293pt too wide) in paragraph at lines 9--11
 []\T1/lmr/m/n/10.95 empirical neu-ro-science, the-o-ret-i-cal sys-tems lan-guag
 e, and spec-u-la-tive consciousness-physics
  []
 
-) (./chapters/01_formal_language.tex [2{/usr/share/texmf/fonts/enc/dvips/lm/lm-
-ts1.enc}]
+) (./chapters/overview/evidence_policy.tex)
+(./chapters/overview/chapter_summary.tex))
+(./chapters/formal_language_of_behavioural_states/chapter.tex [2{/usr/share/tex
+mf/fonts/enc/dvips/lm/lm-ts1.enc}]
 Chapter 2.
-[3
+(./chapters/formal_language_of_behavioural_states/why_fake_rigor.tex)
+(./chapters/formal_language_of_behavioural_states/levels_of_formal_commitment.t
+ex [3
 
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/
-dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}])
-(./chapters/02_dynamics_and_decision_windows.tex [4]
+])
+(./chapters/formal_language_of_behavioural_states/state_frame_and_structure.tex
+) (./chapters/formal_language_of_behavioural_states/heuristic_inertia_score.tex
+[4{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/en
+c/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/s
+hare/texmf/fonts/enc/dvips/lm/lm-mathex.enc}])
+(./chapters/formal_language_of_behavioural_states/target_states_and_barriers.te
+x [5])
+(./chapters/formal_language_of_behavioural_states/worked_example_bed_to_desk.te
+x [6])
+(./chapters/formal_language_of_behavioural_states/why_this_still_matters.tex)
+(./chapters/formal_language_of_behavioural_states/evidence_boundaries.tex
+[7])) (./chapters/dynamics_and_decision_windows/chapter.tex [8]
 Chapter 3.
-[5
+(./chapters/dynamics_and_decision_windows/volitional_energy.tex)
+(./chapters/dynamics_and_decision_windows/decision_windows.tex)
+(./chapters/dynamics_and_decision_windows/failure_modes.tex)
+(./chapters/dynamics_and_decision_windows/comparative_map.tex [9
 
-]) (./chapters/03_planning_architecture.tex [6]
+])
+(./chapters/dynamics_and_decision_windows/recommended_reading.tex))
+(./chapters/planning_architecture/chapter.tex [10]
 Chapter 4.
-[7
+(./chapters/planning_architecture/foundations/honesty_scope.tex)
+(./chapters/planning_architecture/formal_model/definitions_and_assumptions.tex)
+(./chapters/planning_architecture/formal_model/planning_before_action.tex
+[11
 
-]) (./chapters/04_consciousness_biology_and_state_transitions.tex [8]
+]
+Overfull \hbox (5.72598pt too wide) in paragraph at lines 31--35
+[][]\T1/lmr/bx/n/10.95 Corollary 4.9 \T1/lmr/m/n/10.95 (Last-minute self--per-s
+ua-sion is struc-turally weaker)\T1/lmr/bx/n/10.95 . []\T1/lmr/m/it/10.95 If la
+st-minute self-persuasion
+ []
+
+) (./chapters/planning_architecture/formal_model/planning_stack.tex [12])
+(./chapters/planning_architecture/practice/minimal_workflow.tex)
+(./chapters/planning_architecture/practice/unplanned_intentions.tex [13])
+(./chapters/planning_architecture/boundaries/evidence_and_reading.tex))
+(./chapters/consciousness_biology_and_state_transitions/chapter.tex [14]
+[15]
 Chapter 5.
-[9
 
-] [10]) (./chapters/05_emergence_and_framework_formation.tex [11] [12]
+(./chapters/consciousness_biology_and_state_transitions/foundations/why_conscio
+usness_research_belongs_here.tex)
+(./chapters/consciousness_biology_and_state_transitions/evidence/empirical_anch
+ors.tex)
+(./chapters/consciousness_biology_and_state_transitions/interpretation/global_s
+tate_to_local_behaviour.tex [16
+
+])
+(./chapters/consciousness_biology_and_state_transitions/evidence/strong_evidenc
+e_value.tex)
+(./chapters/consciousness_biology_and_state_transitions/interpretation/decision
+_windows_revisited.tex [17])
+(./chapters/consciousness_biology_and_state_transitions/boundaries/evidence_bou
+ndaries.tex)
+(./chapters/consciousness_biology_and_state_transitions/positioning/business_va
+lue.tex)
+(./chapters/consciousness_biology_and_state_transitions/reading/recommended_rea
+ding.tex)
+(./chapters/consciousness_biology_and_state_transitions/closing/summary.tex))
+(./chapters/emergence_and_framework_formation/chapter.tex [18] [19]
 Chapter 6.
-[13
 
-] [14]) (./chapters/06_advanced_dynamical_systems.tex [15] [16]
+(./chapters/emergence_and_framework_formation/foundations/why_this_chapter_must
+_become_stricter.tex
+Overfull \hbox (10.01811pt too wide) in paragraph at lines 17--20
+[]\T1/lmr/bx/n/10.95 Mathematical and ex-plana-tory struc-ture: \T1/lmr/m/n/10.
+95 what emer-gence, path de-pen-dence, metasta-
+ []
+
+)
+(./chapters/emergence_and_framework_formation/foundations/what_emergence_means.
+tex [20
+
+])
+(./chapters/emergence_and_framework_formation/layers/biological_grounding.tex
+[21])
+(./chapters/emergence_and_framework_formation/layers/physical_and_systems_analo
+gies.tex [22])
+(./chapters/emergence_and_framework_formation/layers/mathematical_and_explanato
+ry_structure.tex [23])
+(./chapters/emergence_and_framework_formation/applications/example_bank.tex
+[24] [25])
+(./chapters/emergence_and_framework_formation/boundaries/evidence_boundaries.te
+x)
+(./chapters/emergence_and_framework_formation/applications/why_formation_matter
+s_for_intervention.tex)
+(./chapters/emergence_and_framework_formation/references/recommended_reading.te
+x) (./chapters/emergence_and_framework_formation/closing/summary.tex [26]))
+(./chapters/advanced_dynamical_systems/chapter.tex [27]
 Chapter 7.
-[17
+(./chapters/advanced_dynamical_systems/conceptual_foundations/chapter.tex
+(./chapters/advanced_dynamical_systems/conceptual_foundations/mathematical_scop
+e.tex)
+(./chapters/advanced_dynamical_systems/conceptual_foundations/state_space.tex
+[28
 
-] [18] [19]) (./chapters/04_case_library.tex [20]
+])) (./chapters/advanced_dynamical_systems/stability_and_control/chapter.tex
+(./chapters/advanced_dynamical_systems/stability_and_control/stability_geometry
+.tex)
+(./chapters/advanced_dynamical_systems/stability_and_control/linear_stability_n
+ear_a_state.tex)
+(./chapters/advanced_dynamical_systems/stability_and_control/lyapunov_style_rea
+soning.tex [29])
+(./chapters/advanced_dynamical_systems/stability_and_control/stochastic_escape_
+and_noise_sensitive_switching.tex)
+(./chapters/advanced_dynamical_systems/stability_and_control/control_feedback_a
+nd_operator_viewpoints.tex))
+(./chapters/advanced_dynamical_systems/physics_intuitions/chapter.tex
+(./chapters/advanced_dynamical_systems/physics_intuitions/landscapes_barriers_a
+nd_energy_style_intuition.tex)
+(./chapters/advanced_dynamical_systems/physics_intuitions/bifurcations_threshol
+ds_and_critical_behaviour.tex [30])
+(./chapters/advanced_dynamical_systems/physics_intuitions/oscillation_phase_and
+_synchronization.tex))
+(./chapters/advanced_dynamical_systems/biological_case_families/chapter.tex
+(./chapters/advanced_dynamical_systems/biological_case_families/sleep_wake_swit
+ching.tex
+Overfull \hbox (3.91997pt too wide) in paragraph at lines 3--7
+\T1/lmr/m/n/10.95 The strongest bi-o-log-i-cal tran-si-tion model avail-able to
+ this manuscript re-mains the sleep-transition
+ []
+
+[31])
+(./chapters/advanced_dynamical_systems/biological_case_families/working_memory_
+and_attractor_maintenance.tex)
+(./chapters/advanced_dynamical_systems/biological_case_families/rhythmic_contro
+l_and_limit_cycles.tex [32])
+(./chapters/advanced_dynamical_systems/biological_case_families/bistable_and_se
+quential_regimes.tex))
+(./chapters/advanced_dynamical_systems/worked_examples/chapter.tex
+(./chapters/advanced_dynamical_systems/worked_examples/worked_example_family.te
+x) (./chapters/advanced_dynamical_systems/worked_examples/sleep_initiation.tex)
+
+(./chapters/advanced_dynamical_systems/worked_examples/working_memory_maintenan
+ce.tex)
+(./chapters/advanced_dynamical_systems/worked_examples/rhythmic_locomotor_or_ex
+ercise_regimes.tex)
+(./chapters/advanced_dynamical_systems/worked_examples/bistable_evening_routine
+s.tex [33])
+(./chapters/advanced_dynamical_systems/worked_examples/sequential_study_scripts
+.tex)) (./chapters/advanced_dynamical_systems/closure/chapter.tex
+(./chapters/advanced_dynamical_systems/closure/evidence_boundaries.tex)
+(./chapters/advanced_dynamical_systems/closure/recommended_reading.tex)
+(./chapters/advanced_dynamical_systems/closure/chapter_summary.tex [34])))
+(./chapters/case_library/chapter.tex [35]
 Chapter 8.
-
-Overfull \hbox (11.00911pt too wide) in paragraph at lines 16--18
+(./chapters/case_library/foundations/research_disciplined_case_library.tex
+Overfull \hbox (11.00911pt too wide) in paragraph at lines 13--15
 []\T1/lmr/m/n/10.95 application-layer in-ter-ven-tions be-come stronger when th
 ey are tied to ex-plicit state-transition
  []
 
-[21
+) (./chapters/case_library/cases/study_start_failure.tex [36
 
-] [22] [23] [24]
-Overfull \hbox (0.63574pt too wide) in paragraph at lines 225--227
+])
+(./chapters/case_library/cases/exercise_non_start_after_work.tex [37])
+(./chapters/case_library/cases/writing_avoidance_in_research_work.tex [38])
+(./chapters/case_library/cases/sleep_schedule_breakdown.tex [39]
+Overfull \hbox (0.63574pt too wide) in paragraph at lines 47--49
 []\T1/lmr/m/n/10.95 Reduce pa-ram-e-ter drift by keep-ing time, light, and de-v
 ice place-ment sta-ble across evenings. 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+) (./chapters/case_library/synthesis/cross_case_analytical_matrix.tex
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 []|\T1/lmr/m/n/10.95 Path
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 de-pen-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 dence
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 emer-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 []|\T1/lmr/m/n/10.95 post-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 lunch
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 cue
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 re-peat-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 edly
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 re-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 builds
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 dis-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 trac-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 []|\T1/lmr/m/n/10.95 re-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 entry
  []
 
 
-Overfull \hbox (9.51202pt too wide) in paragraph at lines 264--264
+Overfull \hbox (9.51202pt too wide) in paragraph at lines 31--31
 []|\T1/lmr/m/n/10.95 commute
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 re-peat-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 edly
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 se-lects
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 home-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 rest
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 se-
  []
 
 
-Overfull \hbox (11.67212pt too wide) in paragraph at lines 264--264
+Overfull \hbox (11.67212pt too wide) in paragraph at lines 31--31
 []|\T1/lmr/m/n/10.95 boundary
  []
 
 
-Overfull \hbox (6.1668pt too wide) in paragraph at lines 264--264
+Overfull \hbox (6.1668pt too wide) in paragraph at lines 31--31
 []|\T1/lmr/m/n/10.95 adjacent
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 low-
  []
 
 
-Overfull \hbox (8.0833pt too wide) in paragraph at lines 264--264
+Overfull \hbox (8.0833pt too wide) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 exposure
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 work
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 be-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 comes
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 his-tor-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 i-cally
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 ef-fi-
  []
 
 
-Overfull \hbox (31.74678pt too wide) in paragraph at lines 264--264
+Overfull \hbox (31.74678pt too wide) in paragraph at lines 31--31
 []|\T1/lmr/m/n/10.95 neighbouring-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 basin
  []
 
 
-Overfull \hbox (7.10986pt too wide) in paragraph at lines 264--264
+Overfull \hbox (7.10986pt too wide) in paragraph at lines 31--31
 []|\T1/lmr/m/n/10.95 repeated
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 late-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 night
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 stim-u-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 la-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 sta-bi-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 lizes
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 a de-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 layed
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 shut-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 down
  []
 
 
-Overfull \hbox (27.1845pt too wide) in paragraph at lines 264--264
+Overfull \hbox (27.1845pt too wide) in paragraph at lines 31--31
 []|\T1/lmr/m/n/10.95 replacement-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 264--264
+Underfull \hbox (badness 10000) in paragraph at lines 31--31
 \T1/lmr/m/n/10.95 state
  []
 
-[25] [26] [27]) (./chapters/05_interventions.tex [28]
+[40] [41]) (./chapters/case_library/synthesis/case_typology.tex)
+(./chapters/case_library/references/recommended_reading.tex [42]))
+(./chapters/interventions/chapter.tex [43]
 Chapter 9.
-[29
+(./chapters/interventions/foundations/from_description_to_intervention.tex)
+(./chapters/interventions/foundations/evidence_lanes_for_intervention_thinking.
+tex [44
 
-]
-Overfull \hbox (0.48808pt too wide) in paragraph at lines 114--116
+]) (./chapters/interventions/patterns/comparative_intervention_map.tex)
+(./chapters/interventions/patterns/design_principles.tex
+Overfull \hbox (0.48808pt too wide) in paragraph at lines 20--22
 [][]\T1/lmr/bx/n/10.95 Proposition 9.3 \T1/lmr/m/n/10.95 (His-to-ry-de-pen-dent
  re-in-force-ment prin-ci-ple)\T1/lmr/bx/n/10.95 . []\T1/lmr/m/it/10.95 An in-t
 er-ven-tion should be judged
  []
 
-[30] [31]
-Underfull \hbox (badness 1137) in paragraph at lines 251--255
+) (./chapters/interventions/templates/implementation_template.tex [45])
+(./chapters/interventions/templates/worked_implementation.tex [46])
+(./chapters/interventions/review/failure_review_protocol.tex)
+(./chapters/interventions/references/recommended_reading.tex
+Underfull \hbox (badness 1137) in paragraph at lines 38--42
 []\T1/lmr/m/n/10.95 Frontier consciousness-physics pro-pos-als should be read o
 nly as hypothesis-
  []
 
-[32]) (./chapters/06_exercises_and_prompts.tex [33]
+[47])) (./chapters/exercises_and_prompts/chapter.tex [48]
 Chapter 10.
-[34
+(./chapters/exercises_and_prompts/question_sets/short_answer_questions.tex)
+(./chapters/exercises_and_prompts/question_sets/applied_modelling_tasks.tex)
+(./chapters/exercises_and_prompts/question_sets/contrast_and_boundary_questions
+.tex) (./chapters/exercises_and_prompts/worksheets/self_audit_worksheet.tex)
+(./chapters/exercises_and_prompts/teaching/instructor_oriented_prompting_uses.t
+ex [49
 
-]) (./chapters/appendix_a_notation_and_templates.tex [35]
+]) (./chapters/exercises_and_prompts/references/recommended_reading.tex)) (./ch
+apters/appendix_notation_and_templates/chapter.tex [50]
 Appendix A.
-[36
+(./chapters/appendix_notation_and_templates/notation/section.tex)
+(./chapters/appendix_notation_and_templates/templates/section.tex
+(./chapters/appendix_notation_and_templates/templates/session_design_card.tex)
+(./chapters/appendix_notation_and_templates/templates/failure_review_card.tex))
+(./chapters/appendix_notation_and_templates/reuse/section.tex))
+(./chapters/appendix_frontier_hypotheses/chapter.tex [51
 
-]) (./chapters/appendix_b_frontier_hypotheses.tex [37]
+] [52]
 Appendix B.
-[38
+(./chapters/appendix_frontier_hypotheses/purpose/section.tex)
+(./chapters/appendix_frontier_hypotheses/isolation/section.tex)
+(./chapters/appendix_frontier_hypotheses/frontier_examples/section.tex
+(./chapters/appendix_frontier_hypotheses/frontier_examples/resonance_complexity
+_example.tex)
+(./chapters/appendix_frontier_hypotheses/frontier_examples/exploratory_roles.te
+x)) (./chapters/appendix_frontier_hypotheses/reading_guidance/section.tex
+(./chapters/appendix_frontier_hypotheses/reading_guidance/foundation_sources.te
+x)
+(./chapters/appendix_frontier_hypotheses/reading_guidance/modern_research_lane.
+tex)
+(./chapters/appendix_frontier_hypotheses/reading_guidance/frontier_sources.tex)
+[53
 
-]) [39] (build/main.aux)
+]
+(./chapters/appendix_frontier_hypotheses/reading_guidance/governance_summary.te
+x))) [54] (build/main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E8F42A2306C122D327C25F4F6E17112B;16748.
+(rerunfilecheck)             Checksum: 032AB9C934B8BBF14B8DE58A71258254;20941.
  ) 
 Here is how much of TeX's memory you used:
- 29114 strings out of 474222
- 578239 string characters out of 5748733
- 1943975 words of memory out of 5000000
- 50524 multiletter control sequences out of 15000+600000
+ 30212 strings out of 474222
+ 646587 string characters out of 5748733
+ 1945975 words of memory out of 5000000
+ 51118 multiletter control sequences out of 15000+600000
  616375 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  106i,12n,110p,541b,699s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/ty
-pe1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></u
-sr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/pu
-blic/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/
-texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/
-lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on build/main.pdf (44 pages, 325910 bytes).
+pe1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></u
+sr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/p
+ublic/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/shar
+e/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/
+lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf
+/fonts/type1/public/lm/lmtt12.pfb>
+Output written on build/main.pdf (59 pages, 383658 bytes).
 PDF statistics:
- 985 PDF objects out of 1000 (max. 8388607)
- 886 compressed objects within 9 object streams
- 313 named destinations out of 1000 (max. 500000)
- 837 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1278 PDF objects out of 1440 (max. 8388607)
+ 1159 compressed objects within 12 object streams
+ 465 named destinations out of 1000 (max. 500000)
+ 933 words of extra memory for PDF output out of 10000 (max. 10000000)
 

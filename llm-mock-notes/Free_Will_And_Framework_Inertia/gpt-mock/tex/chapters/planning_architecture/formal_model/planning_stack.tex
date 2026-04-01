@@ -1,0 +1,45 @@
+\section{A Planning Stack}
+
+For teaching purposes, it is useful to separate planning into layers:
+\begin{enumerate}[nosep]
+  \item \textbf{Outcome layer:} what end state is desired?
+  \item \textbf{Session layer:} what concrete session will move that outcome?
+  \item \textbf{Entry layer:} what exact first action starts the session?
+  \item \textbf{Environment layer:} what physical arrangement lowers entry
+        friction?
+  \item \textbf{Trigger layer:} when and where is the decision window expected?
+\end{enumerate}
+
+\begin{proposition}[Execution-choice compression]
+If a plan resolves $k \geq 1$ future micro-decisions before the decision
+window, then the execution choice complexity at the window is reduced from $D$
+to at most $D-k$.
+\end{proposition}
+
+\begin{proof}
+By construction, each resolved micro-decision is one less action-relevant item
+to be decided at execution time. Therefore resolving $k$ such items before the
+window reduces the remaining decision count by at least $k$, so the future
+decision complexity is at most $D-k$.
+\end{proof}
+
+\begin{corollary}[Binary execution advantage, qualified]
+If a plan reduces execution complexity to a binary choice---execute the
+predefined action or refuse it---then the in-the-moment execution burden is
+weakly lower than under any otherwise similar plan with strictly larger
+execution complexity.
+\end{corollary}
+
+\begin{proof}
+A binary choice has execution complexity $D=1$. Any otherwise similar plan with
+strictly larger complexity has $D>1$. By the decision-load assumption, greater
+execution complexity weakly increases in-the-moment burden. Therefore the
+binary-choice plan weakly lowers that burden.
+\end{proof}
+
+\begin{discussion}
+This result is narrower and more honest than the older formulation. It does not
+claim that binary framing guarantees compliance. It claims only that, within
+the model, reducing the number of unresolved real-time decisions reduces the
+decision burden that must be paid at the window.
+\end{discussion}

@@ -1,0 +1,49 @@
+\section{Planning Before the Moment of Action}
+
+\begin{proposition}[Resolved entry lowers ambiguity]
+If a plan provides a resolved entry specification for the target state $s_1$,
+then the target ambiguity term $U(s_1)$ is weakly lower than under an otherwise
+similar unplanned intention.
+\end{proposition}
+
+\begin{proof}
+By definition, a resolved entry specification fixes a visible first action that
+would otherwise remain undecided at the moment of action. Since $U(s_1)$ was
+defined as the unresolved specification burden of entering $s_1$, resolving at
+least one such burden weakly lowers $U(s_1)$.
+\end{proof}
+
+\begin{proposition}[Planning lowers future barrier under the monotone scaffold]
+Suppose a plan for $s_0 \to s_1$ both lowers target ambiguity and increases
+relevant preparation. Under the monotone planning assumption, the future
+activation barrier is weakly lower than without that plan.
+\end{proposition}
+
+\begin{proof}
+From the previous proposition, resolved entry lowers $U(s_1)$. By definition
+of planning, relevant preparation is also increased. The monotone planning
+assumption states that $\DV(s_0 \to s_1)$ is weakly increasing in ambiguity and
+weakly decreasing in preparation. Therefore lowering ambiguity and increasing
+preparation weakly lowers the activation barrier.
+\end{proof}
+
+\begin{corollary}[Last-minute self-persuasion is structurally weaker]
+If last-minute self-persuasion changes neither ambiguity nor preparation, while
+planning changes at least one of them in the favourable direction, then the
+planned transition has weakly lower activation barrier than the merely
+persuaded transition.
+\end{corollary}
+
+\begin{proof}
+The merely persuaded transition leaves the relevant barrier variables unchanged
+by assumption. The planned transition lowers at least one favourable term.
+Apply the previous proposition.
+\end{proof}
+
+\begin{remark}
+This corollary is deliberately weaker than the chapter's earlier ``planning
+theorem.'' It does not claim that planning always wins in every human setting.
+It states only that if planning actually changes the variables that the model
+says matter, then the model predicts a lower barrier than verbal endorsement
+alone.
+\end{remark}

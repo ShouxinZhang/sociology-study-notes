@@ -86,6 +86,34 @@ The new manuscript should organize sources into four lanes:
 - no math layer enters without pedagogical purpose,
 - no chapter grows into a literature dump.
 
+### D5. Deepened Chapter 5 and Chapter 6 source pass
+
+- `Chapter 5` must gain stricter biology / physics / mathematics explanations
+  for emergence and framework formation,
+- `Chapter 5` must add a richer example bank so formation mechanisms are not
+  left at the level of abstraction only,
+- `Chapter 6` must gain substantially more biological, physical, and
+  mathematical material,
+- `Chapter 6` must add a broader example library so advanced dynamics is not
+  explained through only one or two behavioural metaphors.
+
+### D6. Formal model validation pass for Chapter 2
+
+- the behavioural-state formal language must be checked against actual
+  textbook and paper support rather than relying on elegant notation alone,
+- unsupported formulas must be weakened, reframed, or replaced,
+- the chapter must clearly distinguish between sourced formal structure and
+  author-constructed heuristic modeling.
+
+### D7. Proof-rigor pass for Chapter 4
+
+- theorem / proposition / corollary style must only be used when assumptions
+  and proofs are available,
+- missing proofs must be supplied or the statements must be downgraded to a
+  weaker form such as discussion, design principle, or heuristic claim,
+- the chapter must better satisfy a `definition -> statement -> proof`
+  textbook discipline.
+
 ## Coordinator Task Board
 
 - [x] Archive the previous plan into `docs/plan/old/`.
@@ -101,6 +129,11 @@ The new manuscript should organize sources into four lanes:
 - [x] Delegate the source-backed writing pass for the three research chapters.
 - [x] Maintain a Chinese review companion for the research-backed manuscript.
 - [x] Add a release-gate validation note for English source pass and Chinese review consistency.
+- [x] Deepen `Chapter 5` with stricter biology / physics / mathematics framing and richer example coverage.
+- [x] Deepen `Chapter 6` with substantially expanded biology / physics / mathematics content and richer example coverage.
+- [x] Run a formal model validation pass on `Chapter 2` and align the model with textbook / paper support.
+- [x] Run a proof-rigor pass on `Chapter 4` so planning statements either gain proofs or are downgraded.
+- [x] Refresh the Chinese review and validation gate after the Chapter 5 / 6 deepening pass.
 
 ## Proposed Chapter Expansion
 
@@ -180,9 +213,22 @@ The new cycle must add tests beyond the previous plan:
 
 ## Current Recommendation
 
-The source-backed writing pass is now in place for the three research chapters,
-and the Chinese review companion plus release-gate validation note are also
-available. The next highest value step is to expand the same evidence-aware
-writing discipline into the case library and intervention chapters, so the
-applied half of the manuscript inherits the stronger research backbone rather
-than remaining mostly framework prose.
+The source-backed writing pass is now in place for the research layers and the
+application layers, and the Chinese review companion plus release-gate
+validation note are also available. The next highest value step is to deepen
+the two most theory-sensitive chapters:
+
+1. `Chapter 5` still needs a thicker biology / physics / mathematics account of
+   emergence and framework formation.
+2. `Chapter 6` still needs a much larger biological / physical / mathematical
+   example bank and a fuller advanced-dynamics toolkit.
+
+This new deepening cycle should again follow the same production policy:
+`plan -> subagent work -> coordinator validation`.
+
+The next foundational hardening step is now also clear:
+
+3. `Chapter 2` needs formal-model validation so that the notation is not ahead
+   of its support.
+4. `Chapter 4` needs proof-rigor cleanup so the formal style matches the actual
+   level of proof.

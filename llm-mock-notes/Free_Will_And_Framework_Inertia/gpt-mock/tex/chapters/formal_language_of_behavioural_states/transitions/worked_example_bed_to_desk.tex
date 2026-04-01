@@ -1,0 +1,26 @@
+\section{Worked Example: Bed to Desk}
+
+\begin{example}[A state-profile analysis rather than a fake calculation]
+Consider the transition from scrolling in bed to seated reading at a desk.
+\begin{enumerate}[nosep]
+  \item $\Reward(s_0)$ is elevated because scrolling offers rapid novelty.
+  \item $\Switch(s_0)$ is elevated because the reader must recover task
+        context, locate materials, and define a first step.
+  \item $\Env(s_0)$ is elevated because posture and location both stabilize
+        rest-oriented behaviour.
+  \item $U(s_1)$ is elevated if the study task is not pre-specified.
+  \item $P$ rises when the desk is prepared, the text is opened in advance, and
+        a first micro-task is written down.
+\end{enumerate}
+The model does not compute a true numerical barrier here. It gives a structured
+explanation of why the transition feels expensive and why preparation can lower
+that expense before the moment of action.
+\end{example}
+
+\begin{discussion}
+This example is intentionally modest. It does not demonstrate predictive
+success, parameter recovery, or empirical fit. Its purpose is narrower: to show
+how the notation separates several otherwise collapsed complaints such as ``I
+don't feel like it,'' ``I forgot where to start,'' and ``the room keeps pulling
+me back into rest.''
+\end{discussion}
