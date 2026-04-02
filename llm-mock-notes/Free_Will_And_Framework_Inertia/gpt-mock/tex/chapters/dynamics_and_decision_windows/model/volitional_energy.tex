@@ -6,12 +6,37 @@ interrupt the current behavioural frame and initiate stabilizing action toward
 a target frame.
 \end{definition}
 
+\begin{discussion}
+The practical value of this definition is not that it gives the reader a
+precise biological meter of ``will.'' Its value is architectural. The agent
+has only a limited ability to force a transition by direct effort, while the
+barrier separating the current frame from the target frame can fluctuate
+substantially across the day. This asymmetry matters because most people can
+improve timing more reliably than they can summon heroic motivation on demand.
+\end{discussion}
+
 \begin{definition}[Leverage]
 The effective leverage of free will at time $t$ is
 \[
   \Leverage(t) = \frac{\Will(t)}{\DV(t)}.
 \]
 \end{definition}
+
+\begin{proposition}[Timing dominates intensity under bounded will]
+If short-horizon increases in $\Will(t)$ are small relative to ordinary
+fluctuations in $\DV(t)$, then the most reliable way to raise
+$\Leverage(t)$ is to act when the barrier is already falling rather than to
+wait for a dramatic increase in motivation.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+By definition, leverage improves when the numerator rises or the denominator
+falls. In ordinary life, abrupt large gains in available will are rare and
+costly to sustain, whereas barrier changes are common at wake-up, task
+completion, arrival in a new location, or after a strong informational update.
+Therefore a timing strategy that exploits barrier troughs usually dominates a
+strategy that depends on exceptional effort.
+\end{proof}
 
 \begin{theorem}[Decision-window principle]
 Free will has maximum strategic effect not when effort is most intense, but
@@ -28,3 +53,12 @@ immediately after a sharp emotional update. Therefore the most reliable
 strategy is to act during barrier troughs rather than waiting for heroic
 motivation.
 \end{proof}
+
+\begin{example}[Why raw sincerity often fails]
+A student may genuinely value mathematics at night and still fail to begin a
+proof-heavy session if the current frame is stabilized by fatigue, clutter,
+and open-ended task ambiguity. The same student may start successfully the
+next morning with less subjective passion because the barrier has fallen: the
+old frame is weaker, the first task is already visible, and the cost of
+redirecting attention is lower.
+\end{example}

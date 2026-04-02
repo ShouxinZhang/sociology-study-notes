@@ -22,5 +22,8 @@
 | 18 | [archive_gpt_mock_stale_assets_and_create_orchestrator_skill](archive_gpt_mock_stale_assets_and_create_orchestrator_skill.md) | 07:35:00 | 将 gpt-mock 的陈旧计划/测试/备份迁移到 `.agents/cache/`，并创建通用协调 skill |
 | 19 | [sync_gpt_mock_tex_zh_cn_to_chapter_tree](sync_gpt_mock_tex_zh_cn_to_chapter_tree.md) | 07:11:04 | 用并行 subagents 把正式中文 TeX 主稿同步到 chapter-tree，并切换中文主入口完成新版编译验收 |
 | 20 | [translate_plan_subagent_orchestrator_skill_to_chinese](translate_plan_subagent_orchestrator_skill_to_chinese.md) | 07:43:00 | 将通用协调 skill 的正文、参考文档和 UI 元数据改为中文，方便直接审阅 |
+| 21 | [deepen_decision_windows_and_consciousness_bridge](deepen_decision_windows_and_consciousness_bridge.md) | 07:35:05 | 加厚 Chapter 3/5 的机制层与证据桥接层，并同步英文主稿编译、中文审阅与仓库结构说明 |
+| 22 | [add_reader_question_fast_entry_layer_to_gpt_mock_exercises](add_reader_question_fast_entry_layer_to_gpt_mock_exercises.md) | 07:37:39 | 为 `Exercises` 章节新增 reader-question 快速问答入口，并用 6 个 subagents 并行生成首批问题解答页 |
+| 23 | [sync_reader_question_fast_entry_layer_to_tex_zh_cn](sync_reader_question_fast_entry_layer_to_tex_zh_cn.md) | 08:05:00 | 将英文 `reader_questions/` 快速问答层同步到正式中文 TeX 主稿，并完成中文编译验收 |
 
-**共 20 条变更** · 主要工作：AI 反思笔记、LLM 模拟笔记、LaTeX 教科书、多语言维护、gpt-mock 规划协调、教材原型 TeX、研究扩展计划、研究版 TeX 重排、research source intake、subagent 驱动的 research/application source pass、formal model / proof hardening、正式中文 TeX 翻译、Chapter 5/6 深化、chapter-tree 结构重构、中文主稿 chapter-tree 同步、陈旧资产归档、通用协调 skill 建设、协调 skill 中文化、编译解阻与仓库文档同步
+**共 23 条变更** · 主要工作：AI 反思笔记、LLM 模拟笔记、LaTeX 教科书、多语言维护、gpt-mock 规划协调、教材原型 TeX、研究扩展计划、研究版 TeX 重排、research source intake、subagent 驱动的 research/application source pass、formal model / proof hardening、正式中文 TeX 翻译、Chapter 5/6 深化、chapter-tree 结构重构、中文主稿 chapter-tree 同步、陈旧资产归档、通用协调 skill 建设、协调 skill 中文化、Chapter 3/5 二次加厚、reader-question 快速问答入口建设、reader-question 中文主稿同步、英文/中文主稿重编译与仓库文档同步

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Debian) (preloaded format=xelatex 2025.6.21)  2 APR 2026 07:10
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Debian) (preloaded format=xelatex 2025.6.21)  2 APR 2026 07:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1356,24 +1356,37 @@ tex [46
 (./chapters/interventions/references/recommended_reading.tex [49]))
 (./chapters/exercises_and_prompts/chapter.tex [50]
 第十章
+(./chapters/exercises_and_prompts/reader_questions/section.tex
+(./chapters/exercises_and_prompts/reader_questions/breaking_vicious_cycles.tex)
+
+(./chapters/exercises_and_prompts/reader_questions/building_virtuous_cycles.tex
+[51
+
+])
+(./chapters/exercises_and_prompts/reader_questions/starting_when_you_know_but_c
+annot_move.tex)
+(./chapters/exercises_and_prompts/reader_questions/acting_with_low_energy.tex
+[52])
+(./chapters/exercises_and_prompts/reader_questions/recovering_after_a_failed_da
+y.tex [53])
+(./chapters/exercises_and_prompts/reader_questions/protecting_early_gains.tex))
 (./chapters/exercises_and_prompts/question_sets/short_answer_questions.tex)
-(./chapters/exercises_and_prompts/question_sets/applied_modelling_tasks.tex)
+(./chapters/exercises_and_prompts/question_sets/applied_modelling_tasks.tex
+[54])
 (./chapters/exercises_and_prompts/question_sets/contrast_and_boundary_questions
 .tex) (./chapters/exercises_and_prompts/worksheets/self_audit_worksheet.tex)
 (./chapters/exercises_and_prompts/teaching/instructor_oriented_prompting_uses.t
-ex [51
-
-]) (./chapters/exercises_and_prompts/references/recommended_reading.tex)) (./ch
-apters/appendix_notation_and_templates/chapter.tex [52]
+ex [55]) (./chapters/exercises_and_prompts/references/recommended_reading.tex))
+(./chapters/appendix_notation_and_templates/chapter.tex [56]
 附录 A
 (./chapters/appendix_notation_and_templates/notation/section.tex)
 (./chapters/appendix_notation_and_templates/templates/section.tex
 (./chapters/appendix_notation_and_templates/templates/session_design_card.tex)
 (./chapters/appendix_notation_and_templates/templates/failure_review_card.tex))
-(./chapters/appendix_notation_and_templates/reuse/section.tex [53
+(./chapters/appendix_notation_and_templates/reuse/section.tex [57
 
 ]))
-(./chapters/appendix_frontier_hypotheses/chapter.tex [54]
+(./chapters/appendix_frontier_hypotheses/chapter.tex [58]
 附录 B
 (./chapters/appendix_frontier_hypotheses/purpose/section.tex)
 (./chapters/appendix_frontier_hypotheses/isolation/section.tex)
@@ -1387,25 +1400,25 @@ x)
 (./chapters/appendix_frontier_hypotheses/reading_guidance/modern_research_lane.
 tex)
 (./chapters/appendix_frontier_hypotheses/reading_guidance/frontier_sources.tex)
-[55
+[59
 
 ]
 (./chapters/appendix_frontier_hypotheses/reading_guidance/governance_summary.te
-x))) [56] (build/main.aux)
+x))) [60] (build/main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2022/08/05>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: EA5B841337C0FC73990B7219A9D61082;11630.
+(rerunfilecheck)             Checksum: 6C0622C17DAEEA6B74C8C48F4043248F;11775.
  ) 
 Here is how much of TeX's memory you used:
- 35532 strings out of 474878
- 866445 string characters out of 5762516
+ 35600 strings out of 474878
+ 871546 string characters out of 5762516
  1948627 words of memory out of 5000000
- 56603 multiletter control sequences out of 15000+600000
+ 56650 multiletter control sequences out of 15000+600000
  566528 words of font info for 96 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  106i,13n,110p,1190b,601s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on build/main.xdv (61 pages, 987124 bytes).
+Output written on build/main.xdv (65 pages, 1060068 bytes).

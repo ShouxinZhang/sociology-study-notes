@@ -104,18 +104,25 @@
 \contentsline {section}{\numberline {9.7}失败复盘协议}{49}{section.9.7}%
 \contentsline {section}{\numberline {9.8}推荐阅读}{50}{section.9.8}%
 \contentsline {chapter}{\numberline {第十章\hspace {.3em}}练习与反思提示}{51}{chapter.10}%
-\contentsline {section}{\numberline {10.1}简答题}{51}{section.10.1}%
-\contentsline {section}{\numberline {10.2}应用建模任务}{51}{section.10.2}%
-\contentsline {section}{\numberline {10.3}对比与边界问题}{51}{section.10.3}%
-\contentsline {section}{\numberline {10.4}自我审计工作表}{52}{section.10.4}%
-\contentsline {section}{\numberline {10.5}面向教师的提示使用方式}{52}{section.10.5}%
-\contentsline {section}{\numberline {10.6}推荐阅读}{52}{section.10.6}%
-\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}记号与规划模板}{53}{appendix.A}%
-\contentsline {section}{\numberline {A.1}记号表}{53}{section.A.1}%
-\contentsline {section}{\numberline {A.2}规划模板}{53}{section.A.2}%
-\contentsline {section}{\numberline {A.3}附录用途}{54}{section.A.3}%
-\contentsline {chapter}{\numberline {附录 B\hspace {.3em}}前沿假说与证据边界}{55}{appendix.B}%
-\contentsline {section}{\numberline {B.1}本附录的目的}{55}{section.B.1}%
-\contentsline {section}{\numberline {B.2}为什么隔离很重要}{55}{section.B.2}%
-\contentsline {section}{\numberline {B.3}当前前沿示例}{55}{section.B.3}%
-\contentsline {section}{\numberline {B.4}阅读指引}{56}{section.B.4}%
+\contentsline {section}{\numberline {10.1}常见行动问题的快速解答}{51}{section.10.1}%
+\contentsline {subsection}{\numberline {10.1.1}我们该如何打破恶性循环？}{51}{subsection.10.1.1}%
+\contentsline {subsection}{\numberline {10.1.2}我们该如何建立良性循环？}{52}{subsection.10.1.2}%
+\contentsline {subsection}{\numberline {10.1.3}为什么明知道该做什么，却还是启动不了？}{52}{subsection.10.1.3}%
+\contentsline {subsection}{\numberline {10.1.4}精力很低的时候，应该怎样行动？}{53}{subsection.10.1.4}%
+\contentsline {subsection}{\numberline {10.1.5}失败了一整天之后，应该如何恢复？}{53}{subsection.10.1.5}%
+\contentsline {subsection}{\numberline {10.1.6}刚有一点起色之后，如何防止再次滑落？}{54}{subsection.10.1.6}%
+\contentsline {section}{\numberline {10.2}简答题}{55}{section.10.2}%
+\contentsline {section}{\numberline {10.3}应用建模任务}{55}{section.10.3}%
+\contentsline {section}{\numberline {10.4}对比与边界问题}{55}{section.10.4}%
+\contentsline {section}{\numberline {10.5}自我审计工作表}{56}{section.10.5}%
+\contentsline {section}{\numberline {10.6}面向教师的提示使用方式}{56}{section.10.6}%
+\contentsline {section}{\numberline {10.7}推荐阅读}{56}{section.10.7}%
+\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}记号与规划模板}{57}{appendix.A}%
+\contentsline {section}{\numberline {A.1}记号表}{57}{section.A.1}%
+\contentsline {section}{\numberline {A.2}规划模板}{57}{section.A.2}%
+\contentsline {section}{\numberline {A.3}附录用途}{58}{section.A.3}%
+\contentsline {chapter}{\numberline {附录 B\hspace {.3em}}前沿假说与证据边界}{59}{appendix.B}%
+\contentsline {section}{\numberline {B.1}本附录的目的}{59}{section.B.1}%
+\contentsline {section}{\numberline {B.2}为什么隔离很重要}{59}{section.B.2}%
+\contentsline {section}{\numberline {B.3}当前前沿示例}{59}{section.B.3}%
+\contentsline {section}{\numberline {B.4}阅读指引}{60}{section.B.4}%
