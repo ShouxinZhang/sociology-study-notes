@@ -1,0 +1,66 @@
+% ==============================================================================
+% preamble.tex — 虚拟朋友圈 · 中文图文稿样式
+% ==============================================================================
+
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[UTF8, scheme=plain]{ctex}
+\usepackage[T1]{fontenc}
+\usepackage[margin=1in, headheight=14pt]{geometry}
+\usepackage{parskip}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage[colorlinks=true, linkcolor=RoyalBlue, urlcolor=RoyalBlue]{hyperref}
+\usepackage{fancyhdr}
+
+\graphicspath{{../image/1/}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.8em}
+\captionsetup{font=small, labelfont=bf}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textit{虚拟朋友圈}}
+\rhead{\textit{梦境门世界随想}}
+\cfoot{\thepage}
+
+\newtcolorbox{scenequote}[1][]{
+  colback   = RoyalBlue!3!white,
+  colframe  = RoyalBlue!65!black,
+  fonttitle = \bfseries,
+  title     = {场景摘要},
+  #1
+}
+
+\newtcolorbox{reflectionbox}[1][]{
+  colback   = orange!5!white,
+  colframe  = orange!75!black,
+  fonttitle = \bfseries,
+  title     = {感悟},
+  #1
+}
+
+\newtcolorbox{commentbox}[2][]{
+  colback   = black!1!white,
+  colframe  = black!55!white,
+  fonttitle = \bfseries,
+  title     = {#2},
+  #1
+}
+
+\newtcolorbox{translationbox}[1][]{
+  colback   = gray!6!white,
+  colframe  = gray!45!white,
+  boxrule   = 0.4pt,
+  left      = 10pt,
+  right     = 10pt,
+  top       = 6pt,
+  bottom    = 6pt,
+  #1
+}
