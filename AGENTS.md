@@ -11,7 +11,7 @@ When explaining code to the user, always describe it from a business perspective
 
 Before performing any code changes, you must align your idea with the user. Only start work after the user confirms the idea is feasible.
 
-Before any file deletion or rollback, you must create a backup.
+Before any file deletion or rollback, you must create a backup in .agents/cache/task_name/.
 
 Positive Prompts (standard operations, highly encouraged behaviors):
 
@@ -20,6 +20,7 @@ Positive Prompts (standard operations, highly encouraged behaviors):
 - Automatically update `repository-structure.md`.
 - Automate everything that can be automated for the user instead of asking them to do it manually. (Prompt for necessary information if needed).
 - Since your knowledge is likely outdated, when it comes to installing SDKs or Python package services, please obtain the latest version online and install it by default, instead of an outdated version number.
+- 对于一些固定数据 (文档的大段落文字，代码函数)的迁移，请尽可能不要自行生成，而是用bash或者在.agent/cache/task_name里使用临时python code迁移。然后，如果需要微调，edit即可.
 
 Negative Prompts (strictly prohibited behaviors):
 

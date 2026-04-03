@@ -8,6 +8,7 @@
 
 | 日期 | 变更数 | 主要工作 |
 |------|--------|---------|
+| [2026-04-03](2026-04-03/README.md) | 1 | 自我修炼对话素材补充与仓库结构补登记 |
 | [2026-04-02](2026-04-02/README.md) | 23 | AI 反思笔记、LLM 模拟笔记、LaTeX 教科书、多语言维护、规划协调、教材原型 TeX、研究扩展计划、研究版 TeX 重排、research source intake、subagent 驱动的 research/application source pass、formal model / proof hardening、中文审阅、正式中文 TeX 翻译、Chapter 5/6 深化、chapter-tree 结构重构、中文主稿 chapter-tree 同步、陈旧资产归档、通用协调 skill 建设与协调 skill 中文化、Chapter 3/5 二次加厚、reader-question 快速问答入口建设、reader-question 中文主稿同步 |
 | [2026-03-30](2026-03-30/README.md) | 1 | 思辨深潜 — 存在虚无与幸福意义 |
 | [2026-03-28](2026-03-28/README.md) | 1 | 思辨深潜 — 形式化任务陷阱与经济分配 |
@@ -20,4 +21,4 @@
 
 ---
 
-**总计：9 个开发日 · 55 条变更记录**
+**总计：10 个开发日 · 56 条变更记录**
