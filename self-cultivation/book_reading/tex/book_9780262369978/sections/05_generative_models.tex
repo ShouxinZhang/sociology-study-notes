@@ -1,0 +1,642 @@
+\chapter{主动推断的生成模型}
+
+\begin{quote}
+一切都应尽可能简单，但不能更简单。
+
+\hfill --- 阿尔伯特·爱因斯坦
+\end{quote}
+
+\section{引言}
+
+本章是在前几章对主动推断进行概念性讨论的基础上，补上一层更形式化的说明。具体来说，本章将阐明自由能与贝叶斯推断之间的关系、主动推断中通常使用的生成模型的形式，以及在这些模型下通过最小化自由能所得到的动力学。一个核心关注点，是时间如何在生成模型中被表示。我们将看到，以连续时间表述的生成模型，与把时间视为事件序列的生成模型之间存在重要差别。最后，我们还将介绍推断性消息传递这一思想，它支撑了神经生物学中的若干重要理论，包括预测编码。
+
+\section{从贝叶斯推断到自由能}
+
+在前两章中，我们概述了主动推断与神经科学中其他既有范式之间的一些重要联系。在第 2 章里，我们重点讨论了“贝叶斯大脑”这一观念（Knill and Pouget 2004, Doya 2007）。它是主动推断最接近的亲属之一，也为我们从更形式化的视角理解主动推断的若干后果提供了有用框架。更具体地说，它帮助我们界定一个从事主动推断的主体必须解决的问题。总体而言，这些问题包括：推断世界状态（知觉）以及推断行动路线（规划）。虽然人们很容易把贝叶斯最优性等同于精确的贝叶斯推断，但精确推断通常在计算上不可处理，甚至根本不可行。在认知心理学和人工智能应用中，人们常常考虑受限形式的推断与理性。我们在第 3 章中已经举过一些例子。在贝叶斯框架下，这就转化为使用近似推断。
+
+这些方法包括采样方法与变分方法，而主动推断正是建立在后者基础之上。本节将回顾贝叶斯推断及其变分形式的基本要素（Beal 2003, Wainwright and Jordan 2008）。这样做的目的是帮助读者建立对自由能角色的直觉，并强调生成模型在我们对世界进行推断时的重要性。
+
+本章比第 1 至第 3 章更具技术性，需要用到少量线性代数、微分与泰勒级数展开。对细节感兴趣，或需要复习相关内容的读者，可以查阅附录以获取必要背景。不想深入理论基础的读者，也可以跳过本章。不过，在行文过程中，我们都会解释每个公式的关键含义，因此即便不完全跟随形式推导，也仍然可以理解本章中最重要的概念要点。
+
+一个好的起点是贝叶斯定理。回忆第 2 章，这一定理表达的是：先验与似然的乘积，等于后验与边缘似然的乘积。其形式见式（4.1）：
+
+\begin{equation}
+P(x)P(y \mid x) = P(x \mid y)P(y)
+\tag{4.1}
+\end{equation}
+
+\begin{equation}
+P(y) = \sum_x P(y, x) = \sum_x P(y \mid x)P(x)
+\tag{4.1}
+\end{equation}
+
+式（4.1）的第一行是贝叶斯定理。第二行表明，边缘似然，也就是模型证据 $P(y)$，可以直接由先验和似然计算得到。\footnote{如果处理的是连续变量，则求和应替换为积分。} 这说明，先验与似然共同构成的生成模型，已经足以让我们计算模型证据和后验概率。尽管如此，这样做并不总是容易的。式（4.1）中的求和（若是连续变量则为积分）在计算上或解析上都可能不可处理。处理这一问题的一种方法，也是变分推断的起点，就是把这个潜在困难的积分问题转化为一个优化问题。要理解这一点，我们需要诉诸 Jensen 不等式。它指出：“平均值的对数，总是大于或等于对数的平均值。”图 4.1 为这一点提供了图形化直觉。
+
+\paragraph{图 4.1}
+对数函数为 Jensen 不等式提供了直觉。假设只有两个数据点 $x_1$ 和 $x_2$。我们既可以先求它们的平均值 $E[x]$，再取对数；也可以先分别对每个数据点取对数，再对这些对数求平均，即 $E[\ln x]$。由于对数函数是凹函数，后者总会低于前者，即 $E[\ln x] \le \ln E[x]$；只有当数据点相同的时候，两者才相等。这个不等式对任意数量的数据点都成立。
+
+为了利用这一性质，我们可以改写式（4.1）：在第二行求和项内部，将某个任意函数 $Q$ 除以自身后乘进去。由于这等价于乘以 1，因此等式仍然成立。然后对等式两边取对数。从数学上看，这没有改变任何东西；但现在我们可以把该表达式看成是关于两个概率之比的期望 $E$，从而利用 Jensen 不等式：
+
+\begin{equation}
+\ln P(y)
+= \ln \sum_x P(y, x)\frac{Q(x)}{Q(x)}
+= \ln E_{Q(x)}\!\left[\frac{P(y, x)}{Q(x)}\right]
+\ge E_{Q(x)}\!\left[\ln \frac{P(y, x)}{Q(x)}\right]
+\triangleq -F[Q, y]
+\tag{4.2}
+\end{equation}
+
+该式的第二步使用了这样一个事实：我们面对的是“对数下的期望”，而根据 Jensen 不等式，它一定大于或等于“期望下的对数”。这一步有时被称为重要性采样。这个不等式右侧被称为（负的）变分自由能：自由能越小，它就越接近负的对数模型证据。带着这一点，我们可以把贝叶斯定理（式（4.1））写成对数形式，在后验分布下取平均，并揭示它与式（4.2）中的量之间的关系：
+
+\begin{equation}
+\ln P(x, y) = \ln P(y) + \ln P(x \mid y)
+\Rightarrow
+E_{P(x \mid y)}[\ln P(x, y)]
+= \ln P(y) + E_{P(x \mid y)}[\ln P(x \mid y)]
+\tag{4.3}
+\end{equation}
+
+\begin{equation}
+E_{Q(x)}[\ln P(x, y)] = -F[Q, y] + E_{Q(x)}[\ln Q(x)]
+\tag{4.3}
+\end{equation}
+
+第二行成立的原因是，$y$ 的对数概率不是 $x$ 的函数，因此在后验分布下取期望并不会改变这一项。式（4.3）帮助我们理解自由能与 $Q$ 分布各自扮演的角色。这两个量如果不使用变分近似，就很难直接计算。前者扮演的是负对数模型证据的角色，后者则表现得像后验概率。更正式地说，我们可以像第 2 章那样重排自由能，量化自由能与模型证据之间的关系：
+
+\begin{equation}
+F[Q, y] = D_{KL}[Q(x)\,||\,P(x \mid y)] - \ln P(y)
+\tag{4.4}
+\end{equation}
+
+\begin{equation}
+D_{KL}[Q(x)\,||\,P(x \mid y)]
+= E_{Q(x)}\!\left[\ln Q(x) - \ln P(x \mid y)\right]
+\tag{4.4}
+\end{equation}
+
+式（4.4）的第一行表明，自由能可以写成一个 KL 散度加上一个负对数证据。第二行给出了 KL 散度的定义：它是两个对数概率之差的期望。KL 散度通常被用来衡量两个概率分布彼此有多不同。
+
+有时，人们会直接从这种散度的角度来解释为什么要使用自由能。论证是这样的：如果我们的目标是执行近似贝叶斯推断，那么我们就需要找到一个尽可能贴近精确后验的近似后验。因此，我们可以选择某种衡量两者差异的散度，并将其最小化。式（4.4）中的 KL 散度只是其中一个例子。问题在于，由于我们并不知道精确后验，所以不能直接使用这个散度。一种解决方法是加上对数证据项；这样它就可以与对数后验合并，形成联合概率，而联合概率正是我们已知的生成模型。所得结果就是自由能。
+
+从这个角度看，还有一个有趣的后果，即究竟该使用哪一种散度似乎存在某种不确定性。如果我们的目标仅仅是让近似后验与精确后验尽可能接近，那么我们也可以使用另一个 KL 散度，也就是把 $Q$ 与 $P$ 的位置交换，或者从一大族散度中进行选择，而不同散度会强调分布差异的不同方面。然而，第 3 章所提出的思想强调：对于从事主动推断的系统而言，自证尤为重要。因此，我们首先寻找的是一种可处理的证据最大化方案，而只有在次要意义上才是在最小化散度。从这个视角看，究竟该选哪种散度并不存在歧义；它是由 Jensen 不等式自然导出的。
+
+\section{生成模型}
+
+要计算自由能，我们需要三样东西：数据、一族变分分布，以及一个生成模型（即先验与似然）。本节概述主动推断中使用的两类非常一般的生成模型，以及自由能在每一类模型下的形式。第一类处理的是关于类别变量的推断，例如对象身份，它被表述为一个事件序列。第二类处理的是关于连续变量的推断，例如亮度对比，它以随机微分方程的形式在连续时间中表述。在给出这些模型的细节之前，我们先回顾一种图形化形式主义，用来表达生成模型所蕴含的依赖关系。
+
+图 4.2 展示了若干以因子图表示的生成模型，目的是帮助读者形成对这种表达方式的直觉。图中，生成模型的因子（例如先验与似然）用方框表示，而模型中的变量（隐藏状态或数据）用圆圈表示。箭头表示这些变量之间的因果方向。左上角的图显示了最简单的模型形式：一个隐藏状态 $x$ 导致数据 $y$。该模型中的先验由因子 1 表示，似然由因子 2 表示。其余图则通过引入更多变量，对这一思路进行扩展。例如右上图中，$z$ 扮演第二个隐藏状态的角色，使得 $y$ 同时依赖于 $x$ 与 $z$ 的状态。
+
+以临床诊断检测为例，左上角的简单因子图可以被理解为疾病是否存在（$x$）与检测结果（$y$）之间的关系。这里的先验就是该疾病在人群中的患病率，而似然则刻画检测的性质，包括特异性（在没有疾病时得到阴性结果的概率）与敏感性（在有疾病时得到阳性结果的概率）。于是，我们可以按照因子图自上而下的方式来理解检测结果是如何产生的。首先，从某个已知疾病患病率的人群中抽取一个人。如果此人患病，那么他以由检测敏感性给定的概率生成真阳性结果，否则生成假阴性结果。如果此人未患病，那么他以由特异性给定的概率生成真阴性结果，否则生成假阳性结果。
+
+沿用这个例子，我们还可以解释其他因子图。右上图中，$x$ 和 $z$ 可以代表两种不同疾病是否存在，而任何一种疾病都可能导致阳性检测结果。左下图中，$w$ 扮演数据的角色。$y$ 与 $w$ 都由 $x$ 生成，例如它们可以代表两种都能为同一疾病过程提供信息的不同诊断测试。最后，右下图把 $x$ 和 $v$ 都视为隐藏状态，但引入了一个层级结构，其中 $v$ 导致 $x$，$x$ 又导致 $y$。在这里，我们可以把 $v$ 理解为某种为疾病 $x$ 的有无提供背景或易感因素的变量，例如一种遗传多态性，而 $y$ 则是对该疾病进行测量所得的数据。原则上，我们可以在这个层级结构中加入任意数量的变量。
+
+这类生成模型常被用于静态知觉任务，例如物体识别或线索整合。主动推断使用的生成模型则有一个重要不同点：随着新的观测被采样，它们会随时间演化，而且被加入的观测还依赖于主体对模型中变量的信念，并通过行动体现出来。这带来两个关键含义。第一，条件依赖关系不仅包括某一时刻隐藏变量之间的关系，还包括某一时刻的隐藏变量对先前时刻隐藏变量的依赖。第二，这些模型有时还会把“我正在如何行动”的假设也纳入隐藏变量之中。
+
+图 4.3 用因子图形式展示了主动推断中使用的两种基本动态生成模型（Friston, Parr, and de Vries 2017）。上图是部分可观测马尔可夫决策过程（POMDP），它表示一个状态序列 $s$ 随时间演化的模型。在每一个时间步，当前状态在条件上依赖于前一时刻的状态，以及当前正在执行的策略 $\pi$。这里的策略可以被理解为替代轨迹，或者可供遵循的不同行动序列的索引。每一个时间点都对应一个观测 $o$，而该观测只依赖于该时刻的状态。这类模型对处理序列规划任务非常有用，例如走迷宫（Kaplan and Friston 2018），或者在多个选项之间进行选择的决策过程，例如场景分类（Mirza et al. 2016）。
+
+图 4.3 的下图展示了一个非常相似的图形模型，但它是用连续时间来表达的。该模型不再把轨迹表示为一系列状态，而是表示一个状态 $x$ 的当前位置、速度、加速度以及更高阶时间导数。这些量被称为运动的广义坐标，可以通过泰勒级数展开重建一条轨迹（见附录 A 中相关介绍）。这里，状态与其时间导数之间的关系取决于缓慢变化的原因 $v$，而 $v$ 所扮演的角色与上文中的策略类似。与前面一样，状态会生成观测 $y$。记号上的差别（$s,\pi,o$ 对比 $x,v,y$）是为了强调两类变量之间的区别：前者是离散时间中演化的类别变量，后者是连续时间中演化的连续变量。与此类似，从这里开始，我们将用小写 $p$ 和 $q$ 表示连续变量上的概率密度，用大写 $P$ 和 $Q$ 表示类别变量上的概率分布。第 4.4 节和第 4.5 节会更详细地展开这些模型，并展示在每种情形下最小化自由能如何导出一组描述推断过程动力学的方程。
+
+\section{离散时间中的主动推断}
+
+本节聚焦于上面介绍的离散时间模型。这对于理解一系列涉及类别性推断与替代假设选择的认知过程十分重要。此外，这种形式体系还便于考察经典的利用--探索问题，并说明主动推断如何解决它。
+
+\subsection{部分可观测马尔可夫决策过程}
+
+如图 4.3 所示，POMDP 表达的是一个依赖于策略的隐藏状态序列随时间演化的过程。要形式化地刻画这一过程，我们需要说明图中每个方形因子节点的具体形式。下面先分别描述这些因子，再将它们组合起来，写出构成生成模型的联合分布。
+
+与第 2 章中给出的贝叶斯规则简单例子一样，我们可以把这些因子区分为表示似然的因子，以及共同构成先验的因子。这里的似然与之前相似，它表达的是在给定状态（隐藏量）条件下结果（可观测量）的概率。如果结果与状态都是类别变量，那么似然就是一个类别分布，由一个矩阵 $A$ 参数化：
+
+\begin{equation}
+P(o_\tau \mid s_\tau) = \mathrm{Cat}(A)
+\tag{4.5}
+\end{equation}
+
+\begin{equation}
+A_{ij} = P(o_\tau = i \mid s_\tau = j)
+\tag{4.5}
+\end{equation}
+
+第二行说明了 $\mathrm{Cat}$ 记号的含义，也就是类别分布的具体指定方式。这对应于图 4.3 中标记为“2”的节点。隐藏状态序列的先验（仍用符号 $\tilde{\ }$ 表示序列）则依赖两样东西：初始状态的先验（由向量 $D$ 指定），以及关于状态如何从一个时刻转移到下一个时刻的信念（由矩阵 $B$ 指定）：
+
+\begin{equation}
+P(\tilde{s} \mid \pi) = P(s_1)\prod_{\tau=1} P(s_{\tau+1} \mid s_\tau, \pi)
+\tag{4.6}
+\end{equation}
+
+\begin{equation}
+P(s_1) = \mathrm{Cat}(D)
+\tag{4.6}
+\end{equation}
+
+\begin{equation}
+P(s_{\tau+1} \mid s_\tau, \pi) = \mathrm{Cat}(B^\pi_\tau)
+\tag{4.6}
+\end{equation}
+
+这些对应于图 4.3 中标记为“3”的节点。请注意，状态转移在条件上依赖于所选择的策略。因此，我们可以把式（4.6）中的先验与式（4.5）中的似然合在一起，理解为对某个行为序列的模型，也就是策略 $\pi$。为了允许我们在这些模型之间作出选择，也就是形成计划，我们还需要一个关于哪条序列最可能的先验信念。对于一个最小化自由能的生物来说，一种自洽的先验是：那些将在未来带来最低期望自由能 $G$ 的策略，就是最可能的策略：
+
+\begin{equation}
+P(\pi) = \mathrm{Cat}(\pi^0)
+\tag{4.7}
+\end{equation}
+
+\begin{equation}
+\pi^0 = \sigma(-G)
+\tag{4.7}
+\end{equation}
+
+\begin{equation}
+G_\pi = G(\pi)
+= -E_{\tilde{Q}}\!\left[D_{KL}\!\left[Q(\tilde{s} \mid \tilde{o}, \pi)\,||\,Q(\tilde{s} \mid \pi)\right]\right]
+- E_{\tilde{Q}}[\ln P(\tilde{o} \mid C)]
+\tag{4.7}
+\end{equation}
+
+\begin{equation}
+\tilde{Q} = Q(\tilde{o}, \tilde{s} \mid \pi) = P(\tilde{o} \mid \tilde{s})Q(\tilde{s} \mid \pi)
+\tag{4.7}
+\end{equation}
+
+由于这组方程对主动推断具有基础性的重要意义，因此值得更仔细地加以拆解。前两行说明，每个策略的先验概率由参数 $\pi^0$ 给出，并与该策略对应的负期望自由能有关。softmax 函数 $\sigma$ 保证归一化，也就是确保所有策略上的概率总和为 1。式（4.7）的最后两行给出了期望自由能的形式。可以注意到，它与自由能的函数形式（式（4.4））非常相似，同样包含结果的对数概率以及一个 KL 散度。关键区别在于，这里的期望是关于后验预测密度来取的，正如最后一个等式所定义的那样。这个分布表达了未来状态与未来观测上的联合概率。最关键的是，这意味着我们能够计算未来的期望自由能，而这一点是变分自由能做不到的，因为后者依赖于当前和过去的观测。
+
+另外还要注意两点：一是结果分布依赖于参数 $C$；二是 KL 散度项前的符号发生了翻转，而这源于我们是在后验预测概率下取期望。最后这一点容易引发混淆，因此值得明确说明。对于变分自由能而言，KL 散度表示近似后验与精确后验的对数概率之差的期望（式（4.4））。而在期望自由能中，与之对应的项表示的是这样一种差异的期望：即把当前后验信念当作先验使用时，我们基于整条结果轨迹所能得到的精确后验，与近似后验之间的差异。把这一点展开，可以得到：
+
+\begin{equation}
+E_{\tilde{Q}}\!\left[\ln Q(\tilde{s} \mid \pi) - \ln Q(\tilde{s} \mid \tilde{o}, \pi)\right]
+\tag{4.8}
+\end{equation}
+
+\begin{equation}
+= E_{Q(\tilde{o} \mid \pi)}\!\left[
+E_{Q(\tilde{s} \mid \tilde{o}, \pi)}\!\left[
+\ln Q(\tilde{s} \mid \pi) - \ln Q(\tilde{s} \mid \tilde{o}, \pi)
+\right]\right]
+\tag{4.8}
+\end{equation}
+
+\begin{equation}
+= -E_{Q(\tilde{o} \mid \pi)}\!\left[
+E_{Q(\tilde{s} \mid \tilde{o}, \pi)}\!\left[
+\ln Q(\tilde{s} \mid \tilde{o}, \pi) - \ln Q(\tilde{s} \mid \pi)
+\right]\right]
+\tag{4.8}
+\end{equation}
+
+\begin{equation}
+= -E_{Q(\tilde{o} \mid \pi)}\!\left[
+D_{KL}\!\left[Q(\tilde{s} \mid \tilde{o}, \pi)\,||\,Q(\tilde{s} \mid \pi)\right]\right]
+\tag{4.8}
+\end{equation}
+
+这里可以看到，取期望的顺序非常重要。正是这一点使该项相对于变分自由能中的对应项出现了符号反转。这也支撑了两者之间的一个重要区别：期望自由能通过选择那些会导致信念发生较大改变的观测而被最小化；相反，变分自由能则在观测与当前信念相符合时被最小化。这就是对已经获取的数据优化信念（变分自由能最小化），与选择最能优化信念的数据（期望自由能最小化）之间的差别。
+
+这再次说明，主动推断使用了两个数学上相关但功能上不同、又彼此互补的量：变分自由能 $F$ 与期望自由能 $G$。变分自由能是随时间被主要最小化的量。它相对于一个生成模型来优化，而该生成模型可以包含策略，也就是行动序列。与所有其他隐藏状态一样，主体也必须给策略分配先验概率，因为策略不过是生成模型中的另一个随机变量。主动推断所使用的先验，大体上等价于这样一种信念：主体将在未来最小化自由能，也就是最小化期望自由能。换句话说，期望自由能为策略提供了一个先验，因此它是最小化变分自由能的前提。
+
+在第 2 章中我们已经看到，和变分自由能一样，期望自由能也可以用若干种方式重排，从而揭示不同的解释。这里我们着重讨论把它看作一个策略的风险与歧义之间差异的解释。这与式（4.7）是等价的：
+
+\begin{equation}
+G(\pi)
+= -E_{\tilde{Q}}\!\left[D_{KL}\!\left[Q(\tilde{s} \mid \tilde{o}, \pi)\,||\,Q(\tilde{s} \mid \pi)\right]\right]
+- E_{\tilde{Q}}[\ln P(\tilde{o} \mid C)]
+\tag{4.9}
+\end{equation}
+
+\begin{equation}
+= E_{\tilde{Q}}[H[P(\tilde{o} \mid \tilde{s})]] + D_{KL}[Q(\tilde{o} \mid \pi)\,||\,P(\tilde{o} \mid C)]
+\tag{4.9}
+\end{equation}
+
+第一种写法中的两项，分别对应信息增益与务实价值；第二种写法中的两项，则分别对应期望歧义与风险。回忆第 2 章，前一种分解表达了寻求新信息（探索）与寻求偏好观测（利用）之间的权衡。通过最小化期望自由能，这些项的相对大小决定了行为更偏探索还是更偏利用。需要注意的是，务实价值在这里是作为关于观测的先验信念出现的，而该分布的 $C$ 参数可以依照我们希望刻画的系统来选择，以反映该系统的典型结果状态或偏好结果状态。
+
+按照式（4.9）的第二行，我们可以把式（4.7）进一步写成线性代数形式：
+
+\begin{equation}
+\pi^0 = \sigma(-G)
+\tag{4.10}
+\end{equation}
+
+\begin{equation}
+G_\pi = H \cdot s^\pi_\tau + o^\pi_\tau \cdot \varsigma^\pi_\tau
+\tag{4.10}
+\end{equation}
+
+\begin{equation}
+\varsigma^\pi_\tau = \ln o^\pi_\tau - \ln C_\tau
+\tag{4.10}
+\end{equation}
+
+\begin{equation}
+H = -\operatorname{diag}(A \cdot \ln A)
+\tag{4.10}
+\end{equation}
+
+\begin{equation}
+P(o_\tau \mid C) = \mathrm{Cat}(C_\tau)
+\tag{4.10}
+\end{equation}
+
+\begin{equation}
+Q(o_\tau \mid \pi) = \mathrm{Cat}(o^\pi_\tau), \qquad o^\pi_\tau = As^\pi_\tau
+\tag{4.10}
+\end{equation}
+
+\begin{equation}
+Q(s_\tau \mid \pi) = \mathrm{Cat}(s^\pi_\tau)
+\tag{4.10}
+\end{equation}
+
+\begin{equation}
+Q(s_\tau) = \mathrm{Cat}(s_\tau), \qquad s_\tau = \sum_\pi \pi\, s^\pi_\tau
+\tag{4.10}
+\end{equation}
+
+式（4.10）的第一行使用 softmax（归一化指数）算子，从期望自由能向量构造出一个总和为 1 的概率分布，其充分统计量为 $\pi^0$。第二到第四行用线性代数记号表达了期望自由能的各个组成部分。第五行说明关于观测的先验信念是一个类别分布，其充分统计量由向量 $C$ 给出。第六到第八行则说明了这些线性代数量与相应概率分布之间的关系。
+
+在完成了生成模型的说明之后，我们现在可以用上述变量写出自由能：
+
+\begin{equation}
+F = \pi \cdot F_\pi
+\tag{4.11}
+\end{equation}
+
+\begin{equation}
+F_\pi = \sum_\tau F_{\pi\tau}
+\tag{4.11}
+\end{equation}
+
+\begin{equation}
+F_{\pi\tau}
+= s^\pi_\tau \cdot
+\left(
+\ln s^\pi_\tau - \ln A \cdot o_\tau - \ln B^\pi_\tau s^\pi_{\tau-1}
+\right)
+\tag{4.11}
+\end{equation}
+
+之所以能把自由能分解为对时间的求和，是因为这里隐含采用了均值场近似，也就是假定近似后验可以因子化为多个因子的乘积：
+
+\begin{equation}
+Q(\tilde{s} \mid \pi) = \prod_\tau Q(s_\tau \mid \pi)
+\tag{4.12}
+\end{equation}
+
+在对数形式下，这就变成一个求和，正如式（4.11）所示。这种因子化只是变分推断中众多可能方案中的一种，而且是其中最简单的选项。在实践中，人们通常会作出一些细微修正，附录 B 会对此进行说明。
+
+\subsection{POMDP 中的主动推断}
+
+到目前为止，我们已经定义了离散时间生成模型的四个关键成分：似然 $A$、转移概率 $B$、关于观测的先验信念 $C$，以及关于初始状态的先验信念 $D$。一旦这些概率分布被指定，就可以使用一种通用的消息传递方案来最小化自由能，并求解该 POMDP。为了在给定策略下对隐藏状态进行推断，我们令一个辅助变量 $v$ 的变化率等于自由能梯度的负值。这个辅助变量相当于对数后验 $s$ 的替身。随后，再通过 softmax（归一化指数）函数由 $v$ 计算出 $s$：
+
+\begin{equation}
+s^\pi_\tau = \sigma(v^\pi_\tau)
+\tag{4.13}
+\end{equation}
+
+\begin{equation}
+\dot{v}^\pi_\tau = \varepsilon^\pi_\tau - \nabla_s F_{\pi\tau}
+\tag{4.13}
+\end{equation}
+
+\begin{equation}
+= \ln A \cdot o_\tau + \ln B^\pi_\tau s^\pi_{\tau-1}
++ \ln {B^\pi_{\tau+1}}^\top s^\pi_{\tau+1}
+- \ln s^\pi_\tau
+\tag{4.13}
+\end{equation}
+
+式（4.13）可以被视为变分消息传递的一个例子（见框 4.1）。为了更新关于策略的信念，我们求取那个使自由能最小的后验：
+
+\begin{equation}
+\nabla_\pi F = 0
+\Leftrightarrow
+\pi = \sigma(-G - F)
+\tag{4.14}
+\end{equation}
+
+对于最简单形式的 POMDP，式（4.13）与式（4.14）已经足以用来求解任意一组概率矩阵下的主动推断问题；这些矩阵可以分别被看作对知觉与规划的描述。在本书后半部分，我们会进一步展开这一点，并给出主动推断用于知觉、规划以及其他认知功能的具体示例。
+
+图 4.4 对式（4.10）、式（4.13）和式（4.14）所作的图形化表示，还暗示了自由能最小化在大脑中的一种可能神经元实现方式，只要我们把节点解释为神经元群体，把边解释为突触，把消息解释为突触交换即可。在后面的章节里，我们会进一步讨论这一方案如何扩展到因子化状态空间、深层时间模型，以及生成模型自身参数的优化，也就是学习。
+
+\paragraph{框 4.1 信息传递与推断}
+\textbf{马尔可夫毯}
+
+我们在第 3 章已经遇到过马尔可夫毯这一概念，但这里仍值得简要回顾，因为它与由多个相互作用变量构成的系统有关。某个变量的马尔可夫毯，是与该变量相互作用的一组变量子集。如果我们已经完全知道这个子集，那么再知道这组变量之外的任何东西，都不会增加我们对该目标变量的知识。在这里，它的重要性在于：在图模型中，我们只需基于某个变量马尔可夫毯中的局部信息，就可以对这个变量作出推断。变量 $x$ 的马尔可夫毯包括：导致 $x$ 的变量，也就是其父节点 $\rho(x)$；由 $x$ 导致的变量，也就是其子节点 $\kappa(x)$；以及 $x$ 的子节点的父节点。用这一记号，下面给出两种最常用的、用于近似推断的贝叶斯消息传递方案。
+
+\textbf{变分消息传递}
+
+\begin{equation}
+\ln Q(x)
+= E_{Q(\rho(x))}[\ln P(x \mid \rho(x))]
++ E_{Q(\kappa(x))Q(\rho(\kappa(x)))}[\ln P(\kappa(x) \mid \rho(\kappa(x)))]
+- Q(x)
+\end{equation}
+
+这里的消息来自 $x$ 的马尔可夫毯的全部组成部分，包括父节点（通过在父节点条件下 $x$ 的条件概率）和子节点。后者取决于这样一个条件概率：$x$ 的子节点在其全部父节点条件下的概率，而这些父节点中也包括 $x$。需要注意的是，期望中包含子节点及其父节点。由于这些父节点里包含 $x$，我们需要除以 $Q(x)$，以确保期望只覆盖其马尔可夫毯。
+
+\textbf{信念传播}
+
+\begin{equation}
+\ln Q(x) = \ln \mu_{\kappa(x)} + \ln \mu_{\rho(x)}
+\end{equation}
+
+\begin{equation}
+\mu_{\kappa(x)}
+= E_{\mu_{\kappa(\kappa(x))}\mu_{\rho(\kappa(x))}}
+\left[
+\frac{P(\kappa(x) \mid \rho(\kappa(x)))}{\mu_x(\kappa(x))}
+\right]
+\end{equation}
+
+\begin{equation}
+\mu_{\rho(x)}
+= E_{\mu_{\rho(\rho(x))}\mu_{\kappa(\rho(x))}}
+\left[
+\frac{P(x \mid \rho(x))}{\mu_x(\rho(x))}
+\right]
+\end{equation}
+
+这一方案在总体结构上与变分消息传递相似，但它使用的是递归定义的消息：每一条消息（$\mu_a(b)$ 表示从 $a$ 发送到 $b$ 的消息）都依赖于其他消息，也就是发送到 $a$ 的消息。这里具有方向性，因此从 $a$ 到 $b$ 的消息依赖于所有发送到 $a$ 的消息，但不包括来自 $b$ 的那一条，所以期望中会出现相应的除法项。
+
+这里稍微非标准地使用期望算子，是为了同时满足两点：第一，覆盖离散变量与连续变量两种情形；第二，突出变分消息传递与信念传播在形式上的相似性。
+
+\section{连续时间中的主动推断}
+
+上一节中，我们讨论了主动推断在某一特定生成模型选择下所呈现的形式。这些 POMDP 对于刻画规划与决策等推断问题非常有用。然而，当我们面对真实环境中的交互时，仅用离散时间和类别变量来描述的模型就显得不足了。原因在于，感觉输入与运动输出本身是连续演化的变量。为了处理这一点，我们现在转向另一类生成模型。我们将把完全相同的思想，即对变分自由能作梯度下降，应用到这些模型上，以得到与之对应的消息传递方案。
+
+\subsection{用于预测编码的生成模型}
+
+为了引出连续状态所使用的生成模型形式，我们从下面这对方程开始：
+
+\begin{equation}
+\dot{x} = f(x, v) + \omega_x
+\tag{4.15}
+\end{equation}
+
+\begin{equation}
+y = g(x, v) + \omega_y
+\tag{4.15}
+\end{equation}
+
+第一条方程表示一个隐藏状态如何随时间演化：它由一个确定性函数 $f(x,v)$ 与随机涨落 $\omega_x$ 共同决定。第二条方程表示数据是如何由该隐藏状态生成的。在这两种情况下，涨落都被假定为服从正态分布，因此对应的动力学概率密度与似然概率密度为：
+
+\begin{equation}
+p(\dot{x} \mid x, v) = \mathcal{N}(f(x, v), \Pi_x)
+\tag{4.16}
+\end{equation}
+
+\begin{equation}
+p(y \mid x, v) = \mathcal{N}(g(x, v), \Pi_y)
+\tag{4.16}
+\end{equation}
+
+精度项 $\Pi$ 是这些涨落协方差的逆矩阵。这两条方程构成了 Kalman--Bucy 滤波器在工程中所依据的生成模型。然而，这类方案受限于这样一个假设：不同时间上的涨落彼此不相关，也就是 Wiener 假设。这对生物系统中的推断并不合适，因为在生物系统中，涨落本身也是由动力系统生成的，因此具有一定平滑性。为了刻画这一点，我们不仅要考虑隐藏状态变化率与当前数据值本身，还要考虑它们的速度、加速度以及更高阶时间导数，也就是运动的广义坐标（Friston, Stephan et al. 2010；见框 4.2）：
+
+\begin{equation}
+\dot{x} = f(x, v) + \omega_x, \qquad y = g(x, v) + \omega_y
+\tag{4.17}
+\end{equation}
+
+\begin{equation}
+\dot{x}' = f'(x', v') + \omega_{x}', \qquad y' = g'(x', v') + \omega_{y}'
+\tag{4.17}
+\end{equation}
+
+\begin{equation}
+\dot{x}'' = f''(x'', v'') + \omega_{x}'', \qquad y'' = g''(x'', v'') + \omega_{y}''
+\tag{4.17}
+\end{equation}
+
+\begin{equation}
+\dot{\tilde{x}}^{[i]} = f^{[i]}(\tilde{x}^{[i]}, \tilde{v}^{[i]}) + \omega_x^{[i]}, \qquad
+\tilde{y}^{[i]} = g^{[i]}(\tilde{x}^{[i]}, \tilde{v}^{[i]}) + \omega_y^{[i]}
+\tag{4.17}
+\end{equation}
+
+这些广义坐标可以更简洁地总结为：把一条轨迹（仍用 $\tilde{\ }$ 记号）表示为一个向量，其各元素对应于上述连续的各阶导数：
+
+\begin{equation}
+D\tilde{x} = \tilde{f}(\tilde{x}, \tilde{v}) + \tilde{\omega}_x,
+\qquad
+p(\tilde{x} \mid \tilde{v}) = \mathcal{N}(D\tilde{x} \mid \tilde{f}, \tilde{\Pi}_x)
+\tag{4.18}
+\end{equation}
+
+\begin{equation}
+\tilde{y} = \tilde{g}(\tilde{x}, \tilde{v}) + \tilde{\omega}_y,
+\qquad
+p(\tilde{y} \mid \tilde{x}, \tilde{v}) = \mathcal{N}(\tilde{y} \mid \tilde{g}, \tilde{\Pi}_y)
+\tag{4.18}
+\end{equation}
+
+在式（4.18）中，$D$ 是一个主对角线上方全为 1、其余元素为 0 的矩阵。它会把向量的各个元素整体向上平移，因此可以被看作一个导数算子。广义精度矩阵则可以根据我们对涨落平滑性的假设来构造，附录 B 会给出具体说明。再配合一个关于隐藏原因 $v$ 的先验，下面我们就可以为这一生成模型写出自由能。这个先验的作用稍后会变得更清楚：
+
+\begin{equation}
+F[\mu, y] = -\ln p(\tilde{y}, \tilde{\mu}_x, \tilde{\mu}_v)
+= \frac{1}{2}\tilde{\varepsilon}^{\top}\tilde{\Pi}\tilde{\varepsilon}
+\tag{4.19}
+\end{equation}
+
+\begin{equation}
+= \frac{1}{2}
+\left(
+\tilde{\varepsilon}_y^{\top}\tilde{\Pi}_y\tilde{\varepsilon}_y
++ \tilde{\varepsilon}_x^{\top}\tilde{\Pi}_x\tilde{\varepsilon}_x
++ \tilde{\varepsilon}_v^{\top}\tilde{\Pi}_v\tilde{\varepsilon}_v
+\right)
+\tag{4.19}
+\end{equation}
+
+\begin{equation}
+\tilde{\varepsilon}
+=
+\begin{bmatrix}
+\tilde{\varepsilon}_y \\
+\tilde{\varepsilon}_x \\
+\tilde{\varepsilon}_v
+\end{bmatrix}
+=
+\begin{bmatrix}
+\tilde{y} - \tilde{g}(\tilde{\mu}_x, \tilde{\mu}_v) \\
+D\tilde{\mu}_x - \tilde{f}(\tilde{\mu}_x, \tilde{\mu}_v) \\
+\tilde{\mu}_v - \tilde{\eta}
+\end{bmatrix}
+\tag{4.19}
+\end{equation}
+
+\begin{equation}
+\tilde{\Pi}
+=
+\begin{bmatrix}
+\tilde{\Pi}_y & 0 & 0 \\
+0 & \tilde{\Pi}_x & 0 \\
+0 & 0 & \tilde{\Pi}_v
+\end{bmatrix}
+\tag{4.19}
+\end{equation}
+
+在式（4.19）中，$\mu$ 项表示关于 $x$ 和 $v$ 的近似后验密度的众数。之所以自由能在第一行中具有如此简单的形式，是因为我们采用了 Laplace 近似，详见框 4.3。简单地说，这一近似把所有概率密度都视为高斯分布；通过泰勒级数展开来看，这等价于假定我们正在分布众数附近工作。第二行则用按精度加权的平方预测误差来表达对数概率。这里省略了所有相对于后验众数为常数的项。第三行则进一步把这一表达式展开成对数似然、$x$ 在给定 $v$ 条件下的对数概率，以及 $v$ 的对数先验。
+
+\paragraph{框 4.2 运动的广义坐标}
+为了在连续时间中表示一条轨迹，运动的广义坐标提供了一种简单的参数化方案。它基于围绕当前时刻所作的多项式（泰勒级数）展开，从而得到一个函数，使我们可以向近过去和近未来进行外推。图 4.5 中的曲线用实线表示空间中的某条轨迹 $x$ 随时间 $\tau$ 的变化。从左到右，这些图依次展示了只用一个、两个和三个广义坐标（即 $x$ 的连续高阶时间导数）来表示该轨迹时的近似结果，虚线即为这种近似。这里的展开围绕初始时刻进行。每多加入一个广义坐标，就能更准确地逼近近未来中的轨迹。在多数应用中，大约使用六个广义坐标就已足够。
+
+\begin{equation}
+x(\tau) \approx x_0
+\end{equation}
+
+\begin{equation}
+x(\tau) \approx x_0 + \tau x_0'
+\end{equation}
+
+\begin{equation}
+x(\tau) \approx x_0 + \tau x_0' + \frac{1}{2}\tau^2 x_0''
+\end{equation}
+
+\subsection{作为带有运动反射的预测编码的主动推断}
+
+在 Laplace 近似下，由于近似后验的方差是众数的解析函数，我们就可以直接针对众数来优化自由能。一种简单的理解方式是：我们只需要为每个状态找到最大后验（MAP）估计。\footnote{也就是在后验分布下最可能的值。} 这些估计是后验分布的均值，而且在 Laplace 近似下，一旦知道众数，就可以直接为其配上精度，而无需进一步推断（见框 4.3）。
+
+\begin{equation}
+\dot{\tilde{\mu}} - D\tilde{\mu} = -\nabla_{\tilde{\mu}} F
+\tag{4.20}
+\end{equation}
+
+\begin{equation}
+= \nabla_{\tilde{\mu}} \ln p(\tilde{y}, \tilde{\mu})
+= -\nabla_{\tilde{\mu}} \tilde{\varepsilon}^{\top}\tilde{\Pi}\tilde{\varepsilon}
+\tag{4.20}
+\end{equation}
+
+\begin{equation}
+\begin{bmatrix}
+\dot{\tilde{\mu}}_x - D\tilde{\mu}_x \\
+\dot{\tilde{\mu}}_v - D\tilde{\mu}_v
+\end{bmatrix}
+=
+\begin{bmatrix}
+\nabla_{\tilde{\mu}_x}\tilde{g}^{\top}\tilde{\Pi}_y\tilde{\varepsilon}_y
+- D^{\top}\tilde{\Pi}_x\tilde{\varepsilon}_x
++ \nabla_{\tilde{\mu}_x}\tilde{f}^{\top}\tilde{\Pi}_x\tilde{\varepsilon}_x \\
+\nabla_{\tilde{\mu}_v}\tilde{g}^{\top}\tilde{\Pi}_y\tilde{\varepsilon}_y
++ \nabla_{\tilde{\mu}_v}\tilde{f}^{\top}\tilde{\Pi}_x\tilde{\varepsilon}_x
+- \tilde{\Pi}_v\tilde{\varepsilon}_v
+\end{bmatrix}
+\tag{4.20}
+\end{equation}
+
+与我们在离散时间方案中看到的梯度下降不同，式（4.20）左边表示的是 $\mu$ 的变化率与导数算子作用在 $\mu$ 上的差。这是因为在自由能最小化点，如果与变化率相对应的后验众数不为零，那么后验众数本身的变化率就不应该为零。换言之，在自由能达到最小值时，“众数的运动应当等于运动的众数”。这保证了在自由能最小化时，$\dot{\mu}^{[i]} = \mu^{[i+1]}$。
+
+我们还可以比式（4.20）更进一步，把隐藏原因 $v$ 看成是由更高层级生成的数据，而且其动力学更慢，因此在较低层级上看起来几乎不发生变化。这样一来，我们就可以把一整个层级链式连接起来：
+
+\begin{equation}
+\begin{bmatrix}
+\dot{\tilde{\mu}}_x^{(i)} - D\tilde{\mu}_x^{(i)} \\
+\dot{\tilde{\mu}}_v^{(i)} - D\tilde{\mu}_v^{(i)}
+\end{bmatrix}
+=
+\begin{bmatrix}
+\nabla_{\tilde{\mu}_x^{(i)}}\tilde{g}^{(i)\top}\tilde{\Pi}_v^{(i-1)}\tilde{\varepsilon}_v^{(i-1)}
+- D^{\top}\tilde{\Pi}_x^{(i)}\tilde{\varepsilon}_x^{(i)}
++ \nabla_{\tilde{\mu}_x^{(i)}} \tilde{f}^{(i)\top}\tilde{\Pi}_x^{(i)}\tilde{\varepsilon}_x^{(i)} \\
+\nabla_{\tilde{\mu}_v^{(i)}}\tilde{g}^{(i)\top}\tilde{\Pi}_v^{(i-1)}\tilde{\varepsilon}_v^{(i-1)}
++ \nabla_{\tilde{\mu}_v^{(i)}}\tilde{f}^{(i)\top}\tilde{\Pi}_x^{(i)}\tilde{\varepsilon}_x^{(i)}
+- \tilde{\Pi}_v^{(i)}\tilde{\varepsilon}_v^{(i)}
+\end{bmatrix}
+\tag{4.21}
+\end{equation}
+
+\begin{equation}
+\begin{bmatrix}
+\tilde{\varepsilon}_x^{(i)} \\
+\tilde{\varepsilon}_v^{(i)}
+\end{bmatrix}
+=
+\begin{bmatrix}
+D\tilde{\mu}_x^{(i)} - f^{(i)}(\tilde{\mu}_x^{(i)}, \tilde{\mu}_v^{(i)}) \\
+\tilde{\mu}_v^{(i)} - g^{(i+1)}(\tilde{\mu}_x^{(i+1)}, \tilde{\mu}_v^{(i+1)})
+\end{bmatrix}
+\tag{4.21}
+\end{equation}
+
+\begin{equation}
+\tilde{\varepsilon}_v^{(0)} \equiv \tilde{\varepsilon}_y
+\tag{4.21}
+\end{equation}
+
+图 4.6 从图形上强调了隐藏状态 $x$ 在单一层级内连接不同时间导数的作用，以及隐藏原因 $v$ 在不同层级之间建立联系的作用。在这一预测编码方案中（Rao and Ballard 1999, Friston and Kiebel 2009），更高层会向更低层发送向下的预测；较低层则计算这些预测的误差，并把误差沿层级向上传回，以更新信念。
+
+为了完成我们对主动推断语境下预测编码的概览，还需要把行动纳入进来。既然我们的目标是最小化自由能，而行动的后果正是改变我们的感觉数据，那么便有：
+
+\begin{equation}
+\dot{u} = -\nabla_u F
+\tag{4.22}
+\end{equation}
+
+\begin{equation}
+= -\nabla_u \tilde{y}(u)^{\top}\tilde{\Pi}_y\tilde{\varepsilon}_y
+\tag{4.22}
+\end{equation}
+
+这条方程告诉我们：我们通过行动来最小化自由能，而在自由能中，唯一直接依赖于行动的部分，是最低层的预测误差。换言之，行动只是通过最小化行动所导致的感觉后果与预测感觉后果之间的误差，来实现向下传递的感官预测。一个理解这一点的方式是：仿佛我们给预测编码方案的最低层加上了经典的反射弧（Adams, Shipp, and Friston 2013）。在这种设置里，主动推断就是“预测编码加上反射弧”。
+
+从神经生物学角度看，其思想是：感觉传入纤维进入脑干或脊髓，并与运动神经元形成突触。关于感觉输入的向下预测从皮层传递到运动神经元，而后者的输出则取决于其皮层输入与感觉输入之间的差异。
+
+从计算角度看，反射弧是最简单的一类控制器之一；它们负责纠正预期本体感觉信号与实际本体感觉信号之间的偏差。更复杂的运动行为，则要求生成一串预测，并依次通过反射弧去实现它们。正是这一机制，使主动推断不同于生物运动控制中的其他方案，例如最优控制。那些方案并不建立在预测编码基础上，而且它们需要逆模型以及比反射弧更复杂的控制器（Friston 2011）。主动推断还有一个特殊之处：它抛弃了最优控制与强化学习中常见的价值或代价概念，而是把这些内容完全吸收到先验这一通常更具表达力的概念之中（第 10 章会对此作进一步讨论）。
+
+\paragraph{框 4.3 Laplace 近似}
+Laplace 近似所依赖的原则，与框 4.2 中介绍的运动广义坐标在思路上是相似的。基本想法是：自由能可以在后验众数 $\mu$ 附近用二次展开来近似。在一维情况下，可以写成：
+
+\begin{equation}
+F[y, q] = E_{q(x)}[\ln q(x) - \ln p(y, x)]
+\end{equation}
+
+\begin{equation}
+\approx E_{q(x)}
+\left[
+\ln q(\mu)
++ (x-\mu)\partial_x \ln q(x)\vert_{x=\mu}
++ \frac{1}{2}(x-\mu)^2 \partial_x^2 \ln q(x)\vert_{x=\mu}
+- \ln p(y,\mu)
+- (x-\mu)\partial_x \ln p(y, x)\vert_{x=\mu}
+- \frac{1}{2}(x-\mu)^2 \partial_x^2 \ln p(y, x)\vert_{x=\mu}
+\right]
+\end{equation}
+
+这里假定二次展开已经足够，等价于说我们可以把这些概率都视为高斯分布，因为高斯密度的对数正是二次形式。把这一点写得更明确，就能把上式简化为：
+
+\begin{equation}
+q(x) = \mathcal{N}(\mu, \Sigma^{-1})
+\end{equation}
+
+\begin{equation}
+F[y, \mu]
+= -\ln 2\pi\Sigma
+- \ln p(y, \mu)
+- \operatorname{tr}\!\left[\Sigma \,\partial_x^2 \ln p(y, x)\vert_{x=\mu}\right]
+\end{equation}
+
+在二次假设下，唯一依赖于众数的项是第二项。去掉其余项，就得到式（4.19）中的表达。并且，一旦知道众数，我们还可以直接得到近似后验的精度：
+
+\begin{equation}
+\ln q(x) \approx \ln p(x \mid y)
+= \ln p(x, y) - \ln p(y)
+\end{equation}
+
+\begin{equation}
+\approx \ln p(\mu, y)
++ (x-\mu)^{\top}\partial_x \ln p(x, y)\vert_{x=\mu}
++ \frac{1}{2}(x-\mu)^{\top}\partial_x^2 \ln p(x, y)\vert_{x=\mu}(x-\mu)
+- \ln p(y)
+\end{equation}
+
+\begin{equation}
+\Rightarrow
+q(x) \propto
+e^{-\frac{1}{2}(x-\mu)^{\top}\Sigma^{-1}(x-\mu)},
+\qquad
+\Sigma^{-1} = -\partial_x^2 \ln p(x, y)\vert_{x=\mu}
+\end{equation}
+
+这告诉我们，后验精度就是在后验众数处对联合概率取二阶导数所得的结果。
+
+\section{总结}
+
+本章概述了支撑主动推断的基本形式化思想。最重要的信息是：（近似）贝叶斯推断可以被表述为对一个称为变分自由能的量进行最小化。

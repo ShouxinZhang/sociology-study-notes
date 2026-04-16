@@ -1,0 +1,740 @@
+\chapter{附录 B：主动推断的方程}
+
+\section{引言}
+
+在本附录中，我们给出主动推断（Active Inference）的数学性概述。这一部分在正文各章公式的基础上补充其来源细节，并试图填补正文中省略的一些中间步骤。这里的内容直接建立在附录 A 的数学背景之上，讨论部分可观测马尔可夫决策过程（POMDP）与预测编码架构中的推断，并涉及正文中提到的结构学习与模型约简问题。我们的目标是让本附录尽量自洽，同时特别聚焦那些最容易引起混淆的主题。也请读者放心：即使不能完全理解本附录的所有内容，也并不妨碍对主动推断作出有用的应用；这一部分主要面向希望掌握更多技术细节的读者。
+
+\section{马尔可夫决策过程}
+
+\subsection{状态推断}
+
+在求解一个 POMDP 问题时，我们的目标是选择合适的行动方案，即策略（policy）。在主动推断框架下，这被表述为一个推断问题：我们必须求得关于备选策略的后验概率分布。要计算后验概率，我们需要两样东西：其一是策略的先验概率（见第 \textsection B.2.2 节），其二是在给定策略条件下观测的似然。本节专注于后者。
+
+在给定策略时，观测似然并不容易直接计算。这是因为 POMDP 的结构决定了：策略（$\pi$）影响状态（$s$）的轨迹（记为 $\tilde{s}$），状态再影响结果（$o$），而策略本身并不直接影响结果。因此，问题需要对状态轨迹求和，将其边缘化，从而得到给定策略下观测的边缘似然：
+\begin{equation}
+P(\tilde{o}\mid \pi)=\sum_{\tilde{s}} P(\tilde{o}\mid \tilde{s})P(\tilde{s}\mid \pi)
+\tag{B.1}
+\end{equation}
+
+对于任何稍微复杂一些的状态空间，这个求和在计算上都可能极其困难。不过，正如第 2 章所示，我们可以用自由能泛函来近似这类边缘似然。第 2--4 章将自由能描述为两类对象的泛函：近似后验信念 $Q$ 与生成模型 $P$。这使我们可以把某一给定策略的自由能写成：
+\begin{equation}
+F(\pi)=\mathbb{E}_{Q(\tilde{s}\mid \pi)}\!\left[\ln Q(\tilde{s}\mid \pi)-\ln P(\tilde{o},\tilde{s}\mid \pi)\right]\ge -\ln P(\tilde{o}\mid \pi)
+\tag{B.2}
+\end{equation}
+\begin{equation}
+Q(\tilde{s}\mid \pi)=\arg\min_Q F(\pi)\;\Rightarrow\;F(\pi)\approx -\ln P(\tilde{o}\mid \pi)
+\tag{B.2续}
+\end{equation}
+
+式（B.2）说明了一件简单但重要的事。若要推断“应当做什么”，我们就必须近似策略的边缘似然；而为了得到这一边缘似然的良好近似，我们又必须优化该策略下关于状态的信念。简言之，要使规划得以进行，知觉推断是不可或缺的。那么，在实践中应如何解决这个问题？答案是诉诸第 A.4.2 节中概述的方法。通过为式（B.1）中的概率分布选取显式形式，我们可以得到一个简单的自由能表达式：
+\begin{equation}
+Q(\tilde{s}\mid \pi)=\prod_\tau Q(s_\tau\mid \pi),
+\qquad
+Q(s_\tau\mid \pi)=\Cat(s_\tau^\pi)
+\end{equation}
+\begin{equation}
+P(\tilde{o}\mid \tilde{s})=\prod_\tau P(o_\tau\mid s_\tau),
+\qquad
+P(o_\tau\mid s_\tau)=\Cat(A)
+\end{equation}
+\begin{equation}
+P(\tilde{s}\mid \pi)=P(s_1)\prod_\tau P(s_{\tau+1}\mid s_\tau,\pi),
+\qquad
+P(s_{\tau+1}\mid s_\tau,\pi)=\Cat(B_\tau^\pi)
+\end{equation}
+\begin{equation}
+P(s_1)=\Cat(D)
+\tag{B.3}
+\end{equation}
+
+简要来说，式（B.3）的第一行用均值场近似（见式 A.41）来定义关于状态的信念，并在时间上进行因子分解。每一个时间点都对应一个关于“若执行某策略，状态会是什么”的信念，它由向量 $s_\tau^\pi$ 给出，其元素就是各种备选状态的概率。第二行中的观测轨迹依赖于隐藏状态轨迹，其中矩阵 $A$（若状态还进一步因子化，则为张量）给出每个状态下观测分布。类似地，模型下的状态先验轨迹由该策略下的转移概率 $B_\tau^\pi$ 与初始状态概率 $D$ 构成。把这些代回式（B.2）的自由能表达式，就得到策略条件下的自由能：
+\begin{equation}
+F_\pi
+=
+s_1^\pi \cdot \left(\ln s_1^\pi-\ln A\,o_1-\ln D\right)
++\sum_{\tau=2} s_\tau^\pi \cdot \left(\ln s_\tau^\pi-\ln A\,o_\tau-\ln B_{\tau-1}^\pi s_{\tau-1}^\pi\right)
+\tag{B.4}
+\end{equation}
+
+注意，概率向量与另一个量的点积，等价于取期望操作；如果这里不够直观，可回看第 A.2.1 节。式（B.4）把结果当作概率向量处理，不过其形式是：在已观测结果所对应的位置上取值为 1，其余位置为 0（有时称为 one-hot 编码或 $1$-in-$k$ 向量）。现在的挑战是，就我们关于状态的信念 $s_\tau^\pi$ 来最小化自由能，以保证自由能成为边缘似然的良好近似。我们当然也可以像第 A.4.2 节那样，对每一个信念因子逐个最小化并反复迭代直到收敛。然而，由于我们更关心生物学上更可信的方案，也可以构造一个收敛到同一解的动力系统。这种方法被称为梯度下降，因为我们沿着自由能梯度向下移动，直到到达最小值。
+
+为了更新关于状态的信念，我们对当前状态信念求梯度。然后定义一个辅助变量 $v$，让它充当对数后验，并令其对自由能执行梯度下降。这个对数后验再经过 softmax 函数 $\sigma$，转化为归一化的概率分布。这样就能保证关于状态的信念以降低自由能的方式发生变化：
+\begin{equation}
+s_\tau^\pi=\sigma(v_\tau^\pi)
+\end{equation}
+\begin{equation}
+\dot{v}_\tau^\pi=-\nabla_{s_\tau^\pi}F_\pi
+\end{equation}
+\begin{equation}
+\nabla_{s_\tau^\pi}F_\pi
+=
+\ln s_\tau^\pi
+-\ln A\,o_\tau
+-\ln B_{\tau-1}^\pi s_{\tau-1}^\pi
+-\ln B_\tau^{\pi\dagger}s_{\tau+1}^\pi
+\tag{B.5}
+\end{equation}
+
+式（B.5）与式 A.42 中给出的变分消息传递方案具有相同的解。它允许我们只利用局部可得的信息高效计算后验信念，在这里这些局部信息包括感觉数据、关于紧邻过去的信念，以及关于紧邻未来的信念。不过值得注意的是，这里使用的均值场近似（即时间上的因子分解）往往会导致过度自信的后验。在实践中，这一问题可以通过一种称为边缘消息传递（marginal message passing）的修正方案来缓解（Friston, FitzGerald et al. 2017；Parr, Markovic et al. 2019）：
+\begin{equation}
+\dot{v}_\tau^\pi=\epsilon_\tau^\pi
+\end{equation}
+\begin{equation}
+\epsilon_\tau^\pi
+=
+\ln A\,o_\tau
++\frac{1}{2}\ln\!\left(B_{\tau-1}^\pi s_{\tau-1}^\pi\right)
++\frac{1}{2}\ln\!\left(B_\tau^{\pi\dagger}s_{\tau+1}^\pi\right)
+-\ln s_\tau^\pi
+\tag{B.6}
+\end{equation}
+\begin{equation}
+B_\tau^\dagger \propto B_\tau^T
+\tag{B.6续}
+\end{equation}
+
+这种形式会导向更保守的推断，即把更多不确定性归属于后验信念。其他替代方案也曾被探索过，包括 Bethe 近似（Schw\"obel et al. 2018）。不过，在本书写作时，主动推断中最广泛使用的实现仍然是边缘消息传递。
+
+\subsection{作为推断的规划}
+
+上一节处理的是：在给定某个策略的条件下，对状态进行推断，并最小化以该策略为条件的自由能。这个自由能在这里扮演负对数边缘似然（即模型证据）的角色，其中每个策略都被视为一个模型。如果再为“哪个策略最可能”配上先验与后验信念，我们就可以把自由能写成关于策略信念的泛函：
+\begin{equation}
+F=\mathbb{E}_{Q(\pi)}\!\left[\ln Q(\pi)-\ln P(\pi,\tilde{o})\right]
+\end{equation}
+\begin{equation}
+\approx
+\mathbb{E}_{Q(\pi)}\!\left[\ln Q(\pi)+F(\pi)-\ln P(\pi)\right]
+\end{equation}
+\begin{equation}
+P(\pi)=\Cat(\pi_0)
+\end{equation}
+\begin{equation}
+Q(\pi)=\Cat(\pi)
+\end{equation}
+\begin{equation}
+\pi_0=\sigma(\ln E-G)
+\tag{B.7}
+\end{equation}
+
+第二行中的近似号来自式（B.2）。这里，$E$ 是一个关于策略的固定信念向量（可以理解为偏置项或习惯项），而 $G$ 是每个策略的期望自由能。与前面一样，我们现在可以把自由能写成充分统计量的形式：
+\begin{equation}
+F=\pi\cdot(\ln\pi-\ln E+F+G)
+\tag{B.8}
+\end{equation}
+
+这里，$F$ 是一个向量，其各元素都是式（B.4）中定义的 $F_\pi$。对其取梯度后，就得到关于策略信念的最优更新规则，也就是规划：
+\begin{equation}
+\nabla_\pi F=0
+\;\Leftrightarrow\;
+\pi=\sigma(\ln E-F-G)
+\tag{B.9}
+\end{equation}
+
+\subsection{学习}
+
+为了使学习成为可能，我们需要把关于那些构成生成模型的概率分布参数的先验信念纳入进来。由于这些分布都被表述为分类分布，因此适合的共轭先验是狄利克雷分布。以初始状态的先验为例，自由能中依赖于期望对数先验的项包括：
+\begin{equation}
+F
+=
+\ldots + D_{KL}[Q(D)\,\|\,P(D)]-\mathbb{E}_{Q(s_1)Q(D)}[\ln P(s_1\mid D)]
+\end{equation}
+\begin{equation}
+=
+\ldots + (d-\boldsymbol{d})\cdot \mathbb{E}_{Q(D)}[\ln D]-s_1\cdot \mathbb{E}_{Q(D)}[\ln D]
+\end{equation}
+\begin{equation}
+\mathbb{E}_{Q(D)}[\ln D]=\psi(d)-\psi(d_0),
+\qquad
+d_0=\sum_i d_i
+\end{equation}
+\begin{equation}
+Q(D)\sim \Dir(d),
+\qquad
+P(D)\sim \Dir(\boldsymbol{d})
+\tag{B.10}
+\end{equation}
+
+式（B.10）的第三个等式强调了一个很有用的恒等式：一个服从狄利克雷分布的变量，其对数的期望等于两个 digamma 函数 $\psi$ 的差，而 digamma 函数又是 gamma 函数的导数。利用式（B.10），我们可以找到自由能的极小值：
+\begin{equation}
+\nabla_{\mathbb{E}[\ln D]}F
+=
+d-\boldsymbol{d}-s_1=0
+\;\Leftrightarrow\;
+d=\boldsymbol{d}+s_1
+\tag{B.11}
+\end{equation}
+
+这给出了一个简单的更新方案，可用于把先验的狄利克雷参数更新为其后验值。对于生成模型中的其他概率分布，也可以写出非常类似的更新规则：
+\begin{equation}
+a=\boldsymbol{a}+\sum_\tau o_\tau\otimes s_\tau
+\end{equation}
+\begin{equation}
+b^\pi=\boldsymbol{b}^\pi+\sum_\tau s_\tau^\pi\otimes s_{\tau-1}^\pi
+\end{equation}
+\begin{equation}
+c=\boldsymbol{c}+\sum_\tau o_\tau
+\end{equation}
+\begin{equation}
+d=\boldsymbol{d}+s_1
+\end{equation}
+\begin{equation}
+e=\boldsymbol{e}+\pi
+\tag{B.12}
+\end{equation}
+
+这些式子的含义非常直接：只要某个概率分布项所预测的事情真的发生了（对于条件概率，这可能是两个对象的组合），我们就把概率数组中对应的那个元素增加一些，从而表示它在未来再次发生的可能性更高。
+
+\subsection{精度}
+
+在某些设定中，以稍有不同的方式参数化生成模型会更方便。这里的一种做法是使用 Gibbs 测度，也就是给概率分布配上一个逆温度参数，让它充当精度。最常见的做法，是对策略上的精度 $\gamma$ 这样处理：
+\begin{equation}
+P(\pi\mid \gamma)=\Cat(\pi_0)
+\end{equation}
+\begin{equation}
+\pi_0=\sigma(-\gamma G)
+\tag{B.13}
+\end{equation}
+
+为了简化表述，本节省略向量 $E$。下面我们还将考虑观测似然的精度 $\zeta$，以及状态转移的精度 $\omega$。这些精度参数的先验分布都假定为 gamma 分布：
+\begin{equation}
+P(\zeta)\propto \beta_\zeta \exp(-\beta_\zeta \zeta)
+\end{equation}
+\begin{equation}
+P(\omega)\propto \beta_\omega \exp(-\beta_\omega \omega)
+\end{equation}
+\begin{equation}
+P(\gamma)\propto \beta_\gamma \exp(-\beta_\gamma \gamma)
+\tag{B.14}
+\end{equation}
+
+近似后验分布具有同样的形式，也就是仍然是 gamma 分布。为区分后验与先验的充分统计量，下文用粗体的 $\boldsymbol{\beta}$ 表示超参数。采用这种参数化方式的 gamma 分布有一个很有用的性质：
+\begin{equation}
+\zeta=\mathbb{E}_{Q(\zeta)}[\zeta]=\beta_\zeta^{-1}
+\end{equation}
+\begin{equation}
+\omega=\mathbb{E}_{Q(\omega)}[\omega]=\beta_\omega^{-1}
+\end{equation}
+\begin{equation}
+\gamma=\mathbb{E}_{Q(\gamma)}[\gamma]=\beta_\gamma^{-1}
+\tag{B.15}
+\end{equation}
+
+定义好这些分布之后，我们可以把变分自由能写为：
+\begin{equation}
+F
+=
+\mathbb{E}_Q\!\left[F(\pi,\zeta,\omega)+D_{KL}[Q(\pi)\,\|\,P(\pi\mid \gamma)]\right]
++D_{KL}[Q(\gamma)\,\|\,P(\gamma)]
++D_{KL}[Q(\omega)\,\|\,P(\omega)]
++D_{KL}[Q(\zeta)\,\|\,P(\zeta)]
+\tag{B.16}
+\end{equation}
+
+把它改写成充分统计量的形式（省略常数项），得到：
+\begin{equation}
+F
+=
+\pi\cdot\bigl(F+\ln\pi+\gamma G+\ln Z(\gamma)\bigr)
++\ln \beta_\gamma+\ln \beta_\omega+\ln \beta_\zeta
+-\ln \boldsymbol{\beta}_\gamma-\ln \boldsymbol{\beta}_\omega-\ln \boldsymbol{\beta}_\zeta
++\gamma \boldsymbol{\beta}_\gamma+\omega \boldsymbol{\beta}_\omega+\zeta \boldsymbol{\beta}_\zeta
+\tag{B.17}
+\end{equation}
+\begin{equation}
+F_\pi
+\approx
+-\sum_\tau s_\tau^\pi \cdot
+\bigl(
+\zeta \ln A\,o_\tau
++\omega \ln B^\pi s_{\tau-1}^\pi
+-\ln Z(\zeta)\,o_\tau
+-\ln Z(\omega)\,s_{\tau-1}^\pi
+\bigr)
+\tag{B.17续}
+\end{equation}
+
+在式（B.17）中，$Z$ 表示配分函数，也就是归一化常数：
+\begin{equation}
+Z(\zeta)_j=\sum_i (A_{ij})^\zeta
+\end{equation}
+\begin{equation}
+Z(\omega)_j=\sum_i (B_{ij}^\pi)^\omega
+\end{equation}
+\begin{equation}
+Z(\gamma)=\sum_\pi \exp(-\gamma G_\pi)
+\end{equation}
+\begin{equation}
+\partial_\zeta \ln Z(\zeta)\,s_\tau=o_\tau^\zeta \cdot \ln A
+\end{equation}
+\begin{equation}
+\partial_\omega \ln Z(\omega)\,s_{\tau-1}^\pi=s_\tau^{\pi\omega}\cdot \ln B^\pi
+\end{equation}
+\begin{equation}
+\partial_\gamma \ln Z(\gamma)=-\pi_0\cdot G
+\end{equation}
+\begin{equation}
+o_\tau^\zeta \triangleq \sigma(\zeta \ln A)s_\tau
+\end{equation}
+\begin{equation}
+s_\tau^{\pi\omega} \triangleq \sigma(\omega \ln B_\tau^\pi)s_{\tau-1}^\pi
+\end{equation}
+\begin{equation}
+\pi_0\triangleq \sigma(-\gamma G)
+\tag{B.18}
+\end{equation}
+
+对期望精度取偏导之后，可以得到：
+\begin{equation}
+\partial_\zeta F=0
+\;\Leftrightarrow\;
+\beta_\zeta=\sum_\tau (o_\tau^\zeta-o_\tau)\cdot \ln A+\boldsymbol{\beta}_\zeta
+\tag{B.19a}
+\end{equation}
+\begin{equation}
+\partial_\omega F=0
+\;\Leftrightarrow\;
+\beta_\omega=\sum_\tau (s_\tau^{\pi\omega}-s_\tau^\pi)\cdot \ln B^\pi s_{\tau-1}^\pi+\boldsymbol{\beta}_\omega
+\tag{B.19b}
+\end{equation}
+\begin{equation}
+\partial_\gamma F=0
+\;\Leftrightarrow\;
+\beta_\gamma=(\pi-\pi_0)\cdot G+\boldsymbol{\beta}_\gamma
+\tag{B.19c}
+\end{equation}
+
+如果把这些更新写成更符合生物学可实现性的梯度下降形式，就得到：
+\begin{equation}
+\dot{\beta}_\zeta
+=
+\sum_\tau (o_\tau-o_\tau^\zeta)\cdot \ln A
++\boldsymbol{\beta}_\zeta-\beta_\zeta
+\tag{B.20a}
+\end{equation}
+\begin{equation}
+\dot{\beta}_\omega
+=
+\sum_\tau (s_\tau^\pi-s_\tau^{\pi\omega})\cdot \ln B^\pi s_{\tau-1}^\pi
++\boldsymbol{\beta}_\omega-\beta_\omega
+\tag{B.20b}
+\end{equation}
+\begin{equation}
+\dot{\beta}_\gamma
+=
+(\pi-\pi_0)\cdot G+\boldsymbol{\beta}_\gamma-\beta_\gamma
+\tag{B.20c}
+\end{equation}
+
+注意，这里的维度意味着：对于 $A$，精度实际上是一个行向量，也就是说，$A$ 的每一个状态列都对应其自身的精度参数。
+
+\subsection{期望自由能}
+
+正文已经相当详细地讨论了期望自由能。本节在此基础上补充两点。第一，我们简要概述目前为什么认为这正是用来定义策略先验信念的适当量。第二，我们补充这一量在实现层面的计算细节。
+
+虽然数值模拟（如第 7 章所示）已经表明期望自由能很有用，但“它为什么有用”这个问题本身仍是一个活跃的研究主题。考虑到这一讨论未来仍可能继续演化，这里我们给出写作当下最简约的一种解释摘要（Da Costa et al. 2020；Friston, Da Costa et al. 2020）。起点是先规定：一个系统会达到某种稳态（见第 A.5.2 节），或者说，它会在未来某个时刻 $\tau$ 满足其偏好（这些偏好是在潜在状态层面上定义的）：
+\begin{equation}
+Q(s_\tau)=\mathbb{E}_{Q(\pi)}[Q(s_\tau\mid \pi)]=P(s_\tau\mid C)
+\tag{B.21}
+\end{equation}
+
+我们的任务是找到满足式（B.21）的 $Q(\pi)$。为此，先注意到式（B.21）蕴含：
+\begin{equation}
+D_{KL}\!\left[Q(\pi\mid s_\tau)Q(s_\tau)\,\|\,Q(\pi\mid s_\tau)P(s_\tau\mid C)\right]=0
+\tag{B.22}
+\end{equation}
+\begin{equation}
+\Rightarrow\;
+\mathbb{E}_{Q(\pi,s_\tau)}[\ln Q(\pi,s_\tau)]
+=
+\mathbb{E}_{Q(\pi,s_\tau)}[\ln Q(\pi\mid s_\tau)+\ln P(s_\tau\mid C)]
+\tag{B.22续}
+\end{equation}
+
+接下来，我们对左侧进行因子分解，以便把我们真正关心的 $Q(\pi)$ 项隔离出来：
+\begin{equation}
+\mathbb{E}_{Q(\pi)}[\ln Q(\pi)]
+=
+\mathbb{E}_{Q(\pi,s_\tau)}
+\!\left[
+\ln Q(\pi\mid s_\tau)
++\ln P(s_\tau\mid C)
+-\ln Q(s_\tau\mid \pi)
+\right]
+\tag{B.23}
+\end{equation}
+
+再定义一个变量 $\alpha$，用来表示两个熵的比值：
+\begin{equation}
+\alpha
+=
+\frac{
+\mathbb{E}_{Q(s_\tau)}\!\left[H\!\left(Q(\pi\mid s_\tau)\right)\right]
+}{
+\mathbb{E}_{Q(s_\tau,\pi)}\!\left[H\!\left(P(o_\tau\mid s_\tau)\right)\right]
+}
+\tag{B.24}
+\end{equation}
+
+从直观上说，$\alpha$ 表达的是：在给定某个状态时，可能出现的行为输出范围（即策略）与该状态下预期结果范围之间的相对大小。如果它非常大，这可能描述的是一种生物：它的行为与其所处世界的状态几乎没有关系，尽管该世界又能产生非常精确的感觉观测。如果它非常小，这可能描述的是另一种生物：一旦它知道世界处于什么状态，它几乎总是以同样的方式行动，但它又很少能从世界中获得精确数据。这里我们规定，我们关心的是满足 $\alpha=1$ 的系统，也就是与其世界进行相对平衡、相对对称交换的系统。这样一来，式（B.24）中的两个熵就相等。回到式（B.23）：
+\begin{equation}
+\mathbb{E}_{Q(\pi)}[\ln Q(\pi)]
+=
+-\mathbb{E}_{Q(s_\tau)}\!\left[H\!\left(Q(\pi\mid s_\tau)\right)\right]
++\mathbb{E}_{Q(\pi,s_\tau)}\!\left[\ln P(s_\tau\mid C)-\ln Q(s_\tau\mid \pi)\right]
+\tag{B.25}
+\end{equation}
+\begin{equation}
+=
+-\mathbb{E}_{Q(s_\tau,\pi)}\!\left[H\!\left(P(o_\tau\mid s_\tau)\right)\right]
+-\mathbb{E}_{Q(\pi)}\!\left[D_{KL}\!\left(Q(s_\tau\mid \pi)\,\|\,P(s_\tau\mid C)\right)\right]
+\tag{B.25续}
+\end{equation}
+
+现在我们转向计算实现的问题。在这里，我们可以直接诉诸 A.2 节中看到的线性代数恒等式。若将偏好表示为先验概率向量 $C$，则期望自由能中的务实项可以写为
+\begin{equation}
+\mathbb{E}_{Q(o_\tau \mid \pi)}\bigl[\ln P(o_\tau \mid C)\bigr]
+= o_\tau^{\pi} \cdot \ln C_\tau,
+\qquad
+Q(o_\tau \mid \pi) = \Cat(o_\tau^{\pi}),
+\qquad
+o_\tau^{\pi} = A s_\tau^{\pi}.
+\tag{B.28}
+\end{equation}
+
+与隐藏状态相关的期望信息增益（即显著性、认知价值或贝叶斯惊奇）可以表示为两个熵之差：
+\begin{align}
+H\!\left[Q(o_\tau \mid \pi)\right]
+ - \mathbb{E}_{Q(s_\tau \mid \pi)}\!\left[ H\!\left[P(o_\tau \mid s_\tau)\right]\right]
+&= -\, o_\tau^{\pi} \cdot \ln o_\tau^{\pi} - H \cdot s_\tau^{\pi},
+\tag{B.29}\\
+H &\equiv -\diag(A \cdot \ln A).
+\nonumber
+\end{align}
+最后一行的说明见 A.2.3 节。将式 B.28 与 B.29 合并，便得到期望自由能：
+\begin{equation}
+G_\pi = \sum_\tau G_{\pi\tau},
+\qquad
+G_{\pi\tau} = H \cdot s_\tau^{\pi} + o_\tau^{\pi} \cdot \bigl(\ln o_\tau^{\pi} - \ln C_\tau \bigr).
+\tag{B.30}
+\end{equation}
+
+当我们需要考虑主动学习时，还要补充参数信息增益。与生成模型参数相关的信息增益（即新奇性）可如下推导。利用两个狄利克雷分布之间的 KL 散度，我们可以写出在给定状态--结果组合之后将发生的信息增益：
+\begin{align}
+W_{ij}
+&\equiv
+D_{\mathrm{KL}}\!\left[P(A_{ij} \mid o=i, s=j)\,\|\,P(A_{ij})\right]
+\nonumber\\
+&=
+\ln \Gamma(a_{ij})
+- \ln \Gamma(a_{ij}+1)
++ \ln \Gamma(a_{0j}+1)
+- \ln \Gamma(a_{0j})
+\nonumber\\
+&\quad
+- \ln a_{ij}
++ \ln a_{0j}
++ \psi(a_{ij}+1)
+- \psi(a_{0j}+1),
+\qquad
+a_{0j} \equiv \sum_i a_{ij}.
+\tag{B.31}
+\end{align}
+这里我们利用了这样一个事实：如果我们知道某个特定的状态--结果组合已经发生，那么就会将对应的狄利克雷参数加 $1$。这使我们能够利用对数伽马函数的标准恒等式（原文以下划线标出）来化简表达式：
+\begin{align}
+W_{ij}
+&=
+\ln \frac{a_{0j}}{a_{ij}}
++ \frac{\partial_{a_{ij}} \Gamma(a_{ij}+1)}{\Gamma(a_{ij})}
+- \frac{\partial_{a_{0j}} \Gamma(a_{0j}+1)}{\Gamma(a_{0j})}
+\nonumber\\
+&=
+\ln \frac{a_{0j}}{a_{ij}}
++ \frac{1}{a_{ij}}\frac{\partial_{a_{ij}} \Gamma(a_{ij})}{\Gamma(a_{ij})}
+- \frac{1}{a_{0j}}\frac{\partial_{a_{0j}} \Gamma(a_{0j})}{\Gamma(a_{0j})}.
+\tag{B.32}
+\end{align}
+这里用到了恒等式 $x\Gamma(x)=\Gamma(x+1)$ 以及一次乘积法则。接着再利用恒等式 $\psi(x)\Gamma(x)=\partial_x \Gamma(x)$，并采用近似 $\psi(x)\approx \ln x - (2x)^{-1}$，可进一步化简为
+\begin{align}
+W_{ij}
+&=
+-\frac{1}{a_{ij}}
++ \frac{1}{a_{0j}}
++ \ln \frac{a_{0j}}{a_{ij}}
++ \psi(a_{ij})
+- \psi(a_{0j})
+\nonumber\\
+&\approx
+-\frac{1}{2a_{ij}}
++ \frac{1}{2a_{0j}}.
+\tag{B.33}
+\end{align}
+于是，期望信息增益为
+\begin{equation}
+\mathbb{E}_{Q(o_\tau, s_\tau \mid \pi)}
+\!\left[
+D_{\mathrm{KL}}\!\left(P(A \mid o_\tau, s_\tau)\,\|\,P(A)\right)
+\right]
+\approx
+o_\tau^{\pi} \cdot W s_\tau^{\pi}.
+\tag{B.34}
+\end{equation}
+这个简单的表达式会进一步补充期望自由能，从而使系统除了追求务实和显著的选择之外，也表现出寻求新奇的行为。
+
+\subsection{贝叶斯模型约简}
+
+在第 7 章中，我们曾简要提到结构学习与模型约简的思想。这里我们借机更深入地展开这些原理。贝叶斯模型约简是一种用于比较不同模型的技术，这些模型之间唯一的差别仅在于其先验。根据贝叶斯定理（见第 2 章），我们可以用两种不同方式表示两个候选模型之间，数据 $y$ 与参数 $\theta$ 的联合概率之比：
+\begin{equation}
+\frac{P(y,\theta)}{\tilde P(y,\theta)}
+=
+\frac{P(y\mid\theta)P(\theta)}{\tilde P(y\mid\theta)\tilde P(\theta)}
+=
+\frac{P(\theta\mid y)P(y)}{\tilde P(\theta\mid y)\tilde P(y)}.
+\tag{B.35}
+\end{equation}
+如果两个模型之间唯一的差别是先验，也就是说 $P(y\mid\theta)=\tilde P(y\mid\theta)$，那么似然项就可以相互抵消。重新整理后，就得到这样一个表达式：在备择（约简）先验下的后验概率，可以通过原始（完整）先验下的后验概率来表示：
+\begin{equation}
+\tilde P(\theta \mid y)
+=
+P(\theta \mid y)\,
+\frac{P(y)}{\tilde P(y)}\,
+\frac{\tilde P(\theta)}{P(\theta)}.
+\tag{B.36}
+\end{equation}
+
+对参数两边同时积分，可得
+\begin{align}
+1
+&=
+\frac{P(y)}{\tilde P(y)}
+\,
+\mathbb{E}_{P(\theta\mid y)}
+\!\left[
+\frac{\tilde P(\theta)}{P(\theta)}
+\right],
+\nonumber\\
+\ln \tilde P(y)
+&=
+\ln P(y)
++ \ln
+\mathbb{E}_{P(\theta\mid y)}
+\!\left[
+\frac{\tilde P(\theta)}{P(\theta)}
+\right].
+\tag{B.37}
+\end{align}
+再将其代回式 B.36，得到
+\begin{equation}
+\ln \tilde P(\theta \mid y)
+=
+\ln P(\theta \mid y)
++ \ln \tilde P(\theta)
+- \ln P(\theta)
+- \ln
+\mathbb{E}_{P(\theta\mid y)}
+\!\left[
+\frac{\tilde P(\theta)}{P(\theta)}
+\right].
+\tag{B.38}
+\end{equation}
+式 B.37 与 B.38 合起来意味着：借助对完整模型进行反演所得到的结果，我们就能够求出如果当初采用某个约简先验，本会得到的模型证据与后验。我们还可以用第 4 章引入的变分量来重写这些公式：
+\begin{align}
+F[\tilde P(\theta)] - F[P(\theta)]
+&=
+\ln
+\mathbb{E}_{Q(\theta)}
+\!\left[
+\frac{\tilde P(\theta)}{P(\theta)}
+\right],
+\nonumber\\
+\ln \tilde Q(\theta)
+&=
+\ln Q(\theta)
++ \ln \tilde P(\theta)
+- \ln P(\theta)
+- \ln
+\mathbb{E}_{Q(\theta)}
+\!\left[
+\frac{\tilde P(\theta)}{P(\theta)}
+\right].
+\tag{B.39}
+\end{align}
+
+作为参考，我们给出式 B.39 在两类不同先验下的形式。第一类是正态分布：\footnote{原文此处为脚注编号 3。}
+\begin{align}
+P(\theta) &= \mathcal{N}(\eta,\Sigma),
+&
+\tilde P(\theta) &= \mathcal{N}(\tilde\eta,\tilde\Sigma),
+\nonumber\\
+Q(\theta) &= \mathcal{N}(\mu,C),
+&
+\tilde Q(\theta) &= \mathcal{N}(\tilde\mu,\tilde C),
+\nonumber\\
+\tilde C^{-1} &= P + \tilde\Pi - \Pi,
+\nonumber\\
+\tilde\mu &= \tilde C\bigl(P\mu + \tilde\Pi \tilde\eta - \Pi \eta \bigr),
+\nonumber\\
+\Delta F
+&=
+-\frac{1}{2}
+\left(
+\ln |\tilde\Pi\, P\, \tilde C\, \Sigma|
++ \mu^\top P \mu
++ \tilde\eta^\top \tilde\Pi \tilde\eta
+- \eta^\top \Pi \eta
+- \tilde\mu^\top P \tilde\mu
+\right).
+\tag{B.40}
+\end{align}
+在实践中，这通常用于混合模型的情形，即模型同时包含连续部分和类别部分。如果后者的每个类别结果都对应一个连续先验，那么我们就可以高效地评估这些先验（从而也就是这些类别结果）的证据，而不必逐个反演每一个模型。第 8 章给出了一个例子。
+
+更常见的是，在纯粹的 POMDP 设定中，我们可能关心的是比较关于狄利克雷先验分布的不同假设。这种方法曾被用来模拟概率矩阵元素的修剪，并把它作为睡眠期间突触修剪的隐喻（Friston, Lin 等，2017）。对于狄利克雷分布，贝叶斯模型约简的形式如下：
+\begin{align}
+P(\theta) &= \Dir(a),
+&
+\tilde P(\theta) &= \Dir(\tilde a),
+\nonumber\\
+Q(\theta) &= \Dir(\mathbf{a}),
+&
+\tilde Q(\theta) &= \Dir(\tilde{\mathbf{a}}),
+\nonumber\\
+\tilde{\mathbf{a}} &= \mathbf{a} + \tilde a - a,
+\nonumber\\
+\Delta F
+&=
+\ln B(a) - \ln B(\mathbf{a})
++ \ln B(\tilde{\mathbf{a}}) - \ln B(\tilde a).
+\tag{B.41}
+\end{align}
+在这个表达式中，$B$ 表示 Beta 函数。类似的结果还可以为多种分布推导出来（见 Friston、Parr 与 Zeidman，2018），但在主动推断中，最常见的仍然是正态先验与狄利克雷先验。
+
+\section{（主动）广义滤波}
+
+现在我们从 POMDP 模型下的离散推断转向连续域。这时，附录 A 中的一些预备知识就真正开始发挥作用了。我们将使用拉普拉斯近似与运动的广义坐标，这两者都在 A.3 节中介绍过。此外，我们还需要像 A.5.2 节那样，构造包含不同阶广义运动的精度矩阵。根据式 A.33 与 A.34，在拉普拉斯近似下，自由能可写为
+\begin{align}
+F[q,y]
+&\approx
+-\frac{1}{2}\ln \bigl|(2\pi)^k \tilde\Sigma \bigr|
+- \ln p(y,\tilde\mu),
+\nonumber\\
+q(\tilde x)
+&=
+\mathcal{N}(\tilde\mu,\tilde\Sigma),
+\nonumber\\
+\tilde\Sigma^{-1}
+&=
+- \nabla_{\tilde x \tilde x}\ln p(y,\tilde x)\Big|_{\tilde x=\tilde\mu}.
+\tag{B.42}
+\end{align}
+这里我们是在广义坐标下，为一个模型写出拉普拉斯假设下的自由能。在拉普拉斯假设下，第一行中唯一会随 $\mu$ 变化的，就是最后一项；这一项表达的是生成模型。下一步就是明确生成模型的形式：
+\begin{align}
+p(y,\tilde x,\tilde v)
+&=
+p(\tilde y \mid \tilde x,\tilde v)\,
+p(\tilde x \mid \tilde v)\,
+p(\tilde v),
+\nonumber\\
+p(\tilde y \mid \tilde x,\tilde v)
+&=
+\mathcal{N}\!\bigl(g(\tilde x,\tilde v), \tilde\Pi_y^{-1}\bigr),
+\nonumber\\
+p(\tilde x \mid \tilde v)
+&=
+\mathcal{N}\!\bigl(D\tilde x \mid f(\tilde x,\tilde v), \tilde\Pi_x^{-1}\bigr),
+\nonumber\\
+p(\tilde v)
+&=
+\mathcal{N}\!\bigl(\tilde\eta, \tilde\Pi_v^{-1}\bigr),
+\nonumber\\
+D\tilde x
+&=
+f(\tilde x,\tilde v) + \tilde\omega_x,
+\nonumber\\
+\tilde y
+&=
+g(\tilde x,\tilde v) + \tilde\omega_y.
+\tag{B.43}
+\end{align}
+注意，这里现在有两个隐藏变量，$x$ 和 $v$。两者的区别在于：前者依赖于一个运动方程 $f$，而后者依赖于一个静态先验。倒数第二行中的算子 $D$ 是一个在主对角线上方为 $1$ 的矩阵。在广义坐标中，这等价于取时间导数，因为时间导数向量中的每个分量都会向上移一位。广义精度矩阵的构造方式与 A.5.3 节相同。将式 B.43 中的量代入 B.42，可得
+\begin{align}
+F[q,y]
+&=
+\frac{1}{2}\tilde\varepsilon_y^\top \tilde\Pi_y \tilde\varepsilon_y
++ \frac{1}{2}\tilde\varepsilon_x^\top \tilde\Pi_x \tilde\varepsilon_x
++ \frac{1}{2}\tilde\varepsilon_v^\top \tilde\Pi_v \tilde\varepsilon_v,
+\nonumber\\
+\tilde\varepsilon_y
+&\equiv
+\tilde y - g(\tilde\mu_x,\tilde\mu_v),
+\nonumber\\
+\tilde\varepsilon_x
+&\equiv
+D\tilde\mu_x - f(\tilde\mu_x,\tilde\mu_v),
+\nonumber\\
+\tilde\varepsilon_v
+&\equiv
+\tilde\mu_v - \tilde\eta.
+\tag{B.44}
+\end{align}
+这里我们省略了所有相对于 $\mu$ 的常数项。由式 B.44，我们可以求出自由能的梯度（使用 A.2.2 节中引入的恒等式）：
+\begin{align}
+\nabla_{\tilde\mu_x} F[q,y]
+&=
+- \nabla_{\tilde\mu_x} g^\top \tilde\Pi_y \tilde\varepsilon_y
++ D^\top \tilde\Pi_x \tilde\varepsilon_x
+- \nabla_{\tilde\mu_x} f^\top \tilde\Pi_x \tilde\varepsilon_x,
+\nonumber\\
+\nabla_{\tilde\mu_v} F[q,y]
+&=
+- \nabla_{\tilde\mu_v} g^\top \tilde\Pi_y \tilde\varepsilon_y
+- \nabla_{\tilde\mu_v} f^\top \tilde\Pi_x \tilde\varepsilon_x
++ \tilde\Pi_v \tilde\varepsilon_v.
+\tag{B.45}
+\end{align}
+
+现在我们本可以指定一个梯度下降过程，去寻找使自由能最小的 $\mu$。但是，这会意味着当自由能被最小时，$\mu$ 会变成静态。显然，如果我们相信更高阶的运动项并不为零，这样做并不理想。为了解决这一点，我们可以在一个移动的参考系中表达梯度下降，使得当自由能最小时，$\mu$ 仍继续以速度 $\mu'$ 运动：
+\begin{align}
+\dot{\tilde\mu}_x - D\tilde\mu_x
+&=
+\nabla_{\tilde\mu_x} g^\top \tilde\Pi_y \tilde\varepsilon_y
+- D^\top \tilde\Pi_x \tilde\varepsilon_x
++ \nabla_{\tilde\mu_x} f^\top \tilde\Pi_x \tilde\varepsilon_x,
+\nonumber\\
+\dot{\tilde\mu}_v - D\tilde\mu_v
+&=
+\nabla_{\tilde\mu_v} g^\top \tilde\Pi_y \tilde\varepsilon_y
++ \nabla_{\tilde\mu_v} f^\top \tilde\Pi_x \tilde\varepsilon_x
+- \tilde\Pi_v \tilde\varepsilon_v.
+\tag{B.46}
+\end{align}
+式 B.46 指定了一种预测编码方案：预测误差驱动对期望的更新，而这些更新又会消解相应的误差。这类方案还可以通过复制 B.46 的方程并引入额外的层级来扩展到多层层级结构，只需将该额外层中的 $y$ 替换为来自更低层的 $v$：
+\begin{align}
+\dot{\tilde\mu}_x^{(i)} - D\tilde\mu_x^{(i)}
+&=
+\nabla_{\tilde\mu_x^{(i)}} g^{(i)\top} \tilde\Pi_v^{(i-1)} \tilde\varepsilon_v^{(i-1)}
+- D^\top \tilde\Pi_x^{(i)} \tilde\varepsilon_x^{(i)}
++ \nabla_{\tilde\mu_x^{(i)}} f^{(i)\top} \tilde\Pi_x^{(i)} \tilde\varepsilon_x^{(i)},
+\nonumber\\
+\dot{\tilde\mu}_v^{(i)} - D\tilde\mu_v^{(i)}
+&=
+\nabla_{\tilde\mu_v^{(i)}} g^{(i)\top} \tilde\Pi_v^{(i-1)} \tilde\varepsilon_v^{(i-1)}
++ \nabla_{\tilde\mu_v^{(i)}} f^{(i)\top} \tilde\Pi_x^{(i)} \tilde\varepsilon_x^{(i)}
++ \tilde\Pi_v^{(i)} \tilde\varepsilon_v^{(i)},
+\nonumber\\
+\tilde\varepsilon_v^{(i)}
+&\equiv
+\tilde\mu_v^{(i)} - g^{(i+1)}\!\bigl(\tilde\mu_x^{(i+1)}, \tilde\mu_v^{(i+1)}\bigr),
+\nonumber\\
+\tilde\varepsilon_x^{(i)}
+&\equiv
+D\tilde\mu_x^{(i)} - f^{(i)}\!\bigl(\tilde\mu_x^{(i)}, \tilde\mu_v^{(i)}\bigr).
+\tag{B.47}
+\end{align}
+
+在主动推断下，自由能不仅通过知觉最小化，也通过行动最小化。由于行动唯一改变的是感觉输入 $y$，所以式 B.44 中大多数项对于行动而言都不相关。对行动求自由能最小化可得
+\begin{equation}
+\dot u
+=
+- \nabla_u \tilde y(u)^\top \tilde\Pi_y \tilde\varepsilon_y.
+\tag{B.48}
+\end{equation}
+式 B.47 与 B.48 合起来，为连续状态空间模型中的主动推断提供了一个非常一般的描述。至于学习或混合模型的问题，本节不再展开，因为它们已分别在专栏 8.2 和 8.3 中作了总结。

@@ -1,0 +1,825 @@
+\chapter{附录 A：数学背景}
+\section{引言}
+
+本附录旨在介绍，或帮助读者温习，本书反复使用的基本数学技术。我们将对四个主题给出入门性但并不穷尽的概览：线性代数、泰勒级数近似、变分法以及随机动力学。对于每一种技术，我们也会指出它在本书何处发挥作用。这里的目标是提供一种聚焦式介绍，重点放在建立直觉，而不是给出形式化且严格的证明。理解并运用主动推断所需的数学并不复杂，但由于其基础横跨多个学科，往往很难找到把必要前置知识汇集在一起的材料。希望本附录能够在一定程度上弥补这一缺口。
+
+\section{线性代数}
+
+\subsection{基础}
+
+线性代数提供了一套记号，用来以简单而紧凑的方式表达乘法与求和的组合。它依赖矩阵与向量：矩阵是由多行多列数字构成的数组结构，而向量可以看作多行单列的特殊情形。矩阵 $A$ 在第 $i$ 行第 $j$ 列的元素记作 $A_{ij}$。两个矩阵 $B$ 与 $C$ 的乘积 $A$（或者矩阵与向量的乘积）定义如下：
+
+\begin{equation}
+A = BC
+\quad\Rightarrow\quad
+A_{ij} = \sum_k B_{ik} C_{kj}.
+\tag{A.1}
+\end{equation}
+
+要使这个定义成立，$B$ 的列数必须等于 $C$ 的行数。但如果我们想表达下面这个求和：
+
+\begin{equation}
+A_{ij} = \sum_k B_{ki} C_{kj},
+\tag{A.2}
+\end{equation}
+
+那么应当怎样用线性代数记号来写呢？这时需要借助一种交换 $B$ 的下标顺序的运算，也就是把数组沿对角线翻转，使列变成行、行变成列。这就是转置运算，通常用上标 $T$ 表示：
+
+\begin{equation}
+B^T_{ik} = B_{ki},
+\qquad
+A = B^T C = B \cdot C,
+\qquad
+A_{ij} = \sum_k B_{ki} C_{kj}.
+\tag{A.3}
+\end{equation}
+
+式~(A.3) 展示了如何用转置算子表达式~(A.2) 中的求和。第二种写法使用了点积记号。这个记号的灵感在于，当 $B$ 和 $C$ 都只有一列时，式~(A.3) 就退化为向量点积。
+
+另一个有用的运算是迹算子。它取出一个方阵主对角线上的元素并将其求和：
+
+\begin{equation}
+\operatorname{tr}[A] = \sum_i A_{ii}.
+\tag{A.4}
+\end{equation}
+
+迹算子的一个重要性质在于：对于矩阵乘积，迹中的元素可以循环置换：
+
+\begin{align}
+\operatorname{tr}[ABC]
+&= \sum_i \sum_j \sum_k A_{ij} B_{jk} C_{ki} \notag \\
+&= \sum_k \sum_i \sum_j C_{ki} A_{ij} B_{jk}
+= \operatorname{tr}[CAB] \notag \\
+&= \sum_j \sum_k \sum_i B_{jk} C_{ki} A_{ij}
+= \operatorname{tr}[BCA].
+\tag{A.5}
+\end{align}
+
+本书最常用到这一恒等式的情形是标量。一个标量可以看作只有一行一列的矩阵，因此也可以对它施加迹算子，而结果不会改变。这意味着只要某个矩阵乘积最终得到的是标量，我们就可以像上面那样对项进行循环置换。
+
+例如，设 $B$ 是一个有 $N$ 行 $N$ 列的方阵，$c$ 是一个有 $N$ 行的向量，则由式~(A.5) 可得：
+
+\begin{align}
+a &= c \cdot Bc \notag \\
+&= \operatorname{tr}[c^T Bc] \notag \\
+&= \operatorname{tr}[Bcc^T] \notag \\
+&= \operatorname{tr}[BC],
+\qquad
+C = c \otimes c = cc^T.
+\tag{A.6}
+\end{align}
+
+这把一个二次型表达式（第一行）重写为两个矩阵乘积之迹（倒数第二行）。最后一行定义了外积，与内积（点积）相对。式~(A.6) 在多元正态分布的语境中特别有用，我们将在第~A.2.3 节看到这一点。
+
+线性代数中最后还需要了解的两个概念是矩阵的逆和行列式。逆矩阵定义为
+
+\begin{equation}
+A^{-1} A = A A^{-1} = I.
+\tag{A.7}
+\end{equation}
+
+式~(A.7) 表明，一个矩阵与其逆矩阵相乘得到单位矩阵，也就是主对角线上为 $1$、其他位置为 $0$ 的方阵。任何矩阵乘以单位矩阵都会保持不变。它在线性代数中的地位相当于标量乘法中的 $1$。这意味着，如果某个量先乘以一个矩阵，再乘以该矩阵的逆，就会回到原来的量。
+
+行列式也是一个有用的量，只是较难建立直观理解。本书中它只出现在多元正态分布的归一化常数中。因此，知道它如何计算就足够了，这里不作深入展开。它可递归地定义为
+
+\begin{equation}
+|A| = \sum_i (-1)^{i-1} A_{1i} \, \big|A_{\setminus(1,i)}\big|.
+\tag{A.8}
+\end{equation}
+
+这里，$A_{\setminus(1,i)}$ 表示从矩阵 $A$ 中去掉第 $1$ 行和第 $i$ 列后得到的矩阵。例如：
+
+\begin{align}
+A &=
+\begin{bmatrix}
+A_{11} & A_{12} \\
+A_{21} & A_{22}
+\end{bmatrix},
+\qquad
+A_{\setminus(1,1)} = A_{22},
+\qquad
+A_{\setminus(1,2)} = A_{21},
+\notag \\
+|A|
+&= A_{11} A_{22} - A_{12} A_{21}.
+\tag{A.9}
+\end{align}
+
+至此，我们完成了对线性代数基本运算的概述。
+
+\subsection{导数}
+
+对矩阵和向量求导，本质上就是把常规微积分逐元素应用到矩阵中的每个元素。例如，如果矩阵 $B$ 的元素都是标量 $x$ 的函数，那么 $B$ 关于 $x$ 的导数为
+
+\begin{equation}
+A(x) = \partial_x B(x)
+\quad\Rightarrow\quad
+A(x)_{ij} = \partial_x B(x)_{ij}.
+\tag{A.10}
+\end{equation}
+
+不过，为了理解本书中的技术细节，还需要掌握若干重要定义和恒等式。首先是如何对非标量对象求导。若向量 $b$ 是另一个向量 $c$ 的函数，那么 $b$ 对 $c$ 的导数是一个矩阵：
+
+\begin{equation}
+A = \partial_c b(c)
+\quad\Rightarrow\quad
+A_{ij} = \partial_{c_j} b(c)_i.
+\tag{A.11}
+\end{equation}
+
+我们还会用到梯度算子，它处理的是对向量的导数，定义为
+
+\begin{equation}
+\nabla_b =
+\begin{bmatrix}
+\partial_{b_1} & \partial_{b_2} & \partial_{b_3} & \cdots
+\end{bmatrix}^T,
+\qquad
+a = \nabla_b x(b)
+\quad\Rightarrow\quad
+a_i = \partial_{b_i} x(b).
+\tag{A.12}
+\end{equation}
+
+把梯度算子理解为由导数算子组成的向量，也就可以紧凑地定义一个相关量，即向量函数的散度：
+
+\begin{equation}
+\nabla_a \cdot b(a) = \sum_i \partial_{a_i} b(a)_i.
+\tag{A.13}
+\end{equation}
+
+关于线性代数量的导数恒等式有很多，这里不试图给出完整综述；如果读者希望进一步深入，推荐参阅 \emph{The Matrix Cookbook}（Petersen and Pedersen 2012）。这里我们只保留两个在本书中特别有用的恒等式。第一个是二次型的梯度：
+
+\begin{align}
+d(a) &= \nabla_a \bigl(b(a) \cdot C b(a)\bigr), \notag \\
+d(a)_i
+&= \partial_{a_i} \sum_j \sum_k b(a)_j C_{jk} b(a)_k \notag \\
+&= \sum_j \sum_k
+\left[
+\bigl(\partial_{a_i} b(a)_j\bigr) C_{jk} b(a)_k
++
+\bigl(\partial_{a_i} b(a)_k\bigr) C_{jk} b(a)_j
+\right], \notag \\
+\Rightarrow\quad
+d(a)
+&= \nabla_a b(a) \cdot (C + C^T) b(a).
+\tag{A.14}
+\end{align}
+
+这里（以及本书其他地方）点积记号所隐含的转置是在梯度算子之前施加的：
+
+\begin{equation}
+\nabla_a b(a) \cdot (\cdot)
+\;=\;
+\nabla_a b(a)^T (\cdot)
+\;\neq\;
+\bigl(\nabla_a b(a)\bigr)^T (\cdot).
+\tag{A.15}
+\end{equation}
+
+式~(A.14) 在第 4 章推导预测编码的信念更新方程时会被用到。第二个有用恒等式是同一个二次型关于矩阵 $C$ 的导数：
+
+\begin{align}
+D(a) &= \nabla_C \bigl(b(a) \cdot C b(a)\bigr), \notag \\
+D(a)_{ij}
+&= \partial_{C_{ij}} \sum_k \sum_l b(a)_k C_{kl} b(a)_l
+= b(a)_i b(a)_j, \notag \\
+\Rightarrow\quad
+D(a) &= b(a) \otimes b(a).
+\tag{A.16}
+\end{align}
+
+这里使用带矩阵下标的梯度算子，表示
+
+\begin{equation}
+\nabla_C =
+\begin{bmatrix}
+\partial_{C_{11}} & \partial_{C_{12}} & \cdots \\
+\partial_{C_{21}} & \partial_{C_{22}} & \cdots \\
+\vdots & \vdots & \ddots
+\end{bmatrix}.
+\tag{A.17}
+\end{equation}
+
+在附录 B 中，我们会看到式~(A.16) 如何帮助估计后验概率的协方差矩阵。
+
+\subsection{概率}
+
+在线性代数与概率推理结合的场景中，上述恒等式主要在两个方面发挥作用。第一，当我们推理的随机变量，也就是概率分布的支撑，是一个向量时；第二，当概率分布本身由向量、矩阵或更高阶张量形式的充分统计量来描述时。\footnote{此处原文用脚注说明更高阶充分统计量的情形。} 一个同时体现这两点的例子就是多元正态分布，其定义为
+
+\begin{equation}
+p(x) =
+\frac{1}{(2\pi)^{k/2} |\Pi|^{-1/2}}
+\exp\!\left(
+-\frac{1}{2} (x-\eta) \cdot \Pi (x-\eta)
+\right),
+\qquad
+\dim(x)=k.
+\tag{A.18}
+\end{equation}
+
+这里，$x$ 是一个 $k$ 维向量，因此众数 $\eta$ 也是一个 $k$ 维向量。精度矩阵 $\Pi$ 是协方差矩阵的逆，是一个 $k \times k$ 的对称矩阵，用来描述概率质量围绕众数的离散程度。它在式~(A.18) 中出现两次：一次出现在归一化常数中（以行列式的形式），一次出现在指数项中。注意，指数中的二次项是一个标量，因此可以应用式~(A.6) 中的恒等式。这一点会在附录 B 中变得重要。
+
+对于类别概率分布，其充分统计量就是概率构成的向量、矩阵或张量。例如，一个人掷六面骰子后可能得到的点数分布，可以用一个 $6$ 维向量表示，其中每个元素给出对应点数出现的概率。真正更有意思的是条件概率。对变量 $o$ 和 $s$ 而言，若它们各自都可以取多个值，那么给定 $s$ 时 $o$ 的条件概率可以写成一个矩阵 $A$，其元素为
+
+\begin{equation}
+P(o=i \mid s=j) = A_{ij}.
+\tag{A.19}
+\end{equation}
+
+这表示：若 $s$ 取其第 $j$ 个可能值，则 $o$ 取其第 $i$ 个可能值的概率，就是矩阵 $A$ 第 $i$ 行第 $j$ 列的元素。进一步地，如果条件集合中有多个变量，就会得到张量结构：
+
+\begin{equation}
+P(o=i \mid s_1=j, s_2=k, s_3=l, \ldots) = A_{ijkl\ldots}.
+\tag{A.20}
+\end{equation}
+
+这里，条件集合中可以包含任意多个变量，因此会有任意多个下标，也就得到任意阶的张量。第 7 章中的一个 T 迷宫模型就使用了三阶概率张量；其原理可以直接推广到更高阶的情形。对于张量 $A$，我们在全书中都沿用式~(A.3) 的点积记号，表示对第一个下标求和：
+
+\begin{equation}
+A = B \cdot x
+\quad\Rightarrow\quad
+A_{jklm\ldots} = \sum_i B_{ijklm\ldots} x_i.
+\tag{A.21}
+\end{equation}
+
+把分布表示为数字数组的一个好处在于，我们可以直接利用第~A.2.1 节和第~A.2.2 节中的定义，简洁地写出相关量。比如，本书经常需要计算信息论量，如概率分布的熵。熵是对对数概率的负期望（平均值）。对式~(A.19) 所示的条件分布，其熵可以写成
+
+\begin{align}
+H[P(o\mid s)] &\coloneqq -\mathbb{E}_{P(o\mid s)}[\ln P(o\mid s)], \notag \\
+H_j &\coloneqq H[P(o\mid s=j)] \notag \\
+&= - \sum_i P(o=i\mid s=j)\ln P(o=i\mid s=j), \notag \\
+\Rightarrow\quad
+H &= -\operatorname{diag}(A \cdot \ln A).
+\tag{A.22}
+\end{align}
+
+在式~(A.22) 中，$\operatorname{diag}$ 表示取一个矩阵的对角线元素并把它们堆叠成向量。这也说明了第 4 章中定义期望自由能时的一个例子：借助线性代数记号，可以非常紧凑地描述这些量是如何计算的。
+
+\section{泰勒级数近似}
+
+\subsection{引言}
+
+很多时候，把函数 $f(x)$ 在某个局部区域内（例如点 $a$ 附近）用一个近似函数 $\hat f(x)$ 来替代，会让问题变得更容易处理。如果我们只关心函数在 $a$ 点的值，那么可以直接用该点处的常数来替换它：
+
+\begin{equation}
+\hat f(x) = f(a).
+\tag{A.23}
+\end{equation}
+
+但这只有在 $x$ 与 $a$ 完全相等时才成立。若要使近似在 $a$ 附近也有效，就可以添加一项，使得当 $x$ 发生一个很小变化时，函数值的变化与 $a$ 点处的梯度一致：
+
+\begin{equation}
+\hat f(x) = f(a) + \varepsilon \, \partial_x f(x)\big|_{x=a},
+\qquad
+\varepsilon \coloneqq x-a.
+\tag{A.24}
+\end{equation}
+
+当 $x=a$ 时，$\varepsilon$ 项为零，与式~(A.23) 一致。此外，原函数与近似函数在 $a$ 点的一阶导数也相同。
+
+继续沿着这个思路，我们还可以再加上一项，用来刻画梯度变化的速率，也就是曲率，这样近似在偏离 $a$ 更远一些的区域内仍然有效。事实上，并不需要在这里停下；我们可以不断加入新项，使原函数与近似函数的各阶导数逐次匹配：
+
+\begin{equation}
+\hat f(x)
+= f(a)
++ \varepsilon \, \partial_x f(x)\big|_{x=a}
++ \frac{\varepsilon^2}{2} \, \partial_x^2 f(x)\big|_{x=a}
++ \cdots
+= \sum_{n=0}^{\infty}
+\frac{\varepsilon^n}{n!} \, \partial_x^n f(x)\big|_{x=a}.
+\tag{A.25}
+\end{equation}
+
+式~(A.25) 给出了一维情形下的泰勒展开。它也可以推广到多变量情形，此时 $x$ 是一个向量：
+
+\begin{equation}
+f(x)
+\approx
+f(a)
++ \varepsilon \cdot \nabla_x f(x)\big|_{x=a}
++ \frac{1}{2}\varepsilon \cdot \nabla_x\bigl(\nabla_x f(x)\bigr)^T \varepsilon
++ \cdots.
+\tag{A.26}
+\end{equation}
+
+其中，$\nabla_x(\nabla_x f(x))^T$ 被称为 Hessian 矩阵。
+
+级数中的项越多，近似就越好。对本书的目的来说，我们不需要超过二阶（即二次）展开。下面几小节中，我们会指出本书如何利用这种近似。其中包括拉普拉斯近似，它支撑了第 4 章与第 8 章中的预测编码方案，以及第 9 章中用于基于模型的数据分析的变分拉普拉斯方案。此外，用于刻画连续轨迹的运动广义坐标（框 4.2）也可以理解为泰勒级数的系数。我们将在第~A.3.2 节和第~A.3.3 节中分别展开这些应用。
+
+\subsection{拉普拉斯近似}
+
+泰勒级数近似在概率推断中的一个重要应用，就是拉普拉斯近似。它指的是：在某个概率分布 $p$ 的众数 $\mu$ 附近，用高斯分布来逼近该概率分布。若对概率分布的对数应用式~(A.26)，可得
+
+\begin{equation}
+\ln p(x)
+\approx
+\ln p(\mu)
++ \varepsilon \cdot \nabla_x \ln p(x)\big|_{x=\mu}
++ \frac{1}{2}\varepsilon \cdot \nabla_x\bigl(\nabla_x \ln p(x)\bigr)^T \varepsilon \big|_{x=\mu},
+\qquad
+\varepsilon \coloneqq x-\mu.
+\tag{A.27}
+\end{equation}
+
+这就是把式~(A.26) 中的 $f(x)$ 替换为 $\ln p(x)$，并令 $a=\mu$。近似等号右边第一项相对于 $x$ 来说是常数，因此可吸收到归一化常数中。第二项在众数处为零，因为对数概率在众数处的梯度为零。对两边取指数，就得到
+
+\begin{equation}
+p(x)
+\approx
+\frac{1}{Z}
+\exp\!\left(
+-\frac{1}{2}\varepsilon \cdot C^{-1}\varepsilon
+\right)
+= \mathcal{N}(\mu, C^{-1}),
+\qquad
+C^{-1} \coloneqq -\nabla_x\bigl(\nabla_x \ln p(x)\bigr)^T\big|_{x=\mu}.
+\tag{A.28}
+\end{equation}
+
+式~(A.28) 表明：当我们在众数附近用二次函数来近似对数概率时，相应的概率密度就是高斯分布。这就是对概率分布应用拉普拉斯近似。
+
+不过，我们还可以把拉普拉斯近似应用到自由能泛函上。为了建立直觉，我们从一个自由能泛函开始（见第 4 章）：
+
+\begin{equation}
+F[q,y] = \mathbb{E}_{q(x)}\bigl[\ln q(x) - \ln p(y,x)\bigr].
+\tag{A.29}
+\end{equation}
+
+式~(A.29) 把自由能写成了两个对数概率之差的期望。$q$ 是近似后验概率密度，$p$ 是生成模型，用于描述隐状态 $x$ 如何生成数据 $y$。与式~(A.27) 类似，我们可以对这两个对数概率分别做泰勒展开。先看变分密度：
+
+\begin{align}
+\ln q(x)
+&\approx
+\ln q(\mu)
++ (x-\mu)\cdot \nabla_x \ln q(x)\big|_{x=\mu}
++ \frac{1}{2}(x-\mu)\cdot \nabla_x\bigl(\nabla_x \ln q(x)\bigr)^T (x-\mu)\big|_{x=\mu}
+\notag \\
+&=
+\ln q(\mu)
++ \frac{1}{2}(x-\mu)\cdot \nabla_x\bigl(\nabla_x \ln q(x)\bigr)^T (x-\mu)\big|_{x=\mu},
+\notag \\
+\Rightarrow\quad
+q(x) &\approx \mathcal{N}(\mu,\Sigma^{-1}),
+\qquad
+\Sigma^{-1} \coloneqq -\nabla_x\bigl(\nabla_x \ln q(x)\bigr)^T\big|_{x=\mu},
+\qquad
+\mu = \arg\max_x q(x).
+\tag{A.30}
+\end{align}
+
+将式~(A.29) 中的期望作用到式~(A.30)，可得
+
+\begin{align}
+\mathbb{E}_{q(x)}[\ln q(x)]
+&\approx
+\ln q(\mu)
+- \frac{1}{2}\mathbb{E}_{q(x)}\!\left[(x-\mu)\cdot \Sigma^{-1}(x-\mu)\right]
+\notag \\
+&=
+\ln q(\mu)
+- \frac{1}{2}\operatorname{tr}\!\left[
+\Sigma^{-1}\mathbb{E}_{q(x)}[(x-\mu)(x-\mu)^T]
+\right]
+\notag \\
+&=
+-\frac{k}{2}\ln 2\pi
+- \frac{1}{2}\ln |\Sigma|
+- \frac{k}{2}
+\notag \\
+&=
+-\frac{1}{2}\ln\!\bigl((2\pi e)^k |\Sigma|\bigr).
+\tag{A.31}
+\end{align}
+
+这里，$k$ 是 $x$ 的维度。从第一行到第二行用到了式~(A.6) 中的迹恒等式。第三行的前两项来自多元正态分布的定义，也就是式~(A.18)。因此，式~(A.31) 给出了在拉普拉斯假设下，式~(A.29) 第一项的表达。
+
+同样地，式~(A.29) 的第二项也可以围绕 $\mu$ 做展开：
+
+\begin{align}
+\ln p(y,x)
+&\approx
+\ln p(y,\mu)
++ (\mu-x)\cdot \nabla_x \ln p(y,x)\big|_{x=\mu}
+\notag \\
+&\qquad
++ \frac{1}{2}(\mu-x)\cdot \nabla_x\bigl(\nabla_x \ln p(y,x)\bigr)^T(\mu-x)\big|_{x=\mu},
+\notag \\
+\mathbb{E}_{q(x)}[\ln p(y,x)]
+&\approx
+\ln p(y,\mu)
++ (\mu-\mathbb{E}_{q(x)}[x])\cdot \nabla_x \ln p(y,x)\big|_{x=\mu}
+\notag \\
+&\qquad
++ \frac{1}{2}\operatorname{tr}\!\left[
+\mathbb{E}_{q(x)}[(\mu-x)(\mu-x)^T]
+\nabla_x\bigl(\nabla_x \ln p(y,x)\bigr)^T\big|_{x=\mu}
+\right]
+\notag \\
+&=
+\ln p(y,\mu)
++ \frac{1}{2}\operatorname{tr}\!\left[
+\Sigma
+\nabla_x\bigl(\nabla_x \ln p(y,x)\bigr)^T\big|_{x=\mu}
+\right].
+\tag{A.32}
+\end{align}
+
+最后一步用到了一个事实：如果 $q$ 是正态分布，那么它的均值也就是它的众数。把式~(A.31) 和式~(A.32) 代回式~(A.29)，便得到拉普拉斯自由能：
+
+\begin{equation}
+F[q,y]
+\approx
+-\frac{1}{2}\ln\!\bigl((2\pi e)^k |\Sigma|\bigr)
+- \ln p(y,\mu)
+- \frac{1}{2}\operatorname{tr}\!\left[
+\Sigma
+\nabla_x\bigl(\nabla_x \ln p(y,x)\bigr)^T\big|_{x=\mu}
+\right].
+\tag{A.33}
+\end{equation}
+
+当 $x$ 是一维时，最后一项中的迹算子可以省略。这个表达形式的一个重要优点在于：如果把自由能对后验精度求导并令其为零，就得到
+
+\begin{equation}
+\partial_{\Sigma} F[q,y] = 0
+\quad\Leftrightarrow\quad
+\Sigma^{-1}
+=
+-\nabla_x\bigl(\nabla_x \ln p(y,x)\bigr)^T\big|_{x=\mu}.
+\tag{A.34}
+\end{equation}
+
+这意味着，后验精度就是在后验众数处评估得到的、状态与数据的对数概率的负曲率。因此，最小化自由能并不要求我们显式优化精度；它可以从后验均值解析地计算出来。进一步地，把式~(A.34) 代入式~(A.33) 后可以发现，自由能中唯一依赖后验均值的项，是数据与状态的对数概率。关于如何利用这一点在连续状态空间模型中执行推断，可参见第 4 章。
+
+\subsection{运动的广义坐标}
+
+除了是拉普拉斯近似的核心之外，泰勒级数近似在主动推断中还扮演了另一个重要角色，即用运动的广义坐标来表示关于时间轨迹的信念。简言之，这意味着我们不仅推断变量的位置 $x$，还推断它的速度 $x'$、加速度 $x''$ 以及更高阶的时间导数。这些量隐式地表示了一种轨迹近似，而这种近似可以通过下列泰勒展开显式写出：
+
+\begin{equation}
+x(t)
+\approx
+x(\tau)
++ \varepsilon \, x'(t)\big|_{t=\tau}
++ \frac{\varepsilon^2}{2} x''(t)\big|_{t=\tau}
++ \cdots,
+\qquad
+\varepsilon = t-\tau.
+\tag{A.35}
+\end{equation}
+
+这也意味着，我们能够处理随机波动协方差中的结构，而在生物系统中这是必要的，因为这些波动本身也是由动力学过程生成的。我们将在第~A.5 节进一步讨论这一点。这里先只指出：定义在运动广义坐标上的概率密度，等价于一个关于局部轨迹的分布，其中这些坐标被视为泰勒展开的系数。
+
+\section{变分法}
+
+\subsection{泛函导数}
+
+由于主动推断关心的是信念，也就是概率分布的优化，因此经常需要讨论：如何对函数的函数，也就是泛函，关于函数本身做最小化。这就需要引入泛函导数（也称变分导数）的概念。基本问题是：寻找一个函数 $f$，使得某个泛函 $S$ 最小。这个泛函通常写成包含 $f$ 的函数的积分形式\footnote{原文在此处给出脚注，说明更一般的积分型泛函情形。}：
+
+\begin{equation}
+\phi(x) = \arg\min_f S[f(x)],
+\qquad
+S[f(x)] \coloneqq \int_{x_1}^{x_2} L\bigl(f(x),x\bigr)\,dx.
+\tag{A.36}
+\end{equation}
+
+如果用一个任意函数 $g$ 来参数化这个函数，并要求 $g$ 在积分区间两端都为零，再乘上一个小数 $u$，就可以对 $S$ 关于 $u$ 求导：
+
+\begin{align}
+f(x,u) &\coloneqq \phi(x) + u g(x),
+\notag \\
+\partial_u S[f(x,u)]
+&=
+\int_{x_1}^{x_2} \partial_u L\bigl(f(x,u),x\bigr)\,dx
+\notag \\
+&=
+\int_{x_1}^{x_2}
+\partial_{f}L\bigl(f(x,u),x\bigr)\,
+\partial_u f(x,u)\,dx
+\notag \\
+&=
+\int_{x_1}^{x_2}
+g(x)\,\partial_f L\bigl(f(x,u),x\bigr)\,dx.
+\tag{A.37}
+\end{align}
+
+当 $u=0$ 时，$f$ 就是使积分最小的函数。因此，式~(A.37) 在 $u=0$ 处应当为零。于是，$f$ 最小化 $S$ 所必须满足的条件就是
+
+\begin{equation}
+\int_{x_1}^{x_2}
+g(x)\,\partial_f L\bigl(f(x),x\bigr)\big|_{f=\phi}
+\,dx
+= 0.
+\tag{A.38}
+\end{equation}
+
+要使式~(A.38) 对任意的 $g(x)$ 都成立，就意味着\footnote{原文此处给出脚注，说明该推论依赖变分法的基本引理。}
+
+\begin{equation}
+\delta_f S \coloneqq \partial_f L = 0.
+\tag{A.39}
+\end{equation}
+
+需要注意的是，在物理学语境下，$L$ 往往不仅依赖于函数 $f$ 本身，还依赖于它的梯度。此时，沿用上面的步骤就会得到 Euler--Lagrange 方程：
+
+\begin{equation}
+\delta_f S \coloneqq \partial_f L - \frac{d}{dx}\partial_{f'}L = 0,
+\qquad
+f' \coloneqq \partial_x f.
+\tag{A.40}
+\end{equation}
+
+视 $L$ 是否包含梯度项而定，式~(A.39) 和式~(A.40) 共同表达了变分导数，也就是泛函导数的概念。
+
+\subsection{变分贝叶斯}
+
+如果把上面的 $f$ 设为近似后验分布的一个因子，把 $S$ 设为自由能泛函，那么变分贝叶斯就可以相当直接地从上面的结果推出：
+
+\begin{align}
+f(x) &= q_i(x_i),
+\notag \\
+q(x) &= \prod_i q_i(x_i),
+\notag \\
+L\bigl(q_i(x_i),x_i\bigr)
+&=
+\int q(x)\bigl(\ln q(x)-\ln p(y,x)\bigr)\,dx_{j\neq i},
+\notag \\
+S[q(x)] &= F[q(x),y].
+\tag{A.41}
+\end{align}
+
+这里第二行表达的是均值场近似：近似后验在变量 $x$ 上分解成若干因子。这通常是出于计算可处理性的考虑。不过，这只是近似后验形式的诸多选择之一。将式~(A.39) 应用于这里，可以得到使自由能最小的近似后验形式（忽略常数项）：
+
+\begin{align}
+\delta_{q_i} F[q,y]
+&=
+\ln q_i(x_i)
+- \int \prod_{j\neq i} q_j(x_j)\ln p(y,x)\,dx_{j\neq i},
+\notag \\
+\delta_{q_i} F[q,y] = 0
+\quad\Leftrightarrow\quad
+\ln q_i(x_i)
+&=
+\mathbb{E}_{q_{\setminus i}}[\ln p(y,x)].
+\tag{A.42}
+\end{align}
+
+记号 $\setminus i$ 应读作“除第 $i$ 个因子之外的所有因子”。式~(A.42) 是一种被称为变分消息传递（variational message passing；Winn and Bishop 2005, Dauwels 2007）的推断方案的核心。它通过分别优化 $q$ 的每一个因子来工作，并依赖于 $p$ 具有相对稀疏的结构，也就是并非每个 $x_i$ 都依赖于所有其他 $x_j$。为帮助建立直觉，可以看一个任意例子：
+
+\begin{align}
+p(y,x)
+&=
+p(y\mid x_1)\,
+p(x_1\mid x_2,x_3)\,
+p(x_3)\,
+p(x_2\mid x_4)\,
+p(x_4),
+\notag \\
+\Rightarrow\quad
+\ln q(x_1)
+&=
+\mathbb{E}_{q(x_2)q(x_3)q(x_4)}
+\bigl[
+\ln p(y\mid x_1)
++ \ln p(x_1\mid x_2,x_3)
++ \ln p(x_3)p(x_2\mid x_4)p(x_4)
+\bigr],
+\notag \\
+\ln q(x_2)
+&=
+\mathbb{E}_{q(x_1)q(x_3)q(x_4)}
+\bigl[
+\ln p(x_1\mid x_2,x_3)
++ \ln p(x_2\mid x_4)
++ \ln p(y\mid x_1)p(x_3)p(x_4)
+\bigr].
+\tag{A.43}
+\end{align}
+
+式~(A.43) 展示了把第一行中的密度代入式~(A.42)，并取 $q$ 的前两个因子时会发生什么。去掉对相应变量来说是常数的项后，得到
+
+\begin{align}
+\ln q(x_1)
+&=
+\ln p(y\mid x_1)
++ \mathbb{E}_{q(x_2)q(x_3)}[\ln p(x_1\mid x_2,x_3)],
+\notag \\
+\ln q(x_2)
+&=
+\mathbb{E}_{q(x_1)q(x_3)}[\ln p(x_1\mid x_2,x_3)]
++ \mathbb{E}_{q(x_4)}[\ln p(x_2\mid x_4)].
+\tag{A.44}
+\end{align}
+
+其中，期望里的项之所以可以简化，是因为
+
+\begin{equation}
+\mathbb{E}_{p(b)}[f(a)]
+=
+\int p(b)f(a)\,db
+=
+f(a)\int p(b)\,db
+= f(a).
+\tag{A.45}
+\end{equation}
+
+这也解释了变分消息传递为什么简洁：为了更新某个信念，我们只需要考虑一小部分相关信念，即关于 Markov blanket（见框 4.1）的那些信念。
+
+\section{随机动力学}
+
+\subsection{随机微分方程}
+
+本书有几个地方会提到随机动力系统理论中的思想。例如在第 3 章，我们强调了随机系统随时间趋向某个稳态分布的重要性，以及这些动力学与自证（self-evidencing）概念之间的关系。在第 4 章和第 8 章中，我们还概述了如何把连续状态空间模型表述成随机微分方程。
+
+尽管这是一个非常迷人的主题（Yuan and Ao 2012），但要完整剖析随机过程定义中的细微之处，超出了本书的范围。不过，至少有必要简要说明我们所说的随机微分方程是什么意思。简单地说，它就是在微分方程中加入一个随机项 $\omega$：
+
+\begin{equation}
+\dot x = f(x) + \omega,
+\qquad
+\omega \sim \mathcal{N}(0,\tfrac{1}{2}\Gamma^{-1}).
+\tag{A.46}
+\end{equation}
+
+这里随机项被选为正态分布，且均值为零，因此 $x$ 变化率最可能的值就是 $f(x)$。式~(A.46) 的解释有时不太直观。消除歧义的最好方式，是把它看作一个离散化方案的极限情形：
+
+\begin{equation}
+\Delta x = f(x)\Delta \tau + \omega (\Delta \tau)^{1/2},
+\qquad
+\Delta \tau \to 0 \Rightarrow \dot x = f(x) + \omega.
+\tag{A.47}
+\end{equation}
+
+需要注意，如果 $\omega$ 的方差随 $x$ 变化，那么我们可以采用多种不同离散化方式。最常见的选择对应于 Ito 解释和 Stratonovich 解释。不过，本书始终假设方差固定，因此这些解释会给出相同的结果。就像第 8 章中的生成模型那样，要定义这种模型，我们只需要描述 $x$ 的变化率的概率分布。从式~(A.46) 立刻得到
+
+\begin{equation}
+p(\dot x \mid x) = \mathcal{N}(f(x), \tfrac{1}{2}\Gamma^{-1}).
+\tag{A.48}
+\end{equation}
+
+这正是本书所用生成模型中的形式。它也概括了确定性动力系统与随机动力系统之间的区别：在确定性系统中，若知道 $x$ 的值，就知道它的速度；在随机系统中，知道 $x$ 只会告诉我们一个可能速度的分布。
+
+\subsection{非平衡稳态}
+
+在第 3 章中，我们看到：如果一个系统被定义为沿某个能量函数（或惊异函数）下降，那么它就会随时间维持其形式，并持续处于一个稳态，哪怕这个稳态并非平衡态。这里我们简要展开这一点，从稳态的概念出发，再回到最小化惊异，也就是“自证”（Hohwy 2016）动力学。起点是把式~(A.46) 中的随机动力学改写为另一种形式：一个确定性的偏微分方程，用来描述概率密度如何随时间变化。这就是 Fokker--Planck 方程（Risken 1996）：
+
+\begin{equation}
+\partial_\tau p(x)
+=
+\nabla_x \cdot \bigl(\Gamma \nabla_x p(x) - f(x)p(x)\bigr).
+\tag{A.49}
+\end{equation}
+
+Fokker--Planck 方程使我们可以直接通过令密度对时间的偏导为零来定义稳态：
+
+\begin{align}
+\partial_\tau p(x) &= 0
+\notag \\
+\Rightarrow\quad
+\nabla_x \cdot \bigl(\Gamma \nabla_x p(x) - f(x)p(x)\bigr) &= 0
+\notag \\
+\Rightarrow\quad
+f(x) &= -(\Gamma - Q(x))\nabla_x \mathcal{I}(x),
+\notag \\
+\nabla_x \cdot \bigl(Q(x)\nabla_x p(x)\bigr) &= 0,
+\qquad
+\mathcal{I}(x) \coloneqq -\ln p(x).
+\tag{A.50}
+\end{align}
+
+这里第三个等式\footnote{原文此处有脚注，解释该重写依赖 Helmholtz 分解相关思想。} 是关键，因为它表明：凡是能够维持稳态的系统，其动力学平均而言都必须最小化它们的惊异 $\mathcal{I}$。$Q$ 项允许系统沿着惊异的等值线运动，而这种运动既不会增加惊异，也不会减少惊异。这个表达支撑了主动推断中的自证视角，也是有感知系统物理学的核心。这里不再展开，感兴趣的读者可参阅 Friston (2019a) 获取更完整的后果分析。
+
+\subsection{运动的广义坐标}
+
+正如第~A.3.3 节所见，我们可以用时间上的泰勒展开系数来表示一段短轨迹。这在随机情形下会引出一个有趣问题：当我们用运动的广义坐标来表述一个连续时间模型时，怎样处理广义运动不同阶次之间的协方差？答案见于 Cox and Miller (1965)，这里作简要总结。一个随机过程在广义坐标中被表示为：伴随流的随机波动、该流变化率的随机波动，以及更高阶时间导数共同组成的向量：
+
+\begin{equation}
+\dot{\tilde x} = \tilde f(\tilde x) + \tilde \omega,
+\qquad
+\tilde \omega \coloneqq
+\begin{bmatrix}
+\omega \\
+\omega' \\
+\omega'' \\
+\omega''' \\
+\vdots
+\end{bmatrix}
+=
+\begin{bmatrix}
+\omega^{[0]} \\
+\omega^{[1]} \\
+\omega^{[2]} \\
+\omega^{[3]} \\
+\vdots
+\end{bmatrix}.
+\tag{A.51}
+\end{equation}
+
+这些随机波动可以这样刻画：
+
+\begin{equation}
+p(\tilde \omega) = \mathcal{N}(0,\Pi),
+\qquad
+\mathbb{E}[\omega^{[0]}(\tau)] = 0,
+\qquad
+\mathbb{E}[\omega^{[0]}(\tau)\cdot \omega^{[0]}(\tau)] = \Sigma.
+\tag{A.52}
+\end{equation}
+
+它们的自相关函数定义为
+
+\begin{equation}
+\rho(h)
+\coloneqq
+\Sigma^{-1}\mathbb{E}\bigl[\omega^{[0]}(\tau)\cdot \omega^{[0]}(\tau+h)\bigr].
+\tag{A.53}
+\end{equation}
+
+把式~(A.53) 两边乘以方差，可以看出：两个时刻噪声之间的协方差可以分解为自相关函数与方差的乘积。随机波动的第 $i$ 阶导数定义为如下极限情形：
+
+\begin{equation}
+\omega^{[i]}(\tau,\Delta\tau)
+=
+\frac{\omega^{[i-1]}(\tau+\Delta\tau)-\omega^{[i-1]}(\tau)}{\Delta\tau}.
+\tag{A.54}
+\end{equation}
+
+利用式~(A.52) 和式~(A.53)，可以写出一个变量与其一阶时间导数之间的协方差：
+
+\begin{align}
+\mathbb{E}\bigl[\omega^{[1]}(\tau,\Delta\tau)\cdot \omega^{[0]}(\tau+h)\bigr]
+&=
+\frac{1}{\Delta\tau}
+\mathbb{E}\Bigl[
+\bigl(\omega^{[0]}(\tau+\Delta\tau)-\omega^{[0]}(\tau)\bigr)\omega^{[0]}(\tau+h)
+\Bigr]
+\notag \\
+&=
+\frac{1}{\Delta\tau}\Sigma\bigl(\rho(h-\Delta\tau)-\rho(h)\bigr).
+\tag{A.55}
+\end{align}
+
+令时间变化趋于零，就得到
+
+\begin{equation}
+\mathbb{E}\bigl[\omega^{[1]}(\tau)\cdot \omega^{[0]}(\tau+h)\bigr]
+=
+\Sigma \dot \rho(h).
+\tag{A.56}
+\end{equation}
+
+当 $h=0$ 时，这个协方差为零，因为瞬时速度与位置彼此正交，而此时自相关函数达到最大值，所以其时间导数为零。
+
+再进一步，可以求出一阶导数自身的方差：
+
+\begin{align}
+\mathbb{E}\bigl[\omega^{[1]}(\tau,\Delta\tau)\cdot \omega^{[1]}(\tau+h,\Delta\tau)\bigr]
+&=
+\frac{1}{\Delta\tau^2}\Sigma
+\mathbb{E}\Bigl[
+\bigl(\omega^{[0]}(\tau+\Delta\tau)-\omega^{[0]}(\tau)\bigr)
+\notag \\
+&\qquad\qquad\qquad\cdot
+\bigl(\omega^{[0]}(\tau+h+\Delta\tau)-\omega^{[0]}(\tau+h)\bigr)
+\Bigr]
+\notag \\
+&=
+\Sigma\frac{1}{\Delta\tau}
+\left[
+\frac{1}{\Delta\tau}\bigl(\rho(h)-\rho(h-\Delta\tau)\bigr)
+- \frac{1}{\Delta\tau}\bigl(\rho(h+\Delta\tau)-\rho(h)\bigr)
+\right].
+\tag{A.57}
+\end{align}
+
+当 $\Delta\tau \to 0$ 时，上式变为
+
+\begin{equation}
+\mathbb{E}\bigl[\omega^{[1]}(\tau)\cdot \omega^{[1]}(\tau+h)\bigr]
+=
+-\Sigma \ddot\rho(h).
+\tag{A.58}
+\end{equation}
+
+对更高阶导数重复这个过程，就能计算出广义精度矩阵的各个元素：
+
+\begin{equation}
+\Pi
+=
+\Sigma^{-1}\otimes
+\begin{bmatrix}
+1 & 0 & \ddot\rho(0) & \cdots \\
+0 & -\ddot\rho(0) & 0 & \cdots \\
+\ddot\rho(0) & 0 & \rho^{(4)}(0) & \cdots \\
+\vdots & \vdots & \vdots & \ddots
+\end{bmatrix}^{-1}.
+\tag{A.59}
+\end{equation}
+
+如果把自相关函数选为高斯形式，那么有
+
+\begin{equation}
+\rho(h) = \exp\!\left(-\frac{1}{2}\lambda h^2\right),
+\qquad
+\rho(0)=1.
+\tag{A.60}
+\end{equation}

@@ -1,0 +1,37 @@
+\documentclass[11pt, openany]{ctexbook}
+
+\usepackage[T1]{fontenc}
+\usepackage[a4paper, margin=1in, headheight=14pt]{geometry}
+\usepackage{parskip}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{csquotes}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage[colorlinks=true, linkcolor=RoyalBlue, urlcolor=RoyalBlue]{hyperref}
+\usepackage{fancyhdr}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.7em}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\textit{主动推断}}
+\rhead{\textit{中文 TeX 学习版}}
+\cfoot{\thepage}
+
+\newtcolorbox{projectnote}[1][]{
+  colback   = RoyalBlue!4!white,
+  colframe  = RoyalBlue!60!black,
+  fonttitle = \bfseries,
+  title     = {使用说明},
+  #1
+}
+
+\DeclareMathOperator{\Cat}{Cat}
+\DeclareMathOperator{\Dir}{Dir}
+\DeclareMathOperator{\diag}{diag}
