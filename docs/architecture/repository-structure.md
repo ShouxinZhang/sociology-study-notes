@@ -135,6 +135,9 @@
 | ↳ `tex/preamble.tex` | 页面样式、图文排版与译文盒样式配置 |
 | ↳ `tex/content.tex` | 梦境叙事、配图、感悟与虚拟评论区的双语正文 |
 | ↳ `tex/main.pdf` | 编译生成的 A4 双语图文 PDF，含 3 则虚拟短评 |
+| ↳ `成语知识库/` | 面向虚拟朋友圈文案取词的成语素材库，按正面与负面语义分文件沉淀 |
+| ↳ `成语知识库/good.txt` | 正面意象、生活状态、团结奋斗与发展繁荣类成语清单 |
+| ↳ `成语知识库/bad.txt` | 负面人物、行为画像与恶果报应类成语清单 |
 | ↳ `diverse_worlds_match/` | 面向“不同世界观是否匹配”主题的轻量英文内容实验子目录 |
 | ↳ `diverse_worlds_match/1.md` | 将《我的叔叔于勒》与数学系数值分析、神经网络梗结合后润色翻译成中文的趣味短篇 |
 | ↳ `diverse_worlds_match/my_uncle_jules_en_public_domain.txt` | 从 Project Gutenberg 公版英文卷宗中抽取的《My Uncle Jules》英文全文 |
