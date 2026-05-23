@@ -1,6 +1,6 @@
 # Repo Agent Instructions
 
-- Code should follow modular design principles as much as possible; different modules should avoid interfering with each other. Any experimental feature should place all its files within a single sub-module and must not generate junk files in larger modules.
+- 任何时候都必须将模块化，层次化思想应用起来。善于利用tree或者graph结构. 主干文件绝对不能臃肿, 能拆分到子模块的就到子模块里。例如SKILL书写时，尽可能将模板等冗长细节放到references或者scripts子文件夹里; 又比如软件模块，不管是python, ts之类，都应该时刻注意，不要把太多功能堆放在单个文件里, 而是拆分为有层次的多子文件夹结构
 - Before building new code, review existing code to reduce redundancy.
 - Any new change should remain as simple as possible. Do not add extra branches or unauthorized feature planning.
 - Business outcomes come first in any implementation. The top priority is delivering the required functionality, followed by long-term architecture planning, and then keeping the module style concise and efficient.

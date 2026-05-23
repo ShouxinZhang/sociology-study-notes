@@ -127,6 +127,13 @@
 | ↳ `tex/book_9780262369978/preamble.tex` | 版式、页眉页脚与常用环境配置 |
 | ↳ `tex/book_9780262369978/frontmatter.tex` | 版本说明与原书元信息 |
 | ↳ `tex/book_9780262369978/sections/` | 按 section 拆分的中文章节/附录 TeX 文件 |
+| `前沿BFS/` | 前沿论文 PDF、arXiv 源码与中文 TeX 翻译工作区 |
+| ↳ `arxiv_2605_06651_ai_co_mathematician/` | arXiv:2605.06651《AI Co-Mathematician》资料与中文翻译叶子模块 |
+| ↳ `arxiv_2605_06651_ai_co_mathematician/resources/2605.06651.pdf` | 从 arXiv 下载的原始 PDF |
+| ↳ `arxiv_2605_06651_ai_co_mathematician/source/` | arXiv e-print 原始 TeX 源码、BibLaTeX 支持文件与图片资源 |
+| ↳ `arxiv_2605_06651_ai_co_mathematician/tex-zh-cn/` | 中文 TeX 翻译工作区，复用原图、引用与排版类文件 |
+| ↳ `arxiv_2605_06651_ai_co_mathematician/tex-zh-cn/main.tex` | 中文译稿主入口，保留原论文图表与引用结构 |
+| ↳ `arxiv_2605_06651_ai_co_mathematician/tex-zh-cn/main.pdf` | 编译生成的 22 页中文 PDF，图片页位与原 PDF 基本对齐 |
 | `虚拟朋友圈/` | 面向“虚拟朋友圈”系列内容的独立素材子模块 |
 | ↳ `1.md` | 梦境门世界原始中文图文稿 |
 | ↳ `image/1/` | `1.md` 使用的 4 张原始配图 |

@@ -1,0 +1,53 @@
+{
+   "sources" : [
+      {
+         "usage" : "toplevel",
+         "filename" : "main.tex"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "biblatex.cfg"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "biblatex.def"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "blx-compat.def"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "blx-dm.def"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "blx-natbib.def"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "english.lbx"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "numeric-comp.bbx"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "numeric-comp.cbx"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "numeric.bbx"
+      },
+      {
+         "usage" : "ignore",
+         "filename" : "standard.bbx"
+      }
+   ],
+   "spec_version" : 1,
+   "texlive_version" : "2025",
+   "process" : {
+      "compiler" : "pdflatex"
+   }
+}
