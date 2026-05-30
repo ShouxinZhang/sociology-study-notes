@@ -1,1 +1,72 @@
+# Agent runtime cache and temporary task artifacts.
 .agents/cache/
+
+# Local OS/editor state.
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Local secrets and environment files.
+.env
+.env.*
+!.env.example
+
+# Python caches and virtual environments.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Node/frontend dependency and build outputs.
+node_modules/
+.npm/
+.pnpm-store/
+.vite/
+.next/
+.nuxt/
+dist/
+coverage/
+
+# Logs.
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# LaTeX generated working files.
+**/tex/build/
+**/tex-zh-cn/build/
+*.aux
+*.bcf
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv
+
+# PDFs are intentionally not ignored because this repository stores
+# final reading assets and reference PDFs as versioned knowledge artifacts.
+
+# Frontiers BFS policy: track PDFs as reading assets; ignore new non-PDF
+# source, metadata, extraction, and TeX work files by default.
+self-cultivation/前沿BFS/**
+!self-cultivation/前沿BFS/**/
+!self-cultivation/前沿BFS/**/*.pdf
+!self-cultivation/前沿BFS/**/*.PDF

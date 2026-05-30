@@ -16,7 +16,7 @@
 | `docs/` | 项目架构、计划与开发日志 |
 | `.agents/` | Agent 运行缓存与归档区 |
 | `.github/skills/` | 自定义 Agent Skills |
-| `.gitignore` | Git 忽略规则 |
+| `.gitignore` | Git 忽略规则，覆盖 Agent 缓存、本地环境、依赖缓存、日志、LaTeX 临时构建产物，以及 `前沿BFS` 新增非 PDF 工作文件；PDF 阅读资产继续纳入版本管理 |
 | `AGENTS.md` | Agent 指令文件 |
 | `LICENSE` | 许可证 |
 
@@ -127,13 +127,62 @@
 | ↳ `tex/book_9780262369978/preamble.tex` | 版式、页眉页脚与常用环境配置 |
 | ↳ `tex/book_9780262369978/frontmatter.tex` | 版本说明与原书元信息 |
 | ↳ `tex/book_9780262369978/sections/` | 按 section 拆分的中文章节/附录 TeX 文件 |
-| `前沿BFS/` | 前沿论文 PDF、arXiv 源码与中文 TeX 翻译工作区 |
+| `前沿BFS/` | 前沿论文阅读资产区；历史已追踪源码与中文 TeX 工作区保留，后续新增内容默认只提交 PDF 阅读资产，非 PDF 工作文件由 `.gitignore` 过滤 |
 | ↳ `arxiv_2605_06651_ai_co_mathematician/` | arXiv:2605.06651《AI Co-Mathematician》资料与中文翻译叶子模块 |
 | ↳ `arxiv_2605_06651_ai_co_mathematician/resources/2605.06651.pdf` | 从 arXiv 下载的原始 PDF |
 | ↳ `arxiv_2605_06651_ai_co_mathematician/source/` | arXiv e-print 原始 TeX 源码、BibLaTeX 支持文件与图片资源 |
 | ↳ `arxiv_2605_06651_ai_co_mathematician/tex-zh-cn/` | 中文 TeX 翻译工作区，复用原图、引用与排版类文件 |
 | ↳ `arxiv_2605_06651_ai_co_mathematician/tex-zh-cn/main.tex` | 中文译稿主入口，保留原论文图表与引用结构 |
 | ↳ `arxiv_2605_06651_ai_co_mathematician/tex-zh-cn/main.pdf` | 编译生成的 22 页中文 PDF，图片页位与原 PDF 基本对齐 |
+| ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/` | arXiv:2605.22763《Advancing Mathematics Research with AI-Driven Formal Proof Search》资料与中文阅读版叶子模块 |
+| ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/resources/2605.22763v1.pdf` | 从 arXiv 下载的 v1 原始 PDF |
+| ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/source/` | arXiv e-print 原始 TeX 源码、BibTeX 文献库、图片资源与 `proofs/` 证明附录 |
+| ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/tex-zh-cn/` | 中文 TeX 阅读工作区，复用原始图表、引用、中文证明附录模块与 Google DeepMind 排版类 |
+| ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/tex-zh-cn/main.tex` | 中文版主入口，加入 CJK 支持、中文标题摘要与 ASCII 页眉/metadata 兼容处理 |
+| ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/tex-zh-cn/main_arxiv_submission.tex` | 主文、材料方法与补充说明层的中文稿，继续通过 `proofs/` 子模块承载已中文化的详细数学证明 |
+| ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/tex-zh-cn/proofs/` | Erdos、OEIS、图重构、Hilbert 与 Written on the Wall 等去形式化 Lean 证明的中文 TeX 子模块 |
+| ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/tex-zh-cn/main.pdf` | 编译生成的 53 页中文 PDF，保留原论文图表、可追溯引用结构和中文证明附录 |
+| ↳ `arxiv_2508_13313_flow_matching_data_assimilation/` | arXiv:2508.13313《Flow Matching for Efficient and Scalable Data Assimilation》资料与中文技术阅读版叶子模块 |
+| ↳ `arxiv_2508_13313_flow_matching_data_assimilation/resources/2508.13313.pdf` | 从 arXiv 下载的当前 PDF |
+| ↳ `arxiv_2508_13313_flow_matching_data_assimilation/resources/2508.13313_abs.html` | arXiv 摘要页本地归档，用于版本、作者、摘要和代码链接追溯 |
+| ↳ `arxiv_2508_13313_flow_matching_data_assimilation/source/metadata.md` | 论文元信息、版本、链接与摘要要点归档 |
+| ↳ `arxiv_2508_13313_flow_matching_data_assimilation/source/` | arXiv e-print 原始 TeX 源码、SIAM 类文件、BibTeX 文献库和实验图表资源 |
+| ↳ `arxiv_2508_13313_flow_matching_data_assimilation/tex-zh-cn/` | 中文 TeX 技术阅读工作区，复用原始图表与参考文献，重点解释 EnFF、F2P flow、localized guidance 与经典滤波器关系 |
+| ↳ `arxiv_2508_13313_flow_matching_data_assimilation/tex-zh-cn/assets/cropped/` | 针对中文 PDF 复排生成的裁剪图表资产，用于减少原论文图表 PDF 自带画布留白 |
+| ↳ `arxiv_2508_13313_flow_matching_data_assimilation/tex-zh-cn/main.tex` | 中文阅读版主入口，使用自然流式排版与正规算法环境组织核心公式、算法和实验图 |
+| ↳ `arxiv_2508_13313_flow_matching_data_assimilation/tex-zh-cn/main.pdf` | 编译生成的 5 页中文 PDF，使用裁剪图表资产减少无效空白，服务前沿 BFS 快速研读与后续复盘 |
+| ↳ `arxiv_2204_02558_douzero_plus_opponent_modeling_coach_guided_learning/` | arXiv:2204.02558《DouZero+: Improving DouDizhu AI by Opponent Modeling and Coach-guided Learning》原始资料与完整中文 TeX 译文叶子模块 |
+| ↳ `arxiv_2204_02558_douzero_plus_opponent_modeling_coach_guided_learning/resources/2204.02558v1.pdf` | 从 arXiv 下载的 v1 原始 PDF |
+| ↳ `arxiv_2204_02558_douzero_plus_opponent_modeling_coach_guided_learning/resources/2204.02558v1-source.tar.gz` | 从 arXiv e-print 下载的原始 TeX 源码压缩包 |
+| ↳ `arxiv_2204_02558_douzero_plus_opponent_modeling_coach_guided_learning/resources/2204.02558_abs.html` | arXiv 摘要页本地归档，用于标题、作者、提交时间、摘要、许可与源码入口追溯 |
+| ↳ `arxiv_2204_02558_douzero_plus_opponent_modeling_coach_guided_learning/source/metadata.md` | 论文元信息、arXiv 链接、源码文件清单、许可与翻译策略归档 |
+| ↳ `arxiv_2204_02558_douzero_plus_opponent_modeling_coach_guided_learning/source/` | arXiv e-print 原始 TeX 源码、IEEEtran 类文件、参考文献 bbl 与原论文图表 PDF 资源 |
+| ↳ `arxiv_2204_02558_douzero_plus_opponent_modeling_coach_guided_learning/tex-zh-cn/` | 完整中文 TeX 译文工作区，按章节拆分中文正文，复用原始图表、IEEEtran 类文件与参考文献结构 |
+| ↳ `arxiv_2204_02558_douzero_plus_opponent_modeling_coach_guided_learning/tex-zh-cn/main.tex` | 中文译文主入口，组织中文标题、摘要、关键词、章节模块与参考文献 |
+| ↳ `arxiv_2204_02558_douzero_plus_opponent_modeling_coach_guided_learning/tex-zh-cn/preamble.tex` | XeLaTeX 中文字体、IEEE 名称汉化、公式、图表和引用宏包配置 |
+| ↳ `arxiv_2204_02558_douzero_plus_opponent_modeling_coach_guided_learning/tex-zh-cn/sections/` | 按引言、相关工作、预备知识、方法、实验、结论拆分的完整中文正文 TeX 文件 |
+| ↳ `arxiv_2204_02558_douzero_plus_opponent_modeling_coach_guided_learning/tex-zh-cn/main.pdf` | 编译生成的 7 页中文 PDF，覆盖原文正文、图表说明、表格内容、公式与引用结构 |
+| ↳ `openreview_B_LdLljS842_spending_thinking_time_wisely/` | OpenReview NeurIPS 2022《Spending Thinking Time Wisely: Accelerating MCTS with Virtual Expansions》资料与中文图文对齐阅读版叶子模块 |
+| ↳ `openreview_B_LdLljS842_spending_thinking_time_wisely/resources/` | OpenReview 原始 PDF 与论坛 note 元数据归档 |
+| ↳ `openreview_B_LdLljS842_spending_thinking_time_wisely/source/` | 原 PDF 文本层、逐页渲染图与抽取图片资源，作为中文排版对齐参照 |
+| ↳ `openreview_B_LdLljS842_spending_thinking_time_wisely/tex-zh-cn/` | 中文 TeX 阅读工作区，按原文顺序拆分正文并复用原论文图表资产 |
+| ↳ `openreview_B_LdLljS842_spending_thinking_time_wisely/tex-zh-cn/main.tex` | 中文版主入口，组织中文译稿、正规算法环境与 CJK 自然流式排版配置 |
+| ↳ `openreview_B_LdLljS842_spending_thinking_time_wisely/tex-zh-cn/main.pdf` | 编译生成的 8 页中文 PDF，保留原论文主要图表顺序，减少大段空白并规范化算法伪代码 |
+| ↳ `openreview_ExVMnClnrM_kalman_edit_flow_image_editing/` | OpenReview NeurIPS 2025 poster《Enhancing Consistency of Flow-Based Image Editing through Kalman Control》资料与中文技术阅读版叶子模块 |
+| ↳ `openreview_ExVMnClnrM_kalman_edit_flow_image_editing/resources/` | OpenReview 原始 PDF 与 forum note 元数据归档 |
+| ↳ `openreview_ExVMnClnrM_kalman_edit_flow_image_editing/source/metadata.md` | 论文元信息、OpenReview 链接、版本、许可与摘要要点归档 |
+| ↳ `openreview_ExVMnClnrM_kalman_edit_flow_image_editing/source/` | 原 PDF 文本层、逐页渲染图与抽取图片资源，作为中文复排和图表裁剪参照 |
+| ↳ `openreview_ExVMnClnrM_kalman_edit_flow_image_editing/tex-zh-cn/assets/` | 中文阅读版使用的 Figure 1/2/3/4/5 图表裁剪与抽取资产 |
+| ↳ `openreview_ExVMnClnrM_kalman_edit_flow_image_editing/tex-zh-cn/main.tex` | 中文技术阅读版主入口，解释 Kalman-Edit、LQG/Kalman 控制、两阶段编辑、shortcut 和实验结果 |
+| ↳ `openreview_ExVMnClnrM_kalman_edit_flow_image_editing/tex-zh-cn/main.pdf` | 编译生成的 6 页中文 PDF，服务前沿 BFS 快速研读与后续复盘 |
+| ↳ `openreview_cmN8Wbvanr_llm_master_complex_card_games/` | OpenReview NeurIPS 2025 poster《Can Large Language Models Master Complex Card Games?》资料与中文技术阅读版叶子模块 |
+| ↳ `openreview_cmN8Wbvanr_llm_master_complex_card_games/resources/` | OpenReview 原始 PDF 与 forum note 元数据归档 |
+| ↳ `openreview_cmN8Wbvanr_llm_master_complex_card_games/source/metadata.md` | 论文元信息、OpenReview 链接、许可、代码链接与摘要要点归档 |
+| ↳ `openreview_cmN8Wbvanr_llm_master_complex_card_games/source/` | 原 PDF 文本层、36 页逐页渲染图与图片抽取目录，作为中文阅读版校对和图表裁剪参照 |
+| ↳ `openreview_cmN8Wbvanr_llm_master_complex_card_games/tex-zh-cn/assets/` | 中文阅读版使用的复杂度图、训练数据曲线、混合训练曲线、通用能力评估图与数据表截图资产 |
+| ↳ `openreview_cmN8Wbvanr_llm_master_complex_card_games/tex-zh-cn/sections/` | 中文技术阅读版正文分节，覆盖业务问题、数据方法、实验结果与业务解读 |
+| ↳ `openreview_cmN8Wbvanr_llm_master_complex_card_games/tex-zh-cn/main.tex` | 中文版主入口，仅装配 preamble 与分节正文，避免主文件臃肿 |
+| ↳ `openreview_cmN8Wbvanr_llm_master_complex_card_games/tex-zh-cn/main.pdf` | 编译生成的 4 页中文 PDF，服务前沿 BFS 快速研读与后续复盘 |
 | `虚拟朋友圈/` | 面向“虚拟朋友圈”系列内容的独立素材子模块 |
 | ↳ `1.md` | 梦境门世界原始中文图文稿 |
 | ↳ `image/1/` | `1.md` 使用的 4 张原始配图 |
@@ -253,4 +302,4 @@ Agent 运行缓存与归档区。
 | 第二层 | `<date>/README.md` | 日期级摘要，列出当天所有变更记录的一行摘要与链接 |
 | 第三层 | `<date>/<change>.md` | 具体变更记录，含文件修改列表、时间戳、业务动机 |
 
-日期文件夹: `2026-02-03/`, `2026-02-05/`, `2026-03-13/`, `2026-03-16/`, `2026-03-23/`, `2026-03-27/`, `2026-03-28/`, `2026-03-30/`, `2026-04-02/`, `2026-04-03/`, `2026-04-04/`, `2026-04-05/`, `2026-04-06/`, `2026-04-19/`.
+日期文件夹: `2026-02-03/`, `2026-02-05/`, `2026-03-13/`, `2026-03-16/`, `2026-03-23/`, `2026-03-27/`, `2026-03-28/`, `2026-03-30/`, `2026-04-02/`, `2026-04-03/`, `2026-04-04/`, `2026-04-05/`, `2026-04-06/`, `2026-04-19/`, `2026-05-10/`, `2026-05-24/`, `2026-05-25/`, `2026-05-26/`, `2026-05-29/`, `2026-05-30/`, `2026-05-31/`.
