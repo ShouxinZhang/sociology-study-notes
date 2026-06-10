@@ -180,3 +180,39 @@ XS, 即使是Anthropic最强大的前沿模型Claude Fable 5, 右侧竖线对齐
 由此不难看出, Mythos级别Huge Model的成功似乎也不是绝对的，还有很大改进空间
 
 }
+
+{
+
+7:46 AM
+
+Wednesday, **June 10, 2026** **(GMT+8)**
+
+Time in Beijing, China
+
+自LLM出现之后，世界的现代化进程显著加速了. 借助于人工智能的力量, 人们可以将过去若干年用陈旧生产工具生产的资料，以一种现代化的方式重构管理。
+
+Science（科学），Technology（技术），Engineering（工程），Mathematics（数学）
+
+STEM的思想以指数级别加速着改造世界
+
+世界观，方法论，用工具和技术解决实际问题，系统思维，逻辑，第一性原理，量化分析...
+
+---
+
+Build everything, turn ideas into reality, because this is the age of AI.
+
+}
+
+{
+
+9:59 AM
+
+Wednesday, **June 10, 2026** **(GMT+8)**
+
+Time in Beijing, China
+
+有时候，我们必须要学会忍耐。诱惑无处不在，但是需要付出许多代价。
+
+适当地忍耐是有好处的，这让我们学会在有限的条件下尽可能解决困难。
+
+}

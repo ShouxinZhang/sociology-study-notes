@@ -142,6 +142,15 @@
 | ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/tex-zh-cn/main_arxiv_submission.tex` | 主文、材料方法与补充说明层的中文稿，继续通过 `proofs/` 子模块承载已中文化的详细数学证明 |
 | ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/tex-zh-cn/proofs/` | Erdos、OEIS、图重构、Hilbert 与 Written on the Wall 等去形式化 Lean 证明的中文 TeX 子模块 |
 | ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/tex-zh-cn/main.pdf` | 编译生成的 53 页中文 PDF，保留原论文图表、可追溯引用结构和中文证明附录 |
+| ↳ `arxiv_2510_04520_aria_retrieval_iterative_auto_formalization_dependency_graph/` | arXiv:2510.04520《Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph》资料与完整中文 TeX 翻译版叶子模块 |
+| ↳ `arxiv_2510_04520_aria_retrieval_iterative_auto_formalization_dependency_graph/resources/2510.04520.pdf` | 从 arXiv 下载的 v1 原始 PDF |
+| ↳ `arxiv_2510_04520_aria_retrieval_iterative_auto_formalization_dependency_graph/resources/2510.04520-source.tar.gz` | 从 arXiv e-print 下载的 TeX 源码压缩包 |
+| ↳ `arxiv_2510_04520_aria_retrieval_iterative_auto_formalization_dependency_graph/resources/2510.04520_abs.html` | arXiv 摘要页本地归档，用于版本、作者、摘要、许可与源码入口追溯 |
+| ↳ `arxiv_2510_04520_aria_retrieval_iterative_auto_formalization_dependency_graph/source/metadata.md` | 论文元信息、arXiv 链接、CC BY 4.0 许可与翻译边界归档 |
+| ↳ `arxiv_2510_04520_aria_retrieval_iterative_auto_formalization_dependency_graph/source/` | arXiv e-print 原始 TeX 源码、ICLR 样式文件、BibTeX 文献库与图表资源 |
+| ↳ `arxiv_2510_04520_aria_retrieval_iterative_auto_formalization_dependency_graph/tex-zh-cn/` | 中文 TeX 翻译工作区，复用原始图表、样式、BibTeX 与 Lean listing 支持文件 |
+| ↳ `arxiv_2510_04520_aria_retrieval_iterative_auto_formalization_dependency_graph/tex-zh-cn/main.tex` | 中文译稿主入口，按原论文可见结构翻译正文、标题、图注、表注、appendix 和 LLM 使用声明，保留代码清单、数学公式与引用键 |
+| ↳ `arxiv_2510_04520_aria_retrieval_iterative_auto_formalization_dependency_graph/tex-zh-cn/main.pdf` | 编译生成的 22 页中文 PDF，保留原论文主体与 appendix 顺序 |
 | ↳ `arxiv_2508_13313_flow_matching_data_assimilation/` | arXiv:2508.13313《Flow Matching for Efficient and Scalable Data Assimilation》资料与中文技术阅读版叶子模块 |
 | ↳ `arxiv_2508_13313_flow_matching_data_assimilation/resources/2508.13313.pdf` | 从 arXiv 下载的当前 PDF |
 | ↳ `arxiv_2508_13313_flow_matching_data_assimilation/resources/2508.13313_abs.html` | arXiv 摘要页本地归档，用于版本、作者、摘要和代码链接追溯 |
