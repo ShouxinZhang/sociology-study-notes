@@ -1,0 +1,4 @@
+interface:
+  display_name: "English PDF Paper Translation"
+  short_description: "Translate English research PDFs into faithful Chinese TeX"
+  default_prompt: "Use $english-pdf-paper-translation to translate this English arXiv or PDF paper into a faithful Chinese TeX/PDF version."

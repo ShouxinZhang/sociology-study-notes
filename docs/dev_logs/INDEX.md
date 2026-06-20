@@ -8,6 +8,12 @@
 
 | 日期 | 变更数 | 主要工作 |
 |------|--------|---------|
+| [2026-06-20](2026-06-20/README.md) | 2 | 前沿 BFS 新增 arXiv:2505.06589《Optimal Transport for Machine Learners》官方资源归档、完整中文 TeX 译文，并将中文 TeX 数学字体切换为 Latin Modern 后重编译 195 页中文 PDF |
+| [2026-06-17](2026-06-17/README.md) | 1 | 前沿 BFS 新增 arXiv:2504.01538《AI-Newton》官方资源归档、英文单栏辅助版、完整中文单栏 TeX 译文与 11 页中文 PDF |
+| [2026-06-16](2026-06-16/README.md) | 3 | 前沿 BFS 新增 arXiv:2604.17121《The Topological Trouble With Transformers》、arXiv:2512.14720《SoMe: A Realistic Benchmark for LLM-based Social Media Agents》与 arXiv:1805.08975《Particle Filter Networks with Application to Visual Localization》的官方资源归档、完整中文 TeX 译文与中文 PDF |
+| [2026-06-15](2026-06-15/README.md) | 4 | 前沿 BFS 新增 OpenReview/NeurIPS 2021 HfpNVDg3ExA《Probabilistic Transformer For Time Series Analysis》资源归档、PDF-only 中文 TeX 译文与 15 页中文 PDF，统一 OpenReview EGK487IYAW 与 HfpNVDg3ExA 中文 TeX 段内粗体小标题格式，并修复 EGK487IYAW 中文 PDF 绕排窄栏留白 |
+| [2026-06-14](2026-06-14/README.md) | 1 | 前沿 BFS 新增 OpenReview EGK487IYAW《One Filters All》论文的 OpenReview/arXiv 资源归档、arXiv TeX 源码、metadata、完整中文 TeX 译文与 25 页中文 PDF |
+| [2026-06-12](2026-06-12/README.md) | 2 | 前沿 BFS 新增 PMLR v119 Cobbe et al. Procgen Benchmark 中文 TeX/PDF，并沉淀工作区级英文 PDF/arXiv 论文忠实中文 TeX 翻译 Skill |
 | [2026-06-10](2026-06-10/README.md) | 1 | 前沿 BFS 新增 arXiv:2510.04520 Aria 自动形式化论文的原始 PDF、arXiv TeX source、metadata、完整中文 TeX 译稿与中文 PDF |
 | [2026-05-31](2026-05-31/README.md) | 2 | 扩展 Git 忽略规则并为 `前沿BFS` 建立默认只跟踪 PDF 阅读资产的提交策略，减少本地缓存、依赖目录、日志、LaTeX 临时构建产物与前沿论文非 PDF 工作文件进入版本控制的风险 |
 | [2026-05-30](2026-05-30/README.md) | 1 | 前沿 BFS 新增 arXiv:2204.02558 DouZero+ 论文的原始 PDF、arXiv TeX 源码、metadata、完整中文 TeX 译文与中文 PDF |
@@ -33,4 +39,4 @@
 
 ---
 
-**总计：22 个开发日 · 84 条变更记录**
+**总计：28 个开发日 · 97 条变更记录**

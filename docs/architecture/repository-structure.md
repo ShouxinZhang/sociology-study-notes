@@ -142,6 +142,26 @@
 | ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/tex-zh-cn/main_arxiv_submission.tex` | 主文、材料方法与补充说明层的中文稿，继续通过 `proofs/` 子模块承载已中文化的详细数学证明 |
 | ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/tex-zh-cn/proofs/` | Erdos、OEIS、图重构、Hilbert 与 Written on the Wall 等去形式化 Lean 证明的中文 TeX 子模块 |
 | ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/tex-zh-cn/main.pdf` | 编译生成的 53 页中文 PDF，保留原论文图表、可追溯引用结构和中文证明附录 |
+| ↳ `arxiv_2604_17121_topological_trouble_with_transformers/` | arXiv:2604.17121《The Topological Trouble With Transformers》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
+| ↳ `arxiv_2604_17121_topological_trouble_with_transformers/resources/2604.17121.pdf` | 从 arXiv 下载的 v3 原始 PDF |
+| ↳ `arxiv_2604_17121_topological_trouble_with_transformers/resources/2604.17121-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
+| ↳ `arxiv_2604_17121_topological_trouble_with_transformers/resources/2604.17121_abs.html` | arXiv 摘要页本地归档，用于版本、作者、摘要、许可与源码入口追溯 |
+| ↳ `arxiv_2604_17121_topological_trouble_with_transformers/source/metadata.md` | 论文元信息、源码可用性、本地资源与翻译边界归档 |
+| ↳ `arxiv_2604_17121_topological_trouble_with_transformers/source/` | arXiv e-print 原始 TeX 源码、BibTeX 文献库、图表 PDF 资源与原 PDF 文本层 |
+| ↳ `arxiv_2604_17121_topological_trouble_with_transformers/tex-zh-cn/` | 中文 TeX 翻译工作区，复用官方图表 PDF 与 BibTeX，按摘要、正文、方向、结论分节维护 |
+| ↳ `arxiv_2604_17121_topological_trouble_with_transformers/tex-zh-cn/main.tex` | 中文译稿主入口，装配 preamble、摘要、Section 1-6 与参考文献，避免主文件臃肿 |
+| ↳ `arxiv_2604_17121_topological_trouble_with_transformers/tex-zh-cn/sections/` | 按摘要、引言、状态追踪、循环架构、架构局限与权宜方案、有前景方向、结论致谢拆分的完整中文正文 |
+| ↳ `arxiv_2604_17121_topological_trouble_with_transformers/tex-zh-cn/main.pdf` | 编译生成的 15 页中文 PDF，保留原论文可见结构、Figure 1-7、Table 1、致谢与参考文献 |
+| ↳ `arxiv_2512_14720_some_realistic_benchmark_llm_social_media_agents/` | arXiv:2512.14720《SoMe: A Realistic Benchmark for LLM-based Social Media Agents》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
+| ↳ `arxiv_2512_14720_some_realistic_benchmark_llm_social_media_agents/resources/2512.14720.pdf` | 从 arXiv 下载的 v1 原始 PDF |
+| ↳ `arxiv_2512_14720_some_realistic_benchmark_llm_social_media_agents/resources/2512.14720-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
+| ↳ `arxiv_2512_14720_some_realistic_benchmark_llm_social_media_agents/resources/2512.14720_abs.html` | arXiv 摘要页本地归档，用于版本、作者、摘要、许可与源码入口追溯 |
+| ↳ `arxiv_2512_14720_some_realistic_benchmark_llm_social_media_agents/source/metadata.md` | 论文元信息、源码可用性、本地资源与翻译边界归档 |
+| ↳ `arxiv_2512_14720_some_realistic_benchmark_llm_social_media_agents/source/` | arXiv e-print 原始 TeX 源码、AAAI 样式、BibTeX 文献库、图像资源与原 PDF 文本层 |
+| ↳ `arxiv_2512_14720_some_realistic_benchmark_llm_social_media_agents/tex-zh-cn/` | 中文 TeX 翻译工作区，复用官方图像资源、AAAI BibTeX 样式与参考文献 |
+| ↳ `arxiv_2512_14720_some_realistic_benchmark_llm_social_media_agents/tex-zh-cn/main.tex` | 中文译稿主入口，装配 preamble、摘要、Section 1-5、参考文献与附录，避免主文件臃肿 |
+| ↳ `arxiv_2512_14720_some_realistic_benchmark_llm_social_media_agents/tex-zh-cn/sections/` | 按摘要、引言、相关工作、SoMe 基准、评估、结论、任务定义、工具实现、数据集标注与评估细节拆分的完整中文正文 |
+| ↳ `arxiv_2512_14720_some_realistic_benchmark_llm_social_media_agents/tex-zh-cn/main.pdf` | 编译生成的 24 页中文 PDF，保留原论文正文、表格、图示、参考文献和 Appendix A-D 的可见结构 |
 | ↳ `arxiv_2510_04520_aria_retrieval_iterative_auto_formalization_dependency_graph/` | arXiv:2510.04520《Aria: An Agent For Retrieval and Iterative Auto-Formalization via Dependency Graph》资料与完整中文 TeX 翻译版叶子模块 |
 | ↳ `arxiv_2510_04520_aria_retrieval_iterative_auto_formalization_dependency_graph/resources/2510.04520.pdf` | 从 arXiv 下载的 v1 原始 PDF |
 | ↳ `arxiv_2510_04520_aria_retrieval_iterative_auto_formalization_dependency_graph/resources/2510.04520-source.tar.gz` | 从 arXiv e-print 下载的 TeX 源码压缩包 |
@@ -151,6 +171,19 @@
 | ↳ `arxiv_2510_04520_aria_retrieval_iterative_auto_formalization_dependency_graph/tex-zh-cn/` | 中文 TeX 翻译工作区，复用原始图表、样式、BibTeX 与 Lean listing 支持文件 |
 | ↳ `arxiv_2510_04520_aria_retrieval_iterative_auto_formalization_dependency_graph/tex-zh-cn/main.tex` | 中文译稿主入口，按原论文可见结构翻译正文、标题、图注、表注、appendix 和 LLM 使用声明，保留代码清单、数学公式与引用键 |
 | ↳ `arxiv_2510_04520_aria_retrieval_iterative_auto_formalization_dependency_graph/tex-zh-cn/main.pdf` | 编译生成的 22 页中文 PDF，保留原论文主体与 appendix 顺序 |
+| ↳ `pmlr_v119_cobbe20a_procgen_benchmark_reinforcement_learning/` | PMLR v119 Cobbe et al. 2020《Leveraging Procedural Generation to Benchmark Reinforcement Learning》资料与主论文完整中文 TeX 翻译版叶子模块 |
+| ↳ `pmlr_v119_cobbe20a_procgen_benchmark_reinforcement_learning/resources/cobbe20a.pdf` | 从 PMLR 下载的原始主论文 PDF |
+| ↳ `pmlr_v119_cobbe20a_procgen_benchmark_reinforcement_learning/resources/cobbe20a-supp.pdf` | 从 PMLR 下载的原始补充 PDF，作为归档资源保留，不并入主论文译文 |
+| ↳ `pmlr_v119_cobbe20a_procgen_benchmark_reinforcement_learning/resources/cobbe20a.html` | PMLR 论文页面本地归档，用于题名、作者、BibTeX、软件链接和补充 PDF 入口追溯 |
+| ↳ `pmlr_v119_cobbe20a_procgen_benchmark_reinforcement_learning/source/metadata.md` | 论文元信息、本地资源、官方 TeX 源码检查结果与翻译边界归档 |
+| ↳ `pmlr_v119_cobbe20a_procgen_benchmark_reinforcement_learning/source/cobbe20a.txt` | 主论文 PDF 文本层抽取结果，作为中文 TeX 重建参照 |
+| ↳ `pmlr_v119_cobbe20a_procgen_benchmark_reinforcement_learning/source/cobbe20a-supp.txt` | 补充 PDF 文本层抽取结果，仅作为归档与后续扩展参照 |
+| ↳ `pmlr_v119_cobbe20a_procgen_benchmark_reinforcement_learning/source/page-renders/` | 主论文逐页渲染图，用于裁剪原论文 Figure 1-6 |
+| ↳ `pmlr_v119_cobbe20a_procgen_benchmark_reinforcement_learning/tex-zh-cn/assets/` | 中文译文使用的 Figure 1-6 裁剪图形资产 |
+| ↳ `pmlr_v119_cobbe20a_procgen_benchmark_reinforcement_learning/tex-zh-cn/main.tex` | 中文译稿主入口，装配 preamble、摘要、章节正文和参考文献，避免主文件臃肿 |
+| ↳ `pmlr_v119_cobbe20a_procgen_benchmark_reinforcement_learning/tex-zh-cn/preamble.tex` | XeLaTeX 中文排版、页眉页脚、图题和图形插入宏配置 |
+| ↳ `pmlr_v119_cobbe20a_procgen_benchmark_reinforcement_learning/tex-zh-cn/sections/` | 按摘要、引言、Procgen Benchmark、泛化实验、模型规模、算法比较、相关工作、结论和参考文献拆分的完整中文正文 TeX 文件 |
+| ↳ `pmlr_v119_cobbe20a_procgen_benchmark_reinforcement_learning/tex-zh-cn/main.pdf` | 编译生成的 9 页中文 PDF，按主论文可见顺序保留标题、摘要、Section 1-7、Figure 1-6、脚注与参考文献 |
 | ↳ `arxiv_2508_13313_flow_matching_data_assimilation/` | arXiv:2508.13313《Flow Matching for Efficient and Scalable Data Assimilation》资料与中文技术阅读版叶子模块 |
 | ↳ `arxiv_2508_13313_flow_matching_data_assimilation/resources/2508.13313.pdf` | 从 arXiv 下载的当前 PDF |
 | ↳ `arxiv_2508_13313_flow_matching_data_assimilation/resources/2508.13313_abs.html` | arXiv 摘要页本地归档，用于版本、作者、摘要和代码链接追溯 |
@@ -160,6 +193,28 @@
 | ↳ `arxiv_2508_13313_flow_matching_data_assimilation/tex-zh-cn/assets/cropped/` | 针对中文 PDF 复排生成的裁剪图表资产，用于减少原论文图表 PDF 自带画布留白 |
 | ↳ `arxiv_2508_13313_flow_matching_data_assimilation/tex-zh-cn/main.tex` | 中文阅读版主入口，使用自然流式排版与正规算法环境组织核心公式、算法和实验图 |
 | ↳ `arxiv_2508_13313_flow_matching_data_assimilation/tex-zh-cn/main.pdf` | 编译生成的 5 页中文 PDF，使用裁剪图表资产减少无效空白，服务前沿 BFS 快速研读与后续复盘 |
+| ↳ `arxiv_2505_06589_optimal_transport_machine_learners/` | arXiv:2505.06589《Optimal Transport for Machine Learners》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
+| ↳ `arxiv_2505_06589_optimal_transport_machine_learners/resources/2505.06589.pdf` | 从 arXiv 下载的 v2 原始 PDF |
+| ↳ `arxiv_2505_06589_optimal_transport_machine_learners/resources/2505.06589-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
+| ↳ `arxiv_2505_06589_optimal_transport_machine_learners/resources/2505.06589_abs.html` | arXiv 摘要页本地归档，用于版本、作者、摘要、分类、DOI 与源码入口追溯 |
+| ↳ `arxiv_2505_06589_optimal_transport_machine_learners/source/metadata.md` | 论文元信息、源码可用性、本地资源与中文翻译边界归档 |
+| ↳ `arxiv_2505_06589_optimal_transport_machine_learners/source/` | arXiv e-print 原始 TeX 源码、BibTeX 文献库、样式文件、图表 PDF 资源与原 PDF 文本层 |
+| ↳ `arxiv_2505_06589_optimal_transport_machine_learners/tex-zh-cn/` | 中文 TeX 翻译工作区，复用官方图表 PDF、BibTeX、样式文件和分章源码结构，并显式使用 Latin Modern 数学字体 |
+| ↳ `arxiv_2505_06589_optimal_transport_machine_learners/tex-zh-cn/main.tex` | 中文译稿主入口，装配前言、14 章正文、参考文献与记号表，通过 `fontspec` no-math 与 `lmodern` 固定 Latin Modern 数学字族，避免主文件臃肿 |
+| ↳ `arxiv_2505_06589_optimal_transport_machine_learners/tex-zh-cn/sections/` | 按匹配、Monge、Kantorovich、对偶、Sinkhorn、广义 Wasserstein、动态 OT、Wasserstein 梯度流、生成传输模型与记号表拆分的完整中文正文 |
+| ↳ `arxiv_2505_06589_optimal_transport_machine_learners/tex-zh-cn/main.pdf` | 编译生成的 195 页中文 PDF，保留书稿标题、目录、14 章正文、图表、参考文献、索引与记号表结构 |
+| ↳ `arxiv_2504_01538_ai_newton_concept_driven_physical_law_discovery/` | arXiv:2504.01538《AI-Newton: A Concept-Driven Physical Law Discovery System without Prior Physical Knowledge》资料、官方 TeX 源码归档、英文单栏辅助版与完整中文单栏 TeX/PDF 译文叶子模块 |
+| ↳ `arxiv_2504_01538_ai_newton_concept_driven_physical_law_discovery/resources/2504.01538.pdf` | 从 arXiv 下载的 v2 原始 PDF |
+| ↳ `arxiv_2504_01538_ai_newton_concept_driven_physical_law_discovery/resources/2504.01538-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
+| ↳ `arxiv_2504_01538_ai_newton_concept_driven_physical_law_discovery/resources/2504.01538_abs.html` | arXiv 摘要页本地归档，用于版本、作者、摘要、分类、DOI 与源码入口追溯 |
+| ↳ `arxiv_2504_01538_ai_newton_concept_driven_physical_law_discovery/source/metadata.md` | 论文元信息、源码可用性、本地资源、中文翻译边界与英文单栏辅助版边界归档 |
+| ↳ `arxiv_2504_01538_ai_newton_concept_driven_physical_law_discovery/source/` | arXiv e-print 原始 TeX 源码、生成版 bbl、原始图像资源、补充 PDF 与原 PDF 文本层 |
+| ↳ `arxiv_2504_01538_ai_newton_concept_driven_physical_law_discovery/tex-single-column/` | 英文单栏辅助工作区，保留原文内容与参考文献，仅将 RevTeX 双栏布局改为单栏并转换宽图环境 |
+| ↳ `arxiv_2504_01538_ai_newton_concept_driven_physical_law_discovery/tex-single-column/main.pdf` | 编译生成的 14 页英文单栏 PDF，作为原文版式转换参照 |
+| ↳ `arxiv_2504_01538_ai_newton_concept_driven_physical_law_discovery/tex-zh-cn/` | 中文单栏 TeX 翻译工作区，复用官方图像资源、生成版 bbl 与补充 PDF 归档 |
+| ↳ `arxiv_2504_01538_ai_newton_concept_driven_physical_law_discovery/tex-zh-cn/main.tex` | 中文译稿主入口，装配 preamble、摘要、Section 1-5、致谢与参考文献，避免主文件臃肿 |
+| ↳ `arxiv_2504_01538_ai_newton_concept_driven_physical_law_discovery/tex-zh-cn/sections/` | 按摘要、引言、知识库与表示、自主发现工作流、重新发现 Newton 力学定律、总结致谢参考文献拆分的完整中文正文 |
+| ↳ `arxiv_2504_01538_ai_newton_concept_driven_physical_law_discovery/tex-zh-cn/main.pdf` | 编译生成的 11 页中文单栏 PDF，保留原论文标题摘要、Section 1-5、Figure 1-3、致谢与参考文献 |
 | ↳ `arxiv_2204_02558_douzero_plus_opponent_modeling_coach_guided_learning/` | arXiv:2204.02558《DouZero+: Improving DouDizhu AI by Opponent Modeling and Coach-guided Learning》原始资料与完整中文 TeX 译文叶子模块 |
 | ↳ `arxiv_2204_02558_douzero_plus_opponent_modeling_coach_guided_learning/resources/2204.02558v1.pdf` | 从 arXiv 下载的 v1 原始 PDF |
 | ↳ `arxiv_2204_02558_douzero_plus_opponent_modeling_coach_guided_learning/resources/2204.02558v1-source.tar.gz` | 从 arXiv e-print 下载的原始 TeX 源码压缩包 |
@@ -171,6 +226,16 @@
 | ↳ `arxiv_2204_02558_douzero_plus_opponent_modeling_coach_guided_learning/tex-zh-cn/preamble.tex` | XeLaTeX 中文字体、IEEE 名称汉化、公式、图表和引用宏包配置 |
 | ↳ `arxiv_2204_02558_douzero_plus_opponent_modeling_coach_guided_learning/tex-zh-cn/sections/` | 按引言、相关工作、预备知识、方法、实验、结论拆分的完整中文正文 TeX 文件 |
 | ↳ `arxiv_2204_02558_douzero_plus_opponent_modeling_coach_guided_learning/tex-zh-cn/main.pdf` | 编译生成的 7 页中文 PDF，覆盖原文正文、图表说明、表格内容、公式与引用结构 |
+| ↳ `arxiv_1805_08975_particle_filter_networks_visual_localization/` | arXiv:1805.08975《Particle Filter Networks with Application to Visual Localization》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
+| ↳ `arxiv_1805_08975_particle_filter_networks_visual_localization/resources/1805.08975.pdf` | 从 arXiv 下载的 v3 原始 PDF |
+| ↳ `arxiv_1805_08975_particle_filter_networks_visual_localization/resources/1805.08975-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
+| ↳ `arxiv_1805_08975_particle_filter_networks_visual_localization/resources/1805.08975_abs.html` | arXiv 摘要页本地归档，用于版本、作者、摘要、分类与源码入口追溯 |
+| ↳ `arxiv_1805_08975_particle_filter_networks_visual_localization/source/metadata.md` | 论文元信息、源码可用性、本地资源与翻译边界归档 |
+| ↳ `arxiv_1805_08975_particle_filter_networks_visual_localization/source/` | arXiv e-print 原始 TeX 源码、CoRL 样式、生成版 bbl、PDF 图表资源与原 PDF 文本层 |
+| ↳ `arxiv_1805_08975_particle_filter_networks_visual_localization/tex-zh-cn/` | 中文 TeX 翻译工作区，复用官方 PDF 图表资源与原始 bbl 参考文献 |
+| ↳ `arxiv_1805_08975_particle_filter_networks_visual_localization/tex-zh-cn/main.tex` | 中文译稿主入口，装配 preamble、摘要、Section 1-6、致谢与参考文献，避免主文件臃肿 |
+| ↳ `arxiv_1805_08975_particle_filter_networks_visual_localization/tex-zh-cn/sections/` | 按摘要、引言、背景、粒子滤波网络、视觉定位、仿真实验、结论与致谢参考文献拆分的完整中文正文 |
+| ↳ `arxiv_1805_08975_particle_filter_networks_visual_localization/tex-zh-cn/main.pdf` | 编译生成的 11 页中文 PDF，保留原论文标题摘要、Section 1-6、Figure 1-4、Table 1、致谢与参考文献 |
 | ↳ `openreview_B_LdLljS842_spending_thinking_time_wisely/` | OpenReview NeurIPS 2022《Spending Thinking Time Wisely: Accelerating MCTS with Virtual Expansions》资料与中文图文对齐阅读版叶子模块 |
 | ↳ `openreview_B_LdLljS842_spending_thinking_time_wisely/resources/` | OpenReview 原始 PDF 与论坛 note 元数据归档 |
 | ↳ `openreview_B_LdLljS842_spending_thinking_time_wisely/source/` | 原 PDF 文本层、逐页渲染图与抽取图片资源，作为中文排版对齐参照 |
@@ -192,6 +257,23 @@
 | ↳ `openreview_cmN8Wbvanr_llm_master_complex_card_games/tex-zh-cn/sections/` | 中文技术阅读版正文分节，覆盖业务问题、数据方法、实验结果与业务解读 |
 | ↳ `openreview_cmN8Wbvanr_llm_master_complex_card_games/tex-zh-cn/main.tex` | 中文版主入口，仅装配 preamble 与分节正文，避免主文件臃肿 |
 | ↳ `openreview_cmN8Wbvanr_llm_master_complex_card_games/tex-zh-cn/main.pdf` | 编译生成的 4 页中文 PDF，服务前沿 BFS 快速研读与后续复盘 |
+| ↳ `openreview_EGK487IYAW_one_filters_all_generalist_filter_state_estimation/` | OpenReview NeurIPS 2025 poster《One Filters All: A Generalist Filter For State Estimation》资料、arXiv 源码归档与中文 TeX/PDF 译文叶子模块 |
+| ↳ `openreview_EGK487IYAW_one_filters_all_generalist_filter_state_estimation/resources/` | OpenReview 原始 PDF、forum HTML、note JSON、arXiv PDF、arXiv 摘要页与 arXiv e-print 源码压缩包归档 |
+| ↳ `openreview_EGK487IYAW_one_filters_all_generalist_filter_state_estimation/source/metadata.md` | 论文元信息、本地资源、OpenReview/arXiv 版本差异、源码可用性与翻译边界归档 |
+| ↳ `openreview_EGK487IYAW_one_filters_all_generalist_filter_state_estimation/source/` | arXiv e-print 原始 TeX 源码、BibTeX 文献库、NeurIPS 样式、OpenReview/arXiv 文本层与图表资源 |
+| ↳ `openreview_EGK487IYAW_one_filters_all_generalist_filter_state_estimation/tex-zh-cn/` | 中文 TeX 翻译工作区，复用原论文图表、BibTeX 与 XeLaTeX 中文排版配置 |
+| ↳ `openreview_EGK487IYAW_one_filters_all_generalist_filter_state_estimation/tex-zh-cn/main.tex` | 中文译稿主入口，按标题摘要、正文、NeurIPS checklist 和附录模块化装配，避免主文件臃肿 |
+| ↳ `openreview_EGK487IYAW_one_filters_all_generalist_filter_state_estimation/tex-zh-cn/sections/` | 按摘要、引言、预备知识、方法、相关工作、实验、结论、NeurIPS checklist、Bayes filters、系统描述、原理分析、实验细节和补充结果拆分的中文正文；段内粗体小标题统一使用 `\textbf{...\ }` 格式，正文图改为普通 `figure` 流式排版以避免中文 PDF 窄栏留白 |
+| ↳ `openreview_EGK487IYAW_one_filters_all_generalist_filter_state_estimation/tex-zh-cn/main.pdf` | 编译生成的 24 页中文 PDF，保留 OpenReview 可见结构、Figure 1-10、Table 1/4-11、参考文献、NeurIPS checklist 与 Appendix A-E，并同步段内粗体小标题 spacing 与无绕排图文布局 |
+| ↳ `openreview_HfpNVDg3ExA_probabilistic_transformer_time_series_analysis/` | OpenReview/NeurIPS 2021《Probabilistic Transformer For Time Series Analysis》主论文资料归档与中文 TeX/PDF 译文叶子模块 |
+| ↳ `openreview_HfpNVDg3ExA_probabilistic_transformer_time_series_analysis/resources/` | OpenReview 原始 PDF、forum HTML、note JSON、NeurIPS proceedings PDF、NeurIPS 摘要页 HTML 与 supplemental PDF 归档 |
+| ↳ `openreview_HfpNVDg3ExA_probabilistic_transformer_time_series_analysis/source/metadata.md` | 论文元信息、OpenReview/NeurIPS 链接、官方 TeX 源码检查结果与主论文翻译边界归档 |
+| ↳ `openreview_HfpNVDg3ExA_probabilistic_transformer_time_series_analysis/source/` | 主论文与 supplemental PDF 文本层、逐页渲染图和原始参考文献文本，作为 PDF-only 中文复排参照 |
+| ↳ `openreview_HfpNVDg3ExA_probabilistic_transformer_time_series_analysis/tex-zh-cn/assets/` | 中文译文使用的 Figure 1-3 裁剪图形资产，已移除原 PDF 内嵌英文图注边界 |
+| ↳ `openreview_HfpNVDg3ExA_probabilistic_transformer_time_series_analysis/tex-zh-cn/main.tex` | 中文译稿主入口，按摘要、正文、结论致谢、参考文献和 NeurIPS checklist 模块化装配 |
+| ↳ `openreview_HfpNVDg3ExA_probabilistic_transformer_time_series_analysis/tex-zh-cn/preamble.tex` | XeLaTeX 中文排版、数学宏、表格、图形和原始参考文献逐行显示配置 |
+| ↳ `openreview_HfpNVDg3ExA_probabilistic_transformer_time_series_analysis/tex-zh-cn/sections/` | 按摘要、引言、预备知识、Probabilistic Transformer、相关工作、实验、结论致谢、参考文献和 checklist 拆分的中文正文；段内粗体小标题统一使用 `\textbf{...\ }` 格式 |
+| ↳ `openreview_HfpNVDg3ExA_probabilistic_transformer_time_series_analysis/tex-zh-cn/main.pdf` | 编译生成的 15 页中文 PDF，保留主论文可见结构、Figure 1-3、Table 1-3、参考文献与 NeurIPS checklist，并同步段内粗体小标题 spacing |
 | `虚拟朋友圈/` | 面向“虚拟朋友圈”系列内容的独立素材子模块 |
 | ↳ `1.md` | 梦境门世界原始中文图文稿 |
 | ↳ `image/1/` | `1.md` 使用的 4 张原始配图 |
@@ -266,6 +348,11 @@ LLM 生成的实验性模拟笔记，附多语言 LaTeX 教科书版本。
 |------|------|
 | `sociology-note-formatter/` | 笔记格式化与分类 Skill |
 | `plan-subagent-orchestrator/` | 通用计划驱动型协调 Skill，现以中文正文维护，用于上下文冻结、计划拆解、subagent 分发、验证门禁与收尾同步 |
+| `english-pdf-paper-translation/` | 英文 PDF/arXiv 论文忠实中文 TeX 翻译 Skill，约束源码优先、PDF-only 重建、资源归档、TeX 分层、编译校验与日志登记流程 |
+| ↳ `english-pdf-paper-translation/SKILL.md` | 工作区级 Skill 主说明，定义触发条件、原结构翻译原则、arXiv source 优先策略、输出目录和校验要求 |
+| ↳ `english-pdf-paper-translation/agents/openai.yaml` | Skill 的 UI 元数据与默认调用提示 |
+| ↳ `english-pdf-paper-translation/references/arxiv-source-workflow.md` | arXiv 或官方 TeX source 可用时的下载、解包、翻译、编译和校验流程 |
+| ↳ `english-pdf-paper-translation/references/pdf-only-workflow.md` | 无官方 TeX source 时基于 PDF 文本层、页面渲染和裁剪图形重建中文 TeX 的流程 |
 
 ### .agents/
 
@@ -311,4 +398,4 @@ Agent 运行缓存与归档区。
 | 第二层 | `<date>/README.md` | 日期级摘要，列出当天所有变更记录的一行摘要与链接 |
 | 第三层 | `<date>/<change>.md` | 具体变更记录，含文件修改列表、时间戳、业务动机 |
 
-日期文件夹: `2026-02-03/`, `2026-02-05/`, `2026-03-13/`, `2026-03-16/`, `2026-03-23/`, `2026-03-27/`, `2026-03-28/`, `2026-03-30/`, `2026-04-02/`, `2026-04-03/`, `2026-04-04/`, `2026-04-05/`, `2026-04-06/`, `2026-04-19/`, `2026-05-10/`, `2026-05-24/`, `2026-05-25/`, `2026-05-26/`, `2026-05-29/`, `2026-05-30/`, `2026-05-31/`.
+日期文件夹: `2026-02-03/`, `2026-02-05/`, `2026-03-13/`, `2026-03-16/`, `2026-03-23/`, `2026-03-27/`, `2026-03-28/`, `2026-03-30/`, `2026-04-02/`, `2026-04-03/`, `2026-04-04/`, `2026-04-05/`, `2026-04-06/`, `2026-04-19/`, `2026-05-10/`, `2026-05-24/`, `2026-05-25/`, `2026-05-26/`, `2026-05-29/`, `2026-05-30/`, `2026-05-31/`, `2026-06-10/`, `2026-06-12/`, `2026-06-14/`, `2026-06-15/`, `2026-06-16/`, `2026-06-17/`.
