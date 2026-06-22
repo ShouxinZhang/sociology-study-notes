@@ -8,6 +8,7 @@
 
 | 日期 | 变更数 | 主要工作 |
 |------|--------|---------|
+| [2026-06-21](2026-06-21/README.md) | 1 | 前沿 BFS 新增加翻译区新增 arXiv:2606.17861《GameCraft-Bench》官方资源归档、完整中文 TeX 译文与 23 页中文 PDF，派遣 subagent 分节翻译并改用 XeLaTeX + xeCJK 复用官方 `cuhksz` 排版类 |
 | [2026-06-20](2026-06-20/README.md) | 2 | 前沿 BFS 新增 arXiv:2505.06589《Optimal Transport for Machine Learners》官方资源归档、完整中文 TeX 译文，并将中文 TeX 数学字体切换为 Latin Modern 后重编译 195 页中文 PDF |
 | [2026-06-17](2026-06-17/README.md) | 1 | 前沿 BFS 新增 arXiv:2504.01538《AI-Newton》官方资源归档、英文单栏辅助版、完整中文单栏 TeX 译文与 11 页中文 PDF |
 | [2026-06-16](2026-06-16/README.md) | 3 | 前沿 BFS 新增 arXiv:2604.17121《The Topological Trouble With Transformers》、arXiv:2512.14720《SoMe: A Realistic Benchmark for LLM-based Social Media Agents》与 arXiv:1805.08975《Particle Filter Networks with Application to Visual Localization》的官方资源归档、完整中文 TeX 译文与中文 PDF |
@@ -39,4 +40,4 @@
 
 ---
 
-**总计：28 个开发日 · 97 条变更记录**
+**总计：29 个开发日 · 98 条变更记录**

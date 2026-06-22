@@ -274,6 +274,16 @@
 | ↳ `openreview_HfpNVDg3ExA_probabilistic_transformer_time_series_analysis/tex-zh-cn/preamble.tex` | XeLaTeX 中文排版、数学宏、表格、图形和原始参考文献逐行显示配置 |
 | ↳ `openreview_HfpNVDg3ExA_probabilistic_transformer_time_series_analysis/tex-zh-cn/sections/` | 按摘要、引言、预备知识、Probabilistic Transformer、相关工作、实验、结论致谢、参考文献和 checklist 拆分的中文正文；段内粗体小标题统一使用 `\textbf{...\ }` 格式 |
 | ↳ `openreview_HfpNVDg3ExA_probabilistic_transformer_time_series_analysis/tex-zh-cn/main.pdf` | 编译生成的 15 页中文 PDF，保留主论文可见结构、Figure 1-3、Table 1-3、参考文献与 NeurIPS checklist，并同步段内粗体小标题 spacing |
+| `前沿BFS新增加翻译/` | 前沿 BFS 新增论文翻译区，承接最新批次论文的官方资源归档与完整中文 TeX/PDF 译文叶子模块 |
+| ↳ `arxiv_2606_17861_gamecraft_bench/` | arXiv:2606.17861《GameCraft-Bench》资料归档与完整中文 TeX/PDF 译文叶子模块 |
+| ↳ `arxiv_2606_17861_gamecraft_bench/resources/` | 从 arXiv 下载的原始 PDF、摘要页 HTML 与 e-print 源码压缩包归档 |
+| ↳ `arxiv_2606_17861_gamecraft_bench/source/` | arXiv e-print 原始 TeX 源码（`main.tex`、`cuhksz` 类/样式、`refs.bib`、`main.bbl`）、`00README.json`、PDF 文本层与 24 个图片资源 |
+| ↳ `arxiv_2606_17861_gamecraft_bench/source/metadata.md` | 论文元信息、远程/本地资源、官方源码可用性、翻译边界与 XeLaTeX 构建说明归档 |
+| ↳ `arxiv_2606_17861_gamecraft_bench/tex-zh-cn/` | 中文 TeX 翻译工作区，复用原 `cuhksz` 排版类（注释两行 pdfTeX 专用语句以兼容 XeLaTeX）、原图与 BibTeX |
+| ↳ `arxiv_2606_17861_gamecraft_bench/tex-zh-cn/main.tex` | 中文译稿主入口，装配中文标题/作者/摘要、首图与分节正文，保留原论文图表与引用结构 |
+| ↳ `arxiv_2606_17861_gamecraft_bench/tex-zh-cn/preamble.tex` | XeLaTeX + xeCJK 中文排版、本地化标签（摘要/参考文献/图/表）与原论文自定义环境（准则定理、prompt/findings 盒、机构 logo）复现配置 |
+| ↳ `arxiv_2606_17861_gamecraft_bench/tex-zh-cn/sections/` | 按引言、好基准的标准、GameCraft-Bench、测评结果、深入分析、相关工作、结论与附录拆分的 8 个中文正文文件 |
+| ↳ `arxiv_2606_17861_gamecraft_bench/tex-zh-cn/main.pdf` | 编译生成的 23 页中文 PDF，保留三项准则、5 项 Findings、主结果表、16 列游戏族大表、案例研究与全部 verbatim 工件 |
 | `虚拟朋友圈/` | 面向“虚拟朋友圈”系列内容的独立素材子模块 |
 | ↳ `1.md` | 梦境门世界原始中文图文稿 |
 | ↳ `image/1/` | `1.md` 使用的 4 张原始配图 |
