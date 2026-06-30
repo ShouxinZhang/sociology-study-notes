@@ -142,6 +142,16 @@
 | ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/tex-zh-cn/main_arxiv_submission.tex` | 主文、材料方法与补充说明层的中文稿，继续通过 `proofs/` 子模块承载已中文化的详细数学证明 |
 | ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/tex-zh-cn/proofs/` | Erdos、OEIS、图重构、Hilbert 与 Written on the Wall 等去形式化 Lean 证明的中文 TeX 子模块 |
 | ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/tex-zh-cn/main.pdf` | 编译生成的 53 页中文 PDF，保留原论文图表、可追溯引用结构和中文证明附录 |
+| ↳ `arxiv_2605_13137_leansearch_v2_global_premise_retrieval_lean4_theorem_proving/` | arXiv:2605.13137《LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
+| ↳ `arxiv_2605_13137_leansearch_v2_global_premise_retrieval_lean4_theorem_proving/resources/2605.13137.pdf` | 从 arXiv 下载的 v2 原始 PDF |
+| ↳ `arxiv_2605_13137_leansearch_v2_global_premise_retrieval_lean4_theorem_proving/resources/2605.13137-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
+| ↳ `arxiv_2605_13137_leansearch_v2_global_premise_retrieval_lean4_theorem_proving/resources/2605.13137_abs.html` | arXiv 摘要页本地归档，用于版本、作者、摘要、许可与源码入口追溯 |
+| ↳ `arxiv_2605_13137_leansearch_v2_global_premise_retrieval_lean4_theorem_proving/source/metadata.md` | 论文元信息、源码可用性、本地资源、代码地址与翻译边界归档 |
+| ↳ `arxiv_2605_13137_leansearch_v2_global_premise_retrieval_lean4_theorem_proving/source/` | arXiv e-print 原始 TeX 源码、BibTeX 文献库、NeurIPS 样式文件与官方图表资源 |
+| ↳ `arxiv_2605_13137_leansearch_v2_global_premise_retrieval_lean4_theorem_proving/tex-zh-cn/` | 中文 TeX 翻译工作区，复用官方图表与 BibTeX，按正文、实验、结论和附录分节维护 |
+| ↳ `arxiv_2605_13137_leansearch_v2_global_premise_retrieval_lean4_theorem_proving/tex-zh-cn/main.tex` | 中文译稿主入口，装配 preamble、Section 1-6、参考文献和 Appendix A-E，避免主文件臃肿 |
+| ↳ `arxiv_2605_13137_leansearch_v2_global_premise_retrieval_lean4_theorem_proving/tex-zh-cn/sections/` | 按引言、相关工作、方法、实验、局限性与结论、附录拆分的完整中文正文 |
+| ↳ `arxiv_2605_13137_leansearch_v2_global_premise_retrieval_lean4_theorem_proving/tex-zh-cn/main.pdf` | 编译生成的 26 页中文 PDF，保留原论文正文、图表、参考文献和 Appendix A-E 的可见结构 |
 | ↳ `arxiv_2604_17121_topological_trouble_with_transformers/` | arXiv:2604.17121《The Topological Trouble With Transformers》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
 | ↳ `arxiv_2604_17121_topological_trouble_with_transformers/resources/2604.17121.pdf` | 从 arXiv 下载的 v3 原始 PDF |
 | ↳ `arxiv_2604_17121_topological_trouble_with_transformers/resources/2604.17121-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
@@ -152,6 +162,16 @@
 | ↳ `arxiv_2604_17121_topological_trouble_with_transformers/tex-zh-cn/main.tex` | 中文译稿主入口，装配 preamble、摘要、Section 1-6 与参考文献，避免主文件臃肿 |
 | ↳ `arxiv_2604_17121_topological_trouble_with_transformers/tex-zh-cn/sections/` | 按摘要、引言、状态追踪、循环架构、架构局限与权宜方案、有前景方向、结论致谢拆分的完整中文正文 |
 | ↳ `arxiv_2604_17121_topological_trouble_with_transformers/tex-zh-cn/main.pdf` | 编译生成的 15 页中文 PDF，保留原论文可见结构、Figure 1-7、Table 1、致谢与参考文献 |
+| ↳ `arxiv_2604_03789_automated_conjecture_resolution_formal_verification/` | arXiv:2604.03789《Automated Conjecture Resolution with Formal Verification》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
+| ↳ `arxiv_2604_03789_automated_conjecture_resolution_formal_verification/resources/2604.03789.pdf` | 从 arXiv 下载的 v2 原始 PDF |
+| ↳ `arxiv_2604_03789_automated_conjecture_resolution_formal_verification/resources/2604.03789-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
+| ↳ `arxiv_2604_03789_automated_conjecture_resolution_formal_verification/resources/2604.03789_abs.html` | arXiv 摘要页本地归档，用于版本、作者、摘要、许可与源码入口追溯 |
+| ↳ `arxiv_2604_03789_automated_conjecture_resolution_formal_verification/source/metadata.md` | 论文元信息、源码可用性、本地资源、官方 raw output 工件与翻译边界归档 |
+| ↳ `arxiv_2604_03789_automated_conjecture_resolution_formal_verification/source/` | arXiv e-print 原始 TeX 源码、PKU AI4M 样式、BibTeX 文献库、图表资源与 raw algebraic-group 输出 |
+| ↳ `arxiv_2604_03789_automated_conjecture_resolution_formal_verification/tex-zh-cn/` | 中文 TeX 翻译工作区，复用官方图表与 BibTeX，按正文、数学证明、raw 输出和形式化对应附录分节维护 |
+| ↳ `arxiv_2604_03789_automated_conjecture_resolution_formal_verification/tex-zh-cn/main.tex` | 中文译稿主入口，装配 preamble、Section 1-6、参考文献和 Appendix A-J，避免主文件臃肿 |
+| ↳ `arxiv_2604_03789_automated_conjecture_resolution_formal_verification/tex-zh-cn/sections/` | 按引言/相关工作/框架、Anderson 主结果、能力与结论、两个数学证明附录、raw 输出、形式化对应关系拆分的完整中文正文 |
+| ↳ `arxiv_2604_03789_automated_conjecture_resolution_formal_verification/tex-zh-cn/main.pdf` | 编译生成的 55 页中文 PDF，保留原论文正文、图表、参考文献、数学证明附录、raw transcript 与 Comparator 规格结构 |
 | ↳ `arxiv_2512_14720_some_realistic_benchmark_llm_social_media_agents/` | arXiv:2512.14720《SoMe: A Realistic Benchmark for LLM-based Social Media Agents》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
 | ↳ `arxiv_2512_14720_some_realistic_benchmark_llm_social_media_agents/resources/2512.14720.pdf` | 从 arXiv 下载的 v1 原始 PDF |
 | ↳ `arxiv_2512_14720_some_realistic_benchmark_llm_social_media_agents/resources/2512.14720-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
