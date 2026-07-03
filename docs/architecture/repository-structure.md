@@ -128,6 +128,17 @@
 | ↳ `tex/book_9780262369978/frontmatter.tex` | 版本说明与原书元信息 |
 | ↳ `tex/book_9780262369978/sections/` | 按 section 拆分的中文章节/附录 TeX 文件 |
 | `前沿BFS/` | 前沿论文阅读资产区；历史已追踪源码与中文 TeX 工作区保留，后续新增内容默认只提交 PDF 阅读资产，非 PDF 工作文件由 `.gitignore` 过滤 |
+| ↳ `arxiv_2607_00272_aspire_agentic_skills_discovery_robotics/` | arXiv:2607.00272《ASPIRE: Agentic /Skills Discovery for Robotics》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
+| ↳ `arxiv_2607_00272_aspire_agentic_skills_discovery_robotics/resources/2607.00272.pdf` | 从 arXiv 下载的 v1 原始 PDF |
+| ↳ `arxiv_2607_00272_aspire_agentic_skills_discovery_robotics/resources/2607.00272-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
+| ↳ `arxiv_2607_00272_aspire_agentic_skills_discovery_robotics/resources/2607.00272_abs.html` | arXiv 摘要页本地归档，用于版本、作者、摘要、分类与源码入口追溯 |
+| ↳ `arxiv_2607_00272_aspire_agentic_skills_discovery_robotics/source/metadata.md` | 论文元信息、源码可用性、本地资源、arXiv 页面信息与中文翻译边界归档 |
+| ↳ `arxiv_2607_00272_aspire_agentic_skills_discovery_robotics/source/` | arXiv e-print 原始 TeX 源码、NVIDIA 技术报告类、BibTeX 文献库、图表 PDF 与 NVIDIA logo 资产 |
+| ↳ `arxiv_2607_00272_aspire_agentic_skills_discovery_robotics/tex-zh-cn/` | 中文 TeX 翻译工作区，复用 NVIDIA 官方视觉模板、图表与 BibTeX，采用 XeLaTeX、Noto CJK 与 Latin Modern 数学字体编译 |
+| ↳ `arxiv_2607_00272_aspire_agentic_skills_discovery_robotics/tex-zh-cn/nvidiatechreport.cls` | 从官方 `nvidiatechreport.cls` 最小改造的中文兼容类文件，保留 NVIDIA 页眉、标题、section、caption 与代码块视觉风格 |
+| ↳ `arxiv_2607_00272_aspire_agentic_skills_discovery_robotics/tex-zh-cn/main.tex` | 中文译稿主入口，装配标题、摘要、Section 1-6、致谢、参考文献与 Appendix A-E，避免主文件臃肿 |
+| ↳ `arxiv_2607_00272_aspire_agentic_skills_discovery_robotics/tex-zh-cn/pages/` | 按摘要、引言、方法、实验、相关工作、结论致谢和拆分附录维护完整中文正文；提示模板和 skill artifact 块按论文原始工件保留 |
+| ↳ `arxiv_2607_00272_aspire_agentic_skills_discovery_robotics/tex-zh-cn/main.pdf` | 编译生成的 41 页 A4 中文 PDF，保留原论文 NVIDIA 模板、摘要、正文、算法、图表、参考文献、致谢与 Appendix A-E 结构 |
 | ↳ `arxiv_2606_12683_from_agi_to_asi/` | arXiv:2606.12683《From AGI to ASI》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
 | ↳ `arxiv_2606_12683_from_agi_to_asi/resources/2606.12683.pdf` | 从 arXiv 下载的 v1 原始 PDF |
 | ↳ `arxiv_2606_12683_from_agi_to_asi/resources/2606.12683-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
@@ -152,6 +163,27 @@
 | ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/tex-zh-cn/main_arxiv_submission.tex` | 主文、材料方法与补充说明层的中文稿，继续通过 `proofs/` 子模块承载已中文化的详细数学证明 |
 | ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/tex-zh-cn/proofs/` | Erdos、OEIS、图重构、Hilbert 与 Written on the Wall 等去形式化 Lean 证明的中文 TeX 子模块 |
 | ↳ `arxiv_2605_22763_ai_driven_formal_proof_search/tex-zh-cn/main.pdf` | 编译生成的 53 页中文 PDF，保留原论文图表、可追溯引用结构和中文证明附录 |
+| ↳ `arxiv_2605_19341_halluworld_controlled_benchmark_hallucination_reference_world_models/` | arXiv:2605.19341《HalluWorld: A Controlled Benchmark for Hallucination via Reference World Models》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
+| ↳ `arxiv_2605_19341_halluworld_controlled_benchmark_hallucination_reference_world_models/resources/2605.19341.pdf` | 从 arXiv 下载的 v1 原始 PDF |
+| ↳ `arxiv_2605_19341_halluworld_controlled_benchmark_hallucination_reference_world_models/resources/2605.19341-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
+| ↳ `arxiv_2605_19341_halluworld_controlled_benchmark_hallucination_reference_world_models/resources/2605.19341_abs.html` | arXiv 摘要页本地归档，用于版本、作者、摘要、分类、DOI 与源码入口追溯 |
+| ↳ `arxiv_2605_19341_halluworld_controlled_benchmark_hallucination_reference_world_models/source/metadata.md` | 论文元信息、源码可用性、本地资源、DOI 与中文翻译边界归档 |
+| ↳ `arxiv_2605_19341_halluworld_controlled_benchmark_hallucination_reference_world_models/source/` | arXiv e-print 原始 TeX 源码、NeurIPS 样式、BibTeX 文献库与 HalluWorld 图表资源 |
+| ↳ `arxiv_2605_19341_halluworld_controlled_benchmark_hallucination_reference_world_models/tex-zh-cn/` | 中文 TeX 翻译工作区，复用官方图表与 BibTeX，采用 `ctexart`、XeLaTeX、Noto CJK 与 Latin Modern 数学字体重排 |
+| ↳ `arxiv_2605_19341_halluworld_controlled_benchmark_hallucination_reference_world_models/tex-zh-cn/main.tex` | 中文译稿主入口，装配标题、摘要、Section 1-8、参考文献和 Appendix A-K，避免主文件臃肿 |
+| ↳ `arxiv_2605_19341_halluworld_controlled_benchmark_hallucination_reference_world_models/tex-zh-cn/sections/` | 按引言/基准套件、Grid 结果、Chess/Terminal 结果与结论、定性示例、困难子集、导航实验、序列化分析、工具附录和扩展相关工作拆分的完整中文正文 |
+| ↳ `arxiv_2605_19341_halluworld_controlled_benchmark_hallucination_reference_world_models/tex-zh-cn/main.pdf` | 编译生成的 49 页中文 PDF，保留原论文摘要、正文、图表、参考文献、致谢、Appendix A-K 与 HalluWorld 工具说明结构 |
+| ↳ `arxiv_2605_14392_learning_to_build_environment_self_evolving_reasoning_rl_verifiable_environment_synthesis/` | arXiv:2605.14392《Learning to Build the Environment: Self-Evolving Reasoning RL via Verifiable Environment Synthesis》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
+| ↳ `arxiv_2605_14392_learning_to_build_environment_self_evolving_reasoning_rl_verifiable_environment_synthesis/resources/2605.14392.pdf` | 从 arXiv 下载的 v1 原始 PDF |
+| ↳ `arxiv_2605_14392_learning_to_build_environment_self_evolving_reasoning_rl_verifiable_environment_synthesis/resources/2605.14392-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
+| ↳ `arxiv_2605_14392_learning_to_build_environment_self_evolving_reasoning_rl_verifiable_environment_synthesis/resources/2605.14392_abs.html` | arXiv 摘要页本地归档，用于版本、作者、摘要、分类、DOI 与源码入口追溯 |
+| ↳ `arxiv_2605_14392_learning_to_build_environment_self_evolving_reasoning_rl_verifiable_environment_synthesis/source/metadata.md` | 论文元信息、源码可用性、本地资源、DOI、v1 技术报告状态与中文翻译边界归档 |
+| ↳ `arxiv_2605_14392_learning_to_build_environment_self_evolving_reasoning_rl_verifiable_environment_synthesis/source/` | arXiv e-print 原始 TeX 源码、AILab 类文件、BibTeX 文献库、生成版 bbl、图表 PDF、Hunyuan logo 与需求表宏文件 |
+| ↳ `arxiv_2605_14392_learning_to_build_environment_self_evolving_reasoning_rl_verifiable_environment_synthesis/tex-zh-cn/` | 中文 TeX 翻译工作区，复用官方图表与 BibTeX，采用中文兼容 AILab 模板、XeLaTeX、Noto CJK 与 Latin Modern 数学字体重排 |
+| ↳ `arxiv_2605_14392_learning_to_build_environment_self_evolving_reasoning_rl_verifiable_environment_synthesis/tex-zh-cn/ailab-zh.cls` | 从官方 `ailab.cls` 视觉模板改造的中文兼容类文件，保留 Hunyuan logo 页眉、浅蓝标题盒、section/caption 风格与 letter 页面尺寸 |
+| ↳ `arxiv_2605_14392_learning_to_build_environment_self_evolving_reasoning_rl_verifiable_environment_synthesis/tex-zh-cn/main.tex` | 中文译稿主入口，通过 `ailab-zh.cls` 装配官方风格标题盒、摘要、正文两段、参考文献与 Appendix A-I，避免主文件臃肿 |
+| ↳ `arxiv_2605_14392_learning_to_build_environment_self_evolving_reasoning_rl_verifiable_environment_synthesis/tex-zh-cn/sections/` | 按引言/相关工作/方法、实验与结论、详细定位/环境剖析/种子环境、语义审计/局限性/超参数拆分的完整中文正文 |
+| ↳ `arxiv_2605_14392_learning_to_build_environment_self_evolving_reasoning_rl_verifiable_environment_synthesis/tex-zh-cn/main.pdf` | 编译生成的 20 页 letter 中文 PDF，恢复原英文 AILab 标题盒/页眉视觉骨架并保留摘要、正文、算法、图表、参考文献、Appendix A-I 与超参数表结构 |
 | ↳ `arxiv_2605_13137_leansearch_v2_global_premise_retrieval_lean4_theorem_proving/` | arXiv:2605.13137《LeanSearch v2: Global Premise Retrieval for Lean 4 Theorem Proving》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
 | ↳ `arxiv_2605_13137_leansearch_v2_global_premise_retrieval_lean4_theorem_proving/resources/2605.13137.pdf` | 从 arXiv 下载的 v2 原始 PDF |
 | ↳ `arxiv_2605_13137_leansearch_v2_global_premise_retrieval_lean4_theorem_proving/resources/2605.13137-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
@@ -182,6 +214,16 @@
 | ↳ `arxiv_2604_03789_automated_conjecture_resolution_formal_verification/tex-zh-cn/main.tex` | 中文译稿主入口，装配 preamble、Section 1-6、参考文献和 Appendix A-J，避免主文件臃肿 |
 | ↳ `arxiv_2604_03789_automated_conjecture_resolution_formal_verification/tex-zh-cn/sections/` | 按引言/相关工作/框架、Anderson 主结果、能力与结论、两个数学证明附录、raw 输出、形式化对应关系拆分的完整中文正文 |
 | ↳ `arxiv_2604_03789_automated_conjecture_resolution_formal_verification/tex-zh-cn/main.pdf` | 编译生成的 55 页中文 PDF，保留原论文正文、图表、参考文献、数学证明附录、raw transcript 与 Comparator 规格结构 |
+| ↳ `arxiv_2603_10301_near_optimal_learning_rate_schedules/` | arXiv:2603.10301《What do near-optimal learning rate schedules look like?》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
+| ↳ `arxiv_2603_10301_near_optimal_learning_rate_schedules/resources/2603.10301.pdf` | 从 arXiv 下载的 v2 原始 PDF |
+| ↳ `arxiv_2603_10301_near_optimal_learning_rate_schedules/resources/2603.10301-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
+| ↳ `arxiv_2603_10301_near_optimal_learning_rate_schedules/resources/2603.10301_abs.html` | arXiv 摘要页本地归档，用于版本、作者、摘要、分类、DOI、许可与源码入口追溯 |
+| ↳ `arxiv_2603_10301_near_optimal_learning_rate_schedules/source/metadata.md` | 论文元信息、源码可用性、本地资源、CC BY 4.0 页面许可与中文翻译边界归档 |
+| ↳ `arxiv_2603_10301_near_optimal_learning_rate_schedules/source/` | arXiv e-print 原始 TeX 源码、Google 报告类、BibTeX、TMLR 样式、论文宏、Google logo 与 PDF 图表资源 |
+| ↳ `arxiv_2603_10301_near_optimal_learning_rate_schedules/tex-zh-cn/` | 中文 TeX 翻译工作区，复用官方 BibTeX、宏、样式、logo 与 PDF 图表，采用 `ctexart`、XeLaTeX 与 Latin Modern Math 重排 |
+| ↳ `arxiv_2603_10301_near_optimal_learning_rate_schedules/tex-zh-cn/main.tex` | 中文译稿主入口，装配标题、摘要、Section 1-5、致谢、参考文献与 Appendix A-C，避免主文件臃肿 |
+| ↳ `arxiv_2603_10301_near_optimal_learning_rate_schedules/tex-zh-cn/sections/` | 按引言/相关工作/方法、结果与近最优搜索验证、工作负载变体与讨论、线性回归附录、实验细节与其他结果拆分的完整中文正文 |
+| ↳ `arxiv_2603_10301_near_optimal_learning_rate_schedules/tex-zh-cn/main.pdf` | 编译生成的 32 页中文 PDF，保留原论文摘要、正文、图表、参考文献、致谢和 Appendix A-C 的可见结构 |
 | ↳ `arxiv_2512_14720_some_realistic_benchmark_llm_social_media_agents/` | arXiv:2512.14720《SoMe: A Realistic Benchmark for LLM-based Social Media Agents》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
 | ↳ `arxiv_2512_14720_some_realistic_benchmark_llm_social_media_agents/resources/2512.14720.pdf` | 从 arXiv 下载的 v1 原始 PDF |
 | ↳ `arxiv_2512_14720_some_realistic_benchmark_llm_social_media_agents/resources/2512.14720-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
