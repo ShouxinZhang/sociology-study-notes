@@ -8,6 +8,7 @@
 
 | 日期 | 变更数 | 主要工作 |
 |------|--------|---------|
+| [2026-07-06](2026-07-06/README.md) | 1 | 前沿 BFS 新增 arXiv:2605.10899v1《RubricEM: Meta-RL with Rubric-guided Policy Decomposition beyond Verifiable Rewards》官方资源归档、完整中文 TeX 译文与 56 页 A4 中文 PDF，复用 Google/DeepMind 官方视觉模板 |
 | [2026-07-03](2026-07-03/README.md) | 2 | 前沿 BFS 新增 arXiv:2607.00272《ASPIRE: Agentic /Skills Discovery for Robotics》官方资源归档、完整中文 TeX 译文与 41 页 A4 中文 PDF；随机随笔聊天主题细节迁移到 references 叶子文档，主文件保留单一链接入口 |
 | [2026-07-01](2026-07-01/README.md) | 4 | 前沿 BFS 新增 arXiv:2603.10301《What do near-optimal learning rate schedules look like?》、arXiv:2605.19341《HalluWorld》与 arXiv:2605.14392《Learning to Build the Environment》官方资源归档、完整中文 TeX 译文和中文 PDF，并将 arXiv:2605.14392 中文 PDF 恢复为 AILab/Hunyuan 官方视觉模板 |
 | [2026-06-30](2026-06-30/README.md) | 1 | 前沿 BFS 新增 arXiv:2606.12683《From AGI to ASI》官方资源归档、完整中文 TeX 译文与 58 页中文 PDF，使用 XeLaTeX + `ctexart` + Latin Modern Math 编译 |
@@ -44,4 +45,4 @@
 
 ---
 
-**总计：33 个开发日 · 107 条变更记录**
+**总计：34 个开发日 · 108 条变更记录**

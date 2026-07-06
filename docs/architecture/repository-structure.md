@@ -128,6 +128,18 @@
 | ↳ `tex/book_9780262369978/frontmatter.tex` | 版本说明与原书元信息 |
 | ↳ `tex/book_9780262369978/sections/` | 按 section 拆分的中文章节/附录 TeX 文件 |
 | `前沿BFS/` | 前沿论文阅读资产区；历史已追踪源码与中文 TeX 工作区保留，后续新增内容默认只提交 PDF 阅读资产，非 PDF 工作文件由 `.gitignore` 过滤 |
+| ↳ `arxiv_2605_10899_rubricem_meta_rl_rubric_guided_policy_decomposition/` | arXiv:2605.10899v1《RubricEM: Meta-RL with Rubric-guided Policy Decomposition beyond Verifiable Rewards》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
+| ↳ `arxiv_2605_10899_rubricem_meta_rl_rubric_guided_policy_decomposition/resources/2605.10899v1.pdf` | 从 arXiv 下载的 v1 原始 PDF |
+| ↳ `arxiv_2605_10899_rubricem_meta_rl_rubric_guided_policy_decomposition/resources/2605.10899v1-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
+| ↳ `arxiv_2605_10899_rubricem_meta_rl_rubric_guided_policy_decomposition/resources/2605.10899v1_abs.html` | arXiv 摘要页本地归档，用于版本、作者、摘要、分类与源码入口追溯 |
+| ↳ `arxiv_2605_10899_rubricem_meta_rl_rubric_guided_policy_decomposition/resources/2605.10899v1_html.html` | arXiv experimental HTML 页面本地归档，用于对照 HTML 版结构 |
+| ↳ `arxiv_2605_10899_rubricem_meta_rl_rubric_guided_policy_decomposition/source/metadata.md` | 论文元信息、源码可用性、本地资源、arXiv 页面信息与中文翻译边界归档 |
+| ↳ `arxiv_2605_10899_rubricem_meta_rl_rubric_guided_policy_decomposition/source/` | arXiv e-print 原始 TeX 源码、Google/DeepMind 样式类、BibTeX 文献库、图表 PDF/PNG 与 Google logo 资产 |
+| ↳ `arxiv_2605_10899_rubricem_meta_rl_rubric_guided_policy_decomposition/tex-zh-cn/` | 中文 TeX 翻译工作区，复用官方 Google/DeepMind 视觉模板、图表与 BibTeX，采用 XeLaTeX、Noto CJK 与原 `newtxmath` 数学栈编译 |
+| ↳ `arxiv_2605_10899_rubricem_meta_rl_rubric_guided_policy_decomposition/tex-zh-cn/googlecloud.cls` | 从官方 `googlecloud.cls` 最小改造的中文兼容类文件，保留页眉、标题、caption、定理框、表格与算法视觉风格 |
+| ↳ `arxiv_2605_10899_rubricem_meta_rl_rubric_guided_policy_decomposition/tex-zh-cn/main.tex` | 中文译稿主入口，装配标题、作者、摘要、Section 1-6、参考文献、目录与 Appendix A-H，避免主文件臃肿 |
+| ↳ `arxiv_2605_10899_rubricem_meta_rl_rubric_guided_policy_decomposition/tex-zh-cn/sections/` | 按引言、相关工作、方法、实验、经验分析、结论、算法、理论、实验细节、局限性和 prompt 工件附录拆分的完整中文正文 |
+| ↳ `arxiv_2605_10899_rubricem_meta_rl_rubric_guided_policy_decomposition/tex-zh-cn/main.pdf` | 编译生成的 56 页 A4 中文 PDF，保留原论文 Google/DeepMind 模板、摘要、正文、算法、图表、参考文献、目录与 Appendix A-H 结构 |
 | ↳ `arxiv_2607_00272_aspire_agentic_skills_discovery_robotics/` | arXiv:2607.00272《ASPIRE: Agentic /Skills Discovery for Robotics》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
 | ↳ `arxiv_2607_00272_aspire_agentic_skills_discovery_robotics/resources/2607.00272.pdf` | 从 arXiv 下载的 v1 原始 PDF |
 | ↳ `arxiv_2607_00272_aspire_agentic_skills_discovery_robotics/resources/2607.00272-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
