@@ -151,6 +151,18 @@
 | ↳ `arxiv_2607_00272_aspire_agentic_skills_discovery_robotics/tex-zh-cn/main.tex` | 中文译稿主入口，装配标题、摘要、Section 1-6、致谢、参考文献与 Appendix A-E，避免主文件臃肿 |
 | ↳ `arxiv_2607_00272_aspire_agentic_skills_discovery_robotics/tex-zh-cn/pages/` | 按摘要、引言、方法、实验、相关工作、结论致谢和拆分附录维护完整中文正文；提示模板和 skill artifact 块按论文原始工件保留 |
 | ↳ `arxiv_2607_00272_aspire_agentic_skills_discovery_robotics/tex-zh-cn/main.pdf` | 编译生成的 41 页 A4 中文 PDF，保留原论文 NVIDIA 模板、摘要、正文、算法、图表、参考文献、致谢与 Appendix A-E 结构 |
+| ↳ `arxiv_2606_24597_qwen_agentworld_language_world_models_general_agents/` | arXiv:2606.24597v1《Qwen-AgentWorld: Language World Models for General Agents》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
+| ↳ `arxiv_2606_24597_qwen_agentworld_language_world_models_general_agents/resources/2606.24597v1.pdf` | 从 arXiv 下载的 v1 原始 PDF |
+| ↳ `arxiv_2606_24597_qwen_agentworld_language_world_models_general_agents/resources/2606.24597v1-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
+| ↳ `arxiv_2606_24597_qwen_agentworld_language_world_models_general_agents/resources/2606.24597v1_abs.html` | arXiv 摘要页本地归档，用于版本、作者、摘要、分类、DOI 与源码入口追溯 |
+| ↳ `arxiv_2606_24597_qwen_agentworld_language_world_models_general_agents/resources/2606.24597v1_html.html` | arXiv experimental HTML 页面本地归档，用于对照 HTML 版结构 |
+| ↳ `arxiv_2606_24597_qwen_agentworld_language_world_models_general_agents/source/metadata.md` | 论文元信息、源码可用性、本地资源、arXiv 页面信息、翻译边界、编译记录与验证结果归档 |
+| ↳ `arxiv_2606_24597_qwen_agentworld_language_world_models_general_agents/source/` | arXiv e-print 原始 TeX 源码、COLM 样式、BibTeX/BST、分节正文、图表 PDF、Qwen/HuggingFace/GitHub/ModelScope logo 资产 |
+| ↳ `arxiv_2606_24597_qwen_agentworld_language_world_models_general_agents/tex-zh-cn/` | 中文 TeX 翻译工作区，复用官方 COLM/Qwen 视觉模板、图表、logo 与 BibTeX，采用 XeLaTeX、Noto CJK、TeX Gyre Pagella 与原 `mathpazo` 数学栈编译 |
+| ↳ `arxiv_2606_24597_qwen_agentworld_language_world_models_general_agents/tex-zh-cn/colm2024_conference.sty` | 从官方 COLM 样式最小改造的中文兼容样式文件，保留标题、页眉、caption、算法、表格和首页 logo 视觉风格 |
+| ↳ `arxiv_2606_24597_qwen_agentworld_language_world_models_general_agents/tex-zh-cn/colm2024_conference.tex` | 中文译稿主入口，装配中文标题、作者、摘要、目录、Section 1-8、参考文献、作者贡献与 Appendix A-D，避免主文件臃肿 |
+| ↳ `arxiv_2606_24597_qwen_agentworld_language_world_models_general_agents/tex-zh-cn/content/` | 按引言、预备知识、训练流水线、AgentWorldBench、实验、应用、分析、相关工作、结论、作者贡献和附录拆分的完整中文正文；prompt/raw artifact 块按论文原始工件保留 |
+| ↳ `arxiv_2606_24597_qwen_agentworld_language_world_models_general_agents/tex-zh-cn/colm2024_conference.pdf` | 编译生成的 44 页 A4 中文 PDF，保留原论文 COLM/Qwen 模板、摘要、目录、正文、图表、参考文献、作者贡献与 Appendix A-D 结构 |
 | ↳ `arxiv_2606_12683_from_agi_to_asi/` | arXiv:2606.12683《From AGI to ASI》资料、官方 TeX 源码归档与完整中文 TeX/PDF 译文叶子模块 |
 | ↳ `arxiv_2606_12683_from_agi_to_asi/resources/2606.12683.pdf` | 从 arXiv 下载的 v1 原始 PDF |
 | ↳ `arxiv_2606_12683_from_agi_to_asi/resources/2606.12683-source.tar.gz` | 从 arXiv e-print 下载的官方 TeX 源码压缩包 |
@@ -447,11 +459,11 @@ LLM 生成的实验性模拟笔记，附多语言 LaTeX 教科书版本。
 |------|------|
 | `sociology-note-formatter/` | 笔记格式化与分类 Skill |
 | `plan-subagent-orchestrator/` | 通用计划驱动型协调 Skill，现以中文正文维护，用于上下文冻结、计划拆解、subagent 分发、验证门禁与收尾同步 |
-| `english-pdf-paper-translation/` | 英文 PDF/arXiv 论文忠实中文 TeX 翻译 Skill，约束源码优先、PDF-only 重建、资源归档、TeX 分层、编译校验与日志登记流程 |
-| ↳ `english-pdf-paper-translation/SKILL.md` | 工作区级 Skill 主说明，定义触发条件、原结构翻译原则、arXiv source 优先策略、输出目录和校验要求 |
-| ↳ `english-pdf-paper-translation/agents/openai.yaml` | Skill 的 UI 元数据与默认调用提示 |
-| ↳ `english-pdf-paper-translation/references/arxiv-source-workflow.md` | arXiv 或官方 TeX source 可用时的下载、解包、翻译、编译和校验流程 |
-| ↳ `english-pdf-paper-translation/references/pdf-only-workflow.md` | 无官方 TeX source 时基于 PDF 文本层、页面渲染和裁剪图形重建中文 TeX 的流程 |
+| `english-pdf-paper-translation/` | 英文研究论文忠实中文 TeX/PDF 翻译 Skill，现以中文正文维护，约束源码优先、官方模板复用、prompt 工件保真、subagent 分段翻译、PDF-only 重建、编译校验与日志登记流程 |
+| ↳ `english-pdf-paper-translation/SKILL.md` | 工作区级 Skill 主说明，定义触发条件、完整翻译硬规则、输出分层、工作流选择、仓库收尾与最终回复要求 |
+| ↳ `english-pdf-paper-translation/agents/openai.yaml` | 中文 UI 元数据与默认调用提示 |
+| ↳ `english-pdf-paper-translation/references/arxiv-source-workflow.md` | arXiv 或官方 TeX/source 可用时的资源归档、官方模板复用、CJK 最小改造、分段翻译、编译和 QA 流程 |
+| ↳ `english-pdf-paper-translation/references/pdf-only-workflow.md` | 无官方 TeX/source 时基于 PDF 文本层、页面渲染、图形裁剪和阅读顺序重建中文 TeX 的流程 |
 
 ### .agents/
 
