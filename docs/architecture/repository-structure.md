@@ -18,6 +18,7 @@
 | `.github/skills/` | 自定义 Agent Skills |
 | `.gitignore` | Git 忽略规则，覆盖 Agent 缓存、本地环境、依赖缓存、日志、LaTeX 临时构建产物，以及 `前沿BFS` 新增非 PDF 工作文件；PDF 阅读资产继续纳入版本管理 |
 | `AGENTS.md` | Agent 指令文件 |
+| `README.md` | 仓库简介（3 行内） |
 | `LICENSE` | 许可证 |
 
 ---
