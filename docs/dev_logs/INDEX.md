@@ -8,7 +8,8 @@
 
 | 日期 | 变更数 | 主要工作 |
 |------|--------|---------|
-| [2026-07-16](2026-07-16/README.md) | 1 | 新建 3 行内仓库 `README.md`，并同步更新 `repository-structure.md` 根目录清单 |
+| [2026-07-17](2026-07-17/README.md) | 1 | 将单体仓库架构文档重构为全局入口、模块索引、公共维度和 26 个论文叶子记录组成的分层文档目录数据库 |
+| [2026-07-16](2026-07-16/README.md) | 2 | 新建 3 行内仓库 `README.md`；在 `docs/tempSave` 保存 `AGENTS.md` 中文译本，并同步更新仓库结构文档 |
 | [2026-07-07](2026-07-07/README.md) | 2 | 工作区级英文论文中文 TeX/PDF 翻译 Skill 全面中文化，并新增 arXiv:2606.24597v1《Qwen-AgentWorld: Language World Models for General Agents》官方资源归档、完整中文 TeX 译文与 44 页 A4 中文 PDF |
 | [2026-07-06](2026-07-06/README.md) | 1 | 前沿 BFS 新增 arXiv:2605.10899v1《RubricEM: Meta-RL with Rubric-guided Policy Decomposition beyond Verifiable Rewards》官方资源归档、完整中文 TeX 译文与 56 页 A4 中文 PDF，复用 Google/DeepMind 官方视觉模板 |
 | [2026-07-03](2026-07-03/README.md) | 2 | 前沿 BFS 新增 arXiv:2607.00272《ASPIRE: Agentic /Skills Discovery for Robotics》官方资源归档、完整中文 TeX 译文与 41 页 A4 中文 PDF；随机随笔聊天主题细节迁移到 references 叶子文档，主文件保留单一链接入口 |
@@ -47,4 +48,4 @@
 
 ---
 
-**总计：35 个开发日 · 110 条变更记录**
+**总计：36 个开发日 · 112 条变更记录**
