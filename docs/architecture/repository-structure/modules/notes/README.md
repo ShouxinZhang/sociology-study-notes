@@ -9,3 +9,4 @@
 | `notes.philosophy-life-reflection` | `notes/Philosophy_Life_Reflection/` | 个人哲学、生命叙事与工具类笔记。 | [Philosophy_Life_Reflection](philosophy-life-reflection.md) |
 | `notes.social-interaction-skills` | `notes/Social_Interaction_Skills/` | 日常沟通、关系建设与低压社交的实践笔记。 | [Social_Interaction_Skills](social-interaction-skills.md) |
 | `notes.speculative-deep-dives` | `notes/Speculative_Deep_Dives/` | 实验区，用于模糊想法、讨论和假设场景的深度思辨。 | [Speculative_Deep_Dives](speculative-deep-dives.md) |
+| `notes.references` | `notes/references/` | 笔记和研究使用的参考文本；由原根级 `ref/` 迁入。 | [references](references.md) |

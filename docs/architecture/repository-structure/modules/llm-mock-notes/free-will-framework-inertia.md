@@ -1,12 +1,12 @@
 ---
 id: llm-mock-notes.free-will-framework-inertia
 parent: llm-mock-notes
-repo_path: llm-mock-notes/Free_Will_And_Framework_Inertia
+repo_path: draft-notes/llm-mock-notes/Free_Will_And_Framework_Inertia
 profile: module/v1
 status: active
 ---
 
-# llm-mock-notes/Free_Will_And_Framework_Inertia/
+# draft-notes/llm-mock-notes/Free_Will_And_Framework_Inertia/
 
 LaTeX 教科书版本（多语言）
 

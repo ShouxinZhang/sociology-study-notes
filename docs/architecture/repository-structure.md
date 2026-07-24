@@ -26,16 +26,14 @@ repository-structure.md
 
 | Key | 仓库路径 | 说明 | 模块索引 |
 |---|---|---|---|
-| `notes` | `notes/` | 分类存放学习笔记、政策解读与思辨记录 | [进入](repository-structure/modules/notes/README.md) |
+| `notes` | `notes/` | 分类存放学习笔记、政策解读、思辨记录与参考文本 | [进入](repository-structure/modules/notes/README.md) |
 | `self-cultivation` | `self-cultivation/` | 自我修炼、长篇阅读、论文研读与内容实验 | [进入](repository-structure/modules/self-cultivation/README.md) |
-| `llm-mock-notes` | `llm-mock-notes/` | LLM 生成的实验性模拟笔记与多语言教材工作区 | [进入](repository-structure/modules/llm-mock-notes/README.md) |
 
 ## 仓库支持模块
 
 | Key | 仓库路径 | 说明 | 模块索引 |
 |---|---|---|---|
-| `draft-notes` | `draft-notes/` | 用户原始草稿与待整理内容 | [草稿与参考资料](repository-structure/modules/repository-support/drafts-and-references.md) |
-| `ref` | `ref/` | 笔记和研究使用的参考文本 | [草稿与参考资料](repository-structure/modules/repository-support/drafts-and-references.md) |
+| `draft-notes` | `draft-notes/` | 用户原始草稿、待整理内容，以及托管的 LLM 模拟笔记工作区 | [草稿与参考资料](repository-structure/modules/repository-support/drafts-and-references.md) |
 | `docs` | `docs/` | 架构、计划、临时副本与开发日志 | [文档模块](repository-structure/modules/repository-support/docs.md) |
 | `skills` | `.github/skills/` | 仓库级自定义 Agent Skills | [Skills](repository-structure/modules/repository-support/skills.md) |
 | `agent-storage` | `.agents/` | 不进入业务内容层的 Agent 缓存与归档 | [Agent 存储](repository-structure/modules/repository-support/agent-storage.md) |
