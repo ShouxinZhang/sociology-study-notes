@@ -1,5 +1,6 @@
 # Agent runtime cache and temporary task artifacts.
 .agents/cache/
+.agents/manifest/
 
 # Local OS/editor state.
 .DS_Store
