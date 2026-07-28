@@ -22,4 +22,4 @@
 | `self-cultivation.collaboration` | `self-cultivation/协作/` | 协作主题的正文、原始素材与参考资料工作区 | [进入](collaboration.md) |
 | `self-cultivation.social-science-research` | `self-cultivation/社会科学研究/` | 社会科学研究问题与原始思考的独立沉淀区 | [进入](social-science-research.md) |
 | `self-cultivation.frontier-bfs` | `self-cultivation/前沿BFS/` | 前沿论文阅读资产区；历史已追踪源码与中文 TeX 工作区保留，后续新增内容默认只提交 PDF 阅读资产，非 PDF 工作文件由 `.gitignore` 过滤 | [进入](frontier-bfs/README.md) |
-| `self-cultivation.entertainment-sandbox` | `self-cultivation/娱乐沙盒/` | 娱乐向连载小说、沙盒脑洞、数学未解问题等趣味知识清单与轻量创意写作实验区 | [进入](entertainment-sandbox.md) |
+| `self-cultivation.entertainment-sandbox` | `self-cultivation/娱乐沙盒/` | 娱乐向连载小说、沙盒脑洞、数学未解问题、随机模拟等趣味知识与轻量创作实验区 | [进入](entertainment-sandbox.md) |

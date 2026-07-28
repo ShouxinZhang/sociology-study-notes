@@ -22,6 +22,9 @@ status: active
 | `开心一刻/人格.txt` | 多人格解耦草稿 |
 | `开心一刻/image/` | 配图资源 |
 | `random-try/` | 轻量试写与碎片文段实验区 |
+| `random-try/vibe-coding/` | 可直接运行的轻量编程实验区 |
+| `random-try/vibe-coding/硬币分布实验/` | 公平硬币随机投掷与频率观察实验目录 |
+| `random-try/vibe-coding/硬币分布实验/硬币分布实验.ipynb` | 默认模拟 10,000 次公平硬币投掷并计算正面频率的 Jupyter Notebook；可通过参数 `N` 调整实验次数 |
 | `random-try/碎片文段.txt` | 碎片文段草稿 |
 | `碎片情感/` | 碎片情感短记目录 |
 | `碎片情感/5.txt` | 碎片情感短记第 5 篇 |
