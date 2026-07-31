@@ -7,6 +7,7 @@ import sys
 from contextlib import nullcontext
 from pathlib import Path
 
+from .album_service import AlbumDataError, incomplete_albums, load_albums
 from .client import (
     IsolatedQQMusicSession,
     QQMusicClientError,
@@ -71,6 +72,7 @@ def run(args: argparse.Namespace) -> Path:
         payload = collect_from_runtime(endpoint, node_bin=args.node_bin)
 
     playlists = load_playlists(payload)
+    albums = load_albums(payload)
     incomplete = incomplete_playlists(playlists)
     if incomplete:
         details = "；".join(
@@ -79,11 +81,24 @@ def run(args: argparse.Namespace) -> Path:
         )
         raise PlaylistDataError(f"歌单歌曲数不完整：{details}")
 
-    batch, manifest = export_bundle(args.output_root.resolve(), playlists)
+    incomplete_album_list = incomplete_albums(albums)
+    if incomplete_album_list:
+        details = "；".join(
+            f"{item.name}: 预期 {item.expected_song_count}, 导出 {len(item.songs)}"
+            for item in incomplete_album_list
+        )
+        raise AlbumDataError(f"收藏专辑曲目数不完整：{details}")
+
+    batch, manifest = export_bundle(
+        args.output_root.resolve(),
+        playlists,
+        albums,
+    )
     print(f"导出完成：{batch}")
     print(
         "歌单：{playlist_count}；歌曲条目：{song_membership_count}；"
-        "去重歌曲：{unique_song_mid_count}".format(**manifest)
+        "收藏专辑：{album_count}；专辑曲目：{album_track_count}；"
+        "跨歌单与专辑去重歌曲：{unique_song_mid_count}".format(**manifest)
     )
     return batch
 
@@ -94,6 +109,7 @@ def main() -> int:
         run(args)
     except (
         QQMusicClientError,
+        AlbumDataError,
         PlaylistDataError,
         FileExistsError,
         OSError,

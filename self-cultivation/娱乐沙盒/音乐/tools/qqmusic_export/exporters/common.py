@@ -75,3 +75,11 @@ def song_detail_url(song: dict[str, Any]) -> str:
         if identifier
         else ""
     )
+
+
+def album_detail_url(album_mid: str) -> str:
+    return (
+        f"https://y.qq.com/n/ryqq/albumDetail/{album_mid}"
+        if album_mid
+        else ""
+    )

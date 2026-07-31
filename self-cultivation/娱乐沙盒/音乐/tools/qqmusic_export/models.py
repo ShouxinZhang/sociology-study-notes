@@ -39,3 +39,62 @@ class Playlist:
     def is_complete(self) -> bool:
         expected = self.expected_song_count
         return expected is None or expected == len(self.songs)
+
+
+@dataclass(frozen=True)
+class Album:
+    """One favorited album and its complete QQ Music detail response."""
+
+    metadata: dict[str, Any]
+    details: dict[str, Any]
+
+    @property
+    def album_mid(self) -> str:
+        return str(self.metadata.get("mid") or self.details.get("albumMid") or "")
+
+    @property
+    def name(self) -> str:
+        return str(
+            self.metadata.get("name")
+            or self.metadata.get("title")
+            or f"未命名专辑-{self.album_mid}"
+        )
+
+    @property
+    def artists(self) -> list[str]:
+        singers = self.metadata.get("v_singer")
+        if not isinstance(singers, list):
+            return []
+        return [
+            str(singer.get("name") or singer.get("title") or "")
+            for singer in singers
+            if isinstance(singer, dict)
+            and (singer.get("name") or singer.get("title"))
+        ]
+
+    @property
+    def songs(self) -> list[dict[str, Any]]:
+        items = self.details.get("songList")
+        if not isinstance(items, list):
+            return []
+        songs: list[dict[str, Any]] = []
+        for item in items:
+            if not isinstance(item, dict):
+                continue
+            song = item.get("songInfo")
+            if isinstance(song, dict):
+                songs.append(song)
+        return songs
+
+    @property
+    def expected_song_count(self) -> int | None:
+        value = self.metadata.get("songnum", self.details.get("totalNum"))
+        try:
+            return int(value) if value is not None else None
+        except (TypeError, ValueError):
+            return None
+
+    @property
+    def is_complete(self) -> bool:
+        expected = self.expected_song_count
+        return expected is None or expected == len(self.songs)

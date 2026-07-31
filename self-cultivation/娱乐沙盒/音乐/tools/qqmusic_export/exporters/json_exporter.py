@@ -6,9 +6,10 @@ import json
 from pathlib import Path
 from typing import Any
 
-from ..models import Playlist
+from ..models import Album, Playlist
 from .common import (
     album_name,
+    album_detail_url,
     artist_names,
     duration_seconds,
     safe_filename,
@@ -56,6 +57,24 @@ def normalized_playlist(playlist: Playlist) -> dict[str, Any]:
     }
 
 
+def normalized_album(album: Album) -> dict[str, Any]:
+    return {
+        "album_mid": album.album_mid,
+        "name": album.name,
+        "artists": album.artists,
+        "cover_url": str(album.metadata.get("logo") or ""),
+        "published_at": album.metadata.get("pubtime"),
+        "expected_track_count": album.expected_song_count,
+        "exported_track_count": len(album.songs),
+        "is_complete": album.is_complete,
+        "qqmusic_url": album_detail_url(album.album_mid),
+        "tracks": [
+            _normalized_song(song, position)
+            for position, song in enumerate(album.songs, start=1)
+        ],
+    }
+
+
 def export_raw(batch: Path, playlists: list[Playlist]) -> list[str]:
     raw_directory = batch / "raw"
     playlist_directory = raw_directory / "playlists"
@@ -98,7 +117,53 @@ def export_raw(batch: Path, playlists: list[Playlist]) -> list[str]:
     return files
 
 
+def export_raw_albums(batch: Path, albums: list[Album]) -> list[str]:
+    raw_directory = batch / "raw"
+    album_directory = raw_directory / "albums"
+    album_directory.mkdir(parents=True, exist_ok=True)
+    files: list[str] = []
+    index: list[dict[str, Any]] = []
+
+    for album in albums:
+        path = unique_path(
+            album_directory,
+            safe_filename(album.name),
+            ".json",
+            album.album_mid,
+        )
+        write_json(
+            path,
+            {
+                "metadata": album.metadata,
+                "details": album.details,
+            },
+        )
+        relative = path.relative_to(batch).as_posix()
+        files.append(relative)
+        index.append(
+            {
+                "album_mid": album.album_mid,
+                "name": album.name,
+                "artists": album.artists,
+                "expected_track_count": album.expected_song_count,
+                "exported_track_count": len(album.songs),
+                "file": relative,
+            }
+        )
+
+    index_path = raw_directory / "album_index.json"
+    write_json(index_path, index)
+    files.append(index_path.relative_to(batch).as_posix())
+    return files
+
+
 def export_normalized_json(batch: Path, playlists: list[Playlist]) -> str:
     path = batch / "normalized" / "playlists.json"
     write_json(path, [normalized_playlist(item) for item in playlists])
+    return path.relative_to(batch).as_posix()
+
+
+def export_normalized_albums_json(batch: Path, albums: list[Album]) -> str:
+    path = batch / "normalized" / "albums.json"
+    write_json(path, [normalized_album(item) for item in albums])
     return path.relative_to(batch).as_posix()

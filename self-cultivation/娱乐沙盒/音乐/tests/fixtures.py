@@ -48,4 +48,27 @@ def sample_payload() -> dict[str, object]:
                 "songs": [other_song],
             },
         ],
+        "albums": [
+            {
+                "metadata": {
+                    "id": 2001,
+                    "mid": "album-mid-2001",
+                    "name": "测试收藏专辑",
+                    "v_singer": [{"id": 1, "name": "测试歌手"}],
+                    "logo": "https://example.invalid/cover.jpg",
+                    "songnum": 1,
+                    "pubtime": 20260731,
+                },
+                "details": {
+                    "albumMid": "album-mid-2001",
+                    "totalNum": 1,
+                    "songList": [
+                        {
+                            "songInfo": liked_song,
+                            "listenCount": 0,
+                        }
+                    ],
+                },
+            }
+        ],
     }
