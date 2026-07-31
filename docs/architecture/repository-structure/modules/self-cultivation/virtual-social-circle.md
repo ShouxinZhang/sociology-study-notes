@@ -19,11 +19,13 @@ status: active
 | `成语知识库/` | 面向虚拟朋友圈文案取词的成语素材库，按正面与负面语义分文件沉淀 |
 | `成语知识库/good.txt` | 正面意象、生活状态、团结奋斗与发展繁荣类成语清单 |
 | `成语知识库/bad.txt` | 负面人物、行为画像与恶果报应类成语清单 |
-| `random-writing/` | 虚拟朋友圈随机随笔、社交话题与状态估计联想素材的独立沉淀目录 |
-| `random-writing/random_writing.md` | 随机随笔主入口，按跨日时间线沉淀短写作；正文时间戳当前由手工维护，长段材料下钻至 references |
+| `random-writing/` | 虚拟朋友圈随机随笔、社交话题与状态估计联想素材的独立沉淀目录；随笔正文按周分区归档 |
+| `random-writing/random_writing.md` | 随机随笔周归档索引，登记未确定日期分区、各自然周文件及归档状态 |
+| `random-writing/weekly/undated.md` | 无法可靠确定自然日期的随机随笔记录，不根据原始位置推断日期 |
+| `random-writing/weekly/2026/` | 2026 年随机随笔周归档目录，采用周日—周六分区；缺失周保留显式故障档案与已找回片段 |
 | `random-writing/references/` | 随机随笔长段参考材料、LLM 对话回复与可复用社交素材目录 |
 | `random-writing/references/less_familiar_chat_topics.md` | 和不熟悉的人聊天时可宽泛展开的话题清单、切入点与中英示例问题 |
-| `random-writing/image/random_writing/` | `random_writing.md` 及其关联素材使用的图片资源目录 |
+| `random-writing/image/random_writing/` | 随机随笔周归档及其关联素材使用的图片资源目录 |
 | `diverse_worlds_match/` | 面向“不同世界观是否匹配”主题的轻量英文内容实验子目录 |
 | `diverse_worlds_match/1.md` | 将《我的叔叔于勒》与数学系数值分析、神经网络梗结合后润色翻译成中文的趣味短篇 |
 | `diverse_worlds_match/my_uncle_jules_en_public_domain.txt` | 从 Project Gutenberg 公版英文卷宗中抽取的《My Uncle Jules》英文全文 |
