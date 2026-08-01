@@ -114,7 +114,7 @@ Coordinator-owned files:
 - `chapters/exercises_and_prompts/reader_questions/section.tex`
 - `docs/architecture/repository-structure.md`
 - `docs/dev_logs/INDEX.md`
-- `docs/dev_logs/2026-04-02/README.md`
+- `docs/dev_logs/2026-04/2026-04-02/README.md`
 - new dev log entry for this change
 - optional Chinese review sync note if structure changes warrant it
 

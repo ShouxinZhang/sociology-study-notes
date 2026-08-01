@@ -7,4 +7,4 @@
 | `docs.architecture` | `docs/architecture/` | 全局架构入口及分层模块记录 |
 | `docs.plan` | `docs/plan/old/` | 已归档的跨轮次任务协调计划 |
 | `docs.temp-save` | `docs/tempSave/AGENTS-versions/` | `AGENTS.md` 等参考版本的非执行性副本 |
-| `docs.dev-logs` | `docs/dev_logs/` | 按 `INDEX.md` → 日期 `README.md` → 变更记录组织的三层开发日志 |
+| `docs.dev-logs` | `docs/dev_logs/` | 按 `INDEX.md` → 月份 `README.md` → 日期 `README.md` → 单任务记录组织的四层开发日志；新记录由 `dev-logs` Skill 按一任务一文件维护，旧记录保持兼容 |

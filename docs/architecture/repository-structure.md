@@ -54,4 +54,4 @@ repository-structure.md
 - 叶子文件内容变化：更新对应叶子记录。
 - 直属子节点增删或改名：同时更新直接父级 `README.md`。
 - 顶级模块变化：更新本文件。
-- 每次仓库变更：在 `docs/dev_logs/<date>/` 登记开发记录。
+- 每次仓库变更：在 `docs/dev_logs/<month>/<date>/` 登记开发记录。

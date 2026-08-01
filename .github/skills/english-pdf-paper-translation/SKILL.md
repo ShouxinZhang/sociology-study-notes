@@ -50,7 +50,7 @@ paper-module/
 
 1. 修改前阅读 `docs/architecture/repository-structure.md`，并按用户确认后的方案执行。
 2. 产出后立即更新 `docs/architecture/repository-structure.md`。
-3. 在 `docs/dev_logs/<YYYY-MM-DD>/` 写开发日志，并更新 `docs/dev_logs/INDEX.md`。
+3. 使用仓库的 `dev-logs` Skill 创建单任务日志并维护四层索引。
 4. 不碰无关脏文件；如用户要求删除、回滚或重来，先备份到 `.agents/cache/<task_name>/`。
 
 ## 最终回复

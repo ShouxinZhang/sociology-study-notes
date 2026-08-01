@@ -1,0 +1,4 @@
+interface:
+  display_name: "Dev Logs"
+  short_description: "为仓库内每个独立任务建立结构化、可验证、可追溯的开发日志记录"
+  default_prompt: "Use $dev-logs to record this repository task as one structured Markdown log."
