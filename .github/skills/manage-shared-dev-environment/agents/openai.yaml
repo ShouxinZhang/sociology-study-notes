@@ -1,0 +1,4 @@
+interface:
+  display_name: "多语言共享开发环境"
+  short_description: "统一发现、创建、接入并验证 Python、Node 与 Rust 共享环境"
+  default_prompt: "使用 $manage-shared-dev-environment 检查并复用当前仓库的 Python、Node/TypeScript 与 Rust 开发环境。"

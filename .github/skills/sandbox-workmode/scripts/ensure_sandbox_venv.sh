@@ -1,22 +1,28 @@
 #!/usr/bin/env bash
+# Attach sandbox tasks to the repository's managed Python environment.
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../../../.." && pwd)"
+RUNTIME_MANAGER="$REPO_ROOT/.github/skills/manage-shared-dev-environment/scripts/manage-runtime.sh"
+PYTHON_VERSION="${SHARED_PYTHON_VERSION:-3.14}"
 
-SANDBOX_DIR="$REPO_ROOT/.agents/sandbox"
-SANDBOX_VENV="$SANDBOX_DIR/.venv"
-
-has_shared_pth() {
-  [[ -x "$SANDBOX_VENV/bin/python" ]] || return 1
-  find "$SANDBOX_VENV/lib" -maxdepth 3 -type f -name _shared_heavy_packages.pth -print -quit | grep -q .
-}
-
-if has_shared_pth; then
-  echo "[OK] Sandbox venv already attached: $SANDBOX_VENV"
-  exit 0
+if [[ ! -x "$RUNTIME_MANAGER" ]]; then
+  printf '[sandbox][error] Missing shared runtime manager: %s\n' "$RUNTIME_MANAGER" >&2
+  exit 1
 fi
 
-export SHARED_ENV_NAME="${SHARED_ENV_NAME:-py312-torch-cu130}"
+"$RUNTIME_MANAGER" init \
+  --repo "$REPO_ROOT" \
+  --python-version "$PYTHON_VERSION" \
+  --source-venv "$REPO_ROOT/.venv"
 
-bash "$REPO_ROOT/.agents/skills/shared-python-env/scripts/setup_shared_env.sh" attach "$SANDBOX_DIR"
+"$RUNTIME_MANAGER" attach-python \
+  --repo "$REPO_ROOT" \
+  --python-version "$PYTHON_VERSION" \
+  --scope sandbox
+
+"$RUNTIME_MANAGER" validate \
+  --repo "$REPO_ROOT" \
+  --python-version "$PYTHON_VERSION" \
+  --scope sandbox

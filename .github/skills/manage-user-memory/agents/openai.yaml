@@ -1,0 +1,4 @@
+interface:
+  display_name: "管理用户记忆"
+  short_description: "按工作、娱乐等情境维护用户人格、偏好、语气与长期记忆"
+  default_prompt: "使用 $manage-user-memory 识别当前情境人格，并按其偏好和语气维护用户记忆。"

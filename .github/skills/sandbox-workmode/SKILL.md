@@ -54,11 +54,11 @@ tasks/<task_slug>/logs/YYYY-MM-DD_HH-MM-SS+task_slug.md
 主 agent 负责创建、核对和汇总这些子任务日志；subagent 不能只在对话里返回结果而不留下任务级 Markdown 记录。并行子任务规范见 `./references/parallel-work.md`。
 
 9. 每个任务目录必须自带局部 `.gitignore`；规则见 `./references/gitignore.md`。仓库根 `.gitignore` 不应硬编码某个活跃 sandbox。
-10. Python 运行统一使用 `.agents/sandbox/.venv`；任务目录内默认禁止再创建私有 `.venv`。环境规则见 `./references/venv.md`。
+10. Python 运行统一使用 `.agents/sandbox/.venv` 兼容入口；实体环境由相邻的 `manage-shared-dev-environment` Skill 放在 `.agents/runtime/python/<major.minor>/.venv` 中统一管理。任务目录内默认禁止再创建私有 `.venv`。环境规则见 `./references/venv.md`。
 
 ## 推荐流程
 
-1. 确认 `.agents/sandbox/.venv` 可用；缺失时运行 `./scripts/ensure_sandbox_venv.sh` 初始化。
+1. 运行 `./scripts/ensure_sandbox_venv.sh`，幂等地初始化共享 Python 环境并接入 `.agents/sandbox/.venv`。
 2. 用 `date '+%Y-%m'` 和 `date '+%Y-%m-%d'` 分别生成 month、day 目录名。
 3. 用 `date '+%Y-%m-%d_%H-%M-%S'` 生成时间戳。
    用 `date '+%Y-%m-%d_%H-%M'` 生成 plan/report 文件名前缀。
@@ -80,7 +80,7 @@ tasks/<task_slug>/logs/YYYY-MM-DD_HH-MM-SS+task_slug.md
 - plan 规范：`./references/plan.md`
 - report 规范：`./references/report.md`
 - 局部 Git 忽略规则：`./references/gitignore.md`
-- Python 环境规则：`./references/venv.md`
+- Python 环境接入规则：`./references/venv.md`；完整多语言治理见相邻的 `../manage-shared-dev-environment/SKILL.md`
 - 并行子任务规则：`./references/parallel-work.md`
 - sandbox 环境初始化脚本：`./scripts/ensure_sandbox_venv.sh`
 

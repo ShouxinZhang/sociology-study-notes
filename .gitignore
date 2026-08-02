@@ -1,6 +1,7 @@
 # Agent runtime cache and temporary task artifacts.
 .agents/cache/
-.agents/manifest/
+.agents/memory/
+.agents/runtime/
 .agents/sandbox/
 
 # Local OS/editor state.
@@ -23,7 +24,7 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-.venv/
+.venv
 venv/
 
 # Node/frontend dependency and build outputs.
