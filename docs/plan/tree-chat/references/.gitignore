@@ -1,0 +1,4 @@
+incoming/
+*.min.js
+*.map
+**/boq-makersuite/**

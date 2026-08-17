@@ -1,0 +1,42 @@
+.tree-sidebar {
+  overflow: auto;
+  padding: 16px 12px;
+  background: var(--panel-2);
+}
+
+.tree-list {
+  margin: 0;
+  padding-left: 14px;
+  list-style: none;
+}
+
+.tree-sidebar > .tree-list {
+  padding-left: 0;
+}
+
+.tree-node {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 6px 8px;
+  border-radius: 8px;
+  color: var(--muted);
+}
+
+.tree-node.is-current,
+.tree-node:hover {
+  background: var(--panel);
+  color: var(--text);
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  min-width: 0;
+}
+
+.crumb-sep {
+  color: var(--line);
+}

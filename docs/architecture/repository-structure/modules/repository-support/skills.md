@@ -1,4 +1,4 @@
-# .github/skills/
+# .agents/skills/
 
 仓库级自定义 Agent Skills。
 

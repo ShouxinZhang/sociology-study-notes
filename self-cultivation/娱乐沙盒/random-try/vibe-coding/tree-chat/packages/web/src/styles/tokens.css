@@ -1,0 +1,31 @@
+:root {
+  color-scheme: dark;
+  --bg: #0b0b0c;
+  --panel: #141416;
+  --panel-2: #1c1c20;
+  --line: #2a2a30;
+  --text: #ececf1;
+  --muted: #9a9aa8;
+  --user: #1b2430;
+  --think: #241f14;
+  --think-ink: #d8c48a;
+  --accent: #8ab4ff;
+  --danger: #ff8a80;
+  --radius: 12px;
+  --font: "Segoe UI", "PingFang SC", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.5 var(--font);
+}

@@ -24,3 +24,4 @@ Agent 本地缓存、运行环境与私有记忆区，不作为业务内容事�
 | `runtime/state/` | 当前工具链路径和版本、Python 兼容依赖快照及最近备份入口 |
 | `sandbox/` | 被根级 `.gitignore` 整体排除的本地隔离工作区；按 `YYYY-MM/YYYY-MM-DD/<时间戳>+<task>/` 分区，内部按 `docs/src/logs/output` 分层 |
 | `sandbox/.venv` | 指向 `../runtime/python/3.14/.venv` 的兼容软链接，任务目录内不再创建重复 venv |
+| `skills/` | 仓库级 Skill 正文；路径与明细见 [skills.md](skills.md) |

@@ -35,7 +35,7 @@ repository-structure.md
 |---|---|---|---|
 | `draft-notes` | `draft-notes/` | 用户原始草稿、待整理内容，以及托管的 LLM 模拟笔记工作区 | [草稿与参考资料](repository-structure/modules/repository-support/drafts-and-references.md) |
 | `docs` | `docs/` | 架构、计划、临时副本与开发日志 | [文档模块](repository-structure/modules/repository-support/docs.md) |
-| `skills` | `.github/skills/` | 仓库级自定义 Agent Skills | [Skills](repository-structure/modules/repository-support/skills.md) |
+| `skills` | `.agents/skills/` | 仓库级自定义 Agent Skills | [Skills](repository-structure/modules/repository-support/skills.md) |
 | `agent-storage` | `.agents/` | 不进入业务内容层的 Agent 缓存与归档 | [Agent 存储](repository-structure/modules/repository-support/agent-storage.md) |
 | `root-files` | 仓库根目录 | Git、Agent、简介与许可证等根级控制文件 | [根级文件](repository-structure/modules/repository-support/root-files.md) |
 

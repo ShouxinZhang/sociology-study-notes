@@ -1,0 +1,58 @@
+.app-shell {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  height: 100%;
+}
+
+.main-pane {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-left: 1px solid var(--line);
+}
+
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.status-line {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.pane-title {
+  margin: 0 0 12px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ghost-btn,
+.crumb,
+.run-button,
+.thinking-toggle,
+.tree-node {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.ghost-btn,
+.crumb {
+  color: var(--muted);
+  padding: 2px 6px;
+}
+
+.ghost-btn:hover,
+.crumb:hover {
+  color: var(--text);
+}

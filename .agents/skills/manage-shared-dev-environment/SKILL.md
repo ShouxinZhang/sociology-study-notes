@@ -12,7 +12,7 @@ description: 统一发现、创建、接入、迁移和验证仓库内 Python、
 1. 从仓库根目录运行只读检查：
 
    ```bash
-   bash .github/skills/manage-shared-dev-environment/scripts/manage-runtime.sh inspect
+   bash .agents/skills/manage-shared-dev-environment/scripts/manage-runtime.sh inspect
    ```
 
 2. 阅读 [环境架构](references/architecture.md)，确认用户要解决的是重复存储、版本统一、项目隔离还是故障恢复。
@@ -23,7 +23,7 @@ description: 统一发现、创建、接入、迁移和验证仓库内 Python、
 4. 创建共享运行库；若根 `.venv` 可用，它会被快照为精确版本清单并迁入 Python 3.14 环境：
 
    ```bash
-   bash .github/skills/manage-shared-dev-environment/scripts/manage-runtime.sh init \
+   bash .agents/skills/manage-shared-dev-environment/scripts/manage-runtime.sh init \
      --python-version 3.14 \
      --source-venv .venv
    ```
@@ -31,7 +31,7 @@ description: 统一发现、创建、接入、迁移和验证仓库内 Python、
 5. 需要兼容旧入口时再接入。命令会把现有入口完整移动到 `.agents/cache/manage-shared-dev-environment/<timestamp>/`，然后建立相对软链接：
 
    ```bash
-   bash .github/skills/manage-shared-dev-environment/scripts/manage-runtime.sh attach-python \
+   bash .agents/skills/manage-shared-dev-environment/scripts/manage-runtime.sh attach-python \
      --python-version 3.14 \
      --scope all
    ```
@@ -39,7 +39,7 @@ description: 统一发现、创建、接入、迁移和验证仓库内 Python、
 6. 完成后验证：
 
    ```bash
-   bash .github/skills/manage-shared-dev-environment/scripts/manage-runtime.sh validate \
+   bash .agents/skills/manage-shared-dev-environment/scripts/manage-runtime.sh validate \
      --python-version 3.14 \
      --scope all
    ```

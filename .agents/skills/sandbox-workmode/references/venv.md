@@ -12,8 +12,8 @@
 完整的 Python ABI、Node/TypeScript、Rust、备份与恢复规则见：
 
 ```text
-.github/skills/manage-shared-dev-environment/SKILL.md
-.github/skills/manage-shared-dev-environment/references/python.md
+.agents/skills/manage-shared-dev-environment/SKILL.md
+.agents/skills/manage-shared-dev-environment/references/python.md
 ```
 
 本文件不复制多语言环境政策，避免从其他仓库迁移 Skill 后产生失效路径。
@@ -23,7 +23,7 @@
 从仓库任意子目录运行：
 
 ```bash
-bash .github/skills/sandbox-workmode/scripts/ensure_sandbox_venv.sh
+bash .agents/skills/sandbox-workmode/scripts/ensure_sandbox_venv.sh
 ```
 
 脚本会：

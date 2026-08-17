@@ -8,4 +8,6 @@
 | `repository.drafts-and-references` | 原始草稿，以及托管的 LLM 模拟笔记工作区 | [进入](drafts-and-references.md) |
 | `repository.skills` | 仓库级自定义 Agent Skills，包括多框架 Prompt 取证的人格记忆、共享环境治理与模型识别 | [进入](skills.md) |
 | `repository.agent-storage` | Agent 本地 Prompt 缓存、详细背景与情境人格记忆、共享 runtime 与归档 | [进入](agent-storage.md) |
-| `repository.docs` | 架构、活跃计划、临时副本与开发日志 | [进入](docs.md) |
+| `repository.docs` | 架构、活跃计划、前端参考采集、临时副本与开发日志 | [进入](docs.md) |
+
+> 本次更新模型：gpt-5.6-sol

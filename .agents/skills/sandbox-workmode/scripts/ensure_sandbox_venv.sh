@@ -4,7 +4,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../../../.." && pwd)"
-RUNTIME_MANAGER="$REPO_ROOT/.github/skills/manage-shared-dev-environment/scripts/manage-runtime.sh"
+RUNTIME_MANAGER="$REPO_ROOT/.agents/skills/manage-shared-dev-environment/scripts/manage-runtime.sh"
 PYTHON_VERSION="${SHARED_PYTHON_VERSION:-3.14}"
 
 if [[ ! -x "$RUNTIME_MANAGER" ]]; then

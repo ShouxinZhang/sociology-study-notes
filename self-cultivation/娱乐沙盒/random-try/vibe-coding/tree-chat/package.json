@@ -1,0 +1,10 @@
+{
+  "name": "tree-chat",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --parallel --filter @tree-chat/server --filter @tree-chat/web dev",
+    "test": "pnpm --filter @tree-chat/shared test",
+    "typecheck": "pnpm -r typecheck"
+  }
+}

@@ -23,4 +23,4 @@
 2. 修改后更新目标叶子记录。
 3. 直属子节点新增、删除或改名时更新直接父索引。
 4. 顶级模块变化时才更新全局入口。
-5. 使用 `.github/skills/dev-logs/SKILL.md` 在 `docs/dev_logs/<month>/<date>/` 为当前独立任务创建一份日志并维护索引。
+5. 使用 `.agents/skills/dev-logs/SKILL.md` 在 `docs/dev_logs/<month>/<date>/` 为当前独立任务创建一份日志并维护索引。

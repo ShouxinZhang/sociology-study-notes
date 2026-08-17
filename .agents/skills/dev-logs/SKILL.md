@@ -36,7 +36,7 @@ docs/dev_logs/YYYY-MM/YYYY-MM-DD/HH-MM-SS+task-slug.md
 6. 运行校验器：
 
 ```bash
-python3 .github/skills/dev-logs/scripts/validate_dev_logs.py \
+python3 .agents/skills/dev-logs/scripts/validate_dev_logs.py \
   --root docs/dev_logs \
   --record docs/dev_logs/YYYY-MM/YYYY-MM-DD/HH-MM-SS+task-slug.md
 ```
