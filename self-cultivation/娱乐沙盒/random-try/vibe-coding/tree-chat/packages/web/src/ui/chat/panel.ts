@@ -1,39 +1,19 @@
 import type { ChatNode } from "@tree-chat/shared";
 import type { Store } from "../../state/store.ts";
 import { el } from "../dom.ts";
-import { renderComposer } from "./composer.ts";
 import { renderModelTurn } from "./model-turn.ts";
 import { renderUserTurn } from "./user-turn.ts";
 
-export function renderPanel(
+export function renderTurns(
   store: Store,
-  actions: {
-    onSend: (text: string) => void;
-    onFork: (id: string) => void;
-    onEdit: (id: string, text: string) => void;
-  },
-): HTMLElement {
-  const state = store.get();
-  const wrap = el("section", "chat-panel");
-  const scroller = el("div", "chat-scroll");
-
+  actions: { onFork: (id: string) => void; onEdit: (id: string, text: string) => void },
+): HTMLElement[] {
   const path = store.path();
   const lastModelId = [...path].reverse().find((node) => node.role === "model")?.id;
-  for (const node of path) {
-    scroller.append(renderTurn(node, store, actions, lastModelId));
+  if (path.length === 0) {
+    return [el("p", "empty-hint", "从当前节点提问。发送只带这条路径。")];
   }
-  if (store.path().length === 0) {
-    scroller.append(el("p", "empty-hint", "从当前节点提问。发送只带这条路径。"));
-  }
-
-  wrap.append(
-    scroller,
-    renderComposer({
-      disabled: Boolean(state.streamingId),
-      onSubmit: actions.onSend,
-    }),
-  );
-  return wrap;
+  return path.map((node) => renderTurn(node, store, actions, lastModelId));
 }
 
 function renderTurn(

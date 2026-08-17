@@ -8,12 +8,16 @@ function delay(ms: number): Promise<void> {
 export class MockProvider implements ChatProvider {
   readonly name = "mock";
 
-  async *stream(): AsyncGenerator<StreamDelta> {
+  async *stream(messages: { text: string }[]): AsyncGenerator<StreamDelta> {
+    const last = messages.at(-1)?.text ?? "";
     yield { type: "thinking", text: "先确认当前路径不含兄弟分支。" };
     await delay(80);
     yield { type: "thinking", text: " 再给出可折叠的 Thoughts。" };
     yield { type: "usage", thoughtsTokens: 24 };
     await delay(80);
-    yield { type: "answer", text: "这是 mock 回答。填 `GEMINI_API_KEY` 后会走官方 Gemini。" };
+    yield {
+      type: "answer",
+      text: last ? `已收到：${last}` : "空消息。",
+    };
   }
 }

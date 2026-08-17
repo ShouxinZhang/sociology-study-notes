@@ -1,20 +1,15 @@
 import { fetchHealth, fetchTree, postTree, streamChat } from "./api/client.ts";
 import { createStore } from "./state/store.ts";
-import { renderShell } from "./ui/shell.ts";
+import { mountShell } from "./ui/shell.ts";
 
 export async function startApp(root: HTMLElement): Promise<void> {
   const store = createStore();
-
-  const paint = (): void => {
-    root.replaceChildren(
-      renderShell(store, {
-        onSend: (text) => void send(text),
-        onSelect: (id) => void mutate("select", { nodeId: id }),
-        onFork: (id) => void mutate("fork", { nodeId: id }),
-        onEdit: (id, text) => void mutate("edit", { nodeId: id, text }),
-      }),
-    );
-  };
+  const paint = mountShell(root, store, {
+    onSend: (text) => void send(text),
+    onSelect: (id) => void mutate("select", { nodeId: id }),
+    onFork: (id) => void mutate("fork", { nodeId: id }),
+    onEdit: (id, text) => void mutate("edit", { nodeId: id, text }),
+  });
   store.subscribe(paint);
 
   try {

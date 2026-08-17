@@ -8,20 +8,37 @@ async function parseJson<T>(res: Response): Promise<T> {
   return (await res.json()) as T;
 }
 
+async function requestJson<T>(url: string, init?: RequestInit, timeoutMs = 8000): Promise<T> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    return await parseJson<T>(
+      await fetch(url, { ...init, signal: controller.signal }),
+    );
+  } catch (error) {
+    if (error instanceof DOMException && error.name === "AbortError") {
+      throw new Error("请求超时：后端没响应");
+    }
+    throw error;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 export function fetchTree(): Promise<Forest> {
-  return fetch("/api/tree").then((res) => parseJson<Forest>(res));
+  return requestJson<Forest>("/api/tree");
 }
 
 export function fetchHealth(): Promise<{ provider: string; model: string }> {
-  return fetch("/api/health").then((res) => parseJson<{ provider: string; model: string }>(res));
+  return requestJson<{ provider: string; model: string }>("/api/health");
 }
 
 export function postTree(path: "select" | "fork" | "edit", body: object): Promise<Forest> {
-  return fetch(`/api/tree/${path}`, {
+  return requestJson<Forest>(`/api/tree/${path}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
-  }).then((res) => parseJson<Forest>(res));
+  });
 }
 
 export type ChatHandlers = {

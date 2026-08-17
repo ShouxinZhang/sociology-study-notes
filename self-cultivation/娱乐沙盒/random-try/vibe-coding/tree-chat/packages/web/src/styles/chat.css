@@ -7,8 +7,9 @@
 
 .chat-scroll {
   flex: 1;
+  min-height: 0;
   overflow: auto;
-  padding: 24px 20% 32px;
+  padding: 24px 12% 32px;
 }
 
 .empty-hint {

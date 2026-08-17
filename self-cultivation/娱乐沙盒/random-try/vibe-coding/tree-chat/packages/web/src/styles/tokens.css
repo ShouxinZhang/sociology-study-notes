@@ -25,6 +25,7 @@ body,
 #app {
   margin: 0;
   height: 100%;
+  overflow: hidden;
   background: var(--bg);
   color: var(--text);
   font: 15px/1.5 var(--font);

@@ -9,3 +9,4 @@
 | 16:35:03 | repository-change | 已完成 | [将 Skill 脚本路径从 .github 改到 .agents](16-35-03+fix-skill-paths-to-agents.md) |
 | 16:36:00 | environment | 已完成 | [安装 ChatGPT / Codex Linux 桌面端预览](16-36-00+install-chatgpt-codex-desktop.md) |
 | 17:06:29 | repository-change | 已完成 | [从零实现 Tree Chat P0](17-06-29+build-tree-chat-mvp.md) |
+| 17:55:46 | repository-change | 已完成 | [修复 Tree Chat 输入框掉出视口导致像卡住](17-55-46+fix-tree-chat-stuck.md) |
