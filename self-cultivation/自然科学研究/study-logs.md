@@ -18,3 +18,6 @@ Time fragmentation is a method of conducting scientific research that applies hi
 
 2026-08-22 23:15:38 CST 学习10min (对偶basis, n-form)
 2026-08-22 23:39:33 CST 学习15分钟 (form n-form to the det, and the 传统置换)
+2026-08-23 02:19:48 CST 学习20分钟 (看了置换的一个lemma, 思考了一下流形理论的符号习惯)
+2026-08-23 02:50:28 CST 学习10min (阅读了flat and star in geogemry，但我发觉那用传统符号也可以书写，不过，star符号很有意思，此外，music符号让我好奇)
+2026-08-23 04:57:57 CST 学习80min （简单梳理了一下Inner的符号习惯，然后发现了拟矩阵（无穷维）情况，居然似乎有在泛函分析中统一离散和连续情况的矩阵的样子，令我非常震撼）
