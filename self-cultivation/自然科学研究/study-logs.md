@@ -23,3 +23,5 @@ Time fragmentation is a method of conducting scientific research that applies hi
 2026-08-23 04:57:57 CST 学习80min （简单梳理了一下Inner的符号习惯，然后发现了拟矩阵（无穷维）情况，居然似乎有在泛函分析中统一离散和连续情况的矩阵的样子，令我非常震撼）
 2026-08-23 06:48:34 CST 学习60分钟（梳理了单位算子的拟阵的计算） 
 
+2026-08-24 20:29:00 CST 学习20min （gemini chat: matrix符号习惯/英文学习）
+
