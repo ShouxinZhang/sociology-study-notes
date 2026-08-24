@@ -24,4 +24,5 @@ Time fragmentation is a method of conducting scientific research that applies hi
 2026-08-23 06:48:34 CST 学习60分钟（梳理了单位算子的拟阵的计算） 
 
 2026-08-24 20:29:00 CST 学习20min （gemini chat: matrix符号习惯/英文学习）
+2026-08-24 22:48:11 CST 学习1h (gemini chat: matrix block & matrix otimes)
 
