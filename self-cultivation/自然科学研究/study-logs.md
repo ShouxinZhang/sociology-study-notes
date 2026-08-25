@@ -29,3 +29,5 @@ Time fragmentation is a method of conducting scientific research that applies hi
 2026-08-25 01:09:28 CST 学习30min (考虑了EKF算法)
 2026-08-25 02:46:02 CST 学习45min (努力整合KF ing...)
 2026-08-25 04:43:18 CST 学习1h (高斯随机空间！正交多项式分解！)
+
+2026-08-26 04:35:16 CST 学习3h15min (KF,EnKF沉淀, poly)
