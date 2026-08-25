@@ -21,6 +21,7 @@ status: active
 | `成语知识库/bad.txt` | 负面人物、行为画像与恶果报应类成语清单 |
 | `random-writing/` | 虚拟朋友圈随机随笔、社交话题与状态估计联想素材的独立沉淀目录；随笔正文按周分区归档 |
 | `random-writing/random_writing.md` | 随机随笔周归档索引，登记未确定日期分区、各自然周文件及归档状态 |
+| `random-writing/buffer.md` | Idle/Buffer 未关闭队列；只登记条目与回链，不写长文 |
 | `random-writing/weekly/undated.md` | 无法可靠确定自然日期的随机随笔记录，不根据原始位置推断日期 |
 | `random-writing/weekly/2026/` | 2026 年随机随笔周归档目录，采用周日—周六分区；缺失周保留显式故障档案与已找回片段 |
 | `random-writing/references/` | 随机随笔长段参考材料、LLM 对话回复与可复用社交素材目录 |
