@@ -33,3 +33,5 @@ Time fragmentation is a method of conducting scientific research that applies hi
 2026-08-26 04:35:16 CST 学习3h15min (KF,EnKF沉淀, poly)
 2026-08-26 09:02:25 CST 学习3h (vector space, linear op, tensor!)
 2026-08-26 10:43:26 CST 学习1h30min (tensor!)
+2026-08-26 20:11:49 CST 学习2h30min (工作时间！tensor!)
+2026-08-26 21:37:58 CST 学习1h (tensor? matrix? 运算?) 未能沉淀⚠️
