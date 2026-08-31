@@ -38,3 +38,6 @@ Time fragmentation is a method of conducting scientific research that applies hi
 
 2026-08-30 13:00:52 CST 学习2h (重启OTPF沉淀，以及重尾分布的学习，经验测度符号的思考)
 2026-08-30 16:48:36 CST 学习3h30min (基本写完了经验测度符号的基础)
+
+2026-08-31 10:28:35 CST 学习1h (重尾分布)
+2026-08-31 11:42:15 CST 学习40分钟（什么是tail?）
