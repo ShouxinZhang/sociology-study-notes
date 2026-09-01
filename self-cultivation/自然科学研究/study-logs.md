@@ -41,3 +41,6 @@ Time fragmentation is a method of conducting scientific research that applies hi
 
 2026-08-31 10:28:35 CST 学习1h (重尾分布)
 2026-08-31 11:42:15 CST 学习40分钟（什么是tail?）
+
+2026-09-01 05:20:48 CST 学习1h(Kang's report PPT; OT)
+2026-09-01 06:43:01 CST 学习30min (KF的2阶矩条件, $X^2$, PF)
