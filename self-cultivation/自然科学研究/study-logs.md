@@ -44,3 +44,6 @@ Time fragmentation is a method of conducting scientific research that applies hi
 
 2026-09-01 05:20:48 CST 学习1h(Kang's report PPT; OT)
 2026-09-01 06:43:01 CST 学习30min (KF的2阶矩条件, $X^2$, PF)
+2026-09-01 21:25:51 CST 学习5h (信息，测度，sinkhorn!)
+
+2026-09-02 18:07:16 CST 学习1h (OT basic, Sinkhorn!)
