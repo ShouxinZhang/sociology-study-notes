@@ -47,3 +47,4 @@ Time fragmentation is a method of conducting scientific research that applies hi
 2026-09-01 21:25:51 CST 学习5h (信息，测度，sinkhorn!)
 
 2026-09-02 18:07:16 CST 学习1h (OT basic, Sinkhorn!)
+2026-09-03 19:46:55 CST 学习6h (OT basic)
