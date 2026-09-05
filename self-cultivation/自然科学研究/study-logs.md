@@ -54,3 +54,5 @@ Time fragmentation is a method of conducting scientific research that applies hi
 2026-09-04 21:37:11 CST 学习30min (条件概率与条件期望)
 
 2026-09-05 14:44:22 CST 学习2h（条件概率与条件期望，发呆）
+
+2026-09-06 06:08:17 CST 学习6h（重要性采样，分层采样）
