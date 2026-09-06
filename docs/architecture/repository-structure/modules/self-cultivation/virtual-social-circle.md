@@ -23,7 +23,7 @@ status: active
 | `random-writing/random_writing.md` | 随机随笔周归档索引，登记未确定日期分区、各自然周文件及归档状态 |
 | `random-writing/buffer.md` | Idle/Buffer 未关闭队列；只登记条目与回链，不写长文 |
 | `random-writing/weekly/undated.md` | 无法可靠确定自然日期的随机随笔记录，不根据原始位置推断日期 |
-| `random-writing/weekly/2026/` | 2026 年随机随笔周归档目录，采用周日—周六分区；缺失周保留显式故障档案与已找回片段 |
+| `random-writing/weekly/2026/` | 2026 年随机随笔周归档目录，采用周日—周六分区，已延伸至 2026-09-06—2026-09-12；缺失周保留显式故障档案与已找回片段 |
 | `random-writing/references/` | 随机随笔长段参考材料、LLM 对话回复与可复用社交素材目录 |
 | `random-writing/references/less_familiar_chat_topics.md` | 和不熟悉的人聊天时可宽泛展开的话题清单、切入点与中英示例问题 |
 | `random-writing/references/principles-methods-skills-terms.md` | 原理/方法/技能相关英语术语分层对照，覆盖原则、战略、方法论、技能、捷径与方案 |
