@@ -72,3 +72,6 @@ Time fragmentation is a method of conducting scientific research that applies hi
 2026-09-13 19:34:09 CST 娱乐45min (徜徉围城魔改世界)
 
 2026-09-14 00:09:49 CST 学习2h（BPF坍塌原因勘探）
+2026-09-14 09:42:19 CST 学习3h (BPF/ETPF的误差分解)
+2026-09-14 15:04:57 CST 混合1h (BPF/ETPF的误差分解)
+2026-09-14 16:08:01 CST 工作30min (Filter Code/Env)
