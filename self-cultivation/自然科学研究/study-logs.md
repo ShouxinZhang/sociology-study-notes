@@ -78,3 +78,5 @@ Time fragmentation is a method of conducting scientific research that applies hi
 2026-09-15 11:25:08 CST 工作7h（中期答辩论文/PPT）【昨天忘了记录，应该是今早3点30分左右撤退的】
 
 2026-09-16 21:12:26 CST 工作2h（论文翻译SKILL, 中期模板，杂乱学习）
+
+2026-09-17 20:09:30 CST 学习2h（信息几何；凸优化）
