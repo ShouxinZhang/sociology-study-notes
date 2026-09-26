@@ -28,6 +28,7 @@ status: active
 | `random-writing/references/` | 随机随笔长段参考材料、LLM 对话回复与可复用社交素材目录 |
 | `random-writing/references/less_familiar_chat_topics.md` | 和不熟悉的人聊天时可宽泛展开的话题清单、切入点与中英示例问题 |
 | `random-writing/references/principles-methods-skills-terms.md` | 原理/方法/技能相关英语术语分层对照，覆盖原则、战略、方法论、技能、捷径与方案 |
+| `random-writing/references/2026-09-27-time-view-history-materialism.md` | 2026-09-27 时间观、大历史观、人民史观与个人发展的 AI 对话摘录，周记正文以锚点链接引用 |
 | `random-writing/image/random_writing/` | 随机随笔周归档及其关联素材使用的图片资源目录 |
 | `diverse_worlds_match/` | 面向“不同世界观是否匹配”主题的轻量英文内容实验子目录 |
 | `diverse_worlds_match/1.md` | 将《我的叔叔于勒》与数学系数值分析、神经网络梗结合后润色翻译成中文的趣味短篇 |
