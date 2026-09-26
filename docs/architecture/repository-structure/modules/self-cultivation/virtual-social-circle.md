@@ -16,7 +16,7 @@ status: active
 |---|---|
 | `1.md` | 梦境门世界原始中文图文稿 |
 | `image/1/` | `1.md` 使用的原始配图目录 |
-| `media/YYYY/MM/` | 手机拍摄的生活照片与视频，按年/月分区；文件名为 `YYYY-MM-DD_<内容英文短描述>.<ext>`；视频统一转为 H.264 以便 VS Code/GitHub 预览 |
+| `media/YYYY/MM/` | 手机拍摄的生活照片与视频，按年/月分区；文件名为 `YYYY-MM-DD_<内容英文短描述>.<ext>`；视频保留手机原始 H.265/HEVC，用 mpv 播放（VS Code/GitHub 无法预览） |
 | `成语知识库/` | 面向虚拟朋友圈文案取词的成语素材库，按正面与负面语义分文件沉淀 |
 | `成语知识库/good.txt` | 正面意象、生活状态、团结奋斗与发展繁荣类成语清单 |
 | `成语知识库/bad.txt` | 负面人物、行为画像与恶果报应类成语清单 |
@@ -24,7 +24,7 @@ status: active
 | `random-writing/random_writing.md` | 随机随笔周归档索引，登记未确定日期分区、各自然周文件及归档状态 |
 | `random-writing/buffer.md` | Idle/Buffer 未关闭队列；只登记条目与回链，不写长文 |
 | `random-writing/weekly/undated.md` | 无法可靠确定自然日期的随机随笔记录，不根据原始位置推断日期 |
-| `random-writing/weekly/2026/` | 2026 年随机随笔周归档目录，采用周日—周六分区，已延伸至 2026-09-20—2026-09-26；缺失周保留显式故障档案与已找回片段 |
+| `random-writing/weekly/2026/` | 2026 年随机随笔周归档目录，采用周日—周六分区，已延伸至 2026-09-27—2026-10-03；缺失周保留显式故障档案与已找回片段 |
 | `random-writing/references/` | 随机随笔长段参考材料、LLM 对话回复与可复用社交素材目录 |
 | `random-writing/references/less_familiar_chat_topics.md` | 和不熟悉的人聊天时可宽泛展开的话题清单、切入点与中英示例问题 |
 | `random-writing/references/principles-methods-skills-terms.md` | 原理/方法/技能相关英语术语分层对照，覆盖原则、战略、方法论、技能、捷径与方案 |

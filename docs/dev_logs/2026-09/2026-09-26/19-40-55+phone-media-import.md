@@ -32,6 +32,8 @@
 - [x] ffmpeg 截取 1/4/8/12 s 帧识别内容：夜晚窗外明月、校园楼宇灯火。
 - [x] 复制为 `2026-09-26_night-moon-over-campus-window.mp4`，临时截帧已清理。
 - [x] 19:43 用户反馈 VS Code 黑屏：其内置播放器不支持 HEVC。原片备份至 `.agents/cache/phone-media-import/hevc-original.mp4`，用 libx264 (CRF 20) 转码为 H.264，音频原样保留，文件 6.5 MB。
+- [x] 19:46 用户改选“mpv + H.265”：H.264 版备份至 `.agents/cache/phone-media-import/h264-version.mp4`，入库文件恢复为 HEVC 原片；AV1 试转件已删除。sudo 需密码，改用用户级 Flatpak 安装 `io.mpv.Mpv` v0.41.0。
+- [x] 用户询问如何在 VS Code 中播放：安装扩展 `YuTengjing.open-in-external-app`，在用户 `settings.json` 添加 `openInExternalApp.openMapper`，把 mp4/mov/mkv 映射到 `flatpak run io.mpv.Mpv`（仅用户环境，非仓库文件）。
 
 ## 变更文件
 
@@ -46,7 +48,8 @@
 | 验证项 | 结果 | 证据 |
 |---|---|---|
 | 复制完整性 | PASS | 源与目标 `sha256sum` 一致：`e50c82da…0947c3` |
-| 可播放编码 | PASS | `ffprobe` → `h264` + `aac`，时长 29.07 s |
+| 入库文件为原片 | PASS | `ffprobe` → `hevc` + `aac`；`sha256` 前缀 `e50c82dace7f1491` 与微信原件一致 |
+| mpv 解码 HEVC | PASS | `flatpak run io.mpv.Mpv --vo=null --frames=30 …` → `hevc 1280x720 30 fps`，正常 End of file |
 
 ## 风险与回滚
 
