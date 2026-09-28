@@ -20,6 +20,7 @@
 | `self-cultivation.book-reading` | `self-cultivation/book_reading/` | 书籍阅读与长篇文献转写/翻译工作区 | [进入](book-reading.md) |
 | `self-cultivation.virtual-social-circle` | `self-cultivation/虚拟朋友圈/` | 面向“虚拟朋友圈”系列内容、按周分区的时间线随笔与社交素材的独立子模块；周归档已延伸至 2026-10-03 | [进入](virtual-social-circle.md) |
 | `self-cultivation.collaboration` | `self-cultivation/协作/` | 协作主题的正文、原始素材与参考资料工作区 | [进入](collaboration.md) |
+| `self-cultivation.natural-science-research` | `self-cultivation/自然科学研究/` | 数学与自然科学笔记、习题及按月归档的学习时间日志 | [进入](natural-science-research.md) |
 | `self-cultivation.social-science-research` | `self-cultivation/社会科学研究/` | 社会科学研究问题与原始思考的独立沉淀区 | [进入](social-science-research.md) |
 | `self-cultivation.frontier-bfs` | `self-cultivation/前沿BFS/` | 前沿论文阅读资产区；历史已追踪源码与中文 TeX 工作区保留，后续新增内容默认只提交 PDF 阅读资产，非 PDF 工作文件由 `.gitignore` 过滤 | [进入](frontier-bfs/README.md) |
 | `self-cultivation.entertainment-sandbox` | `self-cultivation/娱乐沙盒/` | 娱乐向连载小说、沙盒脑洞、数学未解问题、随机模拟与单快照个人歌单/收藏专辑归档等趣味知识及轻量创作实验区 | [进入](entertainment-sandbox.md) |
