@@ -1,0 +1,116 @@
+/**
+ * HUD 与全屏界面：等级/血量/经验、当前武器与弹药、武器栏、提示横幅，以及标题/失败/过关/通关画面。
+ * ui = { ctx, sprites, colors: { ink, paper }, width, height }
+ */
+import { expToNext } from '../systems/leveling.js';
+import { frameAt } from '../core/sprites.js';
+
+const FONT = '"Noto Sans Mono CJK SC", "WenQuanYi Micro Hei Mono", "Courier New", monospace';
+
+function text(ui, str, x, y, { size = 16, align = 'left', box = true } = {}) {
+  const { ctx, colors } = ui;
+  ctx.font = `bold ${size}px ${FONT}`;
+  ctx.textAlign = align;
+  ctx.textBaseline = 'top';
+  if (box) {
+    const w = ctx.measureText(str).width;
+    const left = align === 'center' ? x - w / 2 : align === 'right' ? x - w : x;
+    ctx.fillStyle = colors.paper;
+    ctx.fillRect(left - 6, y - 4, w + 12, size + 8);
+  }
+  ctx.fillStyle = colors.ink;
+  ctx.fillText(str, x, y);
+}
+
+/** 带墨色描边的面板 */
+function panel(ui, x, y, w, h, border = 3) {
+  const { ctx, colors } = ui;
+  ctx.fillStyle = colors.paper;
+  ctx.fillRect(x, y, w, h);
+  ctx.strokeStyle = colors.ink;
+  ctx.lineWidth = border;
+  ctx.strokeRect(x + border / 2, y + border / 2, w - border, h - border);
+}
+
+function bar(ui, x, y, w, h, ratio) {
+  panel(ui, x, y, w, h, 2);
+  ui.ctx.fillStyle = ui.colors.ink;
+  ui.ctx.fillRect(x + 3, y + 3, (w - 6) * Math.max(0, Math.min(1, ratio)), h - 6);
+}
+
+function icon(ui, sprite, x, y, size) {
+  ui.ctx.imageSmoothingEnabled = false;
+  ui.ctx.drawImage(sprite.frames[0], x, y, size, size);
+}
+
+export function drawHud(ui, game) {
+  const { player: p, inventory, data } = game;
+  const { width, sprites } = ui;
+
+  // 左上：等级、生命、经验
+  const need = expToNext(p.level, data.progression);
+  panel(ui, 12, 12, 250, 74);
+  text(ui, `LV ${p.level}`, 24, 20, { box: false });
+  text(ui, `HP ${p.hp}/${p.maxHp}`, 110, 20, { box: false });
+  bar(ui, 24, 44, 226, 16, p.hp / p.maxHp);
+  bar(ui, 24, 66, 226, 10, need === Infinity ? 1 : p.exp / need);
+
+  // 右上：当前武器与弹药
+  const weapon = inventory.current;
+  const ammo = inventory.ammoOf(weapon);
+  panel(ui, width - 232, 12, 220, 74);
+  icon(ui, sprites[weapon.icon], width - 76, 20, 56);
+  text(ui, weapon.name, width - 88, 22, { align: 'right', box: false });
+  text(ui, ammo === Infinity ? '近战' : `弹药 ${ammo}`, width - 88, 50, { align: 'right', box: false });
+
+  // 顶部居中：武器栏（数字键对应槽位，未获得显示为空槽）
+  const slotsLeft = (width - data.weapons.length * 56) / 2;
+  data.weapons.forEach((w, i) => {
+    const x = slotsLeft + i * 56;
+    const y = 22;
+    panel(ui, x, y, 52, 52, w.id === weapon.id ? 5 : 2);
+    if (inventory.owns(w.id)) icon(ui, sprites[w.icon], x + 10, y + 10, 32);
+    text(ui, String(i + 1), x + 7, y + 5, { size: 11, box: false });
+  });
+
+  if (game.banner) text(ui, game.banner.text, width / 2, 104, { align: 'center', size: 20 });
+}
+
+const CONTROLS = ['← → / A D   移动', '空格 / W / K   跳跃', 'J   攻击（按住连发）', '1-6 / Q E   切换武器'];
+const SCREENS = {
+  title: () => ({ title: '黑白冒险岛', lines: [...CONTROLS, '', '按 Enter 开始'] }),
+  gameover: (g) => ({ title: '你倒下了', lines: [`第 ${g.levelIndex + 1} 关 · ${g.level.name}`, '', '按 Enter 重试本关'] }),
+  clear: (g) => ({ title: `第 ${g.levelIndex + 1} 关 通过！`, lines: [`当前等级 LV ${g.player.level}`, '', '按 Enter 进入下一关'] }),
+  victory: (g) => ({
+    title: '全部通关！',
+    lines: [`最终等级 LV ${g.player.level}`, `武器收集 ${g.inventory.owned.length}/${g.data.weapons.length}`, '', '按 Enter 重新开始'],
+  }),
+};
+
+export function drawOverlay(ui, game) {
+  const screen = SCREENS[game.state]?.(game);
+  if (!screen) return;
+  const { ctx, colors, width, height, sprites } = ui;
+
+  if (game.state === 'title') {
+    ctx.fillStyle = colors.paper;
+    ctx.fillRect(0, 0, width, height);
+    const hero = sprites.player_walk;
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(hero.frames[frameAt(hero, game.time)], width / 2 - 48, 24, 96, 96);
+  } else {
+    // 半透明墨色遮罩
+    ctx.globalAlpha = 0.6;
+    ctx.fillStyle = colors.ink;
+    ctx.fillRect(0, 0, width, height);
+    ctx.globalAlpha = 1;
+  }
+
+  const boxW = 520;
+  const boxH = 96 + screen.lines.length * 30;
+  const x = (width - boxW) / 2;
+  const y = game.state === 'title' ? 136 : (height - boxH) / 2;
+  panel(ui, x, y, boxW, boxH, 4);
+  text(ui, screen.title, width / 2, y + 22, { align: 'center', size: 32, box: false });
+  screen.lines.forEach((line, i) => text(ui, line, width / 2, y + 76 + i * 30, { align: 'center', size: 18, box: false }));
+}

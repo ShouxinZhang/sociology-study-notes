@@ -1,0 +1,9 @@
+{
+  "baseHp": 10,
+  "hpPerLevel": 3,
+  "baseAttack": 1,
+  "attackPerLevel": 0.2,
+  "invulnTime": 1,
+  "heartHeal": 4,
+  "expTable": [10, 25, 45, 70, 100, 140, 190, 250, 320]
+}

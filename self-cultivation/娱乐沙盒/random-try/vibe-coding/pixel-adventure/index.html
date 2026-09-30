@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>黑白冒险岛</title>
+  <style>
+    html, body { margin: 0; height: 100%; background: #141414; color: #f4f4f4; font-family: monospace; }
+    body { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    canvas { box-sizing: border-box; width: min(960px, 100vw, 160vh); height: auto; image-rendering: pixelated; border: 4px solid #f4f4f4; }
+    #error { white-space: pre-line; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <canvas id="screen"></canvas>
+  <div id="error"></div>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+  "palette": "sprites/palette.json",
+  "sprites": [
+    "sprites/player.json",
+    "sprites/enemies.json",
+    "sprites/icons.json",
+    "sprites/effects.json",
+    "sprites/items.json",
+    "sprites/tiles.json"
+  ],
+  "data": {
+    "weapons": "data/weapons.json",
+    "enemies": "data/enemies.json",
+    "progression": "data/progression.json",
+    "legend": "data/legend.json"
+  },
+  "levels": [
+    "levels/level1.json",
+    "levels/level2.json",
+    "levels/level3.json"
+  ]
+}

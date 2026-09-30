@@ -1,0 +1,11 @@
+{
+  "empty": ".",
+  "tiles": {
+    "#": { "sprite": "ground",   "solid": true },
+    "S": { "sprite": "stone",    "solid": true },
+    "B": { "sprite": "brick",    "solid": true },
+    "=": { "sprite": "platform", "oneWay": true }
+  },
+  "enemies": { "s": "slime", "b": "bat", "k": "skeleton", "X": "boss" },
+  "markers": { "P": "start", "F": "flag", "C": "chest", "H": "heart", "A": "ammo" }
+}
