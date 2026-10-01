@@ -1,5 +1,6 @@
 {
   "name": "城堡",
+  "music": "level3",
   "requireBoss": true,
   "chests": [
     "rocket"

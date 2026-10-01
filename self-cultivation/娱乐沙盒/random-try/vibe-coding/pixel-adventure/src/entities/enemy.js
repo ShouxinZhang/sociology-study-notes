@@ -40,6 +40,7 @@ function tryThrow(game, e, dt, dx) {
   const spec = e.def.throw;
   if (!spec || (e.cd -= dt) > 0) return;
   e.cd = spec.cooldown;
+  game.sfx('bone_throw');
   const dir = Math.sign(dx) || e.facing;
   for (let i = 0; i < spec.count; i++) {
     game.projectiles.push(
@@ -83,6 +84,8 @@ const BEHAVIORS = {
       if (Math.abs(dx) > 200) return;
       e.awake = true;
       game.toast(`${e.def.name} 出现了！`);
+      game.sfx('boss_awake');
+      game.music(e.def.music);
     }
     e.facing = Math.sign(dx) || e.facing;
     const rage = e.hp < e.def.hp / 2 ? 1.6 : 1; // 半血后狂暴：更快、更频繁
@@ -90,7 +93,9 @@ const BEHAVIORS = {
       e.vy = -300;
       e.jumpCd = 2.5 / rage;
     }
+    const airborne = !e.onGround;
     walk(game, e, dt, e.def.speed * rage, true);
+    if (airborne && e.onGround) game.sfx('boss_land');
     tryThrow(game, e, dt * rage, dx);
   },
 };

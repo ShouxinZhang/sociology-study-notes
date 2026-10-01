@@ -22,6 +22,7 @@ pixel-adventure/
 │  ├─ entities/       player · enemy · projectile · pickup · effect
 │  ├─ systems/        physics · combat · leveling · inventory
 │  └─ render/         renderer（320×192 世界 ×3 放大）· hud
+│  └─ audio/          mixer · sfx（ZzFX 预合成）· music · vendor/zzfx.js
 └─ docs/              本文档中心
 ```
 
@@ -44,9 +45,12 @@ pixel-adventure/
 | enemies.json | `throw` | 投掷冷却、速度、伤害、数量（扇形） |
 | progression.json | `expTable` 等 | 升级经验、成长、无敌时间、回血量 |
 | cheat.json | `fireRateMultiplier` / `flySpeed` | 作弊射速倍率、飞行速度 |
+| audio/sfx.json | `zzfx` / `volume` / `minInterval` / `maxVoices` / `duck` | ZzFX 参数（`null` 为默认值）、音量、节流、复音上限、是否压低音乐 |
+| audio/music.json | `tracks` / `states` | 曲目文件与倍速；游戏状态 → 音乐/音效 |
+| weapons / enemies / levels | `sfxAttack` `sfxHit` / `sfxDie` `sfxHit` `music` / `music` | 各实体绑定的音效与音乐；命中时叠加两层：武器 `sfxHit`（用什么打）和敌人 `sfxHit`（打中什么） |
 
 ## 5. 验证方式
 
 - 语法：`node --check` 检查全部 `src/**/*.js`。
 - 逻辑：在浏览器内通过 `import('/src/...')` 构造 `Game`，用模拟输入逐帧推进（各任务日志中有示例与结果）。
-- 注意：集成浏览器标签页在后台时 `requestAnimationFrame` 会暂停，看画面需要页面在前台；测试修改后的代码请换端口，以绕过模块缓存。
+- 注意：集成浏览器标签页在后台时 `requestAnimationFrame` 会暂停，看画面需要页面在前台。`start.sh` 已对所有响应发送 `Cache-Control: no-store`，改代码后刷新页面即可；不要用 `python -m http.server` 启动，它会导致浏览器使用缓存的旧模块。

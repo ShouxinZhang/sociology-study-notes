@@ -1,0 +1,16 @@
+{
+  "tracks": {
+    "title":  { "file": "music/title.ogg",  "volume": 0.5 },
+    "level1": { "file": "music/level1.ogg", "volume": 0.45 },
+    "level2": { "file": "music/level2.ogg", "volume": 0.45 },
+    "level3": { "file": "music/level3.ogg", "volume": 0.45 },
+    "boss":   { "file": "music/level3.ogg", "volume": 0.5, "rate": 1.12 },
+    "ending": { "file": "music/ending.ogg", "volume": 0.5 }
+  },
+  "states": {
+    "title":    { "music": "title" },
+    "gameover": { "music": null, "sfx": "death" },
+    "clear":    { "music": null, "sfx": "level_clear" },
+    "victory":  { "music": "ending", "sfx": "level_clear" }
+  }
+}

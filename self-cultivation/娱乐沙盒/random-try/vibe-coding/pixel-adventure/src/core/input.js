@@ -12,6 +12,9 @@ const BINDINGS = {
   next: ['KeyE'],
   confirm: ['Enter'],
   cheat: ['F1'],
+  mute: ['KeyM'],
+  volDown: ['Minus', 'NumpadSubtract'],
+  volUp: ['Equal', 'NumpadAdd'],
 };
 // 阻止这些键滚动页面或打开浏览器帮助
 const BLOCK_DEFAULT = new Set(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'F1']);

@@ -9,7 +9,7 @@ export function createProjectile(sprite, o) {
   return {
     sprite, w: sprite.w, h: sprite.h, x: o.x - sprite.w / 2, y: o.y - sprite.h / 2,
     vx: o.vx, vy: o.vy, damage: o.damage, owner: o.owner,
-    radius: o.radius ?? 0, gravity: o.gravity ?? false, flip: o.flip ?? false,
+    radius: o.radius ?? 0, gravity: o.gravity ?? false, flip: o.flip ?? false, hitSfx: o.hitSfx ?? null,
     life: o.life ?? 2, dead: false,
   };
 }
@@ -33,7 +33,10 @@ export function updateProjectiles(game, dt) {
     pr.dead = true;
     if (pr.radius) explode(game, cx, cy, pr.radius, pr.damage);
     else if (target === player) hurtPlayer(game, pr.damage, cx);
-    else if (target) damageEnemy(game, target, pr.damage, Math.sign(pr.vx) || 1);
+    else if (target) {
+      damageEnemy(game, target, pr.damage, Math.sign(pr.vx) || 1);
+      game.sfx(pr.hitSfx);
+    } else if (pr.owner === 'player') game.sfx('bullet_wall');
   }
   game.projectiles = game.projectiles.filter((pr) => !pr.dead);
 }

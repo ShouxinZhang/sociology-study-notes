@@ -6,11 +6,12 @@ import { Input } from './core/input.js';
 import { startLoop } from './core/loop.js';
 import { Game } from './core/game.js';
 import { Renderer } from './render/renderer.js';
+import { createAudio } from './audio/audio.js';
 
 try {
   const assets = await loadAssets();
   const input = new Input();
-  const game = new Game(assets, input);
+  const game = new Game(assets, input, createAudio(assets));
   const renderer = new Renderer(document.getElementById('screen'), assets);
   startLoop(
     (dt) => {

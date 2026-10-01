@@ -14,7 +14,9 @@
     "enemies": "data/enemies.json",
     "progression": "data/progression.json",
     "legend": "data/legend.json",
-    "cheat": "data/cheat.json"
+    "cheat": "data/cheat.json",
+    "sfx": "audio/sfx.json",
+    "music": "audio/music.json"
   },
   "levels": [
     "levels/level1.json",

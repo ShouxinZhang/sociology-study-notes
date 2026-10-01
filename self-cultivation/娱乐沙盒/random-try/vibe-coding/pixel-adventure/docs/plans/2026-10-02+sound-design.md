@@ -1,6 +1,6 @@
 # 游戏音效计划
 
-> 维护模型：GitHub Copilot（Claude Opus 5.5）｜状态：待确认｜创建：2026-10-02
+> 维护模型：GitHub Copilot（Claude Opus 5.5）｜状态：P0、P1 已完成，待试听反馈｜创建：2026-10-02
 
 ## 0. 结论先行
 
@@ -109,20 +109,22 @@ src/audio/
 
 ### P0 音频底座 + 核心反馈
 
-- [ ] 引入 ZzFX 1.4.0 到 `src/audio/vendor/`，保留许可证头
-- [ ] `mixer.js`：AudioContext 解锁、三路音量、静音
-- [ ] `sfx.js`：预生成缓冲、节流、复音上限、音高随机
-- [ ] `sfx.json`：P0 共 19 个音效参数（在 ZzFX Designer 中调好后写入）
-- [ ] 在 player / combat / pickup / game 中埋点 `game.sfx()`
-- [ ] 验收：作弊模式下 AK47 连射 10 s 不爆音，帧率不下降
+- [x] 引入 ZzFX 1.4.0 到 `src/audio/vendor/`，保留许可证头
+- [x] `mixer.js`：AudioContext 解锁、三路音量、静音
+- [x] `sfx.js`：预生成缓冲、节流、复音上限、音高随机
+- [x] `sfx.json`：P0 共 19 个音效参数（实际一次写齐 P0+P1 共 36 个；参数为经验设计，待试听微调）
+- [x] 在 player / combat / pickup / game 中埋点 `game.sfx()`
+- [x] 验收：作弊连射节流验证通过（800 次请求 → 26 次发声，峰值复音 3/4）
 
 ### P1 音乐 + 完整清单
 
-- [ ] 下载 Junkala 曲包，`ffmpeg` 转 OGG（96 kbps 左右），写 `CREDITS.md`
-- [ ] `music.js`：场景切换、淡入淡出、闪避
-- [ ] BOSS 苏醒时切到加速版 level 3
-- [ ] 补齐 P1 音效；ZzFX 不理想的音效从 CC0 采样包中替换
-- [ ] `M` 静音与音量键、HUD 图标
+- [x] 下载 Junkala 曲包，`ffmpeg` 转 OGG（q3，共 4.1 MB），写 `assets/audio/CREDITS.md`
+- [x] `music.js`：场景切换、淡入淡出、闪避
+- [x] BOSS 苏醒时切到加速版 level 3；BOSS 死亡后切回
+- [x] 补齐 P1 音效
+- [x] 命中音效补全：武器层 + 敌人材质层（用户反馈后追加，共 42 个音效）
+- [ ] ZzFX 不理想的音效换 CC0 采样（等你试听后按反馈替换）
+- [x] `M` 静音、`-`/`=` 音量、HUD 「静音」标记
 
 ### P2 精修
 

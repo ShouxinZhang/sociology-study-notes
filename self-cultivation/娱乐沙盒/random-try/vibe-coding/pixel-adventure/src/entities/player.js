@@ -10,6 +10,7 @@ const MOVE_SPEED = 100;
 const JUMP_SPEED = 330; // 满跳约 3.7 格高
 const JUMP_CUT = 120; // 提前松开跳跃键时截断上升速度
 const FALL_DAMAGE = 2;
+const LAND_SOUND_SPEED = 150; // 低于此下落速度的落地（如走下台阶）不出声
 
 export function createPlayer(prog) {
   const p = { w: 10, h: 15, level: 1, exp: 0, ...statsFor(1, prog) };
@@ -44,9 +45,11 @@ export function updatePlayer(game, dt) {
   else walkAndJump(game, dt);
 
   const slot = input.digit();
+  const before = inventory.currentId;
   if (slot) inventory.selectSlot(slot);
   if (input.hit('prev')) inventory.cycle(-1);
   if (input.hit('next')) inventory.cycle(1);
+  if (inventory.currentId !== before) game.sfx('weapon_switch');
 
   // 按住攻击键按武器冷却自动连发；冷却跨帧累计，射速高于帧率时同帧多发（作弊 10 倍射速需要）
   if (!input.held('attack')) p.attackCd = Math.max(p.attackCd, 0);
@@ -61,6 +64,7 @@ export function updatePlayer(game, dt) {
       playerAttack(game, weapon);
     } else {
       p.attackCd = 0.4;
+      game.sfx('ammo_empty');
       game.toast(`${weapon.name} 没有弹药！按 1 切回拳击`);
     }
   }
@@ -69,13 +73,19 @@ export function updatePlayer(game, dt) {
 /** 常规移动：重力、跳跃、碰撞与坠崖复活 */
 function walkAndJump(game, dt) {
   const { player: p, input, level } = game;
-  if (input.hit('jump') && p.onGround) p.vy = -JUMP_SPEED;
+  if (input.hit('jump') && p.onGround) {
+    p.vy = -JUMP_SPEED;
+    game.sfx('jump');
+  }
   if (!input.held('jump') && p.vy < -JUMP_CUT) p.vy = -JUMP_CUT;
 
+  const fallSpeed = p.onGround ? 0 : p.vy;
   moveAndCollide(p, level, dt);
+  if (p.onGround && fallSpeed > LAND_SOUND_SPEED) game.sfx('land');
   if (p.onGround && level.isFirmlyGrounded(p)) p.safe = { x: p.x, y: p.y };
   if (p.y > level.height) {
     Object.assign(p, { ...p.safe, vx: 0, vy: 0 });
+    game.sfx('fall');
     hurtPlayer(game, FALL_DAMAGE, null, true);
   }
 }

@@ -1,5 +1,6 @@
 {
   "name": "洞穴",
+  "music": "level2",
   "requireBoss": false,
   "chests": [
     "pistol",

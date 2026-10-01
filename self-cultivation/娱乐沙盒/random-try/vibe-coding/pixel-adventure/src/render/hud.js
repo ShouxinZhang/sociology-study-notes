@@ -63,6 +63,7 @@ export function drawHud(ui, game) {
   text(ui, weapon.name, width - 88, 22, { align: 'right', box: false });
   text(ui, weapon.type === 'melee' ? '近战' : `弹药 ${ammo === Infinity ? '∞' : ammo}`, width - 88, 50, { align: 'right', box: false });
   if (game.cheat) text(ui, 'CHEAT', width - 122, 96, { align: 'center', size: 14 });
+  if (game.audio?.mixer.muted) text(ui, '静音', 40, 96, { align: 'center', size: 14 });
 
   // 顶部居中：武器栏（数字键对应槽位，未获得显示为空槽）
   const slotsLeft = (width - data.weapons.length * 56) / 2;
@@ -77,7 +78,7 @@ export function drawHud(ui, game) {
   if (game.banner) text(ui, game.banner.text, width / 2, 104, { align: 'center', size: 20 });
 }
 
-const CONTROLS = ['← → / A D   移动', '空格 / W / K   跳跃', 'J   攻击（按住连发）', '1-6 / Q E   切换武器', 'F1   作弊模式（↑↓←→ 飞行）'];
+const CONTROLS = ['← → / A D   移动', '空格 / W / K   跳跃', 'J   攻击（按住连发）', '1-6 / Q E   切换武器', 'F1   作弊模式（↑↓←→ 飞行）', 'M 静音   - / = 音量'];
 const SCREENS = {
   title: () => ({ title: '黑白冒险岛', lines: [...CONTROLS, '', '按 Enter 开始'] }),
   gameover: (g) => ({ title: '你倒下了', lines: [`第 ${g.levelIndex + 1} 关 · ${g.level.name}`, '', '按 Enter 重试本关'] }),

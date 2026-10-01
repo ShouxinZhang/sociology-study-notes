@@ -31,18 +31,22 @@ function collect(game, it) {
       const heal = game.data.progression.heartHeal;
       p.hp = Math.min(p.maxHp, p.hp + heal);
       game.toast(`+${heal} HP`);
+      game.sfx('pickup_heart');
       return true;
     }
     case 'ammo':
       if (!inventory.refill()) return false;
       game.toast('弹药补充！');
+      game.sfx('pickup_ammo');
       return true;
     case 'weapon':
       game.toast(`获得武器：${inventory.add(it.weaponId).name}`);
+      game.sfx('pickup_weapon');
       return true;
     case 'chest':
       game.pickups.push(openChest(game, it));
       game.toast('打开宝箱！');
+      game.sfx('chest_open');
       return true;
     default:
       return true;

@@ -1,8 +1,8 @@
 [
-  { "id": "fist",   "name": "拳击",   "icon": "icon_fist",   "attackSprite": "attack_fist",   "fx": "fx_fist",   "type": "melee",  "damage": 3,  "range": 12, "cooldown": 0.30 },
-  { "id": "stick",  "name": "木棍",   "icon": "icon_stick",  "attackSprite": "attack_stick",  "fx": "fx_stick",  "type": "melee",  "damage": 5,  "range": 20, "cooldown": 0.35 },
-  { "id": "knife",  "name": "刀",     "icon": "icon_knife",  "attackSprite": "attack_knife",  "fx": "fx_knife",  "type": "melee",  "damage": 8,  "range": 16, "cooldown": 0.22 },
-  { "id": "pistol", "name": "手枪",   "icon": "icon_pistol", "attackSprite": "attack_pistol", "fx": "fx_pistol", "muzzle": [13, 8], "type": "ranged", "damage": 7,  "cooldown": 0.35, "projectile": "bullet", "speed": 280, "pickupAmmo": 30, "ammoPerBox": 15 },
-  { "id": "ak47",   "name": "AK47",   "icon": "icon_ak47",   "attackSprite": "attack_ak47",   "fx": "fx_ak47",   "muzzle": [16, 8], "type": "ranged", "damage": 6,  "cooldown": 0.09, "projectile": "bullet", "speed": 340, "spread": 0.08, "pickupAmmo": 90, "ammoPerBox": 45 },
-  { "id": "rocket", "name": "火箭筒", "icon": "icon_rocket", "attackSprite": "attack_rocket", "fx": "fx_rocket", "muzzle": [15, 6], "type": "ranged", "damage": 30, "cooldown": 0.90, "projectile": "rocket", "speed": 170, "explosionRadius": 32, "pickupAmmo": 8, "ammoPerBox": 3 }
+  { "id": "fist",   "name": "拳击",   "icon": "icon_fist",   "attackSprite": "attack_fist",   "fx": "fx_fist",   "sfxAttack": "fist_swing", "sfxHit": "fist_hit", "type": "melee",  "damage": 3,  "range": 12, "cooldown": 0.30 },
+  { "id": "stick",  "name": "木棍",   "icon": "icon_stick",  "attackSprite": "attack_stick",  "fx": "fx_stick",  "sfxAttack": "stick_swing", "sfxHit": "stick_hit", "type": "melee",  "damage": 5,  "range": 20, "cooldown": 0.35 },
+  { "id": "knife",  "name": "刀",     "icon": "icon_knife",  "attackSprite": "attack_knife",  "fx": "fx_knife",  "sfxAttack": "knife_swing", "sfxHit": "knife_hit", "type": "melee",  "damage": 8,  "range": 16, "cooldown": 0.22 },
+  { "id": "pistol", "name": "手枪",   "icon": "icon_pistol", "attackSprite": "attack_pistol", "fx": "fx_pistol", "muzzle": [13, 8], "sfxAttack": "pistol_shot", "sfxHit": "pistol_hit", "type": "ranged", "damage": 7,  "cooldown": 0.35, "projectile": "bullet", "speed": 280, "pickupAmmo": 30, "ammoPerBox": 15 },
+  { "id": "ak47",   "name": "AK47",   "icon": "icon_ak47",   "attackSprite": "attack_ak47",   "fx": "fx_ak47",   "muzzle": [16, 8], "sfxAttack": "ak47_shot", "sfxHit": "ak47_hit", "type": "ranged", "damage": 6,  "cooldown": 0.09, "projectile": "bullet", "speed": 340, "spread": 0.08, "pickupAmmo": 90, "ammoPerBox": 45 },
+  { "id": "rocket", "name": "火箭筒", "icon": "icon_rocket", "attackSprite": "attack_rocket", "fx": "fx_rocket", "muzzle": [15, 6], "sfxAttack": "rocket_launch", "sfxHit": null, "type": "ranged", "damage": 30, "cooldown": 0.90, "projectile": "rocket", "speed": 170, "explosionRadius": 32, "pickupAmmo": 8, "ammoPerBox": 3 }
 ]

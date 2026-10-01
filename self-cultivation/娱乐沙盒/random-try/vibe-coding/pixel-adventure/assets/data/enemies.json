@@ -1,8 +1,8 @@
 {
-  "slime":    { "name": "史莱姆", "sprite": "slime",    "behavior": "patrol", "hp": 6,   "damage": 1, "speed": 25, "exp": 3,  "w": 14, "h": 9,  "drops": { "heart": 0.1, "ammo": 0.15 } },
-  "bat":      { "name": "蝙蝠",   "sprite": "bat",      "behavior": "fly",    "hp": 5,   "damage": 1, "speed": 45, "exp": 4,  "w": 14, "h": 12, "drops": { "heart": 0.1, "ammo": 0.2 } },
-  "skeleton": { "name": "骷髅兵", "sprite": "skeleton", "behavior": "chase",  "hp": 14,  "damage": 2, "speed": 28, "exp": 8,  "w": 10, "h": 15, "drops": { "heart": 0.2, "ammo": 0.3 },
+  "slime":    { "name": "史莱姆", "sfxDie": "slime_die", "sfxHit": "slime_hit", "sprite": "slime",    "behavior": "patrol", "hp": 6,   "damage": 1, "speed": 25, "exp": 3,  "w": 14, "h": 9,  "drops": { "heart": 0.1, "ammo": 0.15 } },
+  "bat":      { "name": "蝙蝠", "sfxDie": "bat_die", "sfxHit": "bat_hit",   "sprite": "bat",      "behavior": "fly",    "hp": 5,   "damage": 1, "speed": 45, "exp": 4,  "w": 14, "h": 12, "drops": { "heart": 0.1, "ammo": 0.2 } },
+  "skeleton": { "name": "骷髅兵", "sfxDie": "skeleton_die", "sfxHit": "skeleton_hit", "sprite": "skeleton", "behavior": "chase",  "hp": 14,  "damage": 2, "speed": 28, "exp": 8,  "w": 10, "h": 15, "drops": { "heart": 0.2, "ammo": 0.3 },
                 "throw": { "cooldown": 2.6, "speed": 110, "damage": 2, "count": 1 } },
-  "boss":     { "name": "黑骑士", "sprite": "boss",     "behavior": "boss",   "hp": 260, "damage": 3, "speed": 40, "exp": 80, "w": 26, "h": 30, "drops": {},
+  "boss":     { "name": "黑骑士", "sfxDie": "boss_die", "sfxHit": "boss_hit", "sprite": "boss",     "behavior": "boss", "music": "boss",   "hp": 260, "damage": 3, "speed": 40, "exp": 80, "w": 26, "h": 30, "drops": {},
                 "throw": { "cooldown": 1.8, "speed": 140, "damage": 2, "count": 3 } }
 }
