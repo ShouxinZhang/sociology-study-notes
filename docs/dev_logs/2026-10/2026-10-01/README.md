@@ -5,3 +5,4 @@
 | 时间 | 类型 | 状态 | 成果 |
 |---|---|---|---|
 | 01:14:07 | repository-change | 已完成 | [黑白像素冒险岛游戏](01-14-07+pixel-adventure-game.md) |
+| 23:59:26 | repository-change | 已完成 | [武器专属攻击动画](23-59-26+weapon-attack-animations.md) |

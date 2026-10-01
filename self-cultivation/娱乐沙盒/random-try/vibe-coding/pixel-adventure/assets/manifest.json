@@ -5,6 +5,7 @@
     "sprites/enemies.json",
     "sprites/icons.json",
     "sprites/effects.json",
+    "sprites/attacks.json",
     "sprites/items.json",
     "sprites/tiles.json"
   ],
@@ -12,7 +13,8 @@
     "weapons": "data/weapons.json",
     "enemies": "data/enemies.json",
     "progression": "data/progression.json",
-    "legend": "data/legend.json"
+    "legend": "data/legend.json",
+    "cheat": "data/cheat.json"
   },
   "levels": [
     "levels/level1.json",

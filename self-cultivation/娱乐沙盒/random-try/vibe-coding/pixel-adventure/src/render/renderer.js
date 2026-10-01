@@ -62,7 +62,10 @@ export class Renderer {
     for (const e of game.enemies) {
       if (!(e.flash > 0 && blink(30))) this.drawEntity(g, this.sprites[e.def.sprite], e, e.t, e.facing < 0);
     }
-    if (!(p.invuln > 0 && blink(15))) this.drawEntity(g, this.sprites[playerSprite(p)], p, time, p.facing < 0);
+    if (!(p.invuln > 0 && blink(15))) {
+      const [name, t] = playerSprite(p, time);
+      this.drawEntity(g, this.sprites[name], p, t, p.facing < 0);
+    }
     for (const pr of game.projectiles) drawSprite(g, pr.sprite, 0, pr.x, pr.y, pr.flip);
     for (const f of game.effects) drawSprite(g, f.sprite, frameAt(f.sprite, f.t), f.x, f.y, f.flip);
     g.restore();

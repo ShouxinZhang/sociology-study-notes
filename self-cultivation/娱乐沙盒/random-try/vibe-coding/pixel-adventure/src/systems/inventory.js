@@ -53,14 +53,22 @@ export class Inventory {
     return guns.length > 0;
   }
 
+  /** 作弊：解锁全部武器（已有弹药保留） */
+  unlockAll() {
+    for (const w of this.catalog) {
+      if (!this.owns(w.id)) this.owned.push(w.id);
+      if (w.type === 'ranged') this.ammo[w.id] ??= 0;
+    }
+  }
+
   ammoOf(weapon) {
     return weapon.type === 'ranged' ? (this.ammo[weapon.id] ?? 0) : Infinity;
   }
 
-  /** 消耗一次攻击所需弹药；近战永远成功 */
-  consume() {
+  /** 消耗一次攻击所需弹药；近战或 free（作弊无限弹药）时永远成功 */
+  consume(free = false) {
     const weapon = this.current;
-    if (weapon.type !== 'ranged') return true;
+    if (free || weapon.type !== 'ranged') return true;
     if (!this.ammo[weapon.id]) return false;
     this.ammo[weapon.id] -= 1;
     return true;

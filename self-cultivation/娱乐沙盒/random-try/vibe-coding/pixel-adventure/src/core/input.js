@@ -5,13 +5,16 @@ const BINDINGS = {
   left: ['ArrowLeft', 'KeyA'],
   right: ['ArrowRight', 'KeyD'],
   jump: ['Space', 'ArrowUp', 'KeyW', 'KeyK'],
+  up: ['ArrowUp', 'KeyW', 'Space'],
+  down: ['ArrowDown', 'KeyS'],
   attack: ['KeyJ'],
   prev: ['KeyQ'],
   next: ['KeyE'],
   confirm: ['Enter'],
+  cheat: ['F1'],
 };
-// 阻止这些键滚动页面
-const BLOCK_DEFAULT = new Set(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']);
+// 阻止这些键滚动页面或打开浏览器帮助
+const BLOCK_DEFAULT = new Set(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'F1']);
 
 export class Input {
   constructor(target = window) {

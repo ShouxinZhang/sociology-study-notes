@@ -17,15 +17,20 @@ export function playerAttack(game, weapon) {
   if (weapon.type === 'melee') {
     const box = { x: p.facing > 0 ? p.x + p.w : p.x - weapon.range, y: p.y - 2, w: weapon.range, h: p.h + 4 };
     game.enemies.filter((e) => overlap(box, e)).forEach((e) => damageEnemy(game, e, damage, p.facing));
-    game.effects.push(createEffect(game.sprites.slash, box.x + box.w / 2, p.y + p.h / 2, p.facing < 0));
+    game.effects.push(createEffect(game.sprites[weapon.fx], box.x + box.w / 2, p.y + p.h / 2, p.facing < 0));
     return;
   }
 
+  // muzzle = [距身体中线的水平偏移, 距碰撞盒顶部的纵向偏移]，对齐攻击动作中的枪口
+  const [dx, dy] = weapon.muzzle;
+  const muzzleX = p.x + p.w / 2 + p.facing * dx;
+  const muzzleY = p.y + dy;
+  game.effects.push(createEffect(game.sprites[weapon.fx], muzzleX, muzzleY, p.facing < 0));
   const spread = (Math.random() - 0.5) * (weapon.spread ?? 0) * weapon.speed;
   game.projectiles.push(
     createProjectile(game.sprites[weapon.projectile], {
-      x: p.x + p.w / 2 + p.facing * 8,
-      y: p.y + 7,
+      x: muzzleX,
+      y: muzzleY,
       vx: p.facing * weapon.speed,
       vy: spread,
       damage,
@@ -71,10 +76,10 @@ export function explode(game, x, y, radius, damage) {
   }
 }
 
-/** 玩家受伤：无敌时间内免疫（force 为 true 时强制，如坠崖）；fromX 用于计算击退方向 */
+/** 玩家受伤：作弊模式完全无敌；无敌时间内免疫（force 为 true 时强制，如坠崖）；fromX 用于计算击退方向 */
 export function hurtPlayer(game, amount, fromX = null, force = false) {
   const p = game.player;
-  if (!force && p.invuln > 0) return;
+  if (game.cheat || (!force && p.invuln > 0)) return;
   p.hp = Math.max(0, p.hp - amount);
   p.invuln = game.data.progression.invulnTime;
   if (fromX !== null) {

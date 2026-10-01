@@ -21,6 +21,7 @@ export class Game {
     this.time = 0;
     this.banner = null;
     this.level = null;
+    this.cheat = false; // 作弊开关不进入关卡快照，重试/重开时保持
     this.resetRun();
   }
 
@@ -41,6 +42,7 @@ export class Game {
     this.pickups = spawns.pickups.map((s) => createPickup(s.kind, s.x + TILE / 2, s.y + TILE / 2, { content: s.content }));
     this.projectiles = [];
     this.effects = [];
+    if (this.cheat) this.inventory.unlockAll();
     this.state = 'playing';
     this.toast(`第 ${index + 1} 关 · ${this.level.name}`, 2.5);
   }
@@ -53,6 +55,13 @@ export class Game {
 
   toast(text, duration = 1.6) {
     this.banner = { text, t: duration };
+  }
+
+  toggleCheat() {
+    this.cheat = !this.cheat;
+    if (this.cheat) this.inventory.unlockAll();
+    else this.player.vy = 0;
+    this.toast(this.cheat ? '作弊模式：开（无敌·无限弹药·10倍射速·飞行穿墙）' : '作弊模式：关');
   }
 
   get bossAlive() {
@@ -69,6 +78,7 @@ export class Game {
         if (confirm) this.startLevel(0);
         break;
       case 'playing':
+        if (this.input.hit('cheat')) this.toggleCheat();
         this.updatePlaying(dt);
         break;
       case 'gameover':

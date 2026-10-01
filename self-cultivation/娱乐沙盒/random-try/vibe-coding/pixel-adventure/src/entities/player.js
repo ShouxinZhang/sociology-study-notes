@@ -22,16 +22,17 @@ export function placePlayer(p, spawn) {
   const pos = { x: spawn.x + 3, y: spawn.y + 1 };
   Object.assign(p, pos, {
     vx: 0, vy: 0, facing: 1, onGround: false, hp: p.maxHp,
-    invuln: 0, knock: 0, attackCd: 0, attackAnim: 0, safe: { ...pos },
+    invuln: 0, knock: 0, attackCd: 0, attackAnim: 0, attackT: 0, attackSprite: null, safe: { ...pos },
   });
 }
 
 export function updatePlayer(game, dt) {
-  const { player: p, input, inventory, level } = game;
+  const { player: p, input, inventory } = game;
   p.invuln -= dt;
   p.knock -= dt;
   p.attackCd -= dt;
   p.attackAnim -= dt;
+  p.attackT += dt;
 
   // 击退期间保留击退速度，不响应左右输入
   if (p.knock <= 0) {
@@ -39,6 +40,35 @@ export function updatePlayer(game, dt) {
     p.vx = dir * MOVE_SPEED;
     if (dir) p.facing = dir;
   }
+  if (game.cheat) fly(game, dt);
+  else walkAndJump(game, dt);
+
+  const slot = input.digit();
+  if (slot) inventory.selectSlot(slot);
+  if (input.hit('prev')) inventory.cycle(-1);
+  if (input.hit('next')) inventory.cycle(1);
+
+  // 按住攻击键按武器冷却自动连发；冷却跨帧累计，射速高于帧率时同帧多发（作弊 10 倍射速需要）
+  if (!input.held('attack')) p.attackCd = Math.max(p.attackCd, 0);
+  while (input.held('attack') && p.attackCd <= 0) {
+    const weapon = inventory.current;
+    if (inventory.consume(game.cheat)) {
+      const anim = game.sprites[weapon.attackSprite];
+      p.attackCd += weapon.cooldown / (game.cheat ? game.data.cheat.fireRateMultiplier : 1);
+      p.attackSprite = weapon.attackSprite;
+      p.attackAnim = anim.frames.length / anim.fps; // 动作播完一遍即恢复常态
+      p.attackT = 0;
+      playerAttack(game, weapon);
+    } else {
+      p.attackCd = 0.4;
+      game.toast(`${weapon.name} 没有弹药！按 1 切回拳击`);
+    }
+  }
+}
+
+/** 常规移动：重力、跳跃、碰撞与坠崖复活 */
+function walkAndJump(game, dt) {
+  const { player: p, input, level } = game;
   if (input.hit('jump') && p.onGround) p.vy = -JUMP_SPEED;
   if (!input.held('jump') && p.vy < -JUMP_CUT) p.vy = -JUMP_CUT;
 
@@ -48,29 +78,24 @@ export function updatePlayer(game, dt) {
     Object.assign(p, { ...p.safe, vx: 0, vy: 0 });
     hurtPlayer(game, FALL_DAMAGE, null, true);
   }
-
-  const slot = input.digit();
-  if (slot) inventory.selectSlot(slot);
-  if (input.hit('prev')) inventory.cycle(-1);
-  if (input.hit('next')) inventory.cycle(1);
-
-  // 按住攻击键按武器冷却自动连发
-  if (input.held('attack') && p.attackCd <= 0) {
-    const weapon = inventory.current;
-    if (inventory.consume()) {
-      p.attackCd = weapon.cooldown;
-      p.attackAnim = 0.15;
-      playerAttack(game, weapon);
-    } else {
-      p.attackCd = 0.4;
-      game.toast(`${weapon.name} 没有弹药！按 1 切回拳击`);
-    }
-  }
 }
 
-/** 根据状态选择精灵名 */
-export function playerSprite(p) {
-  if (p.attackAnim > 0) return 'player_attack';
-  if (!p.onGround) return 'player_jump';
-  return p.vx ? 'player_walk' : 'player_idle';
+/** 作弊飞行：无重力、穿墙，只限制在关卡范围内 */
+function fly(game, dt) {
+  const { player: p, input, level } = game;
+  const speed = game.data.cheat.flySpeed;
+  const dirX = (input.held('right') ? 1 : 0) - (input.held('left') ? 1 : 0);
+  const dirY = (input.held('down') ? 1 : 0) - (input.held('up') ? 1 : 0);
+  p.vx = dirX * speed;
+  p.vy = 0;
+  p.onGround = false;
+  p.x = Math.max(0, Math.min(level.width - p.w, p.x + p.vx * dt));
+  p.y = Math.max(0, Math.min(level.height - p.h, p.y + dirY * speed * dt));
+}
+
+/** 根据状态选择 [精灵名, 动画时间]；攻击动作从第 0 帧开始播放 */
+export function playerSprite(p, time) {
+  if (p.attackAnim > 0) return [p.attackSprite, p.attackT];
+  if (!p.onGround) return ['player_jump', time];
+  return [p.vx ? 'player_walk' : 'player_idle', time];
 }
