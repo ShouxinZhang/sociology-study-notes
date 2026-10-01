@@ -32,6 +32,7 @@ status: active
 | `random-try/vibe-coding/pixel-adventure/` | 黑白像素横版冒险游戏：3 关、等级成长、拳击/木棍/刀/手枪/AK47/火箭筒；F1 作弊模式（无敌、无限弹药、10 倍射速、飞行穿墙、全武器）；`./start.sh` 起本地服务游玩 |
 | `random-try/vibe-coding/pixel-adventure/assets/` | 纯数据素材：`sprites/` 字符像素精灵（含 `attacks.json` 武器专属攻击动作与特效）、`levels/` ASCII 关卡、`data/` 武器/敌人/成长/图例/作弊数值；由 `manifest.json` 登记 |
 | `random-try/vibe-coding/pixel-adventure/src/` | 纯逻辑 ES Modules：`core/` 加载·输入·循环·状态机，`world/` 关卡解析，`entities/` 玩家·敌人·投射物·拾取物·特效，`systems/` 物理·战斗·等级·装备，`render/` 世界与 HUD |
+| `random-try/vibe-coding/pixel-adventure/docs/` | 模块文档中心（详细记录的唯一权威）：`plans/` 勾选地图、`reports/` 设计报告、`logs/` 详细任务日志；入口 `README.md` |
 
 > 本次更新模型：GitHub Copilot（Claude Opus 5.5）
 | `random-try/碎片文段.txt` | 碎片文段草稿 |
