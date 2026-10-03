@@ -6,12 +6,14 @@ from __future__ import annotations
 import argparse
 import re
 import sys
+from datetime import datetime
 from pathlib import Path
 
 
 NEW_RECORD = re.compile(r"\d{2}-\d{2}-\d{2}\+[a-z0-9]+(?:-[a-z0-9]+)*\.md")
 MONTH = re.compile(r"\d{4}-\d{2}")
 DAY = re.compile(r"\d{4}-\d{2}-\d{2}")
+TIME_FORMAT = "%Y-%m-%d %H:%M:%S %z"
 REQUIRED_HEADINGS = (
     "## 用户目标",
     "## 用户原始 Prompt",
@@ -46,6 +48,23 @@ def relative_link_present(index: Path, target_name: str) -> bool:
     return bool(re.search(rf"\]\([^)]*{re.escape(target_name)}\)", index.read_text(errors="replace")))
 
 
+def check_times(text: str, record: Path) -> list[str]:
+    """开始/完成时间必须可解析，且完成不早于开始、不晚于当前时间。"""
+    parsed: dict[str, datetime] = {}
+    for field in ("开始时间", "完成时间"):
+        match = re.search(rf"^- {field}：(.+)$", text, re.MULTILINE)
+        try:
+            parsed[field] = datetime.strptime(match.group(1).strip(), TIME_FORMAT)
+        except (AttributeError, ValueError):
+            return [f"'{field}' must match 'YYYY-MM-DD HH:MM:SS +ZZZZ': {record}"]
+    errors = []
+    if parsed["完成时间"] < parsed["开始时间"]:
+        errors.append(f"completion time is earlier than start time: {record}")
+    if parsed["完成时间"] > datetime.now().astimezone():
+        errors.append(f"completion time is in the future (not a real time): {record}")
+    return errors
+
+
 def validate_record(record: Path, root: Path) -> list[str]:
     errors: list[str] = []
     try:
@@ -69,6 +88,7 @@ def validate_record(record: Path, root: Path) -> list[str]:
     for field in REQUIRED_FIELDS:
         if not re.search(rf"^- {re.escape(field)}：\S", text, re.MULTILINE):
             errors.append(f"missing field '{field}': {record}")
+    errors.extend(check_times(text, record))
     for heading in REQUIRED_HEADINGS:
         if heading not in text:
             errors.append(f"missing heading '{heading}': {record}")

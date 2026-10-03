@@ -118,7 +118,7 @@ def codex_model(env: dict[str, str]) -> str | None:
 def copilot_model(env: dict[str, str]) -> str | None:
     """从 Copilot 会话开始或最后一次模型切换事件读取模型。"""
     root = Path(env.get("COPILOT_HOME", str(Path.home() / ".copilot"))).expanduser()
-    session_id = env.get("COPILOT_SESSION_ID")
+    session_id = env.get("COPILOT_SESSION_ID") or env.get("COPILOT_AGENT_SESSION_ID")
     if session_id:
         event_file = root / "session-state" / session_id / "events.jsonl"
     else:
@@ -134,7 +134,7 @@ def copilot_model(env: dict[str, str]) -> str | None:
         data = item.get("data")
         if not isinstance(data, dict):
             return None
-        for key in ("model", "modelId", "model_id", "resolvedModel", "newModel"):
+        for key in ("model", "selectedModel", "modelId", "model_id", "resolvedModel", "newModel"):
             model = model_from_mapping(data.get(key))
             if model:
                 return model
@@ -266,7 +266,7 @@ def infer_framework(env: dict[str, str]) -> str | None:
         return explicit
     markers = (
         ("codex", ("CODEX_THREAD_ID",)),
-        ("github-copilot", ("COPILOT_CLI", "COPILOT_SESSION_ID", "COPILOT_MODEL")),
+        ("github-copilot", ("COPILOT_CLI", "COPILOT_SESSION_ID", "COPILOT_AGENT_SESSION_ID", "COPILOT_MODEL")),
         ("opencode", ("OPENCODE_PID", "OPENCODE_SESSION_ID")),
         ("grok", ("GROK_SESSION_ID", "GROK_HOOK_EVENT")),
         ("claude-code", ("CLAUDE_CODE_SESSION_ID", "CLAUDE_SESSION_ID")),
