@@ -45,5 +45,27 @@
   "ui_confirm":    { "zzfx": [0.6, 0, 880, 0, 0.04, 0.08, 5, 0.5, null, null, 440, 0.04] },
   "flag_blocked":  { "zzfx": [0.6, 0, 110, 0, 0.15, 0.1, 2, 1], "minInterval": 1 },
   "cheat_on":      { "zzfx": [0.7, 0, 300, 0, 0.25, 0.1, 5, 0.5, 30, null, null, null, null, null, null, 0.2] },
-  "cheat_off":     { "zzfx": [0.7, 0, 900, 0, 0.25, 0.1, 5, 0.5, -30, null, null, null, null, null, null, 0.2] }
+  "cheat_off":     { "zzfx": [0.7, 0, 900, 0, 0.25, 0.1, 5, 0.5, -30, null, null, null, null, null, null, 0.2] },
+
+  "jump2":         { "zzfx": [0.5, 0.05, 420, 0, 0.05, 0.08, 5, 0.4, 20, null, null, null, 0.03] },
+  "shield_on":     { "zzfx": [0.7, 0, 400, 0.02, 0.3, 0.2, 1, 1, 10, null, null, null, 0.05, null, 8], "duck": true },
+  "capsule_pop":   { "zzfx": [0.7, 0.05, 900, 0, 0.05, 0.15, 5, 0.5, null, null, 300, 0.03] },
+  "bridge_break":  { "zzfx": [0.8, 0.1, 90, 0, 0.06, 0.35, 4, 0.8, -2, null, null, null, null, 1, null, 0.2, null, 0.7, null, null, -700], "minInterval": 0.12, "maxVoices": 3 },
+  "laser_on":      { "zzfx": [0.3, 0, 1200, 0.02, 0.12, 0.05, 1, 1, null, null, null, null, 0.02, null, 40], "minInterval": 0.5 },
+  "zap":           { "zzfx": [0.6, 0.1, 1800, 0, 0.08, 0.06, 4, 1, null, null, null, null, 0.015, 0.6], "minInterval": 0.3 },
+  "acid_burn":     { "zzfx": [0.5, 0.1, 160, 0, 0.1, 0.12, 4, 1, 5, null, null, null, 0.03, 0.5], "minInterval": 0.3 },
+  "spread_shot":   { "zzfx": [0.8, 0.1, 380, 0, 0.03, 0.15, 4, 1.2, -15, null, null, null, null, 1, null, 0.25], "minInterval": 0.05 },
+  "laser_shot":    { "zzfx": [0.6, 0.02, 1500, 0, 0.06, 0.12, 5, 0.5, -60], "minInterval": 0.05 },
+  "flame_shot":    { "zzfx": [0.4, 0.2, 200, 0, 0.06, 0.08, 4, 1, 3, null, null, null, null, 0.8], "minInterval": 0.06, "maxVoices": 3 },
+  "spread_hit":    { "zzfx": [0.5, 0.2, 260, 0, 0, 0.05, 4, 1.5, -10, null, null, null, null, 0.8], "minInterval": 0.04 },
+  "laser_hit":     { "zzfx": [0.5, 0.05, 2000, 0, 0.02, 0.1, 1, 1, -40, null, null, null, null, null, 25], "minInterval": 0.04 },
+  "flame_hit":     { "zzfx": [0.5, 0.2, 140, 0, 0.04, 0.12, 4, 1, 4, null, null, null, null, 0.6], "minInterval": 0.06 },
+  "runner_die":    { "zzfx": [0.7, 0.1, 500, 0, 0.04, 0.2, 2, 1, -20, null, null, null, null, 0.2] },
+  "larva_die":     { "zzfx": [0.7, 0.15, 250, 0, 0.05, 0.15, 0, 1, -25, null, null, null, null, 0.4] },
+  "enemy_shot":    { "zzfx": [0.4, 0.1, 900, 0, 0.01, 0.06, 5, 0.5, -40], "minInterval": 0.05 },
+  "turret_shot":   { "zzfx": [0.5, 0.1, 600, 0, 0.02, 0.08, 4, 1.2, -30, null, null, null, null, 0.6], "minInterval": 0.06 },
+  "spit":          { "zzfx": [0.5, 0.15, 220, 0.01, 0.04, 0.1, 0, 1, 15, null, null, null, null, 0.3], "minInterval": 0.1 },
+  "spawn":         { "zzfx": [0.4, 0.1, 150, 0, 0.1, 0.1, 2, 1, 8], "minInterval": 0.3 },
+  "metal_hit":     { "zzfx": [0.5, 0.1, 1100, 0, 0.01, 0.1, 1, 1, null, null, null, null, null, 0.2, 35], "minInterval": 0.06 },
+  "flesh_hit":     { "zzfx": [0.6, 0.15, 160, 0, 0.03, 0.08, 0, 1, 10, null, null, null, null, 0.5], "minInterval": 0.06 }
 }

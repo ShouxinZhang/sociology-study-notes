@@ -10,6 +10,8 @@ import { createEnemy, updateEnemies } from '../entities/enemy.js';
 import { updateProjectiles } from '../entities/projectile.js';
 import { createPickup, updatePickups } from '../entities/pickup.js';
 import { updateEffects } from '../entities/effect.js';
+import { createHazards, updateHazards } from '../entities/hazard.js';
+import { spawnBoss, updateBoss } from '../entities/boss-parts.js';
 
 export class Game {
   /** audio 可为 null（无声运行，如脚本测试） */
@@ -61,9 +63,13 @@ export class Game {
     this.pickups = spawns.pickups.map((s) => createPickup(s.kind, s.x + TILE / 2, s.y + TILE / 2, { content: s.content }));
     this.projectiles = [];
     this.effects = [];
+    this.hazards = createHazards(this.level);
+    Object.assign(this, { hazardTime: 0, laserOn: false, electricOn: false, bridgeQueue: [], bridgeTriggered: new Set() });
+    const def = this.levelDefs[index];
+    this.bossGroup = def.boss && spawns.bossAnchor ? spawnBoss(this, def.boss, spawns.bossAnchor) : null;
     if (this.cheat) this.inventory.unlockAll();
     this.state = 'playing';
-    this.music(this.levelDefs[index].music);
+    this.music(def.music);
     this.toast(`第 ${index + 1} 关 · ${this.level.name}`, 2.5);
   }
 
@@ -86,7 +92,15 @@ export class Game {
   }
 
   get bossAlive() {
-    return this.enemies.some((e) => e.def.behavior === 'boss');
+    return this.enemies.some((e) => e.def.behavior === 'boss' || e.group);
+  }
+
+  /** 进入下一关；若下一关配置了 worldIntro，先显示世界切换过场 */
+  nextLevel() {
+    const next = this.levelIndex + 1;
+    if (!this.levelDefs[next].worldIntro) return this.startLevel(next);
+    this.levelIndex = next;
+    this.enter('intro');
   }
 
   update(dt) {
@@ -112,7 +126,10 @@ export class Game {
         if (confirm) this.retryLevel();
         break;
       case 'clear':
-        if (confirm) this.startLevel(this.levelIndex + 1);
+        if (confirm) this.nextLevel();
+        break;
+      case 'intro':
+        if (confirm) this.startLevel(this.levelIndex);
         break;
       case 'victory':
         if (confirm) {
@@ -125,6 +142,8 @@ export class Game {
 
   updatePlaying(dt) {
     updatePlayer(this, dt);
+    updateHazards(this, dt);
+    updateBoss(this);
     updateEnemies(this, dt);
     updateProjectiles(this, dt);
     updatePickups(this, dt);

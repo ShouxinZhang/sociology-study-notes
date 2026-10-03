@@ -1,0 +1,25 @@
+{
+  "name": "钢铁基地",
+  "music": "stage5",
+  "boss": "twin_cannon",
+  "requireBoss": true,
+  "capsules": [
+    "flame",
+    "shield",
+    "spread"
+  ],
+  "map": [
+    "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+    "............................................|.................................|.............................................|...............MMMMMMMMMM",
+    "............................................................................................................................................MMMMMMMMMM",
+    "........................................c.......................................................c.....................c.....................MMMMMMMMMM",
+    "............................................................................................................t...............................MMMMMMMMMM",
+    "....................................................................................................=====...................................MMMMMMMMMM",
+    "...................................t........n.....................H...............t.....n...................................................MMMMMMMMMM",
+    "..........................=====.........=========...............========..............=======...............................................MMMMMMMMMM",
+    "............................................................................................................................................MMMMMMMMMM",
+    "..P.................r.........................m...........d...r...........m.........A.....r...............A........m....d.......r.....F...Y.MMMMMMMMMM",
+    "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMZZZZZZZZMMMMMMMMMMMM<<<<<<<<<<<MMMMM....MMMMMMMMMMMMMMMMMMMMMMMMMZZZZZZZZMMMMMMM>>>>>>>>>MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM",
+    "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM....MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM"
+  ]
+}

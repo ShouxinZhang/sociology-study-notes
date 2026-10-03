@@ -1,0 +1,24 @@
+{
+  "name": "异形巢穴",
+  "music": "stage6",
+  "boss": "alien_heart",
+  "requireBoss": true,
+  "capsules": [
+    "laser",
+    "shield"
+  ],
+  "map": [
+    "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+    "............OO................p..OO.......................OO....p............OO......................OO.p...................OO...................OOOOO",
+    "............OO...................OO.......................OO.................OO......................OO.....................OO...................OOOOO",
+    "..................................................c...................................c..........................................................OOOOO",
+    ".................................................................................................................................................OOOOO",
+    ".................................................................................................................................................OOOOO",
+    "......................................................................======.....................................................................OOOOO",
+    "........................................................===...................................===...............======...........................OOOOO",
+    ".................................................................................................................................................OOOOO",
+    "..P.............e...................A...e....l........................e....H....l........................A....e.......l.H.........F.......Y......OOOOO",
+    "OOOOOOOOOOOOOOOOOOOOOOaaaaaaOOOOOOOOOOOOOOOOOOOOOOOOOOaaaaaaaOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOaaaaaaaOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO",
+    "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+  ]
+}

@@ -1,18 +1,22 @@
 /**
  * 敌人实体：属性来自 assets/data/enemies.json，行为按 behavior 字段分派：
- * patrol 巡逻不下崖 / fly 飞行追踪 / chase 发现玩家后追击并投掷 / boss 苏醒后追击、跳跃、扇形投掷。
+ * patrol 巡逻不下崖 / fly 飞行追踪 / chase 发现玩家后追击并投掷 / boss 苏醒后追击、跳跃、扇形投掷；
+ * runner 冲锋步兵 / hopper 跳跃幼虫 / capsule 飞行胶囊 / static 固定单位（射击、孵化、地雷由数据字段组合）。
  */
 import { TILE } from '../world/level.js';
 import { moveAndCollide, overlap } from '../systems/physics.js';
 import { hurtPlayer } from '../systems/combat.js';
 import { createProjectile } from './projectile.js';
+import { createEffect } from './effect.js';
 
 export function createEnemy(spawn, def) {
   const y = spawn.y + TILE - def.h; // 脚底对齐出生格底部
+  const x = spawn.x + (TILE - def.w) / 2;
   return {
-    def, w: def.w, h: def.h, x: spawn.x + (TILE - def.w) / 2, y, baseY: y,
-    vx: 0, vy: 0, hp: def.hp, facing: -1, onGround: false,
-    t: Math.random() * 6, cd: def.throw?.cooldown ?? 0, jumpCd: 2, flash: 0, dead: false, awake: false,
+    def, w: def.w, h: def.h, x, y, baseY: y, spawnX: x, content: spawn.content ?? null,
+    vx: 0, vy: 0, hp: def.hp, facing: -1, onGround: false, aimFrame: 0, children: [],
+    t: Math.random() * 6, cd: def.throw?.cooldown ?? 0, spawnCd: def.spawn?.cooldown ?? 0,
+    jumpCd: def.behavior === 'hopper' ? 0.6 : 2, flash: 0, dead: false, awake: false, active: false,
   };
 }
 
@@ -35,22 +39,53 @@ function walk(game, e, dt, speed, chasing) {
   if (e.hitWall && !chasing) e.facing *= -1;
 }
 
-/** 按冷却向玩家方向抛出骨头（count > 1 时呈扇形） */
-function tryThrow(game, e, dt, dx) {
+/** 半血狂暴倍率（rageAt 为触发血量比例），用于加快射击与孵化 */
+const rageOf = (e) => (e.def.rageAt && e.hp < e.def.hp * e.def.rageAt ? 2 : 1);
+
+/**
+ * 按冷却发射投射物，三种弹道：
+ * radial 环形散射 / aimed 瞄准玩家（count>1 时按 spread 张开）/ 默认抛物线（骨头、孢子）
+ */
+function tryThrow(game, e, dt, dx, dy = 0) {
   const spec = e.def.throw;
   if (!spec || (e.cd -= dt) > 0) return;
   e.cd = spec.cooldown;
-  game.sfx('bone_throw');
-  const dir = Math.sign(dx) || e.facing;
+  game.sfx(spec.sfx ?? 'bone_throw');
+  const sprite = game.sprites[spec.projectile ?? 'bone'];
+  const base = Math.atan2(dy, dx);
   for (let i = 0; i < spec.count; i++) {
+    let vx;
+    let vy;
+    if (spec.radial) {
+      const a = (i / spec.count) * Math.PI * 2 + e.t;
+      [vx, vy] = [Math.cos(a) * spec.speed, Math.sin(a) * spec.speed];
+    } else if (spec.aimed) {
+      const a = base + (i - (spec.count - 1) / 2) * (spec.spread ?? 0.2);
+      [vx, vy] = [Math.cos(a) * spec.speed, Math.sin(a) * spec.speed];
+    } else {
+      [vx, vy] = [(Math.sign(dx) || e.facing) * spec.speed * (1 - i * 0.25), -160 - i * 40];
+    }
     game.projectiles.push(
-      createProjectile(game.sprites.bone, {
-        x: e.x + e.w / 2, y: e.y + 4,
-        vx: dir * spec.speed * (1 - i * 0.25), vy: -160 - i * 40,
-        damage: spec.damage, owner: 'enemy', gravity: true, life: 3,
+      createProjectile(sprite, {
+        x: e.x + e.w / 2, y: e.y + (spec.radial || spec.aimed ? e.h / 2 : 4),
+        vx, vy, damage: spec.damage, owner: 'enemy', gravity: !spec.radial && !spec.aimed, life: 3,
       }),
     );
   }
+}
+
+/** 孵化：按冷却生成子单位，同时存活数不超过 max */
+function trySpawn(game, e, dt) {
+  const spec = e.def.spawn;
+  if (!spec || (e.spawnCd -= dt) > 0) return;
+  e.spawnCd = spec.cooldown;
+  e.children = e.children.filter((c) => !c.dead);
+  if (e.children.length >= spec.max) return;
+  const child = createEnemy({ x: e.x + e.w / 2 - TILE / 2, y: e.y + e.h - TILE }, game.data.enemies[spec.enemy]);
+  child.facing = e.facing;
+  e.children.push(child);
+  game.enemies.push(child);
+  game.sfx('spawn');
 }
 
 const BEHAVIORS = {
@@ -98,6 +133,70 @@ const BEHAVIORS = {
     if (airborne && e.onGround) game.sfx('boss_land');
     tryThrow(game, e, dt * rage, dx);
   },
+
+  /** 冲锋步兵：进入视野后朝玩家狂奔，撞墙掉头，会跑下悬崖 */
+  runner(game, e, dt) {
+    const { dx } = sense(game, e);
+    if (!e.active) {
+      if (Math.abs(dx) > 220) return moveAndCollide(e, game.level, dt);
+      e.active = true;
+      e.facing = Math.sign(dx) || -1;
+    }
+    e.vx = e.facing * e.def.speed;
+    moveAndCollide(e, game.level, dt);
+    if (e.hitWall) e.facing *= -1;
+  },
+
+  /** 跳跃幼虫：着地后按冷却朝玩家弹跳 */
+  hopper(game, e, dt) {
+    const { dx } = sense(game, e);
+    if (e.onGround) {
+      e.vx = 0;
+      if ((e.jumpCd -= dt) <= 0 && Math.abs(dx) < 200) {
+        e.facing = Math.sign(dx) || e.facing;
+        e.vy = -220;
+        e.vx = e.facing * e.def.speed;
+        e.jumpCd = 0.8 + Math.random() * 0.6;
+      }
+    }
+    moveAndCollide(e, game.level, dt);
+  },
+
+  /** 飞行胶囊：玩家靠近后沿正弦轨迹横飞，飞出太远则消失 */
+  capsule(game, e, dt) {
+    const { dx } = sense(game, e);
+    if (!e.active) {
+      if (Math.abs(dx) > 200) return;
+      e.active = true;
+      e.facing = Math.sign(dx) || 1;
+    }
+    e.x += e.facing * e.def.speed * dt;
+    e.y = e.baseY + Math.sin(e.t * 3) * 14;
+    if (Math.abs(e.x - e.spawnX) > 420) e.dead = true;
+  },
+
+  /** 固定单位：狙击手、炮台、口器、兵营、异形卵、地雷、BOSS 部件共用；能力由 throw / spawn / mine 字段决定 */
+  static(game, e, dt) {
+    if (!e.def.fly) {
+      e.vx = 0;
+      moveAndCollide(e, game.level, dt);
+    }
+    if (e.group && !e.group.awake) return; // BOSS 部件在苏醒前不行动
+    const { dx, dy, dist } = sense(game, e);
+    if (!e.def.fixedFacing) e.facing = Math.sign(dx) || e.facing;
+    if (e.def.aimFrames) e.aimFrame = (Math.round(Math.atan2(dy, dx) / (Math.PI / 4)) + 8) % 8;
+    if (e.def.mine && dist < e.def.mine.radius) {
+      e.dead = true;
+      game.effects.push(createEffect(game.sprites.explosion, e.x + e.w / 2, e.y));
+      game.sfx('explosion');
+      hurtPlayer(game, e.def.mine.damage, e.x + e.w / 2);
+      return;
+    }
+    if (dist > (e.def.range ?? 180)) return;
+    const rage = rageOf(e);
+    tryThrow(game, e, dt * rage, dx, dy);
+    trySpawn(game, e, dt * rage);
+  },
 };
 
 export function updateEnemies(game, dt) {
@@ -106,7 +205,7 @@ export function updateEnemies(game, dt) {
     e.flash -= dt;
     BEHAVIORS[e.def.behavior](game, e, dt);
     if (e.y > game.level.height) e.dead = true;
-    else if (overlap(e, game.player)) hurtPlayer(game, e.def.damage, e.x + e.w / 2);
+    else if (e.def.damage && overlap(e, game.player)) hurtPlayer(game, e.def.damage, e.x + e.w / 2);
   }
   game.enemies = game.enemies.filter((e) => !e.dead);
 }

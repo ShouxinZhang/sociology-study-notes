@@ -1,11 +1,82 @@
 {
   "empty": ".",
   "tiles": {
-    "#": { "sprite": "ground",   "solid": true },
-    "S": { "sprite": "stone",    "solid": true },
-    "B": { "sprite": "brick",    "solid": true },
-    "=": { "sprite": "platform", "oneWay": true }
+    "#": {
+      "sprite": "ground",
+      "solid": true
+    },
+    "S": {
+      "sprite": "stone",
+      "solid": true
+    },
+    "B": {
+      "sprite": "brick",
+      "solid": true
+    },
+    "=": {
+      "sprite": "platform",
+      "oneWay": true
+    },
+    "J": {
+      "sprite": "jungle",
+      "solid": true
+    },
+    "~": {
+      "sprite": "bridge",
+      "solid": true,
+      "bridge": true
+    },
+    "M": {
+      "sprite": "metal",
+      "solid": true
+    },
+    "Z": {
+      "sprite": "efloor",
+      "solid": true,
+      "electric": true
+    },
+    "<": {
+      "sprite": "conveyor_l",
+      "solid": true,
+      "conveyor": -1
+    },
+    ">": {
+      "sprite": "conveyor_r",
+      "solid": true,
+      "conveyor": 1
+    },
+    "O": {
+      "sprite": "organic",
+      "solid": true
+    },
+    "a": {
+      "sprite": "acid",
+      "solid": true,
+      "acid": true
+    }
   },
-  "enemies": { "s": "slime", "b": "bat", "k": "skeleton", "X": "boss" },
-  "markers": { "P": "start", "F": "flag", "C": "chest", "H": "heart", "A": "ammo" }
+  "enemies": {
+    "s": "slime",
+    "b": "bat",
+    "k": "skeleton",
+    "X": "boss",
+    "r": "runner",
+    "n": "sniper",
+    "t": "turret",
+    "m": "mine",
+    "l": "larva",
+    "p": "spitter",
+    "c": "capsule",
+    "d": "barracks",
+    "e": "egg"
+  },
+  "markers": {
+    "P": "start",
+    "F": "flag",
+    "C": "chest",
+    "H": "heart",
+    "A": "ammo",
+    "Y": "boss",
+    "|": "laser"
+  }
 }

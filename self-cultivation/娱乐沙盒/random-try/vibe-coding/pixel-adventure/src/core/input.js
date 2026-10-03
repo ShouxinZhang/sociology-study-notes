@@ -4,8 +4,8 @@
 const BINDINGS = {
   left: ['ArrowLeft', 'KeyA'],
   right: ['ArrowRight', 'KeyD'],
-  jump: ['Space', 'ArrowUp', 'KeyW', 'KeyK'],
-  up: ['ArrowUp', 'KeyW', 'Space'],
+  jump: ['Space', 'KeyK'],
+  up: ['ArrowUp', 'KeyW'],
   down: ['ArrowDown', 'KeyS'],
   attack: ['KeyJ'],
   prev: ['KeyQ'],

@@ -64,23 +64,31 @@ export function drawHud(ui, game) {
   text(ui, weapon.type === 'melee' ? '近战' : `弹药 ${ammo === Infinity ? '∞' : ammo}`, width - 88, 50, { align: 'right', box: false });
   if (game.cheat) text(ui, 'CHEAT', width - 122, 96, { align: 'center', size: 14 });
   if (game.audio?.mixer.muted) text(ui, '静音', 40, 96, { align: 'center', size: 14 });
+  if (p.shield > 0) text(ui, `护盾 ${Math.ceil(p.shield)}s`, 130, 96, { align: 'center', size: 14 });
 
   // 顶部居中：武器栏（数字键对应槽位，未获得显示为空槽）
-  const slotsLeft = (width - data.weapons.length * 56) / 2;
+  const slotsLeft = (width - data.weapons.length * 48) / 2;
   data.weapons.forEach((w, i) => {
-    const x = slotsLeft + i * 56;
-    const y = 22;
-    panel(ui, x, y, 52, 52, w.id === weapon.id ? 5 : 2);
-    if (inventory.owns(w.id)) icon(ui, sprites[w.icon], x + 10, y + 10, 32);
-    text(ui, String(i + 1), x + 7, y + 5, { size: 11, box: false });
+    const x = slotsLeft + i * 48;
+    const y = 26;
+    panel(ui, x, y, 44, 44, w.id === weapon.id ? 5 : 2);
+    if (inventory.owns(w.id)) icon(ui, sprites[w.icon], x + 8, y + 8, 28);
+    text(ui, String(i + 1), x + 6, y + 4, { size: 11, box: false });
   });
 
   if (game.banner) text(ui, game.banner.text, width / 2, 104, { align: 'center', size: 20 });
 }
 
-const CONTROLS = ['← → / A D   移动', '空格 / W / K   跳跃', 'J   攻击（按住连发）', '1-6 / Q E   切换武器', 'F1   作弊模式（↑↓←→ 飞行）', 'M 静音   - / = 音量'];
+const CONTROLS = [
+  '← → / A D   移动', '空格 / K   跳跃（空中再按：二段跳）', 'J   攻击（按住连发）',
+  '↑ / W 向上瞄准   空中 ↓ 向下瞄准', '1-9 / Q E   切换武器', 'F1   作弊模式（方向键飞行）', 'M 静音   - / = 音量',
+];
 const SCREENS = {
   title: () => ({ title: '黑白冒险岛', lines: [...CONTROLS, '', '按 Enter 开始'] }),
+  intro: (g) => {
+    const intro = g.levelDefs[g.levelIndex].worldIntro;
+    return { title: intro.title, lines: [...intro.lines, '', '按 Enter 出发'] };
+  },
   gameover: (g) => ({ title: '你倒下了', lines: [`第 ${g.levelIndex + 1} 关 · ${g.level.name}`, '', '按 Enter 重试本关'] }),
   clear: (g) => ({ title: `第 ${g.levelIndex + 1} 关 通过！`, lines: [`当前等级 LV ${g.player.level}`, '', '按 Enter 进入下一关'] }),
   victory: (g) => ({
@@ -94,10 +102,10 @@ export function drawOverlay(ui, game) {
   if (!screen) return;
   const { ctx, colors, width, height, sprites } = ui;
 
-  if (game.state === 'title') {
+  if (game.state === 'title' || game.state === 'intro') {
     ctx.fillStyle = colors.paper;
     ctx.fillRect(0, 0, width, height);
-    const hero = sprites.player_walk;
+    const hero = game.state === 'title' ? sprites.player_walk : sprites.runner;
     ctx.imageSmoothingEnabled = false;
     ctx.drawImage(hero.frames[frameAt(hero, game.time)], width / 2 - 48, 24, 96, 96);
   } else {
@@ -111,7 +119,7 @@ export function drawOverlay(ui, game) {
   const boxW = 520;
   const boxH = 96 + screen.lines.length * 30;
   const x = (width - boxW) / 2;
-  const y = game.state === 'title' ? 136 : (height - boxH) / 2;
+  const y = game.state === 'title' || game.state === 'intro' ? 136 : (height - boxH) / 2;
   panel(ui, x, y, boxW, boxH, 4);
   text(ui, screen.title, width / 2, y + 22, { align: 'center', size: 32, box: false });
   screen.lines.forEach((line, i) => text(ui, line, width / 2, y + 76 + i * 30, { align: 'center', size: 18, box: false }));

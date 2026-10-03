@@ -19,7 +19,7 @@ pixel-adventure/
 ├─ src/               纯逻辑
 │  ├─ core/           loader · sprites · input · loop · game（状态机）
 │  ├─ world/          level（地图解析与瓦片查询）
-│  ├─ entities/       player · enemy · projectile · pickup · effect
+│  ├─ entities/       player · enemy · projectile · pickup · effect · hazard（机关）· boss-parts（多部件 BOSS）
 │  ├─ systems/        physics · combat · leveling · inventory
 │  └─ render/         renderer（320×192 世界 ×3 放大）· hud
 │  └─ audio/          mixer · sfx（ZzFX 预合成）· music · vendor/zzfx.js
@@ -41,8 +41,12 @@ pixel-adventure/
 | weapons.json | `type` | `melee` 按 `range` 判定命中盒；`ranged` 按 `projectile`、`speed` 发射 |
 | weapons.json | `attackSprite` / `fx` / `muzzle` | 攻击动作、特效、枪口偏移 `[距身体中线, 距碰撞盒顶部]` |
 | weapons.json | `pickupAmmo` / `ammoPerBox` / `explosionRadius` | 拾取弹药、弹药箱补给、爆炸半径 |
-| enemies.json | `behavior` | `patrol` / `fly` / `chase` / `boss` |
-| enemies.json | `throw` | 投掷冷却、速度、伤害、数量（扇形） |
+| enemies.json | `behavior` | `patrol` / `fly` / `chase` / `boss` / `runner` / `hopper` / `capsule` / `static`（static 的能力由 `throw`、`spawn`、`mine`、`aimFrames`、`rageAt`、`fly`、`fixedFacing` 字段组合） |
+| enemies.json | `throw` | 投射物类型、冷却、速度、伤害、数量；`radial` 环形散射 / `aimed` 瞄准玩家 / 默认抛物线 |
+| bosses.json | `parts` / `core` / `wakeRange` | 多部件 BOSS：部件引用 enemies.json，相对地图 Y 锚点的格数定位；核心被毁则整组被毁 |
+| hazards.json | `laser` / `electric` / `acid` / `bridge` / `conveyor` | 机关周期、伤害、崩塌节奏、传送速度 |
+| levels/*.json | `boss` / `capsules` / `worldIntro` | 关卡 BOSS、飞行胶囊内容（从左到右分配）、世界切换过场文案 |
+| weapons.json | `pellets` / `pelletAngle` / `pierce` / `wave` | 散弹数量与夹角、激光贯穿、火焰蛇行 [振幅, 角频率] |
 | progression.json | `expTable` 等 | 升级经验、成长、无敌时间、回血量 |
 | cheat.json | `fireRateMultiplier` / `flySpeed` | 作弊射速倍率、飞行速度 |
 | audio/sfx.json | `zzfx` / `volume` / `minInterval` / `maxVoices` / `duck` | ZzFX 参数（`null` 为默认值）、音量、节流、复音上限、是否压低音乐 |

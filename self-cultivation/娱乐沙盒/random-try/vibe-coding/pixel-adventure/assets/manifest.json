@@ -7,7 +7,8 @@
     "sprites/effects.json",
     "sprites/attacks.json",
     "sprites/items.json",
-    "sprites/tiles.json"
+    "sprites/tiles.json",
+    "sprites/contra.json"
   ],
   "data": {
     "weapons": "data/weapons.json",
@@ -16,11 +17,16 @@
     "legend": "data/legend.json",
     "cheat": "data/cheat.json",
     "sfx": "audio/sfx.json",
-    "music": "audio/music.json"
+    "music": "audio/music.json",
+    "hazards": "data/hazards.json",
+    "bosses": "data/bosses.json"
   },
   "levels": [
     "levels/level1.json",
     "levels/level2.json",
-    "levels/level3.json"
+    "levels/level3.json",
+    "levels/level4.json",
+    "levels/level5.json",
+    "levels/level6.json"
   ]
 }

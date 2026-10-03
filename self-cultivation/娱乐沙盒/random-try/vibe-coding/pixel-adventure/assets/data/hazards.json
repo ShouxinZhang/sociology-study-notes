@@ -1,0 +1,7 @@
+{
+  "laser":    { "on": 1.6, "off": 1.6, "damage": 2 },
+  "electric": { "on": 1.0, "off": 2.0, "damage": 1 },
+  "acid":     { "damage": 1 },
+  "bridge":   { "delay": 0.35, "step": 0.22 },
+  "conveyor": { "speed": 45 }
+}

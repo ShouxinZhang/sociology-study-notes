@@ -14,7 +14,7 @@ export class Level {
     this.cols = Math.max(...def.map.map((row) => row.length));
     this.width = this.cols * TILE;
     this.height = this.rows * TILE;
-    this.spawns = { player: { x: 0, y: 0 }, flag: null, enemies: [], pickups: [] };
+    this.spawns = { player: { x: 0, y: 0 }, flag: null, enemies: [], pickups: [], hazards: [], bossAnchor: null };
 
     const chests = [];
     this.tiles = def.map.map((row, r) =>
@@ -29,12 +29,18 @@ export class Level {
         else if (marker === 'start') this.spawns.player = at;
         else if (marker === 'flag') this.spawns.flag = at;
         else if (marker === 'chest') chests.push(at);
+        else if (marker === 'boss') this.spawns.bossAnchor = at;
+        else if (marker === 'laser') this.spawns.hazards.push({ type: 'laser', ...at });
         else if (marker) this.spawns.pickups.push({ kind: marker, ...at });
         return null;
       }),
     );
 
-    // 宝箱内容按从左到右顺序依次取自 def.chests
+    // 宝箱与飞行胶囊的内容按从左到右顺序依次取自 def.chests / def.capsules
+    this.spawns.enemies
+      .filter((s) => s.type === 'capsule')
+      .sort((a, b) => a.x - b.x)
+      .forEach((s, i) => (s.content = def.capsules?.[i] ?? 'shield'));
     chests
       .sort((a, b) => a.x - b.x)
       .forEach((at, i) => this.spawns.pickups.push({ kind: 'chest', content: def.chests?.[i] ?? 'heart', ...at }));
@@ -56,12 +62,12 @@ export class Level {
     return Boolean(t?.solid || t?.oneWay);
   }
 
-  /** 实体两脚下是否都踩实（用于记录坠崖后的安全复活点） */
+  /** 实体两脚下都踩实且不是机关地面（用于记录坠崖后的安全复活点；桥会塌、酸液和电网会伤人） */
   isFirmlyGrounded(e) {
     const y = e.y + e.h + 1;
     return [e.x, e.x + e.w].every((x) => {
       const t = this.tileAtPoint(x, y);
-      return Boolean(t?.solid || t?.oneWay);
+      return Boolean((t?.solid || t?.oneWay) && !t.bridge && !t.acid && !t.electric);
     });
   }
 }

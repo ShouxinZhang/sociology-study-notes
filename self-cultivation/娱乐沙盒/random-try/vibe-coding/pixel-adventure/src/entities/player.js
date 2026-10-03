@@ -1,5 +1,5 @@
 /**
- * 玩家实体：移动、可变高度跳跃、攻击与换武器输入、坠崖复活。
+ * 玩家实体：移动、可变高度跳跃 + 二段跳、八方向瞄准、攻击与换武器输入、护盾、坠崖复活。
  * 持久属性（等级/经验/生命）跨关卡保留，位置类状态在每关开始时重置。
  */
 import { moveAndCollide } from '../systems/physics.js';
@@ -8,6 +8,7 @@ import { hurtPlayer, playerAttack } from '../systems/combat.js';
 
 const MOVE_SPEED = 100;
 const JUMP_SPEED = 330; // 满跳约 3.7 格高
+const DOUBLE_JUMP_RATIO = 0.85; // 二段跳初速相对一段跳的比例（高度约 70%）
 const JUMP_CUT = 120; // 提前松开跳跃键时截断上升速度
 const FALL_DAMAGE = 2;
 const LAND_SOUND_SPEED = 150; // 低于此下落速度的落地（如走下台阶）不出声
@@ -24,7 +25,16 @@ export function placePlayer(p, spawn) {
   Object.assign(p, pos, {
     vx: 0, vy: 0, facing: 1, onGround: false, hp: p.maxHp,
     invuln: 0, knock: 0, attackCd: 0, attackAnim: 0, attackT: 0, attackSprite: null, safe: { ...pos },
+    airJumps: 1, spinT: 0, shield: 0, aim: 'fwd',
   });
+}
+
+/** 八方向瞄准：↑ 向上，↑+←/→ 斜上；空中 ↓ 向下，↓+←/→ 斜下 */
+function aimOf(input, onGround) {
+  const horiz = input.held('left') || input.held('right');
+  if (input.held('up')) return horiz ? 'diag_up' : 'up';
+  if (input.held('down') && !onGround) return horiz ? 'diag_down' : 'down';
+  return 'fwd';
 }
 
 export function updatePlayer(game, dt) {
@@ -34,6 +44,9 @@ export function updatePlayer(game, dt) {
   p.attackCd -= dt;
   p.attackAnim -= dt;
   p.attackT += dt;
+  p.spinT -= dt;
+  p.shield -= dt;
+  p.aim = inventory.current.type === 'ranged' ? aimOf(input, p.onGround) : 'fwd';
 
   // 击退期间保留击退速度，不响应左右输入
   if (p.knock <= 0) {
@@ -73,9 +86,15 @@ export function updatePlayer(game, dt) {
 /** 常规移动：重力、跳跃、碰撞与坠崖复活 */
 function walkAndJump(game, dt) {
   const { player: p, input, level } = game;
+  if (p.onGround) p.airJumps = 1;
   if (input.hit('jump') && p.onGround) {
     p.vy = -JUMP_SPEED;
     game.sfx('jump');
+  } else if (input.hit('jump') && p.airJumps > 0) {
+    p.airJumps -= 1;
+    p.vy = -JUMP_SPEED * DOUBLE_JUMP_RATIO;
+    p.spinT = 0.4;
+    game.sfx('jump2');
   }
   if (!input.held('jump') && p.vy < -JUMP_CUT) p.vy = -JUMP_CUT;
 
@@ -95,7 +114,7 @@ function fly(game, dt) {
   const { player: p, input, level } = game;
   const speed = game.data.cheat.flySpeed;
   const dirX = (input.held('right') ? 1 : 0) - (input.held('left') ? 1 : 0);
-  const dirY = (input.held('down') ? 1 : 0) - (input.held('up') ? 1 : 0);
+  const dirY = (input.held('down') ? 1 : 0) - (input.held('up') || input.held('jump') ? 1 : 0);
   p.vx = dirX * speed;
   p.vy = 0;
   p.onGround = false;
@@ -103,8 +122,10 @@ function fly(game, dt) {
   p.y = Math.max(0, Math.min(level.height - p.h, p.y + dirY * speed * dt));
 }
 
-/** 根据状态选择 [精灵名, 动画时间]；攻击动作从第 0 帧开始播放 */
+/** 根据状态选择 [精灵名, 动画时间]；优先级：二段跳空翻 > 非水平瞄准 > 攻击动作 > 常态 */
 export function playerSprite(p, time) {
+  if (p.spinT > 0 && !p.onGround) return ['player_spin', time];
+  if (p.aim && p.aim !== 'fwd') return [`player_aim_${p.aim}`, time];
   if (p.attackAnim > 0) return [p.attackSprite, p.attackT];
   if (!p.onGround) return ['player_jump', time];
   return [p.vx ? 'player_walk' : 'player_idle', time];

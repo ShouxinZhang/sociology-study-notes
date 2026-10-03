@@ -48,6 +48,11 @@ function collect(game, it) {
       game.toast('打开宝箱！');
       game.sfx('chest_open');
       return true;
+    case 'shield':
+      p.shield = game.data.progression.shieldTime;
+      game.toast(`护盾！${p.shield} 秒无敌`);
+      game.sfx('shield_on');
+      return true;
     default:
       return true;
   }

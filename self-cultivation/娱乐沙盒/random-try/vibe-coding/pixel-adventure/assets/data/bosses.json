@@ -1,0 +1,27 @@
+{
+  "_parts": "多部件 BOSS：parts 中的 enemy 引用 enemies.json；dx/dy 为相对地图 Y 锚点的格数；core 部件被毁则全体被毁，无 core 时须毁掉全部部件",
+  "fortress_gate": {
+    "name": "要塞城门", "music": "boss2", "wakeRange": 260,
+    "parts": [
+      { "enemy": "gate_cannon", "dx": 0, "dy": -6 },
+      { "enemy": "gate_cannon", "dx": 0, "dy": -3 },
+      { "enemy": "gate_core",   "dx": 0, "dy": 0, "core": true }
+    ]
+  },
+  "twin_cannon": {
+    "name": "双联主炮", "music": "boss2", "wakeRange": 280,
+    "parts": [
+      { "enemy": "base_cannon", "dx": 0, "dy": -6 },
+      { "enemy": "base_cannon", "dx": 0, "dy": -1 }
+    ]
+  },
+  "alien_heart": {
+    "name": "异形之心", "music": "boss2", "wakeRange": 280,
+    "parts": [
+      { "enemy": "heart",   "dx": 0,  "dy": 0, "core": true },
+      { "enemy": "spitter", "dx": -3, "dy": -7 },
+      { "enemy": "spitter", "dx": 3,  "dy": -7 },
+      { "enemy": "egg",     "dx": -4, "dy": 0 }
+    ]
+  }
+}

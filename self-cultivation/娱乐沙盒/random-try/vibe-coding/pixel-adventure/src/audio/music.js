@@ -39,6 +39,8 @@ export class MusicPlayer {
     const source = ctx.createBufferSource();
     source.buffer = buffer;
     source.loop = def.loop ?? true;
+    source.loopStart = def.loopStart ?? 0; // 带前奏的曲目循环时跳过前奏
+    source.loopEnd = buffer.duration;
     source.playbackRate.value = def.rate ?? 1;
     const gain = ctx.createGain();
     gain.gain.setValueAtTime(0, ctx.currentTime);

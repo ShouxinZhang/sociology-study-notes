@@ -44,13 +44,22 @@ export class Renderer {
     g.save();
     g.translate(-camX, 0);
 
-    // 只绘制可见列
+    // 只绘制可见列；电网通电时在地板上方叠加电火花
     const c0 = Math.floor(camX / TILE);
     for (let r = 0; r < level.rows; r++) {
       for (let c = c0; c <= c0 + VIEW_W / TILE; c++) {
         const tile = level.tileAt(c, r);
-        if (tile?.sprite) drawSprite(g, this.sprites[tile.sprite], 0, c * TILE, r * TILE);
+        if (!tile?.sprite) continue;
+        const sprite = this.sprites[tile.sprite];
+        drawSprite(g, sprite, frameAt(sprite, time), c * TILE, r * TILE);
+        if (tile.electric && game.electricOn) drawSprite(g, this.sprites.spark, frameAt(this.sprites.spark, time), c * TILE, (r - 1) * TILE);
       }
+    }
+    for (const h of game.hazards ?? []) {
+      drawSprite(g, this.sprites.laser_emitter, 0, h.x, h.y);
+      if (!game.laserOn) continue;
+      const beam = this.sprites.laser_beam_tile;
+      for (let y = h.beam.y; y < h.beam.y + h.beam.h; y += TILE) drawSprite(g, beam, frameAt(beam, time), h.x, y);
     }
 
     const flag = level.spawns.flag;
@@ -60,19 +69,27 @@ export class Renderer {
       this.drawEntity(g, this.sprites[it.sprite], it, it.t, false, bob);
     }
     for (const e of game.enemies) {
-      if (!(e.flash > 0 && blink(30))) this.drawEntity(g, this.sprites[e.def.sprite], e, e.t, e.facing < 0);
+      if (e.flash > 0 && blink(30)) continue;
+      const sprite = this.sprites[e.def.sprite];
+      // 炮台类按瞄准角取帧（八方向炮管），不镜像
+      if (e.def.aimFrames) this.drawEntity(g, sprite, e, 0, false, 0, e.aimFrame);
+      else this.drawEntity(g, sprite, e, e.t, e.facing < 0);
     }
     if (!(p.invuln > 0 && blink(15))) {
       const [name, t] = playerSprite(p, time);
       this.drawEntity(g, this.sprites[name], p, t, p.facing < 0);
     }
-    for (const pr of game.projectiles) drawSprite(g, pr.sprite, 0, pr.x, pr.y, pr.flip);
+    if (p.shield > 0 && !(p.shield < 2 && blink(10))) {
+      const aura = this.sprites.shield_aura;
+      drawSprite(g, aura, frameAt(aura, time), p.x + p.w / 2 - aura.w / 2, p.y + p.h / 2 - aura.h / 2 - 2);
+    }
+    for (const pr of game.projectiles) drawSprite(g, pr.sprite, frameAt(pr.sprite, pr.t ?? 0), pr.x, pr.y, pr.flip);
     for (const f of game.effects) drawSprite(g, f.sprite, frameAt(f.sprite, f.t), f.x, f.y, f.flip);
     g.restore();
   }
 
-  /** 精灵底边居中对齐实体碰撞盒底边 */
-  drawEntity(g, sprite, e, time, flip, bob = 0) {
-    drawSprite(g, sprite, frameAt(sprite, time), e.x + e.w / 2 - sprite.w / 2, e.y + e.h - sprite.h + bob, flip);
+  /** 精灵底边居中对齐实体碰撞盒底边；frame 未给出时按时间播放动画 */
+  drawEntity(g, sprite, e, time, flip, bob = 0, frame = frameAt(sprite, time)) {
+    drawSprite(g, sprite, frame, e.x + e.w / 2 - sprite.w / 2, e.y + e.h - sprite.h + bob, flip);
   }
 }
