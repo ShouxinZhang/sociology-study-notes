@@ -6,6 +6,7 @@ import { gainExp } from './leveling.js';
 import { createEffect } from '../entities/effect.js';
 import { createProjectile } from '../entities/projectile.js';
 import { createPickup } from '../entities/pickup.js';
+import { callStrike } from './support.js';
 
 const center = (e) => ({ x: e.x + e.w / 2, y: e.y + e.h / 2 });
 
@@ -35,6 +36,7 @@ export function playerAttack(game, weapon) {
   const p = game.player;
   const damage = weapon.damage * p.attack;
   game.sfx(weapon.sfxAttack);
+  if (weapon.type === 'strike') return callStrike(game, weapon, damage);
 
   if (weapon.type === 'melee') {
     const box = { x: p.facing > 0 ? p.x + p.w : p.x - weapon.range, y: p.y - 2, w: weapon.range, h: p.h + 4 };
@@ -79,8 +81,11 @@ export function playerAttack(game, weapon) {
   }
 }
 
-export function damageEnemy(game, e, amount, dir) {
+/** blast 为爆炸伤害：可绕过盾牌兵的正面格挡 */
+export function damageEnemy(game, e, amount, dir, blast = false) {
   if (e.dead) return;
+  // 盾牌兵：攻击方向与其朝向相反即为正面，非爆炸伤害被盾牌挡下
+  if (e.def.shield && !blast && dir === -e.facing) return void game.sfx('metal_hit');
   e.hp -= amount;
   e.flash = 0.12;
   if (e.def.behavior !== 'static') e.x += dir * 3; // 固定类（炮台、BOSS 部件）不被击退
@@ -103,6 +108,8 @@ export function killEnemy(game, e) {
     game.music(game.levelDefs[game.levelIndex].music);
   }
   if (e.group) defeatBossPart(game, e);
+  // 油桶等：被摧毁时重爆炸，波及周围敌人（可连锁）
+  if (e.def.deathBlast) explode(game, c.x, c.y, e.def.deathBlast.radius, e.def.deathBlast.damage, { heavy: true });
 
   // 飞行胶囊：按关卡配置掉落指定武器或护盾
   if (e.content) {
@@ -135,14 +142,25 @@ function defeatBossPart(game, e) {
   game.music(game.levelDefs[game.levelIndex].music);
 }
 
-/** 火箭爆炸：半径内所有敌人受伤（不伤玩家） */
-export function explode(game, x, y, radius, damage) {
-  game.effects.push(createEffect(game.sprites.explosion, x, y));
-  game.sfx('explosion');
+const HEAVY_SHAKE = 0.35; // 重爆炸的屏幕震动时长（秒）
+
+/**
+ * 范围爆炸。玩家方（火箭、炮弹、导弹、油桶）伤害半径内所有敌人、不伤玩家；
+ * 敌方（迫击炮弹）只伤玩家。heavy 为重爆炸：大号爆炸特效、重爆音与屏幕震动。
+ */
+export function explode(game, x, y, radius, damage, { heavy = false, owner = 'player' } = {}) {
+  game.effects.push(createEffect(game.sprites[heavy ? 'big_explosion' : 'explosion'], x, y));
+  game.sfx(heavy ? 'heavy_boom' : 'explosion');
+  if (heavy) game.shake = Math.max(game.shake ?? 0, HEAVY_SHAKE);
+  if (owner === 'enemy') {
+    const p = game.player;
+    if (Math.hypot(p.x + p.w / 2 - x, p.y + p.h / 2 - y) <= radius + p.h / 2) hurtPlayer(game, damage, x);
+    return;
+  }
   for (const e of game.enemies) {
     const c = center(e);
     if (Math.hypot(c.x - x, c.y - y) <= radius + Math.max(e.w, e.h) / 2) {
-      damageEnemy(game, e, damage, Math.sign(c.x - x) || 1);
+      damageEnemy(game, e, damage, Math.sign(c.x - x) || 1, true);
     }
   }
 }

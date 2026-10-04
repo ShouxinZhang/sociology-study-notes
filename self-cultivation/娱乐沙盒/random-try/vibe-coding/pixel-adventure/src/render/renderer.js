@@ -7,10 +7,13 @@ import { drawSprite, frameAt } from '../core/sprites.js';
 import { playerSprite } from '../entities/player.js';
 import { drawHud, drawOverlay } from './hud.js';
 import { drawMenus } from './menus.js';
+import { cameraX, VIEW_W, VIEW_H } from '../world/camera.js';
+import { reached } from '../systems/checkpoint.js';
 
-const VIEW_W = 320;
-const VIEW_H = 192;
+const NO_BOB = new Set(['chest', 'pow']); // 放在地上不上下浮动的拾取物
+
 const SCALE = 3;
+const SHAKE_PX = 3; // 屏幕震动幅度（世界像素）
 
 export class Renderer {
   constructor(canvas, assets) {
@@ -41,10 +44,11 @@ export class Renderer {
 
   drawWorld(g, game) {
     const { level, player: p, time } = game;
-    const camX = Math.round(Math.max(0, Math.min(p.x + p.w / 2 - VIEW_W / 2, level.width - VIEW_W)));
+    const camX = cameraX(game);
     const blink = (rate) => Math.floor(time * rate) % 2 === 1;
+    const jitter = () => (game.shake > 0 ? Math.round((Math.random() * 2 - 1) * SHAKE_PX) : 0);
     g.save();
-    g.translate(-camX, 0);
+    g.translate(-camX + jitter(), jitter());
 
     // 只绘制可见列；电网通电时在地板上方叠加电火花
     const c0 = Math.floor(camX / TILE);
@@ -66,13 +70,15 @@ export class Renderer {
 
     const flag = level.spawns.flag;
     if (flag) drawSprite(g, this.sprites.flag, 0, flag.x, flag.y);
+    for (const cp of level.spawns.checkpoints) drawSprite(g, this.sprites.checkpoint, reached(game, cp) ? 1 : 0, cp.x, cp.y);
     for (const it of game.pickups) {
-      const bob = it.kind === 'chest' ? 0 : Math.round(Math.sin(it.t * 4) * 2);
+      const bob = NO_BOB.has(it.kind) ? 0 : Math.round(Math.sin(it.t * 4) * 2);
       this.drawEntity(g, this.sprites[it.sprite], it, it.t, false, bob);
     }
     for (const e of game.enemies) {
       if (e.flash > 0 && blink(30)) continue;
-      const sprite = this.sprites[e.def.sprite];
+      // airSprite：空中专用精灵（伞兵降落伞）
+      const sprite = this.sprites[(!e.onGround && e.def.airSprite) || e.def.sprite];
       // 炮台类按瞄准角取帧（八方向炮管），不镜像
       if (e.def.aimFrames) this.drawEntity(g, sprite, e, 0, false, 0, e.aimFrame);
       else this.drawEntity(g, sprite, e, e.t, e.facing < 0);
@@ -90,8 +96,19 @@ export class Renderer {
       drawSprite(g, aura, frameAt(aura, time), p.x + p.w / 2 - aura.w / 2, p.y + p.h / 2 - aura.h / 2 - 2);
     }
     for (const pr of game.projectiles) drawSprite(g, pr.sprite, frameAt(pr.sprite, pr.t ?? 0), pr.x, pr.y, pr.flip);
+    this.drawStrikes(g, game.strikes ?? [], time);
     for (const f of game.effects) drawSprite(g, f.sprite, frameAt(f.sprite, f.t), f.x, f.y, f.flip);
     g.restore();
+  }
+
+  /** 呼叫支援：榴弹炮准星（框住落点上方一个身位，落弹结束前闪烁）、F22 战机 */
+  drawStrikes(g, strikes, time) {
+    for (const s of strikes) {
+      const sprite = this.sprites[s.kind === 'artillery' ? 'reticle' : 'f22'];
+      const frame = frameAt(sprite, time);
+      if (s.kind === 'artillery') drawSprite(g, sprite, frame, s.x - sprite.w / 2, s.y - sprite.h + 4);
+      else drawSprite(g, sprite, frame, s.x, s.y, s.dir < 0);
+    }
   }
 
   /** 精灵底边（扣除脚底以下的 below 留白）居中对齐实体碰撞盒底边；frame 未给出时按时间播放动画 */

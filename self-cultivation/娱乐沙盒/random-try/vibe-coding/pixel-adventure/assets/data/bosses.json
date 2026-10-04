@@ -23,5 +23,16 @@
       { "enemy": "spitter", "dx": 3,  "dy": -7 },
       { "enemy": "egg",     "dx": -4, "dy": 0 }
     ]
+  },
+  "walker_fortress": {
+    "name": "陆行要塞", "music": "boss2", "wakeRange": 300,
+    "_march": "苏醒后整组左右踱步：amp 振幅（像素）、speed 角频率",
+    "march": { "amp": 40, "speed": 0.6 },
+    "parts": [
+      { "enemy": "walker_core",   "dx": 0,  "dy": 0, "core": true },
+      { "enemy": "walker_cannon", "dx": -2, "dy": -1 },
+      { "enemy": "walker_cannon", "dx": -2, "dy": -2 },
+      { "enemy": "walker_pod",    "dx": 0,  "dy": -3 }
+    ]
   }
 }

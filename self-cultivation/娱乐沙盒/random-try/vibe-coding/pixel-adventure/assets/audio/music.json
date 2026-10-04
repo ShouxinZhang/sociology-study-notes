@@ -64,6 +64,13 @@
       "author": "SketchyLogic",
       "usage": "第 6 关"
     },
+    "stage7": {
+      "file": "music/stage7.ogg",
+      "volume": 0.45,
+      "title": "8-bit Last Mission",
+      "author": "HydroGene",
+      "usage": "第 7 关"
+    },
     "map": {
       "file": "music/map.ogg",
       "volume": 0.5,
@@ -77,7 +84,7 @@
       "loopStart": 2.1,
       "title": "Boss",
       "author": "SketchyLogic",
-      "usage": "第 4–6 关 BOSS"
+      "usage": "第 4–7 关 BOSS"
     }
   },
   "states": {

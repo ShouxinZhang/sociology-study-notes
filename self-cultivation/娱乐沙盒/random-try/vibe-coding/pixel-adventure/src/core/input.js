@@ -10,6 +10,7 @@ const BINDINGS = {
   attack: ['KeyJ'],
   prev: ['KeyQ'],
   next: ['KeyE'],
+  armory: ['Tab', 'KeyI'],
   confirm: ['Enter'],
   back: ['Escape'],
   cheat: ['F1'],
@@ -18,7 +19,7 @@ const BINDINGS = {
   volUp: ['Equal', 'NumpadAdd'],
 };
 // 阻止这些键滚动页面或打开浏览器帮助
-const BLOCK_DEFAULT = new Set(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'F1']);
+const BLOCK_DEFAULT = new Set(['Space', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'F1', 'Tab']);
 
 export class Input {
   constructor(target = window) {

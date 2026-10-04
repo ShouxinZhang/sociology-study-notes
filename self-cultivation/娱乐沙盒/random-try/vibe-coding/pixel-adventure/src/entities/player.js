@@ -80,7 +80,7 @@ export function updatePlayer(game, dt) {
     } else {
       p.attackCd = 0.4;
       game.sfx('ammo_empty');
-      game.toast(`${weapon.name} 没有弹药！按 1 切回拳击`);
+      game.toast(`${weapon.name} 没有弹药！Q / E 换武器，Tab 打开装备栏`);
     }
   }
 }

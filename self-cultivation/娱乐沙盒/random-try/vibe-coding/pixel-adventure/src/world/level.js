@@ -14,9 +14,9 @@ export class Level {
     this.cols = Math.max(...def.map.map((row) => row.length));
     this.width = this.cols * TILE;
     this.height = this.rows * TILE;
-    this.spawns = { player: { x: 0, y: 0 }, flag: null, enemies: [], pickups: [], hazards: [], bossAnchor: null };
+    this.spawns = { player: { x: 0, y: 0 }, flag: null, enemies: [], pickups: [], hazards: [], checkpoints: [], bossAnchor: null };
 
-    const chests = [];
+    const boxes = { chest: [], pow: [] }; // 有内容物的拾取点：宝箱、俘虏
     this.tiles = def.map.map((row, r) =>
       Array.from({ length: this.cols }, (_, c) => {
         const ch = row[c] ?? legend.empty;
@@ -28,7 +28,8 @@ export class Level {
         if (enemy) this.spawns.enemies.push({ type: enemy, ...at });
         else if (marker === 'start') this.spawns.player = at;
         else if (marker === 'flag') this.spawns.flag = at;
-        else if (marker === 'chest') chests.push(at);
+        else if (marker in boxes) boxes[marker].push(at);
+        else if (marker === 'checkpoint') this.spawns.checkpoints.push(at);
         else if (marker === 'boss') this.spawns.bossAnchor = at;
         else if (marker === 'laser') this.spawns.hazards.push({ type: 'laser', ...at });
         else if (marker) this.spawns.pickups.push({ kind: marker, ...at });
@@ -36,14 +37,16 @@ export class Level {
       }),
     );
 
-    // 宝箱与飞行胶囊的内容按从左到右顺序依次取自 def.chests / def.capsules
+    // 宝箱、俘虏与飞行胶囊的内容按从左到右顺序依次取自 def.chests / def.pows / def.capsules
     this.spawns.enemies
       .filter((s) => s.type === 'capsule')
       .sort((a, b) => a.x - b.x)
       .forEach((s, i) => (s.content = def.capsules?.[i] ?? 'shield'));
-    chests
-      .sort((a, b) => a.x - b.x)
-      .forEach((at, i) => this.spawns.pickups.push({ kind: 'chest', content: def.chests?.[i] ?? 'heart', ...at }));
+    for (const [kind, list] of Object.entries(boxes)) {
+      list
+        .sort((a, b) => a.x - b.x)
+        .forEach((at, i) => this.spawns.pickups.push({ kind, content: def[`${kind}s`]?.[i] ?? 'heart', ...at }));
+    }
   }
 
   tileAt(c, r) {

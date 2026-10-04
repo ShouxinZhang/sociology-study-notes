@@ -1,14 +1,15 @@
 /**
- * 菜单界面渲染：主菜单、关卡选择、音乐馆曲目表与实时频谱、设置页按键说明。
+ * 菜单界面渲染：主菜单、关卡选择、音乐馆曲目表与实时频谱、设置页按键说明、关卡内装备栏（armory.js）。
  * 按钮位置全部来自 ui/layout.js，与鼠标命中检测一致。
  */
 import { frameAt } from '../core/sprites.js';
 import { text, panel, button } from './draw-kit.js';
+import { drawArmory } from './armory.js';
 import { MAIN_MENU, BACK_BUTTON, SPECTRUM, trackRects, levelRects, hitRect } from '../ui/layout.js';
 
 const CONTROLS = [
   '← → / A D   移动', '空格 / K   跳跃（空中再按：二段跳）', 'J   攻击（按住连发）',
-  '↑ / W 向上瞄准   空中 ↓ 向下瞄准', '1-9 / Q E   切换武器', 'F1   作弊模式（方向键飞行）', 'M 静音   - / = 音量',
+  '↑ / W 向上瞄准   空中 ↓ 向下瞄准', '1-3 / Q E   切换常备武器   Tab / I   装备栏', 'F1   作弊模式（方向键飞行）', 'M 静音   - / = 音量',
 ];
 
 /** 纸色清屏 */
@@ -111,7 +112,7 @@ function drawLevelSelect(ui, game) {
   footer(ui, '↑↓ 选择 · Enter / 点击 进入 · 等级与武器保持当前状态 · Esc 返回');
 }
 
-const MENUS = { title: drawMainMenu, levels: drawLevelSelect, jukebox: drawJukebox, settings: drawSettings };
+const MENUS = { title: drawMainMenu, levels: drawLevelSelect, jukebox: drawJukebox, settings: drawSettings, armory: drawArmory };
 
 /** 当前状态是菜单界面时整屏绘制，否则不做任何事 */
 export function drawMenus(ui, game) {

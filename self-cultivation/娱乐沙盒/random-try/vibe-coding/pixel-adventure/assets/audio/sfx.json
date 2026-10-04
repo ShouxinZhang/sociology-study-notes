@@ -67,5 +67,17 @@
   "spit":          { "zzfx": [0.5, 0.15, 220, 0.01, 0.04, 0.1, 0, 1, 15, null, null, null, null, 0.3], "minInterval": 0.1 },
   "spawn":         { "zzfx": [0.4, 0.1, 150, 0, 0.1, 0.1, 2, 1, 8], "minInterval": 0.3 },
   "metal_hit":     { "zzfx": [0.5, 0.1, 1100, 0, 0.01, 0.1, 1, 1, null, null, null, null, null, 0.2, 35], "minInterval": 0.06 },
-  "flesh_hit":     { "zzfx": [0.6, 0.15, 160, 0, 0.03, 0.08, 0, 1, 10, null, null, null, null, 0.5], "minInterval": 0.06 }
+  "flesh_hit":     { "zzfx": [0.6, 0.15, 160, 0, 0.03, 0.08, 0, 1, 10, null, null, null, null, 0.5], "minInterval": 0.06 },
+  "radio_call":    { "zzfx": [0.5, 0, 880, 0, 0.05, 0.05, 5, 1, null, null, null, null, 0.08], "minInterval": 0.2 },
+  "shell_whistle": { "zzfx": [0.4, 0, 1500, 0.05, 0.5, 0.15, 0, 1, -16], "maxVoices": 2 },
+  "heavy_boom":    { "zzfx": [1.4, 0.1, 50, 0, 0.25, 1.1, 4, 0.5, -1, null, null, null, null, 1, null, 0.4, null, 0.6, 0.05, null, -600], "maxVoices": 3, "duck": true },
+  "jet_flyby":     { "zzfx": [0.9, 0, 220, 0.5, 0.3, 0.8, 4, 1, 3, null, null, null, null, 0.6], "volume": 0.8, "minInterval": 0.3 },
+  "missile_launch":{ "zzfx": [0.6, 0.05, 300, 0.01, 0.1, 0.25, 4, 1, 10, null, null, null, null, 0.4], "minInterval": 0.1 },
+  "checkpoint":    { "zzfx": [0.7, 0, 660, 0, 0.12, 0.2, 5, 0.5, null, null, 220, 0.06], "duck": true },
+  "pow_free":      { "zzfx": [0.6, 0, 520, 0, 0.1, 0.15, 1, 1, null, null, 260, 0.05, 0.1] },
+  "arena_lock":    { "zzfx": [0.6, 0, 440, 0, 0.3, 0.1, 2, 1, null, null, 440, 0.1, 0.15], "duck": true },
+  "arena_clear":   { "zzfx": [0.7, 0, 523, 0, 0.2, 0.3, 5, 0.5, null, null, 262, 0.05, 0.1], "duck": true },
+  "mortar_shot":   { "zzfx": [0.7, 0.1, 110, 0, 0.05, 0.2, 4, 1, -3, null, null, null, null, 0.5], "minInterval": 0.1 },
+  "tank_shot":     { "zzfx": [0.9, 0.1, 80, 0, 0.08, 0.35, 4, 2, -4, null, null, null, null, 0.8], "minInterval": 0.1 },
+  "bomb_drop":     { "zzfx": [0.4, 0, 900, 0, 0.2, 0.1, 0, 1, -20], "minInterval": 0.15 }
 }

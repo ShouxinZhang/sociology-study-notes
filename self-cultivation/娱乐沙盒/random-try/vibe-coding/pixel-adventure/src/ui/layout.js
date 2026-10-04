@@ -23,10 +23,10 @@ function listRects(count, top, h, gap) {
 }
 
 /** 音乐馆曲目行 */
-export const trackRects = (count) => listRects(count, 76, 32, 2);
+export const trackRects = (count) => listRects(count, 72, 30, 2);
 
 /** 关卡选择行 */
-export const levelRects = (count) => listRects(count, 90, 56, 10);
+export const levelRects = (count) => listRects(count, 86, 50, 8);
 
 /** 音乐馆底部频谱区域 */
 export const SPECTRUM = { x: 50, y: 466, w: SCREEN_W - 100, h: 60 };
@@ -36,3 +36,16 @@ export function hitRect(rects, p) {
   if (!p) return -1;
   return rects.findIndex((r) => p.x >= r.x && p.x < r.x + r.w && p.y >= r.y && p.y < r.y + r.h);
 }
+
+/** 装备栏：左侧军械库网格（4 列），右侧 3 个常备槽位，底部为选中武器说明 */
+const ARMORY_CELL = { size: 92, gap: 10, cols: 4, left: 60, top: 96 };
+export const armoryCells = (count) =>
+  Array.from({ length: count }, (_, i) => ({
+    x: ARMORY_CELL.left + (i % ARMORY_CELL.cols) * (ARMORY_CELL.size + ARMORY_CELL.gap),
+    y: ARMORY_CELL.top + Math.floor(i / ARMORY_CELL.cols) * (ARMORY_CELL.size + ARMORY_CELL.gap),
+    w: ARMORY_CELL.size,
+    h: ARMORY_CELL.size,
+  }));
+export const ARMORY_COLS = ARMORY_CELL.cols;
+export const ARMORY_SLOTS = [0, 1, 2].map((i) => ({ x: 560, y: 96 + i * 104, w: 340, h: 92 }));
+export const ARMORY_INFO = { x: 60, y: 420, w: 840, h: 96 };

@@ -1,7 +1,7 @@
 /**
  * 游戏状态机与关卡编排：title（主菜单）→ playing → (clear | gameover) → … → victory；
  * 主菜单可进入 jukebox（音乐馆）与 settings（设置），这些菜单界面的逻辑在 src/ui/。
- * 每关开始时为玩家与背包做快照，死亡重试时恢复到该快照。
+ * 每关开始时为玩家与背包做快照，死亡重试时恢复到该快照；触碰检查点会更新快照与复活位置。
  */
 import { Level, TILE } from '../world/level.js';
 import { Inventory } from '../systems/inventory.js';
@@ -13,7 +13,11 @@ import { createPickup, updatePickups } from '../entities/pickup.js';
 import { updateEffects } from '../entities/effect.js';
 import { createHazards, updateHazards } from '../entities/hazard.js';
 import { spawnBoss, updateBoss } from '../entities/boss-parts.js';
+import { updateSupport } from '../systems/support.js';
+import { createArenas, updateArenas } from '../systems/arena.js';
+import { updateCheckpoints } from '../systems/checkpoint.js';
 import { UI_SCREENS } from '../ui/screens.js';
+import { openArmory } from '../ui/armory.js';
 
 export class Game {
   /** audio 可为 null（无声运行，如脚本测试） */
@@ -54,17 +58,23 @@ export class Game {
     this.levelIndex = 0;
   }
 
-  startLevel(index) {
+  /** resume 为检查点（{ spawn }）时从该处开始：左侧的敌人与锁屏战视为已通过 */
+  startLevel(index, resume = null) {
     this.levelIndex = index;
     this.level = new Level(this.levelDefs[index], this.data.legend);
-    this.checkpoint = { player: structuredClone(this.player), inventory: this.inventory.snapshot() };
+    if (!resume) this.checkpoint = { player: structuredClone(this.player), inventory: this.inventory.snapshot(), spawn: null };
 
     const { spawns } = this.level;
-    placePlayer(this.player, spawns.player);
-    this.enemies = spawns.enemies.map((s) => createEnemy(s, this.data.enemies[s.type]));
+    const passedX = resume?.spawn.x ?? -1;
+    placePlayer(this.player, resume?.spawn ?? spawns.player);
+    this.enemies = spawns.enemies.filter((s) => s.x >= passedX).map((s) => createEnemy(s, this.data.enemies[s.type]));
     this.pickups = spawns.pickups.map((s) => createPickup(s.kind, s.x + TILE / 2, s.y + TILE / 2, { content: s.content }));
     this.projectiles = [];
     this.effects = [];
+    this.strikes = [];
+    this.shake = 0;
+    this.arena = null;
+    this.arenas = createArenas(this.levelDefs[index], passedX);
     this.hazards = createHazards(this.level);
     Object.assign(this, { hazardTime: 0, laserOn: false, electricOn: false, bridgeQueue: [], bridgeTriggered: new Set() });
     const def = this.levelDefs[index];
@@ -72,13 +82,13 @@ export class Game {
     if (this.cheat) this.inventory.unlockAll();
     this.state = 'playing';
     this.music(def.music);
-    this.toast(`第 ${index + 1} 关 · ${this.level.name}`, 2.5);
+    this.toast(resume ? '从检查点继续' : `第 ${index + 1} 关 · ${this.level.name}`, 2.5);
   }
 
   retryLevel() {
     this.player = structuredClone(this.checkpoint.player);
     this.inventory.restore(this.checkpoint.inventory);
-    this.startLevel(this.levelIndex);
+    this.startLevel(this.levelIndex, this.checkpoint.spawn ? this.checkpoint : null);
   }
 
   toast(text, duration = 1.6) {
@@ -125,6 +135,7 @@ export class Game {
     switch (this.state) {
       case 'playing':
         if (this.input.hit('cheat')) this.toggleCheat();
+        if (this.input.hit('armory')) return openArmory(this);
         this.updatePlaying(dt);
         break;
       case 'gameover':
@@ -146,9 +157,13 @@ export class Game {
   }
 
   updatePlaying(dt) {
+    this.shake -= dt;
     updatePlayer(this, dt);
+    updateSupport(this, dt);
     updateHazards(this, dt);
-    updateBoss(this);
+    updateBoss(this, dt);
+    updateArenas(this, dt);
+    updateCheckpoints(this);
     updateEnemies(this, dt);
     updateProjectiles(this, dt);
     updatePickups(this, dt);

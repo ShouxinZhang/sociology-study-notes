@@ -1,5 +1,5 @@
 /**
- * HUD 与关卡内全屏界面：等级/血量/经验、当前武器与弹药、武器栏、提示横幅，以及过场/失败/过关/通关画面。
+ * HUD 与关卡内全屏界面：等级/血量/经验、当前武器与弹药、3 个常备槽位、提示横幅，以及过场/失败/过关/通关画面。
  * 主菜单、音乐馆、设置页见 menus.js。ui = { ctx, sprites, colors: { ink, paper }, width, height }
  */
 import { expToNext } from '../systems/leveling.js';
@@ -34,17 +34,32 @@ export function drawHud(ui, game) {
   if (game.audio?.mixer.muted) text(ui, '静音', 40, 96, { align: 'center', size: 14 });
   if (p.shield > 0) text(ui, `护盾 ${Math.ceil(p.shield)}s`, 130, 96, { align: 'center', size: 14 });
 
-  // 顶部居中：武器栏（数字键对应槽位，未获得显示为空槽）
-  const slotsLeft = (width - data.weapons.length * 48) / 2;
-  data.weapons.forEach((w, i) => {
-    const x = slotsLeft + i * 48;
-    const y = 26;
-    panel(ui, x, y, 44, 44, w.id === weapon.id ? 5 : 2);
-    if (inventory.owns(w.id)) icon(ui, sprites[w.icon], x + 8, y + 8, 28);
+  // 顶部居中：3 个常备槽位（数字键 1-3），Tab 打开装备栏更换
+  const slotsLeft = (width - inventory.loadout.length * 52) / 2;
+  inventory.loadout.forEach((id, i) => {
+    const x = slotsLeft + i * 52;
+    const y = 22;
+    panel(ui, x, y, 48, 48, i === inventory.slot ? 5 : 2);
+    if (id) icon(ui, sprites[inventory.byId(id).icon], x + 9, y + 9, 30);
     text(ui, String(i + 1), x + 6, y + 4, { size: 11, box: false });
   });
+  text(ui, 'Tab 装备栏', width / 2, 74, { align: 'center', size: 11, box: false });
 
+  if (game.arena) text(ui, `锁屏战 ${Math.max(1, game.arena.wave + 1)}/${game.arena.waves.length}`, width / 2, 136, { align: 'center', size: 16 });
   if (game.banner) text(ui, game.banner.text, width / 2, 104, { align: 'center', size: 20 });
+  drawBossBar(ui, game);
+}
+
+/** 底部居中：已出场的 bossBar 敌人（坦克、陆行要塞核心）的名字与血条 */
+function drawBossBar(ui, game) {
+  const boss = game.enemies.find((e) => e.def.bossBar && !e.dead && (e.active || e.group?.awake));
+  if (!boss) return;
+  const w = 420;
+  const x = (ui.width - w) / 2;
+  const y = ui.height - 56;
+  panel(ui, x, y, w, 44, 3);
+  text(ui, boss.def.name, x + 14, y + 13, { size: 16, box: false });
+  bar(ui, x + 130, y + 12, w - 144, 20, boss.hp / boss.def.hp);
 }
 
 const SCREENS = {

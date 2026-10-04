@@ -1,10 +1,11 @@
 /**
  * 敌人实体：属性来自 assets/data/enemies.json，行为按 behavior 字段分派：
  * patrol 巡逻不下崖 / fly 飞行追踪 / chase 发现玩家后追击并投掷 / boss 苏醒后追击、跳跃、扇形投掷；
- * runner 冲锋步兵 / hopper 跳跃幼虫 / capsule 飞行胶囊 / static 固定单位（射击、孵化、地雷由数据字段组合）。
+ * runner 冲锋步兵 / hopper 跳跃幼虫 / capsule 飞行胶囊 / static 固定单位（射击、孵化、地雷由数据字段组合）；
+ * 合金弹头世界：soldier 步兵 / 伞兵 / 盾牌兵 / vehicle 运兵卡车、坦克 / heli 武装直升机。
  */
 import { TILE } from '../world/level.js';
-import { moveAndCollide, overlap } from '../systems/physics.js';
+import { GRAVITY, moveAndCollide, overlap } from '../systems/physics.js';
 import { hurtPlayer } from '../systems/combat.js';
 import { createProjectile } from './projectile.js';
 import { createEffect } from './effect.js';
@@ -43,8 +44,9 @@ function walk(game, e, dt, speed, chasing) {
 const rageOf = (e) => (e.def.rageAt && e.hp < e.def.hp * e.def.rageAt ? 2 : 1);
 
 /**
- * 按冷却发射投射物，三种弹道：
- * radial 环形散射 / aimed 瞄准玩家（count>1 时按 spread 张开）/ 默认抛物线（骨头、孢子）
+ * 按冷却发射投射物，五种弹道：
+ * radial 环形散射 / aimed 瞄准玩家（count>1 时按 spread 张开）/ lob 迫击炮（按飞行时间反推水平速度，落点在玩家附近）/
+ * drop 垂直投弹 / 默认抛物线（骨头、孢子）。radius > 0 时落地爆炸（只伤玩家）
  */
 function tryThrow(game, e, dt, dx, dy = 0) {
   const spec = e.def.throw;
@@ -62,13 +64,18 @@ function tryThrow(game, e, dt, dx, dy = 0) {
     } else if (spec.aimed) {
       const a = base + (i - (spec.count - 1) / 2) * (spec.spread ?? 0.2);
       [vx, vy] = [Math.cos(a) * spec.speed, Math.sin(a) * spec.speed];
+    } else if (spec.lob) {
+      const flight = (2 * spec.speed) / (GRAVITY * 0.5); // 抛物线回到发射高度所需时间（投射物重力为 GRAVITY / 2）
+      [vx, vy] = [(dx / flight) * (1 + (i - (spec.count - 1) / 2) * 0.3), -spec.speed];
+    } else if (spec.drop) {
+      [vx, vy] = [0, spec.speed];
     } else {
       [vx, vy] = [(Math.sign(dx) || e.facing) * spec.speed * (1 - i * 0.25), -160 - i * 40];
     }
     game.projectiles.push(
       createProjectile(sprite, {
         x: e.x + e.w / 2, y: e.y + (spec.radial || spec.aimed ? e.h / 2 : 4),
-        vx, vy, damage: spec.damage, owner: 'enemy', gravity: !spec.radial && !spec.aimed, life: 3,
+        vx, vy, damage: spec.damage, owner: 'enemy', gravity: !spec.radial && !spec.aimed, life: 3, radius: spec.radius ?? 0,
       }),
     );
   }
@@ -173,6 +180,52 @@ const BEHAVIORS = {
     e.x += e.facing * e.def.speed * dt;
     e.y = e.baseY + Math.sin(e.t * 3) * 14;
     if (Math.abs(e.x - e.spawnX) > 420) e.dead = true;
+  },
+
+  /** 步兵：进入 range 后走向玩家，到 keep 距离内站定射击；para 伞兵空中以该速度缓降（显示 airSprite）并可空中开火 */
+  soldier(game, e, dt) {
+    const { dx, dy } = sense(game, e);
+    if (e.def.para && !e.onGround) e.vy = Math.min(e.vy, e.def.para);
+    if (!e.active) {
+      if (Math.abs(dx) > e.def.range) return moveAndCollide(e, game.level, dt);
+      e.active = true;
+    }
+    e.facing = Math.sign(dx) || e.facing;
+    e.vx = e.onGround && Math.abs(dx) > e.def.keep ? e.facing * e.def.speed : 0;
+    moveAndCollide(e, game.level, dt);
+    if (e.onGround || e.def.para) tryThrow(game, e, dt, dx, dy);
+  },
+
+  /** 载具（运兵卡车、坦克）：驶向玩家并停在 keep 距离；retreat 时玩家贴太近会倒车；按冷却开炮 / 放兵，半血狂暴 */
+  vehicle(game, e, dt) {
+    const { dx } = sense(game, e);
+    if (!e.active) {
+      if (Math.abs(dx) > e.def.range) return moveAndCollide(e, game.level, dt);
+      e.active = true;
+    }
+    const toward = Math.sign(dx) || e.facing;
+    e.facing = toward;
+    const dist = Math.abs(dx);
+    const move = dist > e.def.keep + 16 ? 1 : e.def.retreat && dist < e.def.keep - 50 ? -1 : 0;
+    e.vx = move * toward * e.def.speed;
+    moveAndCollide(e, game.level, dt);
+    const rage = rageOf(e);
+    tryThrow(game, e, dt * rage, dx, 0);
+    trySpawn(game, e, dt * rage);
+  },
+
+  /** 武装直升机：在出生高度盘旋，围绕玩家上空左右摆动跟随，接近头顶时投弹 */
+  heli(game, e, dt) {
+    const { dx } = sense(game, e);
+    if (!e.active) {
+      if (Math.abs(dx) > e.def.range) return;
+      e.active = true;
+    }
+    e.facing = Math.sign(dx) || e.facing;
+    const want = dx + Math.sin(e.t * 0.9) * 70;
+    e.x += Math.max(-e.def.speed * dt, Math.min(e.def.speed * dt, want));
+    e.y = e.baseY + Math.sin(e.t * 2) * 4;
+    if (Math.abs(dx) < 60) tryThrow(game, e, dt, dx);
   },
 
   /** 固定单位：狙击手、炮台、口器、兵营、异形卵、地雷、BOSS 部件共用；能力由 throw / spawn / mine 字段决定 */

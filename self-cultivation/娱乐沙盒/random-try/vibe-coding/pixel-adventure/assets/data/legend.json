@@ -53,6 +53,14 @@
       "sprite": "acid",
       "solid": true,
       "acid": true
+    },
+    "_": {
+      "sprite": "sand",
+      "solid": true
+    },
+    "Q": {
+      "sprite": "sandbag",
+      "solid": true
     }
   },
   "enemies": {
@@ -68,7 +76,15 @@
     "p": "spitter",
     "c": "capsule",
     "d": "barracks",
-    "e": "egg"
+    "e": "egg",
+    "g": "rifleman",
+    "q": "mortar",
+    "h": "shield",
+    "T": "truck",
+    "v": "heli",
+    "u": "aa_gun",
+    "x": "barrel",
+    "z": "tank"
   },
   "markers": {
     "P": "start",
@@ -77,6 +93,8 @@
     "H": "heart",
     "A": "ammo",
     "Y": "boss",
-    "|": "laser"
+    "|": "laser",
+    "w": "pow",
+    "!": "checkpoint"
   }
 }

@@ -9,6 +9,7 @@
     "sprites/items.json",
     "sprites/tiles.json",
     "sprites/contra.json",
+    "sprites/slug.json",
     "sprites/aim.json"
   ],
   "data": {
@@ -29,6 +30,7 @@
     "levels/level3.json",
     "levels/level4.json",
     "levels/level5.json",
-    "levels/level6.json"
+    "levels/level6.json",
+    "levels/level7.json"
   ]
 }

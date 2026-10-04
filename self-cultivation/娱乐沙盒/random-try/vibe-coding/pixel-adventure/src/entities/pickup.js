@@ -1,7 +1,8 @@
 /**
- * 拾取物：心（回血）、弹药箱（枪械补弹）、武器、宝箱（触碰后弹出内容物）。
+ * 拾取物：心（回血）、弹药箱（枪械补弹）、武器、宝箱 / 俘虏（触碰后弹出内容物；俘虏获救后敬礼）。
  */
 import { moveAndCollide, overlap } from '../systems/physics.js';
+import { createEffect } from './effect.js';
 
 const POP_SPEED = -220;
 const POP_DELAY = 0.4; // 弹出物短暂不可拾取，让玩家看清得到了什么
@@ -43,8 +44,14 @@ function collect(game, it) {
       game.toast(`获得武器：${inventory.add(it.weaponId).name}`);
       game.sfx('pickup_weapon');
       return true;
+    case 'pow':
+      game.pickups.push(popContent(game, it));
+      game.effects.push(createEffect(game.sprites.pow_free, it.x + it.w / 2, it.y + it.h / 2 - 2));
+      game.toast('营救俘虏！');
+      game.sfx('pow_free');
+      return true;
     case 'chest':
-      game.pickups.push(openChest(game, it));
+      game.pickups.push(popContent(game, it));
       game.toast('打开宝箱！');
       game.sfx('chest_open');
       return true;
@@ -58,12 +65,12 @@ function collect(game, it) {
   }
 }
 
-/** 宝箱内容为武器 id 时弹出武器，否则按拾取物种类（heart/ammo）弹出 */
-function openChest(game, chest) {
+/** 宝箱 / 俘虏的内容为武器 id 时弹出武器，否则按拾取物种类（heart/ammo/shield）弹出 */
+function popContent(game, chest) {
   const cx = chest.x + chest.w / 2;
   const pop = { vy: POP_SPEED, delay: POP_DELAY };
   const weapon = game.inventory.byId(chest.content);
   return weapon
     ? createPickup('weapon', cx, chest.y, { ...pop, weaponId: weapon.id, sprite: weapon.icon })
-    : createPickup(chest.content, cx, chest.y, pop);
+    : createPickup(chest.content, cx, chest.y, { ...pop, sprite: chest.content === 'shield' ? 'icon_shield' : chest.content });
 }

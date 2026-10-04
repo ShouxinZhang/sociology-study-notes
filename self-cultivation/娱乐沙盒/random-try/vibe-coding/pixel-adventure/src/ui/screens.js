@@ -1,10 +1,11 @@
 /**
- * 菜单界面入口：主菜单（开始游戏 / 选择关卡 / 音乐馆 / 设置）、关卡选择与设置页逻辑，
+ * 菜单界面入口：主菜单（开始游戏 / 选择关卡 / 音乐馆 / 设置）、关卡选择与设置页逻辑，关卡内的装备栏，
  * 并导出 UI_SCREENS 注册表，game.js 按状态名分发到对应界面的 update。
  */
 import { MAIN_MENU, levelRects } from './layout.js';
 import { updateList, backPressed } from './list.js';
 import { openJukebox, updateJukebox } from './jukebox.js';
+import { updateArmory } from './armory.js';
 
 /** 主菜单按钮 id → 动作 */
 const ACTIONS = {
@@ -46,4 +47,4 @@ function updateSettings(game) {
 }
 
 /** 游戏状态名 → 界面 update；title 即主菜单 */
-export const UI_SCREENS = { title: updateMainMenu, levels: updateLevelSelect, jukebox: updateJukebox, settings: updateSettings };
+export const UI_SCREENS = { title: updateMainMenu, levels: updateLevelSelect, jukebox: updateJukebox, settings: updateSettings, armory: updateArmory };

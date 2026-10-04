@@ -11,3 +11,4 @@
 | 10:20:31 | repository-change | 已完成 | [像素冒险岛主菜单与音乐馆](10-20-31+main-menu-jukebox.md) |
 | 10:48:46 | repository-change | 已完成 | [像素冒险岛开枪方向动画修复](10-48-46+aim-animations.md) |
 | 11:00:39 | repository-change | 已完成 | [像素冒险岛选关与拾取修复](11-00-39+level-select-pickup-fixes.md) |
+| 11:22:52 | repository-change | 已完成 | [像素冒险岛合金弹头世界](11-22-52+metal-slug-world.md) |
