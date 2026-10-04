@@ -1,42 +1,10 @@
 /**
- * HUD 与全屏界面：等级/血量/经验、当前武器与弹药、武器栏、提示横幅，以及标题/失败/过关/通关画面。
- * ui = { ctx, sprites, colors: { ink, paper }, width, height }
+ * HUD 与关卡内全屏界面：等级/血量/经验、当前武器与弹药、武器栏、提示横幅，以及过场/失败/过关/通关画面。
+ * 主菜单、音乐馆、设置页见 menus.js。ui = { ctx, sprites, colors: { ink, paper }, width, height }
  */
 import { expToNext } from '../systems/leveling.js';
 import { frameAt } from '../core/sprites.js';
-
-const FONT = '"Noto Sans Mono CJK SC", "WenQuanYi Micro Hei Mono", "Courier New", monospace';
-
-function text(ui, str, x, y, { size = 16, align = 'left', box = true } = {}) {
-  const { ctx, colors } = ui;
-  ctx.font = `bold ${size}px ${FONT}`;
-  ctx.textAlign = align;
-  ctx.textBaseline = 'top';
-  if (box) {
-    const w = ctx.measureText(str).width;
-    const left = align === 'center' ? x - w / 2 : align === 'right' ? x - w : x;
-    ctx.fillStyle = colors.paper;
-    ctx.fillRect(left - 6, y - 4, w + 12, size + 8);
-  }
-  ctx.fillStyle = colors.ink;
-  ctx.fillText(str, x, y);
-}
-
-/** 带墨色描边的面板 */
-function panel(ui, x, y, w, h, border = 3) {
-  const { ctx, colors } = ui;
-  ctx.fillStyle = colors.paper;
-  ctx.fillRect(x, y, w, h);
-  ctx.strokeStyle = colors.ink;
-  ctx.lineWidth = border;
-  ctx.strokeRect(x + border / 2, y + border / 2, w - border, h - border);
-}
-
-function bar(ui, x, y, w, h, ratio) {
-  panel(ui, x, y, w, h, 2);
-  ui.ctx.fillStyle = ui.colors.ink;
-  ui.ctx.fillRect(x + 3, y + 3, (w - 6) * Math.max(0, Math.min(1, ratio)), h - 6);
-}
+import { text, panel, bar } from './draw-kit.js';
 
 function icon(ui, sprite, x, y, size) {
   ui.ctx.imageSmoothingEnabled = false;
@@ -79,12 +47,7 @@ export function drawHud(ui, game) {
   if (game.banner) text(ui, game.banner.text, width / 2, 104, { align: 'center', size: 20 });
 }
 
-const CONTROLS = [
-  '← → / A D   移动', '空格 / K   跳跃（空中再按：二段跳）', 'J   攻击（按住连发）',
-  '↑ / W 向上瞄准   空中 ↓ 向下瞄准', '1-9 / Q E   切换武器', 'F1   作弊模式（方向键飞行）', 'M 静音   - / = 音量',
-];
 const SCREENS = {
-  title: () => ({ title: '黑白冒险岛', lines: [...CONTROLS, '', '按 Enter 开始'] }),
   intro: (g) => {
     const intro = g.levelDefs[g.levelIndex].worldIntro;
     return { title: intro.title, lines: [...intro.lines, '', '按 Enter 出发'] };
@@ -102,10 +65,10 @@ export function drawOverlay(ui, game) {
   if (!screen) return;
   const { ctx, colors, width, height, sprites } = ui;
 
-  if (game.state === 'title' || game.state === 'intro') {
+  if (game.state === 'intro') {
     ctx.fillStyle = colors.paper;
     ctx.fillRect(0, 0, width, height);
-    const hero = game.state === 'title' ? sprites.player_walk : sprites.runner;
+    const hero = sprites.runner;
     ctx.imageSmoothingEnabled = false;
     ctx.drawImage(hero.frames[frameAt(hero, game.time)], width / 2 - 48, 24, 96, 96);
   } else {
@@ -119,7 +82,7 @@ export function drawOverlay(ui, game) {
   const boxW = 520;
   const boxH = 96 + screen.lines.length * 30;
   const x = (width - boxW) / 2;
-  const y = game.state === 'title' || game.state === 'intro' ? 136 : (height - boxH) / 2;
+  const y = game.state === 'intro' ? 136 : (height - boxH) / 2;
   panel(ui, x, y, boxW, boxH, 4);
   text(ui, screen.title, width / 2, y + 22, { align: 'center', size: 32, box: false });
   screen.lines.forEach((line, i) => text(ui, line, width / 2, y + 76 + i * 30, { align: 'center', size: 18, box: false }));

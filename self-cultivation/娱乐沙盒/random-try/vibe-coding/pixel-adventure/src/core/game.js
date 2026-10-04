@@ -1,5 +1,6 @@
 /**
- * 游戏状态机与关卡编排：title → playing → (clear | gameover) → … → victory。
+ * 游戏状态机与关卡编排：title（主菜单）→ playing → (clear | gameover) → … → victory；
+ * 主菜单可进入 jukebox（音乐馆）与 settings（设置），这些菜单界面的逻辑在 src/ui/。
  * 每关开始时为玩家与背包做快照，死亡重试时恢复到该快照。
  */
 import { Level, TILE } from '../world/level.js';
@@ -12,6 +13,7 @@ import { createPickup, updatePickups } from '../entities/pickup.js';
 import { updateEffects } from '../entities/effect.js';
 import { createHazards, updateHazards } from '../entities/hazard.js';
 import { spawnBoss, updateBoss } from '../entities/boss-parts.js';
+import { UI_SCREENS } from '../ui/screens.js';
 
 export class Game {
   /** audio 可为 null（无声运行，如脚本测试） */
@@ -107,17 +109,16 @@ export class Game {
     this.time += dt;
     if (this.banner && (this.banner.t -= dt) <= 0) this.banner = null;
     const confirm = this.input.hit('confirm');
-    if (confirm && this.state !== 'playing') this.sfx('ui_confirm');
+    const screen = UI_SCREENS[this.state];
+    if (confirm && this.state !== 'playing' && !screen) this.sfx('ui_confirm');
     if (this.audio) {
       if (this.input.hit('mute')) this.audio.mixer.toggleMute();
       if (this.input.hit('volDown')) this.audio.mixer.changeVolume(-1);
       if (this.input.hit('volUp')) this.audio.mixer.changeVolume(1);
     }
+    if (screen) return screen(this); // 主菜单 / 音乐馆 / 设置
 
     switch (this.state) {
-      case 'title':
-        if (confirm) this.startLevel(0);
-        break;
       case 'playing':
         if (this.input.hit('cheat')) this.toggleCheat();
         this.updatePlaying(dt);

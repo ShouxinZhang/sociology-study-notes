@@ -13,6 +13,7 @@ try {
   const input = new Input();
   const game = new Game(assets, input, createAudio(assets));
   const renderer = new Renderer(document.getElementById('screen'), assets);
+  input.bindPointer(document.getElementById('screen')); // 菜单按钮支持鼠标
   startLoop(
     (dt) => {
       game.update(dt);

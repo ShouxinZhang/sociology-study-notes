@@ -25,15 +25,21 @@ export class Mixer {
     this.master = this.ctx.createGain();
     this.master.connect(this.ctx.destination);
     this.sfxBus = this.bus();
-    this.musicBus = this.bus();
+    // 音乐总线 → 频谱分析器 → master：分析器位于主音量之前，静音时频谱仍可显示
+    this.analyser = this.ctx.createAnalyser();
+    this.analyser.fftSize = 64;
+    this.analyser.connect(this.master);
+    this.musicBus = this.bus(this.analyser);
     this.apply();
 
-    window.addEventListener('keydown', () => this.ctx.state !== 'running' && this.ctx.resume());
+    const resume = () => this.ctx.state !== 'running' && this.ctx.resume();
+    window.addEventListener('keydown', resume);
+    window.addEventListener('pointerdown', resume);
   }
 
-  bus() {
+  bus(output = this.master) {
     const gain = this.ctx.createGain();
-    gain.connect(this.master);
+    gain.connect(output);
     return gain;
   }
 

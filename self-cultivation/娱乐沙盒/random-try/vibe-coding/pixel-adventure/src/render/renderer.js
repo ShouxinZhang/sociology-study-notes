@@ -6,6 +6,7 @@ import { TILE } from '../world/level.js';
 import { drawSprite, frameAt } from '../core/sprites.js';
 import { playerSprite } from '../entities/player.js';
 import { drawHud, drawOverlay } from './hud.js';
+import { drawMenus } from './menus.js';
 
 const VIEW_W = 320;
 const VIEW_H = 192;
@@ -35,6 +36,7 @@ export class Renderer {
     this.ctx.drawImage(this.view, 0, 0, VIEW_W * SCALE, VIEW_H * SCALE);
     if (game.level) drawHud(this.ui, game);
     drawOverlay(this.ui, game);
+    drawMenus(this.ui, game);
   }
 
   drawWorld(g, game) {

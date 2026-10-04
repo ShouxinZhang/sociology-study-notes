@@ -2,49 +2,82 @@
   "tracks": {
     "title": {
       "file": "music/title.ogg",
-      "volume": 0.5
+      "volume": 0.5,
+      "title": "Title Screen",
+      "author": "Juhani Junkala",
+      "usage": "主菜单"
     },
     "level1": {
       "file": "music/level1.ogg",
-      "volume": 0.45
+      "volume": 0.45,
+      "title": "Level 1",
+      "author": "Juhani Junkala",
+      "usage": "第 1 关"
     },
     "level2": {
       "file": "music/level2.ogg",
-      "volume": 0.45
+      "volume": 0.45,
+      "title": "Level 2",
+      "author": "Juhani Junkala",
+      "usage": "第 2 关"
     },
     "level3": {
       "file": "music/level3.ogg",
-      "volume": 0.45
+      "volume": 0.45,
+      "title": "Level 3",
+      "author": "Juhani Junkala",
+      "usage": "第 3 关"
     },
     "boss": {
       "file": "music/level3.ogg",
       "volume": 0.5,
-      "rate": 1.12
+      "rate": 1.12,
+      "title": "Level 3 ×1.12",
+      "author": "Juhani Junkala",
+      "usage": "第 3 关 BOSS"
     },
     "ending": {
       "file": "music/ending.ogg",
-      "volume": 0.5
+      "volume": 0.5,
+      "title": "Ending",
+      "author": "Juhani Junkala",
+      "usage": "通关画面"
     },
     "stage4": {
       "file": "music/stage4.ogg",
-      "volume": 0.45
+      "volume": 0.45,
+      "title": "Mercury",
+      "author": "SketchyLogic",
+      "usage": "第 4 关"
     },
     "stage5": {
       "file": "music/stage5.ogg",
-      "volume": 0.45
+      "volume": 0.45,
+      "title": "Mars",
+      "author": "SketchyLogic",
+      "usage": "第 5 关"
     },
     "stage6": {
       "file": "music/stage6.ogg",
-      "volume": 0.45
+      "volume": 0.45,
+      "title": "Venus",
+      "author": "SketchyLogic",
+      "usage": "第 6 关"
     },
     "map": {
       "file": "music/map.ogg",
-      "volume": 0.5
+      "volume": 0.5,
+      "title": "Map",
+      "author": "SketchyLogic",
+      "usage": "世界切换过场"
     },
     "boss2": {
       "file": "music/boss2.ogg",
       "volume": 0.5,
-      "loopStart": 2.1
+      "loopStart": 2.1,
+      "title": "Boss",
+      "author": "SketchyLogic",
+      "usage": "第 4–6 关 BOSS"
     }
   },
   "states": {

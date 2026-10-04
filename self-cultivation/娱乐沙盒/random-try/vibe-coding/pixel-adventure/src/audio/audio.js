@@ -13,5 +13,6 @@ export function createAudio(assets, base = 'assets/audio/') {
     mixer,
     sfx: (name) => sfx.play(name),
     music: (name) => music.play(name),
+    nowPlaying: () => music.track,
   };
 }

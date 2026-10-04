@@ -11,6 +11,7 @@ const BINDINGS = {
   prev: ['KeyQ'],
   next: ['KeyE'],
   confirm: ['Enter'],
+  back: ['Escape'],
   cheat: ['F1'],
   mute: ['KeyM'],
   volDown: ['Minus', 'NumpadSubtract'],
@@ -23,6 +24,9 @@ export class Input {
   constructor(target = window) {
     this.down = new Set();
     this.pressed = new Set();
+    this.pointer = null; // 鼠标在画布内的像素坐标（菜单悬停）
+    this.moved = false; // 本帧鼠标是否移动过
+    this.click = null; // 本帧鼠标点击坐标
     target.addEventListener('keydown', (e) => {
       if (!this.down.has(e.code)) this.pressed.add(e.code);
       this.down.add(e.code);
@@ -30,6 +34,24 @@ export class Input {
     });
     target.addEventListener('keyup', (e) => this.down.delete(e.code));
     target.addEventListener('blur', () => this.down.clear());
+  }
+
+  /** 监听画布上的鼠标；CSS 缩放后的位置换算回画布内部像素（扣除边框） */
+  bindPointer(canvas) {
+    const toCanvas = (e) => {
+      const rect = canvas.getBoundingClientRect();
+      return {
+        x: ((e.clientX - rect.left - canvas.clientLeft) * canvas.width) / canvas.clientWidth,
+        y: ((e.clientY - rect.top - canvas.clientTop) * canvas.height) / canvas.clientHeight,
+      };
+    };
+    canvas.addEventListener('pointermove', (e) => {
+      this.pointer = toCanvas(e);
+      this.moved = true;
+    });
+    canvas.addEventListener('pointerdown', (e) => {
+      this.pointer = this.click = toCanvas(e);
+    });
   }
 
   held(action) {
@@ -48,5 +70,7 @@ export class Input {
 
   endFrame() {
     this.pressed.clear();
+    this.moved = false;
+    this.click = null;
   }
 }

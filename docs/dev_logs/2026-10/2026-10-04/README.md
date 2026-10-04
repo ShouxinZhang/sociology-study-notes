@@ -8,3 +8,4 @@
 | 00:19:18 | repository-change | 已完成 | [修复 get-model-name 返回 unknown](00-19-18+fix-model-name-unknown.md) |
 | 00:23:18 | repository-change | 已完成 | [加固 dev-logs 时间与署名规则](00-23-18+harden-dev-log-times.md) |
 | 01:06:53 | repository-change | 已完成 | [周记条目迁移到 references](01-06-53+migrate-weekly-note-to-references.md) |
+| 10:20:31 | repository-change | 已完成 | [像素冒险岛主菜单与音乐馆](10-20-31+main-menu-jukebox.md) |

@@ -21,8 +21,9 @@ pixel-adventure/
 │  ├─ world/          level（地图解析与瓦片查询）
 │  ├─ entities/       player · enemy · projectile · pickup · effect · hazard（机关）· boss-parts（多部件 BOSS）
 │  ├─ systems/        physics · combat · leveling · inventory
-│  └─ render/         renderer（320×192 世界 ×3 放大）· hud
-│  └─ audio/          mixer · sfx（ZzFX 预合成）· music · vendor/zzfx.js
+│  ├─ ui/             菜单逻辑：layout（按钮布局，逻辑与渲染共用）· list（键鼠选择）· screens（主菜单 / 设置）· jukebox（音乐馆）
+│  └─ render/         renderer（320×192 世界 ×3 放大）· hud · menus（主菜单 / 音乐馆 / 设置画面）· draw-kit（共用绘图）
+│  └─ audio/          mixer（含音乐频谱分析器）· sfx（ZzFX 预合成）· music · vendor/zzfx.js
 └─ docs/              本文档中心
 ```
 
@@ -50,7 +51,7 @@ pixel-adventure/
 | progression.json | `expTable` 等 | 升级经验、成长、无敌时间、回血量 |
 | cheat.json | `fireRateMultiplier` / `flySpeed` | 作弊射速倍率、飞行速度 |
 | audio/sfx.json | `zzfx` / `volume` / `minInterval` / `maxVoices` / `duck` | ZzFX 参数（`null` 为默认值）、音量、节流、复音上限、是否压低音乐 |
-| audio/music.json | `tracks` / `states` | 曲目文件与倍速；游戏状态 → 音乐/音效 |
+| audio/music.json | `tracks` / `states` | 曲目文件与倍速；游戏状态 → 音乐/音效；曲目的 `title` / `author` / `usage` 仅供音乐馆展示，新增曲目登记后自动出现在音乐馆 |
 | weapons / enemies / levels | `sfxAttack` `sfxHit` / `sfxDie` `sfxHit` `music` / `music` | 各实体绑定的音效与音乐；命中时叠加两层：武器 `sfxHit`（用什么打）和敌人 `sfxHit`（打中什么） |
 
 ## 5. 验证方式
