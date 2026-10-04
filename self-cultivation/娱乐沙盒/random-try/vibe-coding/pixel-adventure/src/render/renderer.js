@@ -78,8 +78,12 @@ export class Renderer {
       else this.drawEntity(g, sprite, e, e.t, e.facing < 0);
     }
     if (!(p.invuln > 0 && blink(15))) {
-      const [name, t] = playerSprite(p, time);
-      this.drawEntity(g, this.sprites[name], p, t, p.facing < 0);
+      // 图层自下而上：腿部 → 上半身（瞄准 / 攻击）；rest 表示停在最后一帧（待机瞄准姿势）
+      for (const layer of playerSprite(p, time)) {
+        const sprite = this.sprites[layer.name];
+        const frame = layer.rest ? sprite.frames.length - 1 : frameAt(sprite, layer.t);
+        this.drawEntity(g, sprite, p, 0, p.facing < 0, 0, frame);
+      }
     }
     if (p.shield > 0 && !(p.shield < 2 && blink(10))) {
       const aura = this.sprites.shield_aura;
@@ -90,8 +94,8 @@ export class Renderer {
     g.restore();
   }
 
-  /** 精灵底边居中对齐实体碰撞盒底边；frame 未给出时按时间播放动画 */
+  /** 精灵底边（扣除脚底以下的 below 留白）居中对齐实体碰撞盒底边；frame 未给出时按时间播放动画 */
   drawEntity(g, sprite, e, time, flip, bob = 0, frame = frameAt(sprite, time)) {
-    drawSprite(g, sprite, frame, e.x + e.w / 2 - sprite.w / 2, e.y + e.h - sprite.h + bob, flip);
+    drawSprite(g, sprite, frame, e.x + e.w / 2 - sprite.w / 2, e.y + e.h - sprite.h + sprite.below + bob, flip);
   }
 }

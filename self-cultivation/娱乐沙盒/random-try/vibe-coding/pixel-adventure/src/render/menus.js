@@ -1,10 +1,10 @@
 /**
- * 菜单界面渲染：主菜单（开始游戏 / 音乐馆 / 设置）、音乐馆曲目表与实时频谱、设置页按键说明。
+ * 菜单界面渲染：主菜单、关卡选择、音乐馆曲目表与实时频谱、设置页按键说明。
  * 按钮位置全部来自 ui/layout.js，与鼠标命中检测一致。
  */
 import { frameAt } from '../core/sprites.js';
 import { text, panel, button } from './draw-kit.js';
-import { MAIN_MENU, BACK_BUTTON, SPECTRUM, trackRects, hitRect } from '../ui/layout.js';
+import { MAIN_MENU, BACK_BUTTON, SPECTRUM, trackRects, levelRects, hitRect } from '../ui/layout.js';
 
 const CONTROLS = [
   '← → / A D   移动', '空格 / K   跳跃（空中再按：二段跳）', 'J   攻击（按住连发）',
@@ -90,7 +90,28 @@ function drawSettings(ui, game) {
   footer(ui, 'Esc / Enter / 点击返回 回到主菜单');
 }
 
-const MENUS = { title: drawMainMenu, jukebox: drawJukebox, settings: drawSettings };
+/** 关卡所属世界：沿用该关及之前最近一次 worldIntro 的标题，第一个世界称“冒险岛” */
+function worldOf(levelDefs, i) {
+  for (let k = i; k >= 0; k--) if (levelDefs[k].worldIntro) return levelDefs[k].worldIntro.title;
+  return '冒险岛';
+}
+
+function drawLevelSelect(ui, game) {
+  clear(ui);
+  header(ui, game.input, '选择关卡');
+  const defs = game.levelDefs;
+  const index = game.levelSelect?.index ?? 0;
+  levelRects(defs.length).forEach((r, i) => {
+    const color = button(ui, r, i === index);
+    const opt = { size: 22, box: false, color };
+    const y = r.y + (r.h - 22) / 2;
+    text(ui, `第 ${i + 1} 关   ${defs[i].name}`, r.x + 24, y, opt);
+    text(ui, `${worldOf(defs, i)}${defs[i].requireBoss ? ' · BOSS' : ''}`, r.x + r.w - 24, y, { ...opt, size: 18, align: 'right' });
+  });
+  footer(ui, '↑↓ 选择 · Enter / 点击 进入 · 等级与武器保持当前状态 · Esc 返回');
+}
+
+const MENUS = { title: drawMainMenu, levels: drawLevelSelect, jukebox: drawJukebox, settings: drawSettings };
 
 /** 当前状态是菜单界面时整屏绘制，否则不做任何事 */
 export function drawMenus(ui, game) {

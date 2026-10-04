@@ -4,7 +4,7 @@
  * 约定：所有精灵默认朝右，朝左时使用镜像帧。
  */
 
-/** 将全部精灵定义编译为 { w, h, fps, frames[], mirrored[] } */
+/** 将全部精灵定义编译为 { w, h, below, fps, frames[], mirrored[] }；below 为脚底以下多出的像素行数 */
 export function compileSprites(defs, palette) {
   const sprites = {};
   for (const [name, def] of Object.entries(defs)) {
@@ -13,6 +13,7 @@ export function compileSprites(defs, palette) {
     sprites[name] = {
       w: frames[0].width,
       h: frames[0].height,
+      below: (def.below ?? 0) * scale,
       fps: def.fps ?? 0,
       frames,
       mirrored: frames.map(mirror),

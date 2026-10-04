@@ -46,7 +46,9 @@ export function updatePlayer(game, dt) {
   p.attackT += dt;
   p.spinT -= dt;
   p.shield -= dt;
-  p.aim = inventory.current.type === 'ranged' ? aimOf(input, p.onGround) : 'fwd';
+  const weapon = inventory.current;
+  p.gun = weapon.type === 'ranged' ? weapon.attackSprite : null; // 远程武器才有方向瞄准精灵
+  p.aim = p.gun ? aimOf(input, p.onGround) : 'fwd';
 
   // 击退期间保留击退速度，不响应左右输入
   if (p.knock <= 0) {
@@ -122,11 +124,19 @@ function fly(game, dt) {
   p.y = Math.max(0, Math.min(level.height - p.h, p.y + dirY * speed * dt));
 }
 
-/** 根据状态选择 [精灵名, 动画时间]；优先级：二段跳空翻 > 非水平瞄准 > 攻击动作 > 常态 */
+/**
+ * 选择玩家的绘制图层（自下而上）：{ name, t } 按时间 t 播放，{ name, rest: true } 停在最后一帧。
+ * 优先级：二段跳空翻 > 远程武器瞄准 / 开火（腿 + <攻击动作>_<方向>，边走边瞄时腿照常摆动）> 近战攻击 > 常态。
+ */
 export function playerSprite(p, time) {
-  if (p.spinT > 0 && !p.onGround) return ['player_spin', time];
-  if (p.aim && p.aim !== 'fwd') return [`player_aim_${p.aim}`, time];
-  if (p.attackAnim > 0) return [p.attackSprite, p.attackT];
-  if (!p.onGround) return ['player_jump', time];
-  return [p.vx ? 'player_walk' : 'player_idle', time];
+  if (p.spinT > 0 && !p.onGround) return [{ name: 'player_spin', t: time }];
+  const firing = p.attackAnim > 0;
+  if (p.gun && (p.aim !== 'fwd' || firing)) {
+    const legs = !p.onGround ? 'legs_jump' : p.vx ? 'legs_walk' : 'legs_idle';
+    const upper = `${p.gun}_${p.aim}`;
+    return [{ name: legs, t: time }, firing ? { name: upper, t: p.attackT } : { name: upper, rest: true }];
+  }
+  if (firing) return [{ name: p.attackSprite, t: p.attackT }];
+  if (!p.onGround) return [{ name: 'player_jump', t: time }];
+  return [{ name: p.vx ? 'player_walk' : 'player_idle', t: time }];
 }

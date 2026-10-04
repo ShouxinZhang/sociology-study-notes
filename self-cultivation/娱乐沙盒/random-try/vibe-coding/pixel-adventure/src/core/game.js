@@ -97,11 +97,15 @@ export class Game {
     return this.enemies.some((e) => e.def.behavior === 'boss' || e.group);
   }
 
-  /** 进入下一关；若下一关配置了 worldIntro，先显示世界切换过场 */
+  /** 进入下一关 */
   nextLevel() {
-    const next = this.levelIndex + 1;
-    if (!this.levelDefs[next].worldIntro) return this.startLevel(next);
-    this.levelIndex = next;
+    this.jumpToLevel(this.levelIndex + 1);
+  }
+
+  /** 进入指定关卡；若该关配置了 worldIntro，先显示世界切换过场（关卡选择与正常通关共用） */
+  jumpToLevel(index) {
+    if (!this.levelDefs[index].worldIntro) return this.startLevel(index);
+    this.levelIndex = index;
     this.enter('intro');
   }
 

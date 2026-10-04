@@ -23,8 +23,20 @@ export async function loadAssets(base = 'assets/') {
 
   return {
     palette,
-    sprites: compileSprites(Object.assign({}, ...spriteFiles), palette),
+    sprites: compileSprites(mergeSprites(manifest.sprites, spriteFiles), palette),
     data: Object.fromEntries(dataEntries),
     levels,
   };
+}
+
+/** 合并各精灵文件；同名精灵会被后加载的覆盖，因此告警提示改名 */
+function mergeSprites(paths, files) {
+  const merged = {};
+  files.forEach((file, i) => {
+    for (const name of Object.keys(file)) {
+      if (name in merged) console.warn(`精灵重名：${name}（${paths[i]} 覆盖了之前的定义）`);
+    }
+    Object.assign(merged, file);
+  });
+  return merged;
 }

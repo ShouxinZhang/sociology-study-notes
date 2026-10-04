@@ -9,17 +9,25 @@ import { createPickup } from '../entities/pickup.js';
 
 const center = (e) => ({ x: e.x + e.w / 2, y: e.y + e.h / 2 });
 
-/** 八方向瞄准：v 为单位射击方向（x 再乘朝向），m 为瞄准姿态中的枪口偏移；fwd 使用武器自带 muzzle */
-export const AIM = {
-  fwd: { v: [1, 0] },
-  up: { v: [0, -1], m: [3, -4] },
-  diag_up: { v: [Math.SQRT1_2, -Math.SQRT1_2], m: [12, -1] },
-  down: { v: [0, 1], m: [5, 15] },
-  diag_down: { v: [Math.SQRT1_2, Math.SQRT1_2], m: [12, 15] },
-};
+// 攻击 / 瞄准精灵画布中，玩家碰撞盒“水平中线、顶边”所在的像素坐标（身体位于画布 (8, 8)）
+const CANVAS_ORIGIN = [16, 9];
 
 function rotate([x, y], a) {
   return [x * Math.cos(a) - y * Math.sin(a), x * Math.sin(a) + y * Math.cos(a)];
+}
+
+/**
+ * 某瞄准方向的射击方向与枪口偏移。aim.json 的 dirs[dir] 给出旋转角与平移，pivot 为肩膀；
+ * 枪口 = 武器朝前时的 muzzle 绕肩膀旋转，与 tools/gen_aim_sprites.py 生成的精灵一致。
+ * 返回 { v: 单位方向（x 未乘朝向）, m: [距身体中线, 距碰撞盒顶部] }
+ */
+function aimGeometry(aimData, dir, muzzle) {
+  const { angle, offset } = aimData.dirs[dir];
+  const a = (angle * Math.PI) / 180;
+  const [px, py] = aimData.pivot;
+  const [ox, oy] = CANVAS_ORIGIN;
+  const [rx, ry] = rotate([ox + muzzle[0] - px, oy + muzzle[1] - py], a);
+  return { v: [Math.cos(a), Math.sin(a)], m: [px + rx + offset[0] - ox, py + ry + offset[1] - oy] };
 }
 
 /** 用当前武器发动一次攻击；伤害 = 武器基础伤害 × 玩家攻击倍率 */
@@ -38,14 +46,16 @@ export function playerAttack(game, weapon) {
   }
 
   // muzzle = [距身体中线的水平偏移, 距碰撞盒顶部的纵向偏移]，对齐攻击动作中的枪口
-  const aim = AIM[p.aim ?? 'fwd'];
-  const [dx, dy] = aim.m ?? weapon.muzzle;
+  const dirName = p.aim ?? 'fwd';
+  const { v, m: [dx, dy] } = aimGeometry(game.data.aim, dirName, weapon.muzzle);
   const muzzleX = p.x + p.w / 2 + p.facing * dx;
   const muzzleY = p.y + dy;
-  const dir = [aim.v[0] * p.facing, aim.v[1]];
-  // 非水平方向优先使用圆形变体精灵（如 bullet_r），避免长条子弹斜飞时方向不对
-  const sprite = (p.aim && p.aim !== 'fwd' && game.sprites[`${weapon.projectile}_r`]) || game.sprites[weapon.projectile];
-  if (!p.aim || p.aim === 'fwd') game.effects.push(createEffect(game.sprites[weapon.fx], muzzleX, muzzleY, p.facing < 0));
+  const dir = [v[0] * p.facing, v[1]];
+  // 非水平方向优先使用圆形变体精灵（如 bullet_r），避免长条子弹斜飞时方向不对；火光使用旋转后的变体
+  const sideways = dirName !== 'fwd';
+  const sprite = (sideways && game.sprites[`${weapon.projectile}_r`]) || game.sprites[weapon.projectile];
+  const fx = game.sprites[sideways ? `${weapon.fx}_${dirName}` : weapon.fx];
+  game.effects.push(createEffect(fx, muzzleX, muzzleY, p.facing < 0));
 
   const pellets = weapon.pellets ?? 1;
   for (let i = 0; i < pellets; i++) {
@@ -104,8 +114,9 @@ export function killEnemy(game, e) {
     return;
   }
 
-  // 掉落：按配置概率依次判定，最多掉一件
+  // 掉落：按配置概率依次判定，最多掉一件；还没有枪时不掉弹药箱（捡了也没用）
   for (const [kind, chance] of Object.entries(e.def.drops ?? {})) {
+    if (kind === 'ammo' && !game.inventory.hasGun) continue;
     if (Math.random() < chance) {
       game.pickups.push(createPickup(kind, c.x, c.y));
       break;

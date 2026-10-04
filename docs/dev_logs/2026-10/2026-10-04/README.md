@@ -9,3 +9,5 @@
 | 00:23:18 | repository-change | 已完成 | [加固 dev-logs 时间与署名规则](00-23-18+harden-dev-log-times.md) |
 | 01:06:53 | repository-change | 已完成 | [周记条目迁移到 references](01-06-53+migrate-weekly-note-to-references.md) |
 | 10:20:31 | repository-change | 已完成 | [像素冒险岛主菜单与音乐馆](10-20-31+main-menu-jukebox.md) |
+| 10:48:46 | repository-change | 已完成 | [像素冒险岛开枪方向动画修复](10-48-46+aim-animations.md) |
+| 11:00:39 | repository-change | 已完成 | [像素冒险岛选关与拾取修复](11-00-39+level-select-pickup-fixes.md) |

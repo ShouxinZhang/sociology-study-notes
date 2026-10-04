@@ -8,7 +8,8 @@
     "sprites/attacks.json",
     "sprites/items.json",
     "sprites/tiles.json",
-    "sprites/contra.json"
+    "sprites/contra.json",
+    "sprites/aim.json"
   ],
   "data": {
     "weapons": "data/weapons.json",
@@ -19,7 +20,8 @@
     "sfx": "audio/sfx.json",
     "music": "audio/music.json",
     "hazards": "data/hazards.json",
-    "bosses": "data/bosses.json"
+    "bosses": "data/bosses.json",
+    "aim": "data/aim.json"
   },
   "levels": [
     "levels/level1.json",

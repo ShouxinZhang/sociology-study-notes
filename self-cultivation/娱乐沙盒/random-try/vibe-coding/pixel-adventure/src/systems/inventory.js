@@ -46,9 +46,19 @@ export class Inventory {
     this.currentId = list[(i + step + list.length) % list.length].id;
   }
 
+  /** 已拥有的枪械 */
+  get guns() {
+    return this.catalog.filter((w) => w.type === 'ranged' && this.owns(w.id));
+  }
+
+  /** 是否至少有一把枪（决定敌人是否掉弹药箱） */
+  get hasGun() {
+    return this.guns.length > 0;
+  }
+
   /** 弹药箱：为所有已拥有枪械补弹；没有枪械时返回 false（弹药箱保留在地上） */
   refill() {
-    const guns = this.catalog.filter((w) => w.type === 'ranged' && this.owns(w.id));
+    const guns = this.guns;
     guns.forEach((w) => (this.ammo[w.id] += w.ammoPerBox));
     return guns.length > 0;
   }

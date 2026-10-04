@@ -8,19 +8,25 @@ export const SCREEN_H = 576;
 /** 音乐馆、设置页左上角的返回按钮 */
 export const BACK_BUTTON = { x: 24, y: 20, w: 120, h: 40, label: '← 返回' };
 
-/** 主菜单按钮：id 对应 main-menu.js 中的动作 */
-const MENU_BTN = { w: 320, h: 56, top: 260, step: 76 };
+/** 主菜单按钮：id 对应 screens.js 中的动作 */
+const MENU_BTN = { w: 320, h: 52, top: 236, step: 68 };
 export const MAIN_MENU = [
   { id: 'start', label: '开始游戏' },
+  { id: 'levels', label: '选择关卡' },
   { id: 'jukebox', label: '音乐馆' },
   { id: 'settings', label: '设置' },
 ].map((item, i) => ({ ...item, x: (SCREEN_W - MENU_BTN.w) / 2, y: MENU_BTN.top + i * MENU_BTN.step, w: MENU_BTN.w, h: MENU_BTN.h }));
 
-/** 音乐馆曲目行：从 y=76 起逐行排列 */
-const ROW = { x: 50, y: 76, w: SCREEN_W - 100, h: 32, gap: 2 };
-export function trackRects(count) {
-  return Array.from({ length: count }, (_, i) => ({ x: ROW.x, y: ROW.y + i * (ROW.h + ROW.gap), w: ROW.w, h: ROW.h }));
+/** 竖排列表行：从 top 起逐行排列，左右各留 50 像素 */
+function listRects(count, top, h, gap) {
+  return Array.from({ length: count }, (_, i) => ({ x: 50, y: top + i * (h + gap), w: SCREEN_W - 100, h }));
 }
+
+/** 音乐馆曲目行 */
+export const trackRects = (count) => listRects(count, 76, 32, 2);
+
+/** 关卡选择行 */
+export const levelRects = (count) => listRects(count, 90, 56, 10);
 
 /** 音乐馆底部频谱区域 */
 export const SPECTRUM = { x: 50, y: 466, w: SCREEN_W - 100, h: 60 };

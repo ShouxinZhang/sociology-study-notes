@@ -1,0 +1,12 @@
+{
+  "pivot": [19, 17],
+  "canvas": { "w": 32, "h": 32, "below": 8 },
+  "dirs": {
+    "fwd": { "angle": 0, "offset": [0, 0] },
+    "up": { "angle": -90, "offset": [5, 0] },
+    "diag_up": { "angle": -45, "offset": [0, 0] },
+    "down": { "angle": 90, "offset": [3, 0] },
+    "diag_down": { "angle": 45, "offset": [0, 0] }
+  },
+  "keepBehind": ["attack_flame"]
+}
