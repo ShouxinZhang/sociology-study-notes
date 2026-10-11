@@ -32,3 +32,9 @@
 | `manage-user-memory/references/memory-schema.md` | 定义 `.agents/memory/` 的树形路由、情境人格字段与其他条目规则 |
 | `manage-user-memory/references/analysis-method.md` | 定义情境人格选择、跨框架 Prompt 证据隔离、潜意识假说与工作经验边界 |
 | `manage-user-memory/agents/openai.yaml` | Skill 的简体中文 UI 名称、简介和默认调用提示 |
+| `virtual-social-circle/` | 虚拟朋友圈业务治理与自动化运维 Skill，提供子功能总线路由：包括使用自动化脚本添加周记容器、维护随笔周归档与索引、联动更新架构文档与日志 |
+| `virtual-social-circle/SKILL.md` | Skill 主路由说明，定义业务子路由、核心工作流与运维约束 |
+| `virtual-social-circle/references/weekly.md` | 随笔周记规范与联动流程，定义自然周划分、容器模板与同步要求 |
+| `virtual-social-circle/scripts/add_weekly.py` | 自动化计算起止自然周、创建周记容器、同步随笔索引与架构记录的独立脚本 |
+| `virtual-social-circle/agents/openai.yaml` | Skill 的简体中文 UI 名称、简介和默认调用提示 |
+

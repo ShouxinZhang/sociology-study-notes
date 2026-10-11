@@ -1,0 +1,4 @@
+interface:
+  display_name: "Virtual Social Circle"
+  short_description: "虚拟朋友圈内容治理与自动化运维，支持脚本添加周记容器与索引同步"
+  default_prompt: "Use $virtual-social-circle to manage virtual social circle notes and add weekly containers."
