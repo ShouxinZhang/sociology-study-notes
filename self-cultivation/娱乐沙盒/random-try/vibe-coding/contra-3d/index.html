@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CONTRA 3D · 魂斗罗第一人称战术版</title>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./assets/vendor/three.module.min.js"
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+    body, html {
+      width: 100%; height: 100%; overflow: hidden;
+      background: #060911; color: #f8fafc;
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+    }
+    #game-canvas {
+      display: block; width: 100vw; height: 100vh;
+      image-rendering: pixelated;
+    }
+    /* 动态 CSGO 十字准星与受击反馈 */
+    #hud-layer {
+      position: fixed; inset: 0; pointer-events: none; z-index: 10;
+    }
+    #damage-vignette {
+      position: absolute; inset: 0;
+      box-shadow: inset 0 0 110px rgba(239, 68, 68, 0);
+      transition: box-shadow 0.12s ease-out;
+    }
+    #crosshair {
+      position: absolute; top: 50%; left: 50%;
+      width: 0; height: 0;
+      transform: translate(-50%, -50%);
+    }
+    .ch-line {
+      position: absolute; background: #4ade80;
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0.9);
+      transition: transform 0.04s linear, background 0.08s;
+    }
+    .ch-top    { width: 2px; height: 9px; left: -1px; top: -15px; }
+    .ch-bottom { width: 2px; height: 9px; left: -1px; top: 6px; }
+    .ch-left   { width: 9px; height: 2px; left: -15px; top: -1px; }
+    .ch-right  { width: 9px; height: 2px; left: 6px; top: -1px; }
+    .ch-dot    { width: 2px; height: 2px; left: -1px; top: -1px; background: #fff; }
+    /* 命中与爆头反馈叉号 */
+    #hit-marker {
+      position: absolute; top: 50%; left: 50%;
+      width: 22px; height: 22px;
+      transform: translate(-50%, -50%) rotate(45deg) scale(0.7);
+      opacity: 0; transition: opacity 0.06s, transform 0.08s;
+    }
+    #hit-marker::before, #hit-marker::after {
+      content: ''; position: absolute; background: #ffffff;
+    }
+    #hit-marker::before { width: 100%; height: 2px; top: 10px; left: 0; }
+    #hit-marker::after  { width: 2px; height: 100%; left: 10px; top: 0; }
+    #hit-marker.headshot::before, #hit-marker.headshot::after {
+      background: #ef4444; box-shadow: 0 0 8px #ef4444;
+    }
+    /* 顶部关卡进度与 Boss 多部位血条 */
+    #top-bar {
+      position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      min-width: 440px;
+    }
+    #stage-banner {
+      background: rgba(15, 23, 42, 0.82); border: 1px solid #334155;
+      padding: 6px 18px; border-radius: 4px; font-size: 13px; letter-spacing: 1px;
+      display: flex; gap: 18px; align-items: center;
+    }
+    #boss-hud {
+      display: none; width: 520px; background: rgba(15, 23, 42, 0.9);
+      border: 2px solid #ef4444; padding: 10px 14px; border-radius: 4px;
+    }
+    #boss-title {
+      color: #fca5a5; font-size: 13px; font-weight: 700; margin-bottom: 6px;
+      display: flex; justify-content: space-between;
+    }
+    .boss-part-row {
+      display: flex; align-items: center; gap: 8px; margin: 4px 0; font-size: 11px;
+    }
+    .boss-part-name { width: 145px; color: #cbd5e1; }
+    .boss-part-bar-bg {
+      flex: 1; height: 10px; background: #1e293b; border: 1px solid #475569;
+    }
+    .boss-part-bar-fill {
+      height: 100%; background: linear-gradient(90deg, #ef4444, #f97316);
+      transition: width 0.08s;
+    }
+    /* 右上角 CSGO 风格击杀播报 */
+    #kill-feed {
+      position: absolute; top: 16px; right: 20px;
+      display: flex; flex-direction: column; gap: 6px; align-items: flex-end;
+    }
+    .kill-item {
+      background: rgba(15, 23, 42, 0.85); border-right: 3px solid #f97316;
+      padding: 4px 10px; font-size: 12px; color: #f1f5f9;
+      animation: fadeSlide 0.15s ease-out;
+    }
+    .kill-item.hs { border-right-color: #ef4444; color: #fecaca; }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateX(12px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    /* 底部 CSGO 战术状态栏 */
+    #bottom-hud {
+      position: absolute; bottom: 20px; left: 24px; right: 24px;
+      display: flex; justify-content: space-between; align-items: flex-end;
+    }
+    .hud-card {
+      background: rgba(15, 23, 42, 0.86); border: 1px solid #334155;
+      padding: 12px 18px; border-radius: 4px; min-width: 240px;
+    }
+    .stat-row { display: flex; align-items: baseline; gap: 14px; }
+    .stat-big { font-size: 32px; font-weight: 800; color: #4ade80; }
+    .stat-label { font-size: 11px; color: #94a3b8; text-transform: uppercase; }
+    #weapon-slots {
+      display: flex; gap: 8px; margin-top: 8px;
+    }
+    .slot-pill {
+      padding: 3px 9px; border: 1px solid #475569; font-size: 12px;
+      color: #64748b; border-radius: 3px;
+    }
+    .slot-pill.unlocked { color: #e2e8f0; border-color: #94a3b8; }
+    .slot-pill.active {
+      background: #f97316; color: #0f172a; border-color: #fdba74; font-weight: 800;
+    }
+    /* 中心浮动提示 */
+    #toast-msg {
+      position: absolute; top: 26%; left: 50%; transform: translateX(-50%);
+      font-size: 20px; font-weight: 800; color: #fde047;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
+      opacity: 0; transition: opacity 0.2s;
+    }
+    /* 模态菜单层 */
+    #overlay-menu {
+      position: fixed; inset: 0; z-index: 30;
+      background: radial-gradient(circle at center, rgba(15, 23, 42, 0.82), rgba(3, 7, 18, 0.95));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .menu-box {
+      width: 600px; background: #0f172a; border: 2px solid #f97316;
+      padding: 28px 32px; border-radius: 6px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+    }
+    .menu-title {
+      font-size: 34px; font-weight: 900; color: #f97316; letter-spacing: 2px;
+      text-shadow: 3px 3px 0 #7c2d12;
+    }
+    .menu-sub { color: #94a3b8; font-size: 13px; margin: 6px 0 20px; }
+    .stage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
+    .btn {
+      background: #1e293b; color: #f8fafc; border: 1px solid #475569;
+      padding: 11px 14px; font-family: inherit; font-size: 13px; font-weight: 700;
+      cursor: pointer; border-radius: 4px; transition: all 0.12s;
+    }
+    .btn:hover { background: #334155; border-color: #f97316; }
+    .btn-primary {
+      width: 100%; background: #ea580c; border-color: #fdba74;
+      font-size: 16px; padding: 13px; margin-bottom: 12px;
+    }
+    .btn-primary:hover { background: #f97316; }
+    .controls-card {
+      background: #090d16; border: 1px solid #1e293b; padding: 12px 14px;
+      font-size: 12px; color: #cbd5e1; line-height: 1.75; margin-top: 10px;
+    }
+    .key-tag {
+      background: #1e293b; border: 1px solid #475569; padding: 1px 6px;
+      border-radius: 3px; color: #fde047; font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="game-canvas"></canvas>
+
+  <!-- 游戏内 HUD -->
+  <div id="hud-layer">
+    <div id="damage-vignette"></div>
+
+    <div id="top-bar">
+      <div id="stage-banner">
+        <span id="hud-stage-name">STAGE 1 · 丛林前线</span>
+        <span>SCORE: <strong id="hud-score" style="color:#fde047">0</strong></span>
+        <span>PROGRESS: <strong id="hud-progress" style="color:#38bdf8">0%</strong></span>
+        <span id="hud-cheat-flag" style="color:#f43f5e;display:none">[F1 GOD MODE]</span>
+      </div>
+      <div id="boss-hud">
+        <div id="boss-title">
+          <span id="boss-name-text">DEFENSE WALL</span>
+          <span id="boss-phase-text">ALERT</span>
+        </div>
+        <div id="boss-parts-list"></div>
+      </div>
+    </div>
+
+    <div id="kill-feed"></div>
+    <div id="toast-msg"></div>
+
+    <!-- 动态十字准星 -->
+    <div id="crosshair">
+      <div class="ch-line ch-top" id="ch-t"></div>
+      <div class="ch-line ch-bottom" id="ch-b"></div>
+      <div class="ch-line ch-left" id="ch-l"></div>
+      <div class="ch-line ch-right" id="ch-r"></div>
+      <div class="ch-dot"></div>
+    </div>
+    <div id="hit-marker"></div>
+
+    <!-- 底部 CSGO 状态栏 -->
+    <div id="bottom-hud">
+      <div class="hud-card">
+        <div class="stat-row">
+          <div>
+            <div class="stat-label">HP 生命值</div>
+            <div class="stat-big" id="hud-hp">100</div>
+          </div>
+          <div>
+            <div class="stat-label">SHIELD 能量护盾</div>
+            <div class="stat-big" id="hud-shield" style="color:#38bdf8">0s</div>
+          </div>
+          <div>
+            <div class="stat-label">LIVES 残机</div>
+            <div class="stat-big" id="hud-lives" style="color:#fde047">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hud-card" style="text-align:right">
+        <div class="stat-row" style="justify-content:flex-end">
+          <div>
+            <div class="stat-label" id="hud-weapon-name">M4-C 制式步枪</div>
+            <div class="stat-big" id="hud-ammo" style="color:#f97316">∞</div>
+          </div>
+        </div>
+        <div id="weapon-slots">
+          <span class="slot-pill active" data-slot="1">1:R</span>
+          <span class="slot-pill" data-slot="2">2:M</span>
+          <span class="slot-pill" data-slot="3">3:S</span>
+          <span class="slot-pill" data-slot="4">4:L</span>
+          <span class="slot-pill" data-slot="5">5:F</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主菜单 / 暂停 / 结算层 -->
+  <div id="overlay-menu">
+    <div class="menu-box">
+      <div class="menu-title" id="menu-heading">CONTRA 3D : CS-OPS</div>
+      <div class="menu-sub" id="menu-subtitle">
+        第一人称 3D 像素战术闯关 · 致敬魂斗罗经典关卡与 CSGO 射击手感
+      </div>
+
+      <button class="btn btn-primary" id="btn-start-resume">▶ 立即出击 (锁定鼠标视角)</button>
+
+      <div style="font-size:12px;color:#94a3b8;margin-bottom:6px">直接选关挑战：</div>
+      <div class="stage-grid">
+        <button class="btn stage-select-btn" data-stage="0">第 1 关 · 丛林前线</button>
+        <button class="btn stage-select-btn" data-stage="1">第 2 关 · 钢铁基地</button>
+        <button class="btn stage-select-btn" data-stage="2">第 3 关 · 异形巢穴</button>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-bottom:10px">
+        <button class="btn" id="btn-toggle-cheat" style="flex:1">⚡ F1 作弊模式: 关闭</button>
+        <button class="btn" id="btn-toggle-mute" style="flex:1">🔊 音效与配乐: 开启</button>
+      </div>
+
+      <div class="controls-card">
+        <div><span class="key-tag">W A S D</span> 3D 移动 &nbsp;|&nbsp; <span class="key-tag">Space</span> 二段跳（越过断桥/深渊） &nbsp;|&nbsp; <span class="key-tag">Shift</span> 战术冲刺</div>
+        <div><span class="key-tag">鼠标左键</span> 射击（瞄准头部 2.5x 暴击） &nbsp;|&nbsp; <span class="key-tag">1~5 / 滚轮</span> 切换 R/M/S/L/F 武器</div>
+        <div><span class="key-tag">击落空中飞行胶囊</span> 掉落 M机枪 / S散弹 / L激光 / F榴弹 / B护盾</div>
+        <div><span class="key-tag">F1</span> 作弊开关（无敌+全武器无限弹药+超级跳） &nbsp;|&nbsp; <span class="key-tag">ESC</span> 呼出菜单</div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

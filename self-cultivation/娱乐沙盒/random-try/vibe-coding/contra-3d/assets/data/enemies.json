@@ -1,0 +1,62 @@
+{
+  "runner": {
+    "type": "runner",
+    "name": "红隼冲锋步兵",
+    "hp": 60,
+    "speed": 9.5,
+    "score": 150,
+    "bodyColor": "#dc2626",
+    "headColor": "#fca5a5",
+    "accentColor": "#1e293b",
+    "scale": [1.0, 2.1, 1.0],
+    "fireInterval": 1.5,
+    "projectileSpeed": 28,
+    "damage": 12,
+    "behavior": "charge"
+  },
+  "sniper": {
+    "type": "sniper",
+    "name": "高台精英狙击手",
+    "hp": 75,
+    "speed": 2.0,
+    "score": 220,
+    "bodyColor": "#15803d",
+    "headColor": "#fde047",
+    "accentColor": "#0f172a",
+    "scale": [1.05, 2.2, 1.05],
+    "fireInterval": 1.8,
+    "projectileSpeed": 38,
+    "damage": 18,
+    "behavior": "snipe"
+  },
+  "turret": {
+    "type": "turret",
+    "name": "装甲旋转碉堡",
+    "hp": 150,
+    "speed": 0,
+    "score": 350,
+    "bodyColor": "#475569",
+    "headColor": "#ef4444",
+    "accentColor": "#94a3b8",
+    "scale": [1.8, 1.7, 1.8],
+    "fireInterval": 1.25,
+    "projectileSpeed": 32,
+    "damage": 15,
+    "behavior": "turret"
+  },
+  "larva": {
+    "type": "larva",
+    "name": "异形跳跃猎虫",
+    "hp": 50,
+    "speed": 12.5,
+    "score": 180,
+    "bodyColor": "#9333ea",
+    "headColor": "#4ade80",
+    "accentColor": "#581c87",
+    "scale": [1.1, 1.1, 1.4],
+    "fireInterval": 2.2,
+    "projectileSpeed": 26,
+    "damage": 16,
+    "behavior": "leap"
+  }
+}
