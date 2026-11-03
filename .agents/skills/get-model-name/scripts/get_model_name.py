@@ -6,14 +6,24 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sqlite3
+from contextlib import closing
 from collections import deque
 from collections.abc import Callable, Iterable
 from pathlib import Path
 from typing import Any
 
 UNKNOWN = "unknown"
-FRAMEWORKS = ("codex", "github-copilot", "claude-code", "opencode", "grok")
+FRAMEWORKS = (
+    "antigravity",
+    "codex",
+    "github-copilot",
+    "github-copilot-vscode",
+    "claude-code",
+    "opencode",
+    "grok",
+)
 
 
 class ChineseArgumentParser(argparse.ArgumentParser):
@@ -33,7 +43,7 @@ def clean_model(value: Any) -> str | None:
     if not isinstance(value, str):
         return None
     model = value.strip()
-    if not model or model.lower() in {"auto", "default", "unknown", "<synthetic>"}:
+    if not model or any(c.isspace() for c in model) or model.lower() in {"auto", "default", "unknown", "<synthetic>"}:
         return None
     return model
 
@@ -96,13 +106,64 @@ def model_from_mapping(value: Any) -> str | None:
     return model
 
 
+def valid_session_id(value: str | None) -> bool:
+    return bool(value) and all(c.isalnum() or c in "-_" for c in value)
+
+
+def normalize_antigravity_model(value: Any) -> str | None:
+    """将 Antigravity 模型显示名称（含思考预算等修饰）转为规范 slug。"""
+    if not isinstance(value, str):
+        return None
+    cleaned = value.strip()
+    if not cleaned or cleaned.lower() in {"none", "auto", "default", "unknown", "<synthetic>"}:
+        return None
+    cleaned = re.sub(r"\s*\((?:High|Medium|Low)\)\s*$", "", cleaned, flags=re.I).strip()
+    if not cleaned or cleaned.lower() in {"none", "auto", "default", "unknown"}:
+        return None
+    slug = re.sub(r"[\s_]+", "-", cleaned.lower())
+    return clean_model(slug)
+
+
+def antigravity_model(
+    env: dict[str, str], session_id_arg: str | None = None
+) -> str | None:
+    """从 Antigravity 当前会话的 transcript.jsonl 读取最后选择的模型。"""
+    session_id = session_id_arg or env.get("ANTIGRAVITY_CONVERSATION_ID")
+    if not valid_session_id(session_id):
+        return None
+    root = Path(
+        env.get("ANTIGRAVITY_APP_DATA_DIR", str(Path.home() / ".gemini/antigravity"))
+    ).expanduser()
+    log_dir = root / "brain" / session_id / ".system_generated" / "logs"
+    transcript = log_dir / "transcript.jsonl"
+    if not transcript.is_file():
+        transcript = log_dir / "transcript_full.jsonl"
+    if not transcript.is_file():
+        return None
+
+    last_model: str | None = None
+    pattern = re.compile(
+        r"setting\s+`Model Selection`\s+(?:from\s+.*?\s+)?to\s+(.*?)(?:\.\s+No need|\.\s*$|\.\n|\n|$)",
+        re.DOTALL,
+    )
+    for item in json_lines(transcript):
+        if item.get("type") == "USER_INPUT" or item.get("source") in {"USER_EXPLICIT", "USER"}:
+            content = item.get("content", "")
+            if isinstance(content, str):
+                for m in pattern.finditer(content):
+                    slug = normalize_antigravity_model(m.group(1))
+                    last_model = slug or UNKNOWN
+
+    return last_model
+
+
 def codex_model(env: dict[str, str]) -> str | None:
     """从当前 Codex 回合上下文读取实际模型。"""
     thread_id = env.get("CODEX_THREAD_ID")
-    if not thread_id:
+    if not valid_session_id(thread_id):
         return None
     root = Path(env.get("CODEX_HOME", str(Path.home() / ".codex"))).expanduser()
-    session = newest(root.glob(f"sessions/**/*{thread_id}.jsonl"))
+    session = newest(root.glob(f"sessions/**/*-{thread_id}.jsonl"))
     if not session:
         return None
 
@@ -110,7 +171,7 @@ def codex_model(env: dict[str, str]) -> str | None:
         if item.get("type") != "turn_context":
             return None
         payload = item.get("payload")
-        return clean_model(payload.get("model")) if isinstance(payload, dict) else None
+        return (clean_model(payload.get("model")) or UNKNOWN) if isinstance(payload, dict) else UNKNOWN
 
     return last_match(session, extract)
 
@@ -118,11 +179,11 @@ def codex_model(env: dict[str, str]) -> str | None:
 def copilot_model(env: dict[str, str]) -> str | None:
     """从 Copilot 会话开始或最后一次模型切换事件读取模型。"""
     root = Path(env.get("COPILOT_HOME", str(Path.home() / ".copilot"))).expanduser()
-    session_id = env.get("COPILOT_SESSION_ID") or env.get("COPILOT_AGENT_SESSION_ID")
-    if session_id:
+    session_id = env.get("COPILOT_SESSION_ID")
+    if valid_session_id(session_id):
         event_file = root / "session-state" / session_id / "events.jsonl"
     else:
-        event_file = newest(root.glob("session-state/*/events.jsonl"))
+        return None
 
     def extract(item: dict[str, Any]) -> str | None:
         if item.get("type") not in {
@@ -133,35 +194,120 @@ def copilot_model(env: dict[str, str]) -> str | None:
             return None
         data = item.get("data")
         if not isinstance(data, dict):
-            return None
-        for key in ("model", "selectedModel", "modelId", "model_id", "resolvedModel", "newModel"):
-            model = model_from_mapping(data.get(key))
-            if model:
-                return model
-        return None
+            return UNKNOWN
+        for key in ("resolvedModel", "newModel", "model", "modelId", "model_id"):
+            if key in data:
+                return model_from_mapping(data[key]) or UNKNOWN
+        return UNKNOWN
 
     session_model = (
         last_match(event_file, extract) if event_file and event_file.is_file() else None
     )
-    return session_model or clean_model(env.get("COPILOT_MODEL"))
+    return session_model
+
+
+def replay_mutation_log(path: Path) -> Any:
+    """重放 VS Code 聊天会话增量日志（kind 0 全量、1 赋值、2 追加、3 删除）。"""
+    state: Any = None
+    for item in json_lines(path):
+        kind = item.get("kind")
+        if kind == 0:
+            state = item.get("v")
+            continue
+        keys = item.get("k")
+        if state is None or not isinstance(keys, list) or not keys:
+            continue
+        target = state
+        try:
+            for key in keys[:-1]:
+                target = target[key]
+            last = keys[-1]
+            if kind == 1:
+                target[last] = item.get("v")
+            elif kind == 2:
+                array = target[last]
+                if not isinstance(array, list):
+                    continue
+                index = item.get("i")
+                if isinstance(index, int):
+                    del array[index:]
+                values = item.get("v")
+                if isinstance(values, list):
+                    array.extend(values)
+            elif kind == 3:
+                del target[last]
+        except (KeyError, IndexError, TypeError):
+            continue
+    return state
+
+
+def vscode_session_file(env: dict[str, str], session_log: str | None) -> Path | None:
+    """由 VSCODE_TARGET_SESSION_LOG 定位 workspaceStorage/<ws>/chatSessions/<sid>.jsonl。"""
+    raw = session_log or env.get("VSCODE_TARGET_SESSION_LOG")
+    if not raw:
+        return None
+    log_dir = Path(raw).expanduser()
+    session_id = log_dir.name
+    if not valid_session_id(session_id) or log_dir.parent.name != "debug-logs":
+        return None
+    workspace = log_dir.parent.parent.parent
+    candidate = workspace / "chatSessions" / f"{session_id}.jsonl"
+    return candidate if candidate.is_file() else None
+
+
+def copilot_vscode_model(env: dict[str, str], session_log: str | None = None) -> str | None:
+    """从 VS Code Copilot Chat 当前会话最后一个请求读取模型。"""
+    session = vscode_session_file(env, session_log)
+    if not session:
+        return None
+    state = replay_mutation_log(session)
+    if not isinstance(state, dict):
+        return None
+    requests = state.get("requests")
+    if not isinstance(requests, list) or not requests or not isinstance(requests[-1], dict):
+        return None
+    request = requests[-1]
+    result = request.get("result")
+    metadata = result.get("metadata") if isinstance(result, dict) else None
+    if isinstance(metadata, dict):
+        resolved = clean_model(metadata.get("resolvedModel"))
+        if resolved:
+            return resolved
+    selected_id = request.get("modelId")
+    if not isinstance(selected_id, str):
+        return UNKNOWN
+    # 请求尚未完成时，用选中模型元数据把 vendor/group/id 标识换成模型 id。
+    selected = (state.get("inputState") or {}).get("selectedModel")
+    if isinstance(selected, dict) and selected.get("identifier") == selected_id:
+        info = selected.get("metadata")
+        if isinstance(info, dict):
+            model = clean_model(info.get("id"))
+            if model:
+                return model
+    tail = selected_id.rsplit("/", 1)[-1]
+    if clean_model(tail) is None:  # 如 copilot/auto：后端尚未解析
+        return UNKNOWN
+    return clean_model(selected_id) or UNKNOWN
 
 
 def claude_model(env: dict[str, str]) -> str | None:
     """从 Claude Code 最近一条助手消息读取模型。"""
     root = Path(env.get("CLAUDE_CONFIG_DIR", str(Path.home() / ".claude"))).expanduser()
     session_id = env.get("CLAUDE_CODE_SESSION_ID") or env.get("CLAUDE_SESSION_ID")
-    if session_id:
-        transcript = newest(root.glob(f"projects/**/*{session_id}.jsonl"))
+    if valid_session_id(session_id):
+        transcript = newest(root.glob(f"projects/**/{session_id}.jsonl"))
     else:
-        transcript = newest(root.glob("projects/**/*.jsonl"))
+        return None
     if not transcript:
-        return clean_model(env.get("ANTHROPIC_MODEL"))
+        return None
 
     def extract(item: dict[str, Any]) -> str | None:
         message = item.get("message")
-        return clean_model(message.get("model")) if isinstance(message, dict) else None
+        if item.get("type") != "assistant":
+            return None
+        return (clean_model(message.get("model")) or UNKNOWN) if isinstance(message, dict) else UNKNOWN
 
-    return last_match(transcript, extract) or clean_model(env.get("ANTHROPIC_MODEL"))
+    return last_match(transcript, extract)
 
 
 def opencode_model(env: dict[str, str], cwd: Path) -> str | None:
@@ -172,61 +318,39 @@ def opencode_model(env: dict[str, str], cwd: Path) -> str | None:
     database = Path(
         env.get("OPENCODE_DB", str(data_root / "opencode/opencode.db"))
     ).expanduser()
-    if not database.is_file():
-        return clean_model(env.get("OPENCODE_MODEL"))
     session_id = env.get("OPENCODE_SESSION_ID")
+    if not valid_session_id(session_id) or not database.is_file():
+        return None
     try:
-        connection = sqlite3.connect(f"file:{database}?mode=ro", uri=True)
-        if session_id:
+        with closing(sqlite3.connect(database.resolve().as_uri() + "?mode=ro", uri=True)) as connection:
             row = connection.execute(
                 "SELECT model FROM session WHERE id = ?", (session_id,)
             ).fetchone()
-        else:
-            row = connection.execute(
-                "SELECT model FROM session WHERE directory = ? ORDER BY time_updated DESC LIMIT 1",
-                (str(cwd),),
-            ).fetchone()
-        connection.close()
     except (OSError, sqlite3.Error):
-        row = None
+        return None
     if row and row[0]:
         try:
             return model_from_mapping(json.loads(row[0]))
         except (TypeError, json.JSONDecodeError):
             return clean_model(row[0])
-    return clean_model(env.get("OPENCODE_MODEL"))
+    return None
 
 
 def grok_model(env: dict[str, str], cwd: Path) -> str | None:
     """从 Grok 会话摘要读取当前模型标识。"""
     root = Path(env.get("GROK_HOME", str(Path.home() / ".grok"))).expanduser()
     session_id = env.get("GROK_SESSION_ID")
-    summaries = (
-        list(root.glob(f"sessions/**/{session_id}/summary.json"))
-        if session_id
-        else list(root.glob("sessions/**/summary.json"))
-    )
-    if not session_id:
-        matching: list[Path] = []
-        for summary in summaries:
-            try:
-                data = json.loads(summary.read_text(encoding="utf-8"))
-            except (OSError, json.JSONDecodeError):
-                continue
-            info = data.get("info")
-            if isinstance(info, dict) and info.get("cwd") == str(cwd):
-                matching.append(summary)
-        summaries = matching
-    summary = newest(summaries)
+    if not valid_session_id(session_id):
+        return None
+    summary = newest(root.glob(f"sessions/**/{session_id}/summary.json"))
     if summary:
         try:
             data = json.loads(summary.read_text(encoding="utf-8"))
-            model = clean_model(data.get("current_model_id"))
-            if model:
-                return model
+            if isinstance(data, dict):
+                return clean_model(data.get("current_model_id"))
         except (OSError, json.JSONDecodeError):
             pass
-    return clean_model(env.get("GROK_DEFAULT_MODEL"))
+    return None
 
 
 def parent_commands() -> str:
@@ -238,11 +362,7 @@ def parent_commands() -> str:
             break
         try:
             commands.append(
-                Path(f"/proc/{pid}/cmdline")
-                .read_bytes()
-                .replace(b"\0", b" ")
-                .decode(errors="ignore")
-                .lower()
+                Path(f"/proc/{pid}/comm").read_text(encoding="utf-8").strip().lower()
             )
             status = Path(f"/proc/{pid}/status").read_text(
                 encoding="utf-8", errors="ignore"
@@ -264,9 +384,14 @@ def infer_framework(env: dict[str, str]) -> str | None:
     explicit = env.get("AI_FRAMEWORK")
     if explicit in FRAMEWORKS:
         return explicit
+    if env.get("AI_AGENT") == "github_copilot_vscode_agent" or env.get(
+        "VSCODE_TARGET_SESSION_LOG"
+    ):
+        return "github-copilot-vscode"
     markers = (
+        ("antigravity", ("ANTIGRAVITY_AGENT", "ANTIGRAVITY_CONVERSATION_ID")),
         ("codex", ("CODEX_THREAD_ID",)),
-        ("github-copilot", ("COPILOT_CLI", "COPILOT_SESSION_ID", "COPILOT_AGENT_SESSION_ID", "COPILOT_MODEL")),
+        ("github-copilot", ("COPILOT_CLI", "COPILOT_SESSION_ID", "COPILOT_MODEL")),
         ("opencode", ("OPENCODE_PID", "OPENCODE_SESSION_ID")),
         ("grok", ("GROK_SESSION_ID", "GROK_HOOK_EVENT")),
         ("claude-code", ("CLAUDE_CODE_SESSION_ID", "CLAUDE_SESSION_ID")),
@@ -276,13 +401,15 @@ def infer_framework(env: dict[str, str]) -> str | None:
             return framework
     commands = parent_commands()
     for framework, command in (
+        ("antigravity", "antigravity"),
+        ("antigravity", "language_server"),
         ("codex", "codex"),
         ("github-copilot", "copilot"),
         ("claude-code", "claude"),
         ("opencode", "opencode"),
         ("grok", "grok"),
     ):
-        if command in commands:
+        if command in commands.splitlines():
             return framework
     return None
 
@@ -294,24 +421,89 @@ def main() -> int:
     parser.add_argument(
         "--framework", choices=FRAMEWORKS, help="显式指定当前 AI 编程框架"
     )
+    parser.add_argument(
+        "--conversation-id",
+        "--session-id",
+        dest="session_id",
+        help="Antigravity 会话 ID（ANTIGRAVITY_CONVERSATION_ID）",
+    )
+    parser.add_argument(
+        "--session-log",
+        help="VS Code Copilot Chat 的 VSCODE_TARGET_SESSION_LOG（debug-logs/<会话 ID> 目录）",
+    )
+    parser.add_argument(
+        "--header",
+        action="store_true",
+        help="输出文档署名块: agent name, harness, session, time",
+    )
     args = parser.parse_args()
     env = dict(os.environ)
     explicit_model = clean_model(env.get("AI_MODEL_NAME"))
-    if explicit_model:
-        print(explicit_model)
+    framework = args.framework or (
+        "github-copilot-vscode"
+        if args.session_log
+        else ("antigravity" if args.session_id else infer_framework(env))
+    )
+    if "AI_MODEL_NAME" in env:
+        model = explicit_model
+    else:
+        cwd = Path.cwd().resolve()
+        detectors: dict[str, Callable[[], str | None]] = {
+            "antigravity": lambda: antigravity_model(env, args.session_id),
+            "codex": lambda: codex_model(env),
+            "github-copilot": lambda: copilot_model(env),
+            "github-copilot-vscode": lambda: copilot_vscode_model(env, args.session_log),
+            "claude-code": lambda: claude_model(env),
+            "opencode": lambda: opencode_model(env, cwd),
+            "grok": lambda: grok_model(env, cwd),
+        }
+        model = detectors[framework]() if framework in detectors else None
+    if not args.header:
+        print(model or UNKNOWN)
         return 0
-    framework = args.framework or infer_framework(env)
-    cwd = Path.cwd().resolve()
-    detectors: dict[str, Callable[[], str | None]] = {
-        "codex": lambda: codex_model(env),
-        "github-copilot": lambda: copilot_model(env),
-        "claude-code": lambda: claude_model(env),
-        "opencode": lambda: opencode_model(env, cwd),
-        "grok": lambda: grok_model(env, cwd),
-    }
-    model = detectors[framework]() if framework in detectors else None
-    print(model or UNKNOWN)
+    print(format_header(model or UNKNOWN, framework, session_of(framework, env, args)))
     return 0
+
+
+SESSION_ENV = {
+    "antigravity": ("ANTIGRAVITY_CONVERSATION_ID",),
+    "codex": ("CODEX_THREAD_ID",),
+    "github-copilot": ("COPILOT_SESSION_ID",),
+    "claude-code": ("CLAUDE_CODE_SESSION_ID", "CLAUDE_SESSION_ID"),
+    "opencode": ("OPENCODE_SESSION_ID",),
+    "grok": ("GROK_SESSION_ID",),
+}
+
+
+def session_of(framework: str | None, env: dict[str, str], args: Any) -> str | None:
+    """返回当前会话 ID; 无法确定时返回 None."""
+    if framework == "antigravity" and args.session_id:
+        return args.session_id
+    if framework == "github-copilot-vscode":
+        log = args.session_log or env.get("VSCODE_TARGET_SESSION_LOG")
+        return Path(log).name if log else None
+    for key in SESSION_ENV.get(framework or "", ()):
+        if valid_session_id(env.get(key)):
+            return env[key]
+    return None
+
+
+def format_header(model: str, framework: str | None, session: str | None) -> str:
+    """署名块: 列表格式, session 取前 8 位, Antigravity 附 conversation:// 链接."""
+    from datetime import datetime
+    from zoneinfo import ZoneInfo
+
+    if session and framework == "antigravity":
+        sess = f"[{session[:8]}](conversation://{session})"
+    else:
+        sess = session[:8] if session else UNKNOWN
+    now = datetime.now(ZoneInfo("Asia/Shanghai")).strftime("%Y-%m-%d %H:%M")
+    return "\n".join([
+        f"- agent name: {model}",
+        f"- harness: {framework or UNKNOWN}",
+        f"- session: {sess}",
+        f"- time: {now} (Asia/Shanghai)",
+    ])
 
 
 if __name__ == "__main__":

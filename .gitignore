@@ -1,4 +1,5 @@
 # Agent runtime cache and temporary task artifacts.
+.agents/.tmp/
 .agents/cache/
 .agents/memory/
 .agents/runtime/

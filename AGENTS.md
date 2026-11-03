@@ -8,12 +8,13 @@
 - 各业务模块与结构之间的联系由人工在 `docs/architecture/` 中维护描述。AI 严禁自行生成或强制维护繁冗的多层架构叶子记录。
 - 人与 AI 内容严格分离：本人原创内容与 AI 生成内容严禁混写于同一文件。AI 生成内容一律放入所在模块的 AI 子目录（如 `AI/`、既有的 `Claude/`），并在文首声明模型名；目录说明类 `README.md` 除外，但同样须声明模型名。
 - 每个产生仓库变更、用户环境变更、数据清理或实质性故障诊断的独立任务，都必须使用 `.agents/skills/dev-logs/SKILL.md`，按“一任务一日志”完成记录和索引维护；历史日志不追溯整改。
+- 语体：采用企业秘书、软件说明文档与数学教科书式的书面语，严禁口语与随意表达；示范见 `.agents/prompts/语气示范.md`。
 - 任何时候，都应该保持精简的生成风格, 能用5行以内描述的，绝对不要用20行以上描述; 无关的废话或者代码永远不要生成，简洁优雅，言简意赅，宁少勿多
-- 作为AI，文档撰写的时候，必须要声明你的model name.
+- 所有 AI 新增文档/报告（含 `.tmp` Markdown）须在开头放置署名块（agent name、harness、session、time），用 `python3 .agents/skills/get-model-name/scripts/get_model_name.py --header` 生成；无法核实时写 `unknown`，不得猜测。
 
 向用户解释代码时，始终从业务角度进行说明。即使用户是开发者，也要将其视为只希望了解代码能为业务做什么、代码有哪些优势与劣势的管理负责人。
 
-执行任何代码变更之前，必须先与用户对齐方案。只有在用户确认方案可行之后，才能开始工作。【但如果用户明确说"无需确认"，则你可以自行完成】
+用户说"对齐"时，表示用户尚不清楚该怎么做：不要擅自行动，先与用户沟通商量方案。用户未说"对齐"时，由你自行裁定是否需要对齐（风险不大时直接 CRUD 即可）。
 
 删除文件或回滚之前，必须先在 `.agents/cache/task_name/` 中创建备份。
 
@@ -45,3 +46,21 @@
 - 擅自重新生成繁复的多层架构叶子文档或强加冗余架构约束。
 - 因为懒惰而要求用户手动完成本可通过命令行或脚本自行完成的任务（反例：“等你（用户）完成 XXX 后，我（LLM）就可以做 YYY”）。严禁这种行为！如果确实无法独立完成，必须说明：在获得 XXX 信息后，才能继续进行 YYY。
 - 安装过时的 SDK 或软件包版本，例如 mathlib 4.26、PyTorch 2.7 等。最新版本早已超过这些旧版本，使用它们会给用户带来版本问题。
+
+---
+
+`.agents/` 工作区（是否入 git 是首要区分）：
+
+- `.agents/.tmp/`：完全不入 git。问答归档、临时脚本、实验数据。规范见 `.agents/skills/tmp/` 技能。
+- `.agents/sandbox/`：默认不入 git（根 `.gitignore` 已忽略）；值得留存的成果按需 `git add -f` 入库。
+- `.agents/cache/`：不入 git，删除或回滚前的备份。
+
+用户输入 .tmp 时，请将回答内容按周归档到 `.agents/.tmp/agent/YYYY-MM-DD_YYYY-MM-DD/`。
+- 每周从周日 00:00 开始，到下周日 00:00 前结束，按 Asia/Shanghai 时区计算；目录名的两个日期分别为该周周日和周六，例如 2026-09-13_2026-09-19。
+- 周目录下的 Markdown 文件统一命名为 YYYY-MM-DD_HH-mm_任务名称.md. Use `TZ=Asia/Shanghai date '+%Y-%m-%d_%H-%M'`。按文件名日期确定所属周。
+- 新增回答时更新 `.agents/.tmp/agent/README.md` 的归档索引（可使用 tmp/qa-archive 脚本自动更新）；移动既有文档时同步调整相关链接。
+- 临时脚本、实验数据等资源放 `.agents/.tmp/task/YYYY-MM/YYYY-MM-DD_<任务名>/`，按月归档。每个 task 须含 docs/plans/、docs/logs/（一个用户 prompt 一份）、docs/reports/（按需）三个子目录；跨日沿用原目录；子代理工作区为 tasks/<slug>/；产出物在 outputs/ 下按类型分目录。规范见 tmp/task 技能。
+- md 的公式排版参考 `.agents/prompts/公式排版.md`；Tex 自由考虑。符号习惯参考 `self-cultivation/自然科学研究/数学笔记/思考/习惯.md`。
+- 用户在末尾输入 `< 20` 或 `< 10` 时，指 < n 行，生成后用 `python3 .agents/skills/tmp/qa-archive/scripts/count_lines.py -m n <文件>` 校验（<=10 行公式块计 1 行）。
+- .tmp 的内容，请不要在 chat context 里二次重复，浪费上下文记忆。
+- 对于 chat 上下文中的回答，一律 ⩽ 8 行；超过 8 行请在 .tmp 中生成 md 文件。
